@@ -1,0 +1,86 @@
+= Installing and Compiling libwdi =
+
+== '''Where can I get binary snapshots of libwdi?''' ==
+Because libwdi can be compiled in very different way (as a static or dynamic library, with or without the WinUSB or libusb-win32 drivers, with or without separate 32 or 64 bit binaries, etc.), and these configuration have a major impact on the size of the resulting binaries, producing regular binary snapshots of libwdi to address various user's needs would require a lot of time, as we would need to produce about 18 different versions to satisfy everyone. We might produce a limited subset of binary snapshots in the future, but for the time being, we require the library to be configured and recompiled according to your needs.
+
+== '''How can I specify a custom signed inf/driver files for use with libwdi?''' ==
+See the paragraph 'Using a custom driver file with libwdi' in the [[install#Using_a_custom_driver_file_with_libwdi|installation & compilation guide]].
+
+== '''Is it possible to cross-compile libwdi?''' ==
+Absolutely. This can be very convenient if you have a multilib MinGW-w64 cross compiler installed on a Linux host for instance. You will of course need to have the WinUSB (from the MS WDK), libusb-win32, libusbK or your own user driver files available on the build platform.<br/>An example of configuring libwdi for cross-compilation using MinGW-w64, with the libusb-win32 driver, would go something like this: <pre>./configure --host=x86_64-w64-mingw32 --with-libusb0="/usr/src/libusb-win32"</pre>
+
+==  '''The embedder fails to run during cross-compilation''' ==
+By default, the configure script expects your default build platform's compiler to be able to produce executables that run on that platform. This is necessary so that the build process can compile and run the custom embedder, to add the driver files to the library. If however your default compiler does not produce executables that run on your build platform, the process will fail. This can occur for instance, if you are using a multilib MinGW-w64 on a Windows 32 platform, but the default for gcc is to produce 64 bit executables. If this is the case, you should define a <code>CC_FOR_BUILD</code> environment variable with the relevant options. For instance, in the scenario above, you would issue the following, to ensure that MinGW-w64 produces a 32 bit embedder executable that can be run during the build process: <code>export CC_FOR_BUILD="x86_64-w64-mingw32-gcc -m32</code>
+
+== '''How can I create a 32+64 bit compatible version of libwdi?''' ==
+# Use Visual Studio (>= 2005) and select Win32 for the target. Note that Visual Studio Express cannot be used, as it doesn't include a 64 bit compiler.
+# Use the [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows Driver Kit] or DDK (v 7.x or later), and run <code>ddk_build.cmd</code> from one of the Windows XP 32 bit command prompts
+# Use a '''multilib''' version of [http://mingw-w64.sourceforge.net/ MinGW-w64]. Multilib means a compiler that supports both the -m32 and -m64 options. Currently, the binaries provided on the project page are not multilib, so you need to use [http://tdm-gcc.tdragon.net/download TDM64] which only runs under Windows or [http://pete-akeo.blogspot.com/2010/07/compiling-mingw-w64-with-multilib-on.html recompile MinGW-w64] yourself.
+
+== '''How can I create Windows 2000 compatible version of libwdi?''' ==
+Currently, the only __officially supported__ way to do so is to use MinGW32. You may try WDK 6001 version as well but it is unsupported. Take note that MinGW-w64 only officially supports XP onwards (although the libwdi binaries produced appear to work fine on Windows 2000). 
+
+== '''How can I create a DLL with the DDK environment?''' ==
+Run <code>ddk_build DLL</code>. Make sure the DLL parameter is specified as uppercase.
+
+== '''I get "System error: -2147154677" when converting to Visual C++ Express 2010''' ==
+Unfortunately, Microsoft's Visual C++ Express 2010 is a crippled version that cannot import project files that contain 64 bit builds. Currently, the only solution is to either not use Visual Studio Express 2010 or re-create the project files manually.
+
+== '''I get "fatal error RC1050: Cannot open include file 'afxres.h'" during compilation''' ==
+This can occur when compiling Zadig with Visual Studio Express, and is due to Visual Studio Express not officially supporting MFC applications. You can however get zadig compiled if you edit the 'zadig.rc' file and replace the line
+<pre>
+#include "afxres.h"
+</pre>
+with
+<pre>
+#include <windows.h>
+#define IDC_STATIC -1
+</pre>
+
+== '''I get "Warning: linker path does not have real file for library -lsetupapi/-lole32" with MinGW-w64''' ==
+If this happens with a recent version of libtool (2.2.8 or later), this can be due to a MinGW-w64 packaging problem with the 64 bit libraries in the x86_64-w64-mingw32/lib directory. One way to address that issue is to move all the libraries from lib/ into the lib64/ directory. If you fixed the MinGW-w64 packaging issue yet still have similar issues, you may need to update libtool to version 2.2.8 or later. 
+
+== '''I get "gcc.exe: !CreateProcess: No such file or directory" in MinGW''' ==
+You are probably attempting to cross compile on an environment where the default gcc cannot produce executables. Because libwdi requires the compilation and execution of an embedder.exe native to the host, the host's default gcc '''must''' be able to produce executables that run on the compilation platform.
+
+
+= Running libwdi =
+
+== '''What are these "USB\VID_####&PID_####[&MI_##] (Autogenerated)" certificates that libwdi installs in the Trusted certificate stores?''' ==
+From version 1.1.0, if you are installing a driver on Vista or later versions of Windows, libwdi will attempt to generate and self-sign driver package, and then mark the certificate used for the signing process as trusted, by installing it in the system stores, in order to avoid further security prompts during the driver installation. <br />
+During that process, libwdi will copy two '''autogenerated''' certificates to the Root (Trusted Root Certification Authorities) and Trusted Publisher system certificate stores.
+
+While the installation of certificates into these stores, without asking the end user, may sound like questionable practice, please understand that none of these certificate actually introduce a security liability as '''nobody''', not even the authors of libwdi, have the ability to reuse these certificates in order to mark malicious software as trusted. This is because:
+# The private key for the certificate is generated '''at runtime''', on the end user machine, and is not accessible to anybody else but the libwdi application that does the signing process for a limited time only
+# after the driver package has been signed, '''the private key is destroyed'''. This effectively means that the certificate is a one-time use only, and cannot be used for anything but to validate driver package that was signed by libwdi, that one time. As a matter of fact, even if you re-install the exact same device using the same driver, libwdi has to generate a brand new certificate (and a new temporary private key), and replace the old one, because it is impossible to reuse it.
+
+We do take security matters very seriously (which is the reason why we implemented the no-reuse policy above, with the obvious drawback of multiplying certificates), and since we are 100% open source, we invite anyone who wishes to do so to look at our [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c PKI implementation], to want to confirm for themselves that, depite the additional certificates being added as trusted, the system's security is not being diminished in any way.
+
+For more information, see our [[Certification Practice Statement]] page
+
+== '''How can I use libwdi to install a specific USB device with an installer?''' ==
+When run from within an installer script, the wdi-simple sample from examples should be able to achieve just that. An example of [http://www.jrsoftware.org/isinfo.php Inno Setup] installer script is also provided with the libwdi examples. See the [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/wdi-simple.iss wdi-simple.iss] sample.
+
+== '''Does libwdi support internationalization?''' ==
+Absolutely. The inf file created by libwdi is written in Unicode (UTF-16) format, to preserve any international characters, and the libwdi API calls and string parameters fully support UTF-8, meaning that you can name your devices with non English characters, or use directories in a different locale than English, and libwdi will happily process that data.
+
+== '''Can two libwdi applications concurrently access libwdi at the same time?''' ==
+No. Just like Windows provides mechanisms to prevent simultaneous driver installations, most of the libwdi API calls will prevent concurrent access to libwdi to ensure that only one application at a time has the ability to install a system driver.
+
+== '''Why is my driver installation so slow?''' ==
+The default on Windows Vista and later is to create restore a point before installing any driver. Depending on the system, this can be a fairly lengthy operation (20 seconds or, in extreme cases, up to 5 minutes). Because we are installing non bootable drivers, for devices (USB) that can be easily removed in case of problems, from v1.1.0, libwdi does its best to disable the creation of restore points. However, if the Local Group Policies are overridden or cannot be modified, you may have to contend with a restore point and a lengthy driver installation.
+
+== '''Are the extracted driver files removed after installation?''' ==
+They aren't. The reason behind this is twofold. First, it is a bad idea to have an application running in elevated mode to delete files, as, if the extraction directory was user selected, we could end up deleting important data. Secondly, it is possible to use libwdi to setup the driver files for the next time the device is plugged in, in which case we must ensure that the files are still available. Deletion of the file is therefore left either to the end user or your application.
+
+== '''Why doesn't lbwdi use dpinst.exe instead of a custom installer?''' ==
+The two main reasons here are the size factor (each dpinst is about 1 MB in size or 300 KB compressed, whereas our installer is a lot smaller) as well as the ability to have greater control over the installation process. We might provide an option to embed and use dpinst in future versions of the library.
+
+== '''Why doesn't libwdi offer the option to set additional inf parameters?''' ==
+If you ask this, you probably would like to have libwdi set the class GUID, name or provider in the installed driver package. We have taken the deliberate decision not to add this feature, because:
+# With the introduction of [http://sourceforge.net/apps/mediawiki/libwdi/index.php?title=WCID_devices WCID] for WinUSB devices in Windows 8, Microsoft has effectively defined a unique class name, "Universal Serial Bus devices" as well as a unique class GUID, {88bae032-5a81-49f0-bc3d-a4ff138216d6}, for all USB devices that rely on the WinUSB generic driver. Therefore, if you were to set your own class properties for utilization in your application, not only will you not be able to use WCID as a result, but you will also prevent compatible WCID devices to work with your application, which will be detrimental for end users. This also applies if you don't plan to use WinUSB, as WCID is not limited to WinUSB and the same restrictions occur.
+# The main reason people want to set class parameters in the inf is either to place their own branding in the device manager (which actually makes it more confusing for end-users to locate their devices) or for defining a class GUID that restricts the generic access that libwdi provides to hardware and software ("walled garden"). Because this is also detrimental for end-users, we don't think it should be part of the libwdi generic driver installation process.
+
+This being said, if you really want to have your own class properties defined in the inf, and you know the VID:PIDs of your devices, which should always be the case if you want to restrict the class from the default generic one, there's nothing preventing you from reusing WinUSB, libusb-win32 or libusbK as a custom driver with a customized inf that you control.
+----
+[[Image:CC_BY-SA.png]
