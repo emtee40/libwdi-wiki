@@ -22,7 +22,7 @@ Our current knowledge of the most common libwdi-based applications likely to ins
 # <code>inf-wizard.exe</code> from [http://code.google.com/p/usb-travis/ libusbK]
 # <code>Zadig</code> from the original [[Home|libwdi]] project
 
-= Why are these certificates installed without asking? Isn't the silent installation of a trusted certificate a security risk? =
+= Why are these certificates installed without asking?<br/>Isn't the silent installation of a trusted certificate a security risk? =
 
 We did consider prompting end-users at least once, before installing the certificates, but we had to remove that option after considering that libwdi would end up being used by people who have no idea about PKI or certificates, and may not understand the choices being presented to them. <br />
 While it is true that, in most situations, an application should never go around installing trusted certificates without asking the user, because this may leave somebody else with the ability to sign malicious trusted binary packages, we consider that the certificates from libwdi are a special case because:
