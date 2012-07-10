@@ -1,4 +1,4 @@
-= Installing and Compiling libwdi> =
+= Installing and Compiling libwdi =
 
 == '''Where can I get binary snapshots of libwdi?''' ==
 Because libwdi can be compiled in very different way (as a static or dynamic library, with or without the WinUSB or libusb-win32 drivers, with or without separate 32 or 64 bit binaries, etc.), and these configuration have a major impact on the size of the resulting binaries, producing regular binary snapshots of libwdi to address various user's needs would require a lot of time, as we would need to produce about 18 different versions to satisfy everyone. We might produce a limited subset of binary snapshots in the future, but for the time being, we require the library to be configured and recompiled according to your needs.
