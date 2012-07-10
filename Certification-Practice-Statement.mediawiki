@@ -37,11 +37,11 @@ Finally, because the certificates can only be installed from an application runn
 
 If you find that you no longer plan to use the USB device the certificates were attached to, you can easily delete them, through one of the following methods. Note however that, because they are installed into the system rather than the user stores, a certificate management application may have to run in elevated mode to be able to perform deletion.
 
-* Internet Explorer:
+* '''Internet Explorer''':
 ** Right click on your internet explorer shortcut and select 'Run as administrator'
 ** Select 'Internet Options' &rarr; 'Content' tab and click on the 'Certificates' button
 ** Navigate to either of the 'Trusted Root Certification Authorities' or 'Trusted Publishers' tab, then select the <code>USB\VID_...</code> certificate you want to delete and click the 'Remove' button
-* CertMgr:
+* '''CertMgr''':
 ** Select Run and type <code>certmgr.msc</code>
 ** Navigate to either of the 'Trusted Root Certification Authorities' or 'Trusted Publishers', then right click on the <code>USB\VID_...</code> certificate you want to delete, and select 'Delete'
 
