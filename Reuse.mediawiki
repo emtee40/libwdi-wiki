@@ -1,0 +1,250 @@
+<big>'''Reusable parts of the project / solutions to common problems'''</big>
+
+Libwdi implements reusable solutions to the following problems:
+
+== Creating a Windows application that uses the exact same codebase for MSVC, WDK/DDK, MinGW and cygwin ==
+3 sets of files are being used for that:
+* For MinGW/cygwin, autotools scripts, that automatically generate the <code>config.h</code> and Makefiles used during compilation
+* For MSVC/Visual Studio, a regular set of project files, depending on the manually edited <code>/msvc/config.h</code>
+* For DDK/WDK, a batch script, depending on the manually edited <code>/msvc/config.h</code>
+
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): (MinGW/cygwin) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=autogen.sh /autogen.sh], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=configure.ac /configure.ac], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=Makefile.am /Makefile.am], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/Makefile.am /libwdi/Makefile.am], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/Makefile.am /examples/Makefile.am]</tt>
+|-
+| style="background:#f7f7f7;" | File(s): (MSVC) || <tt>*.sln, .msvc/*.vcproj .msvc/*.vcxproj</tt>
+|-
+| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=ddk_build.cmd ddk_build.cmd], .msvc/*_sources</tt>
+|}
+
+== Creating a Windows application that is compatible with all versions of Windows from Windows 2000 ==
+The trick is to use MinGW as the compiler along with the <code>-DWINVER=0x500</code> flag.
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=configure.ac /configure.ac]</tt>
+|}
+
+== Creating a Windows GUI application that use the latest Windows visual enhancements (Aero Glass look on Vista or Windows 7), even if compiled from MinGW/cygwin ==
+The default from all compilers, including Microsoft ones, is NOT to use the default look and feel from each platform, but to force the XP/2k one.<br />
+To enable a more up to date look and feel in standard GUI applications, you need to manually embed the [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/common_controls.manifest common-controls manifest], as well as include <code><commctrl.h></code> in your source.
+* For MSVC projects, just adding the manifest to your resources files in the project will do.
+* For DDK/WDK, as documented [http://jpassing.com/2008/02/01/how-to-use-manifests-with-buildexe here], you need to add an <code>SXS_APPLICATION_MANIFEST</code> line with the name of your manifest
+* For MinGW/cywgin, it's a bit more tricky. What you want to do is link to the manifest in your .rc file, with something like <code>CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "common_controls.manifest"</code>. The problem is that, this needs to appear at the end, else MinGW will ignore it, and you want to be able to edit your .rc in Visual Studio, without destroying the additional data you add to the .rc. The solution is to have the following at the beginning of your .rc
+<pre>
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "// Must reference a manifest for visual styles\r\n"
+    "// Oh, and it must happen at the end, or MinGW will ignore it!\r\n"
+    "#if defined(__GNUC__)\r\n"
+    "CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST ""common_controls.manifest""\r\n"
+    "#endif\r\n"
+    "\0"
+END
+</pre>
+And of course, you need a matching section at the end.
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/common_controls.manifest common-controls manifest], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/.msvc/zadig_sources example DDK sources (Zadig)], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/zadig.rc example MinGW manifest from .rc (Zadig)]</tt>
+|}
+
+== Creating Windows application from MSVC, WDK/DDK, MinGW and cygwin that require UAC elevation, even if compiled from MinGW/cygwin ==
+The solution to that is similar to the above one, in that you need to use [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/elevation.manifest a manifest for elevation].<br />
+In our project, you will see that we combine multiple manifests were needed (this is the case for the Zadig example above for instance), as DDK is not able to merge separate manifests files. Also, recent versions of Visual Studio don't require an explicit manifest file for elevation, as this can be taken care of in Linker &rarr; Manifest File &rarr; UAC Execution Level.
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/elevation.manifest /examples/elevation.manifest]</tt>
+|}
+
+== Detecting if an application is running on a 32 or 64 bit Windows OS ==
+Depending on the OS being run, libwdi requires a 32 or 64 bit version of the driver installer to be run. The following section of code can be used to detect if a process is running as 32 or 64 bit code:
+<pre>
+	BOOL is_x64 = FALSE;
+	// Detect whether if we should run the 64 bit installer, without
+	// relying on external libs
+	if (sizeof(uintptr_t) < 8) {
+		// This application is not 64 bit, but it might be 32 bit
+		// running in WOW64
+		pIsWow64Process = (BOOL (__stdcall *)(HANDLE, PBOOL))
+			GetProcAddress(GetModuleHandle("KERNEL32"), "IsWow64Process");
+		if (pIsWow64Process != NULL) {
+			(*pIsWow64Process)(GetCurrentProcess(), &is_x64);
+		}
+	} else {
+		is_x64 = TRUE;
+	}
+</pre>
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/libwdi.c /libwdi/libwdi.c] &rarr; install_driver_internal()</tt>
+|}
+
+== Compiling a project for both 32 and 64 bit ==
+When possible, because of the need for an embedded driver installer that matches the bitsize of the Windows OS, we need to compile both 32 bit and a 64 bit installer at the same time. This is how we addressed that problem:
+* Visual Studio is pretty straightforward, so we won't document it.
+* For DDK, switching between 32 and 64 bit can be done on the fly in the batch file. The environment variables you need to modify to switch between 32 and 64 bit are: <code>_BUILDARCH</code>, <code>386</code>, <code>AMD64</code> and <code>BUILD_DEFAULT_TARGETS</code>, as well as the <code>PATH</code>.
+* For MinGW, provided that you use a multilib MinGW-w64 for compilation, switching between 32 and 64 bit can be easily achieved on the fly as well with the <code>-m32</code>/<code>-m64</code> <code>CFLAGS</code>/<code>LDFLAGS</code> options. You can also do configure time 32/64 bit support detection or enabling/disabling through configure.ac, or to set the default to be 32 bit, with only the required files as 64.
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): (MinGW) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/Makefile.am /Makefile.am] [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=configure.ac /configure.ac]</tt>
+|- 
+| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=ddk_build.cmd /ddk_build.cmd]</tt>
+|}
+
+== Folder selection / File open/save Windows dialogs that uses to new enhanced Vista or Windows 7 controls when available (and default to the regular version on older platforms) ==
+This is all done in the <code>file_dialog()</code> and <code>browse_for_folder()</code> calls from <code>zadig_stdlg.c</code>.
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/zadig_stdlg.c /examples/zadig_stdlg.c]</tt>
+|}
+
+== USB hotplug detection ==
+# When not using <code>RegisterDeviceNotification()</code>, Windows sends an undefined number of <code>WM_DEVICECHANGE</code> events in rapid sequence, all with the '''exact same''' <code>wParam</code>/<code>lParam</code> so that we cannot differentiate between them. Notifying on each of those would bother the user too much.
+# When using <code>RegisterDeviceNotification()</code>, it is possible to get unique <code>WM_DEVICECHANGE</code> events but only for devices that already have a driver, because there is no device interface class for unknown/driverless devices and Microsoft has not publicized any way of doing so, it is NOT possible to get a single notification event for insertion/removal of devices that don't have a driver.<br />Our solution then is to initiate delayed notification thread on the first <code>WM_DEVICECHANGE</code> message we receive, and wait for this thread to send a user defined event back to our main callback.
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/zadig.c /examples/zadig.c] &rarr; main_callback() & notification_delay_thread()</tt>
+|}
+
+== USB device listing, including driverless devices ==
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/libwdi.c /libwdi/libwdi.c] &rarr; wdi_create_list()</tt>
+|}
+
+== Automatic incrementation of executable/DLL version numbers using git tags ==
+If you are using versioning in .rc files, it would obviously be nice to bump the version minor according to major commits that you push into your git repository.<br />In libwdi's case, we use incremental git tags to identify minor versions ("w123", "w124", ...) and we use the numeric part of that tag as the minor for the exe/DLL (eg. "1, 0, 0, 123"). The shell script linked below will:
+# retrieve and increment the current git tag
+# update the version in the .rc files using sed
+# commit the changes in git
+Additionally, the script also updates the USB VID &rarr; Vendor ID string source (see below).
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=_bump.sh /_bump.sh]</tt>
+|}
+
+== Windows GUI MouseOver/Hover Tooltip ==
+A simple call that creates and displays a tooltip when hovering over a dialog item (eg. text field)
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/zadig_stdlg.c /examples/zadig_stdlg.c] &rarr; create_tooltip()</tt>
+|}
+
+== Sed script to convert the USB VIDs into a C source that will resolve then to Vendor ID strings ==
+In our applications, this is used to display the Vendor name of a specific USB device when hovering over the VID hex string.<br />http://www.linux-usb.org/usb.ids does a great job at maintaining known Vendor IDs, but the list still needs to be converted into something [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/vid_data.c a bit more C-friendly]. For that purpose we built a shell script that, when executed:
+# uses wget to retrieve the latest version of the list
+# uses sed to convert it to a C source with a function call that will take a VID and return the matching string.
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/vid_data.sh /libwdi/vid_data.sh]</tt>
+|}
+
+== UTF-8 wrappers to Wide Char (UTF-16) MS API ==
+This is what Microsoft should have done a long time ago. Along with the A (Ansi) and W (!WideChar/Unicode) versions of an API call, it should have implemented U (UTF-8) as well, as it usually makes more sense to use UTF-8 than UTF-16 in an application, especially one that is not localized but still wants to support localized user input. For instance, wouldn't it be nice if there existed a  [http://msdn.microsoft.com/en-us/library/aa363858.aspx CreateFile] version that accepted an UTF-8 char * for the file name?<br />
+Our UTF-8 wrapper API provides just that, for a selected subset of the Windows API calls, with:
+* <code>FormatMessage</code> (<code>FormatMessageU</code>)
+* <code>SendMessage</code> (<code>SendMessageLU</code>: <code>lParam</code> as UTF-8)
+* <code>SHGetPathFromIDList</code> (<code>SHGetPathFromIDListU</code>)
+* <code>CreateWindow</code> (<code>CreateWindowU</code>)
+* <code>GetWindowText</code>/<code>SetWindowText</code> (<code>GetWindowTextU</code>/<code>SetWindowTextU</code>)
+* <code>GetWindowTextLength</code> (<code>GetWindowTextLengthU</code>)
+* <code>GetDlgItemText</code>/<code>SetDlgItemText</code> (<code>GetDlgItemTextU</code>/<code>SetDlgItemTextU</code>)
+* <code>GetTextExtentPoint</code> (<code>GetTextExtentPointU</code>)
+* <code>CreateFile</code> (<code>CreateFileU</code>)
+* <code>GetCurrentDirectory</code>/<code>GetFullPathName</code>/<code>GetFileAttributes</code> (<code>GetCurrentDirectoryU</code>/<code>GetFullPathNameU</code>/<code>GetFileAttributesU</code>)
+* <code>SHCreateDirectoryEx</code> (<code>SHCreateDirectoryExU</code>)
+* <code>ShellExecuteEx</code>/<code>CreateProcess</code> (<code>ShellExecuteExU</code>/<code>CreateProcessU</code>)
+* <code>GetOpenFileName</code>/<code>GetSaveFileName</code> (<code>GetOpenSaveFileNameU</code>)
+* <code>UpdateDriverForPlugAndPlayDevices</code>/<code>SetupCopyOEMInf</code> (<code>UpdateDriverForPlugAndPlayDevicesU</code>/<code>SetupCopyOEMInfU</code>)
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/msapi_utf8.h /libwdi/msapi_utf8.h]</tt>
+|}
+
+== Installing a certificate into the Trusted Publisher repository ==
+If you want your signed drivers to be installed without security prompts, but can't go through WHQL, you will need to install your signed driver certificate in the Trusted Publisher repository. The following code does just that, through the use of the Crypt32.dll, which is available on Windows 2000 and later.<br />
+The code will also detect whether the certificate is about to be effectively written to the store, so as to let end-users with the possibility to refuse the certificate installation if they so choose.<br />The code must be executed from a process running in elevated mode.
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToTrustedPublisher()</tt>
+|}
+
+== WDK's MakeCat/Inf2Cat, MakeCert, CertMgr, SignTool, with source ==
+Because none of the utilities above are redistributable and we needed their basic functionality to disable that last security prompt during the driver installation, we pretty much had to rewrite them all. That's right, if you want a basic MakeCat, that creates a driver cat file from a file list, a basic MakeCert, that creates self-signed certificates, a basic CertMgr, to install/delete certificates in the system Stores, or a SignTool to sign PE executables or cat files, with their sources, it's all there in our pki.c - now isn't that nice? <br />
+The only thing we ask, which seems like a fair request considering that Microsoft annoyed countless people by neither publishing the source for these WDK tool, nor making them redistributable, is that you conform to the LGPL and publish your modified sources, should you reuse this code in any way. One should never have had to rewrite these basic PKI tools. But we did, and spent a fair amount of time doing so. Therefore it sounds fair to us to try to ensure, through the LGPL, that any improvements that are made that could further help the developer community finds its way back to the community.
+
+'''MakeCert:'''
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; CreateSelfSignedCert()</tt>
+|}
+
+'''CertMgr:'''
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToStore(), RemoveCertFromStore()</tt>
+|}
+
+'''MakeCat:'''
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; CreateCat(), AddFileHash(), etc.</tt>
+|}
+
+'''SignTool:'''
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; SelfSignFile()</tt>
+|}
+
+== Programmatically setting a Local Group Policy on Vista and Windows 7 ==
+On Vista and later, the default is to create a restore point when installing a driver. This can be a very lengthy operation, and, for non system devices that can easily be unplugged from the system, overall unnecessary.
+
+If you use gpedit, you find that there exists a "Prevent creation of a system restore point during device activity..." local policy setting that users can toggle, in Administrative Templates ? System ? Device Installation. This translates to a <code>Software\Policies\Microsoft\Windows\DeviceInstall\Settings\DisableSystemRestore</code> DWORD being set to 1 in the machine Group Policy repository. To do the same in a C program, you can then proceed as with something like this:
+
+<pre>
+#include <gpedit.h>
+ 
+DWORD val, val_size=sizeof(DWORD);
+HRESULT hr;
+IGroupPolicyObject* pLGPO;
+HKEY machine_key, dsrkey;
+// MSVC is finicky about these ones => redefine them
+const IID my_IID_IGroupPolicyObject =
+ { 0xea502723, 0xa23d, 0x11d1, {0xa7, 0xd3, 0x0, 0x0, 0xf8, 0x75, 0x71, 0xe3} };
+const IID my_CLSID_GroupPolicyObject =
+ { 0xea502722, 0xa23d, 0x11d1, {0xa7, 0xd3, 0x0, 0x0, 0xf8, 0x75, 0x71, 0xe3} };
+GUID ext_guid = REGISTRY_EXTENSION_GUID;
+// This next one can be any GUID you want
+GUID snap_guid = { 0x3d271cfc, 0x2bc6, 0x4ac2, {0xb6, 0x33, 0x3b, 0xdf, 0xf5, 0xbd, 0xab, 0x2a} };
+ 
+// Create an instance of the IGroupPolicyObject class
+CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
+CoCreateInstance(&my_CLSID_GroupPolicyObject, NULL, CLSCTX_INPROC_SERVER,
+ &my_IID_IGroupPolicyObject, (LPVOID*)&pLGPO);
+ 
+// We need the machine LGPO (if C++, no need to go through the lpVtbl table)
+pLGPO->lpVtbl->OpenLocalMachineGPO(pLGPO, GPO_OPEN_LOAD_REGISTRY);
+pLGPO->lpVtbl->GetRegistryKey(pLGPO, GPO_SECTION_MACHINE, &machine_key);
+ 
+// The disable System Restore is a DWORD value of Policies\Microsoft\Windows\DeviceInstall\Settings
+RegCreateKeyEx(machine_key, "Software\\Policies\\Microsoft\\Windows\\DeviceInstall\\Settings",
+ 0, NULL, 0, KEY_SET_VALUE | KEY_QUERY_VALUE, NULL, &dsrkey, NULL);
+  
+// Create the value
+val = 1;
+RegSetKeyValue(dsrkey, NULL, "DisableSystemRestore", REG_DWORD, &val, sizeof(val));
+RegCloseKey(dsrkey);
+ 
+// Apply policy and free resources
+pLGPO->lpVtbl->Save(pLGPO, TRUE, TRUE, &ext_guid, &snap_guid);
+RegCloseKey(machine_key);
+pLGPO->lpVtbl->Release(pLGPO);
+</pre>
+
+{| border="1" cellspacing="0"
+|- 
+| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/installer.c /libwdi/installer.c] &rarr; disable_system_restore()</tt>
+|}
+----
+<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
