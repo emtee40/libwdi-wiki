@@ -1,19 +1,20 @@
-This section documents the use of a driver signing digital credential and libwdi to create a driver installer application that allows the installation of a Windows driver without prompts. Note that from libwdi version 1.1.0 and if you are using one of the default WinUSB, libusb0 or libusbK official driver files, none of these operations are necessary, as the driver files are already digitally signed, and libwdi will also self-sign driver packages on the fly to prevent additional prompts. The following is only necessary if you are planning to embed your own custom driver (a.k.a. user driver) with libwdi or with a non libwdi based application.
+This section documents the use of a driver signing digital credential and libwdi to create a driver installer application that allows the installation of a Windows driver without prompts. Note that from libwdi version 1.1.0 and if you are using one of the default WinUSB, libusb0 or libusbK official driver files, none of these operations are necessary, as the driver files are already digitally signed and libwdi will also self-sign driver packages on the fly to prevent additional prompts. The following is only necessary if you are planning to embed your own custom driver (a.k.a. user driver) with libwdi or with a non libwdi based application.<br/>
+Outside of libwdi usage, this short guide can also be used as a tutorial for driver package signing.
 
 == Prerequisites ==
 
-# A set of driver binaries, along with a static inf file matching the devices you plan to support. These would typically be driver files which you have (re)compiled yourself as, as mentioned above, when using the official WinUSB or libusb0/K drivers in libwdi, the operations described below would either already have been performed, or be automated from libwdi.
-# A valid driver signing certificate (see "Obtaining a driver signing certificate")
-# The latest libwdi source, and one of the supported libwdi development environments. Since you will also need the latest WDK below, it might be a good idea to use it as your development environment
+# A set of driver binaries, along with a static inf file matching the devices you plan to support. These would typically be driver files which you have (re)compiled yourself as, as mentioned above, when using the official WinUSB or libusb0/K drivers in libwdi, the operations described below would either already have been performed, or be automated from the library itself.
+# A valid driver signing certificate (see [[Signed-Driver-Walkthrough#wiki-Obtaining_a_driver_signing_certificate|Obtaining a driver signing certificate]])
+# The latest libwdi source, and one of the supported libwdi development environments. Since you will also need tools from the WDK for the signing process, it might be a good idea to use it as your development environment
 # The [http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff latest WDK]
 
-For the purpose of this exercise, we will be using the libusb-win32_ft2232_driver files, from the latest [http://www.freddiechopin.info/index.php/en/download/category/10-openocd-dev OpenOCD-dev 0.5.0], as well as driver signing credentials obtained from GlobalSign (this would be a .pfx, along with the private key password). The development toolchain will be WDK 7.0.0.
+For the purpose of this exercise, we will be using the <code>libusb-win32_ft2232_driver</code> files from [http://www.freddiechopin.info/index.php/en/download/category/10-openocd-dev OpenOCD-dev 0.5.0], as well as driver signing credentials obtained from GlobalSign. The credentials typically take the form of a <code>.pfx</code> file, along with its private key password. The development toolchain will be WDK 7.0.0.
 
 == Obtaining a driver signing certificate ==
 
-To be able to digitally sign a Windows driver, you need a Microsoft Authenticode code signing credential. A credential consists of a public key, embedded in a public certificate, containing your trusted third party verified information, as well as the matching private key, to encrypt elements such as binary hashes, that should only be decipherable when using the public key.
+To be able to digitally sign a Windows driver, you must have a Microsoft-authorized Authenticode code signing credential. A credential consists of a public key, embedded in a public certificate, that contains your trusted third party verified information, as well as the matching private key used to encrypt elements such as binary hashes, that are then only decipherable using the public key.
 
-Most of the Authenticode driver signing credentials seem to originate either from [http://www.verisign.com/ VeriSign] or [http://www.globalsign.com/ GlobalSign]. Other Certification Authorities providing these services [http://www.microsoft.com/whdc/driver/install/drvsign/crosscert.mspx also exist], but Verisign and GlobalSign are the two that appear to be most commonly used.
+Most of the Authenticode driver signing credentials seem to originate either from [http://www.verisign.com/ VeriSign] or [http://www.globalsign.com/ GlobalSign]. Other Certification Authorities providing these services [http://www.microsoft.com/whdc/driver/install/drvsign/crosscert.mspx also exist], but Verisign and GlobalSign appear to be the two most commonly used.
 
 ==== Verisign ====
 * 1st year driver signing credentials [https://winqual.microsoft.com/help/why_is_a_digital_certificate_required_for_winqual_membership.htm can be obtained for $99]
@@ -29,8 +30,9 @@ From the date of registration, delivery of your certificate can take a few days 
 
 == Signing the driver binaries ==
 
-After downloading either one of the openocd[-x64]-0.5.0-dev windows binaries, we find the libusb-win32_ft2232_driver-101028.zip archive in the drivers/ directory.
-Further extracting reveals that it contains an inf file, along with the amd64/ and x86/ directories that contain the the actual driver binaries. If you look at the binaries' properties, you will see that they have already been signed by the libusb-win32 developers, but since we are using these files for illustration purpose, we will assume that they are unsigned (a new signature overwrites any existing one). If you were to modify and recompile the [https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/ libusb-win32] drivers from source, there would obviously be no signature. Also, more relevant to a real life scenario, since there is no signed .cat, Windows will not trust the .inf during installation and issue a security prompt, which is the other item we will be addressing after we're done signing the driver binaries.
+After downloading either one of the <code>openocd[-x64]-0.5.0-dev</code> windows binaries, we find the libusb-<code>win32_ft2232_driver-101028.zip</code> archive in the <code>drivers/</code> directory.
+Further extracting reveals that it contains a <code>.inf</code> file, along with the <code>amd64/</code> and <code>x86/</code> directories where the actual driver binaries reside. If you look at the binaries' properties, you will see that they have already been signed by the libusb-win32 developers. However, since we are using these files for illustration purpose, we will assume that they are unsigned (our new signature will overwrite the existing one), as they would be if we were to modify and recompile the [https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/ libusb-win32] drivers from source.<br/>
+Also, more relevant to a real life scenario, since there is no signed <code>.cat</code>, Windows will not trust the <code>.inf</code> during installation and issue a security prompt, which is another item we will be addressing in this guides.
 
 ==== Timestamping ====
 
