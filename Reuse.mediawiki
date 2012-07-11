@@ -10,7 +10,7 @@ Libwdi implements reusable solutions to the following problems:
 
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): (MinGW/cygwin) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=autogen.sh /autogen.sh], [https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac], [https://github.com/pbatard/libwdi/blob/master/Makefile.am /Makefile.am], [https://github.com/pbatard/libwdi/blob/master/libwdi/Makefile.am /libwdi/Makefile.am], [https://github.com/pbatard/libwdi/blob/master/examples/Makefile.am /examples/Makefile.am]</tt>
+| style="background:#f7f7f7;" | File(s): (MinGW/cygwin) || <tt>[https://github.com/pbatard/libwdi/blob/master/autogen.sh /autogen.sh], [https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac], [https://github.com/pbatard/libwdi/blob/master/Makefile.am /Makefile.am], [https://github.com/pbatard/libwdi/blob/master/libwdi/Makefile.am /libwdi/Makefile.am], [https://github.com/pbatard/libwdi/blob/master/examples/Makefile.am /examples/Makefile.am]</tt>
 |-
 | style="background:#f7f7f7;" | File(s): (MSVC) || <tt>*.sln, .msvc/*.vcproj .msvc/*.vcxproj</tt>
 |-
@@ -21,12 +21,12 @@ Libwdi implements reusable solutions to the following problems:
 The trick is to use MinGW as the compiler along with the <code>-DWINVER=0x500</code> flag.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=configure.ac /configure.ac]</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac]</tt>
 |}
 
 == Creating a Windows GUI application that use the latest Windows visual enhancements (Aero Glass look on Vista or Windows 7), even if compiled from MinGW/cygwin ==
 The default from all compilers, including Microsoft ones, is NOT to use the default look and feel from each platform, but to force the XP/2k one.<br />
-To enable a more up to date look and feel in standard GUI applications, you need to manually embed the [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/common_controls.manifest common-controls manifest], as well as include <code><commctrl.h></code> in your source.
+To enable a more up to date look and feel in standard GUI applications, you need to manually embed the [https://github.com/pbatard/libwdi/blob/master/examples/common_controls.manifest common-controls manifest], as well as include <code><commctrl.h></code> in your source.
 * For MSVC projects, just adding the manifest to your resources files in the project will do.
 * For DDK/WDK, as documented [http://jpassing.com/2008/02/01/how-to-use-manifests-with-buildexe here], you need to add an <code>SXS_APPLICATION_MANIFEST</code> line with the name of your manifest
 * For MinGW/cywgin, it's a bit more tricky. What you want to do is link to the manifest in your .rc file, with something like <code>CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "common_controls.manifest"</code>. The problem is that, this needs to appear at the end, else MinGW will ignore it, and you want to be able to edit your .rc in Visual Studio, without destroying the additional data you add to the .rc. The solution is to have the following at the beginning of your .rc
@@ -45,15 +45,15 @@ END
 And of course, you need a matching section at the end.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/common_controls.manifest common-controls manifest], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/.msvc/zadig_sources example DDK sources (Zadig)], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/zadig.rc example MinGW manifest from .rc (Zadig)]</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/common_controls.manifest common-controls manifest], [https://github.com/pbatard/libwdi/blob/master/examples/.msvc/zadig_sources example DDK sources (Zadig)], [https://github.com/pbatard/libwdi/blob/master/examples/zadig.rc example MinGW manifest from .rc (Zadig)]</tt>
 |}
 
 == Creating Windows application from MSVC, WDK/DDK, MinGW and cygwin that require UAC elevation, even if compiled from MinGW/cygwin ==
-The solution to that is similar to the above one, in that you need to use [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/elevation.manifest a manifest for elevation].<br />
+The solution to that is similar to the above one, in that you need to use [https://github.com/pbatard/libwdi/blob/master/examples/elevation.manifest a manifest for elevation].<br />
 In our project, you will see that we combine multiple manifests were needed (this is the case for the Zadig example above for instance), as DDK is not able to merge separate manifests files. Also, recent versions of Visual Studio don't require an explicit manifest file for elevation, as this can be taken care of in Linker &rarr; Manifest File &rarr; UAC Execution Level.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/elevation.manifest /examples/elevation.manifest]</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/elevation.manifest /examples/elevation.manifest]</tt>
 |}
 
 == Detecting if an application is running on a 32 or 64 bit Windows OS ==
