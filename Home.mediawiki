@@ -41,9 +41,9 @@ If you have a question that cannot be answered in these pages, your best option 
 
 # <h4>'''[[FAQ]]'''</h4>
 # <h4>'''[[Zadig|Using Zadig (the GUI driver installer application)]]'''</h4>
-# <h4>'''[[install|Library Installation & Configuration]]'''</h4>
-# <h4>'''[[usage|Library API Documentation & Usage]]'''</h4>
-# <h4>'''[[signed_driver_walkthrough|Signed driver installation walkthrough]]'''</h4>
+# <h4>'''[[Install|Library Installation & Configuration]]'''</h4>
+# <h4>'''[[Usage|Library API Documentation & Usage]]'''</h4>
+# <h4>'''[[Signed Driver Walkthrough|Signed driver installation walkthrough]]'''</h4>
 # <h4>'''[[WCID Devices]]'''</h4>
 
 = Reusable Code Parts: Can our code solve your problems? =
