@@ -54,20 +54,20 @@ For the record, these certificates are currently set to expire in 2021, which is
 
 ==== Signing process ====
 
-With your driver signing <code>.pfx</code> file, the corresponding private key password, the <code>.crt</code> certificate above and the timestamp URL, you are now good to sign your driver files.
+With your driver signing <code>.pfx</code> or <code>.p12</code> file, the corresponding private key password, the <code>.crt</code> certificate above and the timestamp URL, you are now good to sign your driver files.
 For this exercise, I will place the CA certificate (<code>GlobalSign Root CA.crt</code>) along with the pfx (<code>akeo.pfx</code>) in an easily accessible local directory. The timestamping authority will also be the one provided by GlobalSign, and you need to be connected to the internet for time stamping to work. Be mindful that, even when protected by a strong password, leaving <code>.pfx</code> files lying around is not a good idea, so don't forget to secure your credentials when you're done.<br />
 Preferably you want to sign all the driver files, including the DLLs, but technically, only the <code>.sys</code> should be required.
 
 To sign the file, open one of the WDK command prompts (eg. Windows XP x86 Free Build Environment), then navigate to the directory containing the driver files you want to sign (eg <code>libusb-win32_ft2232_driver-101028\amd64\libusb0.sys</code> and issue the following:
 
 <blockquote style="background: white; border: 1px solid rgb(153, 153, 153); padding: 1em; margin-left: 0em">
-<code>signtool sign /v /ac "D:\codesign\GlobalSign Root CA.crt" /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t ht
-tp://timestamp.globalsign.com/scripts/timstamp.dll libusb0.sys</code>
+<code>signtool sign /v /ac "D:\codesign\GlobalSign Root CA.crt" /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t http://timestamp.globalsign.com/scripts/timstamp.dll libusb0.sys</code>
 </blockquote>
 
 '''example:'''
 <pre>
-D:\libusb-win32_ft2232_driver-101028>signtool sign /v /ac "D:\codesign\GlobalSign Root CA.crt" /f D:\codesign\akeo.pfx /p "**********" /t http://timestamp.globalsign.com/scripts/timstamp.dll x86\libusb0.sys
+D:\libusb-win32_ft2232_driver-101028>signtool sign /v /ac "D:\codesign\GlobalSign Root CA.crt" /f D:\codesign\akeo.pfx
+/p "**********" /t http://timestamp.globalsign.com/scripts/timstamp.dll x86\libusb0.sys
 The following certificate was selected:
     Issued to: Akeo Consulting
     Issued by: GlobalSign ObjectSign CA
