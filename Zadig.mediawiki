@@ -1,0 +1,72 @@
+<big>'''Zadig 2.0 - User Guide'''</big>
+
+== Basic usage ==
+
+In its simplest mode of operation, Zadig is meant to install a libusb compatible driver, for a device that does not yet have such a driver installed.
+
+Below is an overview for a typical driver installation:
+
+# On Windows Vista or later, the first screen you will see when launching Zadig is the ''User Account Control'' prompt displayed below. This is because the application needs to run with administrative privileges. To be able to install a driver, you should answer ''Yes''.<br />On Windows XP or earlier, no security prompt will appear. [[images/zadig_01.png|none|frame|UAC prompt generated when launching Zadig]]<br />
+# With the application running, you should see your USB device appear in the dropdown list (click on the dropdown to see all devices).<br />You can also plug your USB device after Zadig is running, as the list is refreshed automatically. When possible, we recommend that you leave only the device you want to install a driver for, and unplug any other USB device.[[Image:zadig_07.png|none|frame|Zadig's main dialog]]The ''Vendor ID'' (<code>VID</code>, here <code>0x045E</code>), ''Product ID'' (<code>PID</code>, here <code>0x289</code>) and (optionally) ''Interface ID'' (<code>MI</code>) are also displayed under "USD ID" for your reference. If you leave your mouse over the ''Vendor ID'', you should get the full name of the Vendor displayed. If the Vendor Name cannot be determined, and you know it, you are invited to report it to the [http://www.linux-usb.org/usb-ids.html USB ID Repository] using the new button that will appear then.<br /><br />'''HELP! MY DEVICE DOES NOT APPEAR IN THE LIST!! '''<br /><br />If you cannot see your device listed, then it probably means that it already has a driver installed, in which case you need to be very cautious about replacing it, as other applications or the OS itself may no longer be able to access it afterwards. For instance, if you replace the existing driver for an USB keyboard or mouse, it will no longer be usable for input in Windows but instead will only work with a custom application, which is probably not what you want.<br /><br />To see USB devices that already have a driver installed, go to the ''Options'' menu and select ''List All Devices''.<br />Below is an example of what you would see for an USB mouse, with the ''HidUsb'' driver already installed:[[Image:zadig_08.png|none|frame|Zadig's display for an USB HID mouse]]<br />
+# (Optional) With your device selected, you can edit its name if the default doesn't suit your needs by clicking the ''Edit'' checkbox.<br />You can enter a description in the language of your choice. The description you enter here is how the device will appear in Device Manager and other locations.<br />You can also select the driver you want to install, between <code>WinUSB</code>, <code>libusb-win32</code> and <code>libusbK</code>, depending on the type of application you plan to use. Currently, <code>WinUSB</code> is the driver to use for [http://www.libusb.org/ libusb-1.0], and <code>[http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32]</code> and <code>[http://code.google.com/p/usb-travis/ libusbK]</code> for the applications based on the libraries of the same name. [http://libusbdotnet.sourceforge.net/ LibusbDotNet] can also be used with any of these drivers.<br /><br />
+# Once you are satisfied with the selection and device description, simply click the '''Install Driver''' Button. Note that the label of this button may change according to the operation you are about to perform. You can also use the split part of the installation button to choose a different operation than the default one, such as extracting the driver files rather than installing them, performing the one-off installation of a [[WCID_devices|WCID device]] driver or installing/uninstalling the libusb-win32 filter driver.<br /><br />
+# On Vista or later, you '''may''' get the following security alert if Zadig was unable to sign the driver Catalog File (which shouldn't happen) or if you deliberately disabled Catalog File operations in the Option menu. In standard operation mode, this prompt will never display.[[Image:zadig_05.png|none|frame|Windows security warning, that may occur during a driver installation]]If that is the case, you should select ''Install this driver software anyway''.<br /><br />
+# Once the installation is started, just wait until it completes. Normally, the installation process takes a matter of seconds, but in some circumstances, if the local system policies cannot be temporarily overridden to disable the creation of a system restore point, it may take a lot longer. You will be notified once the installation is complete.<br /><br />
+# If the installation was successful, you should end up with something similar to this:[[Image:zadig_09.png|none|frame|Example of successful driver installation]]Notice how the driver is now being displayed (in green) and indicates ''WinUSB''. WinUSB is one of the drivers supported by libusb-1.0.<br />If the driver has been installed successfully, you should now be able to use your device with a libusb based application.
+
+== Advanced usage ==
+
+For power users, Zadig offers the following list of features:
+* '''Advanced Mode''' (''Options &rarr; Advanced Mode''):<br />In this mode, additional information is displayed, and users also have the ability to select the directory where the files should be extracted.<br /><br />
+* '''Setting of the options through an INI file''':<br />All the options that can be set in the menus can also be set from a zadig.ini file, which Zadig attempts to read when started. An example of such an ini file is provided below.<br /><br />
+* '''Info/Log''':<br />In Advanced Mode, you can also select the log level appearing in the logging window by going to ''Options &rarr; Log Level''. If you want to find out more about what the installation process is doing, or report an issue, make sure you run your driver installation with a sufficient log level.<br /><br />
+* '''Automated Creation/Signing of a Catalog file''' (''Options &rarr; Create a Catalog File'' / ''Options &rarr; Sign Catalog & Install Autogenerated Certificate''):<br />Depending on whether these options are enabled, and when using the default drivers, Zadig will automatically generate a Catalog (.cat) file, as well as sign it with a unique self-signed certificate generated on the fly, which is then installed on the current machine during file extraction<br /><br />
+* '''Fine control over devices listed''' (''Options &rarr; List All Devices'' / ''Options &rarr; Ignore Hubs or Composite Parents''):<br />By default, Zadig only lists devices that don't have a driver installed. In some situations however, you might want to replace an existing driver, including the ones for USB hubs (usbhub.sys) or Composite Parent (usbccgp.sys). These options allow you to do just that.<br /><br />
+* '''Create New''' (''Device &rarr; Create New Device''):<br />In the case where you want to install a driver for a device that is not yet plugged, and for which you have the relevant information (VID, PID, etc.), you can select the ''Create New'' option and run the installation process so that the next time the device is plugged, the driver will be available.<br /><br />
+* '''Open Preset''' (''Device &rarr; Load Preset Device''):<br />Similar to the ''Create New'' option above, but using a zadig preset device config file. For an example of such a file, see below.<br /><br />
+
+== Example of a zadig.ini file ==
+<pre>
+# Sample ini file for Zadig
+
+[general]
+  # Start application in advanced mode (default = false)
+  advanced_mode = true
+  # Log level (0=debug, 1=info, 2=warning, 3=error)
+  log_level = 0
+  
+[device]
+  # List all devices, including the ones that already have a driver (default = false)
+  list_all = true
+  # Include hubs and composite parent devices when listing all (default = false)
+  include_hubs = true
+  # Trim trailing whitespaces from the USB device description (default = false)
+  trim_whitespaces = true
+  
+[driver]  
+  # Select the following as the default driver to install:
+  # WinUSB = 0, libusb0.sys = 1, libusbK.sys = 2, Custom = 3 (default = WinUSB)
+  default_driver = 2
+  # Extract driver files only, don't install (default = false)
+  extract_only = false
+  # Set the default destination directory for extraction of the driver files (default = "C:\\usb_driver")
+  default_dir = "C:\\usb_driver"
+
+[security]
+  # If embedded, install the following certificate to the Trusted Publisher store
+  # install_cert = "mycert.cer"
+  # If set to true, will silently install the cert provided above (not recommended)
+  # disable_cert_install_warning = false
+</pre>
+
+== Example of a zadig preset device config file ==
+<pre>
+# This is a sample preset device configuration for Zadig
+[device]
+  Description = "Sample Device"
+  VID = 0xABCD
+  PID = 0x1234
+  MI = 0x01
+# You can also force a specific Device Interface GUID as follows
+# GUID = "{11111111-2222-3333-4444-555555555555}"
+</pre>
