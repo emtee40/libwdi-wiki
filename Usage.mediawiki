@@ -25,9 +25,9 @@ Using these properties, we then extract the driver files and generate an inf thr
 
 == Error Codes ==
 
-All of the liwdi API function, apart from '''[[#const_char.2A_wdi_strerror.28int_errcode.29|wdi_strerror]]''', '''[[#bool_wdi_is_driver_supported.28int_driver_type.2C_VS_FIXEDFILEINFO.2A_driver_info.29|wdi_is_driver_supported]]''' and '''[[#bool_wdi_is_file_embedded.28char.2A_path.2C_char.2A_name.29|wdi_is_file_embedded]]''', return one of the error codes below.<br />
-The '''[[#const_char.2A_wdi_strerror.28int_errcode.29|wdi_strerror]]''' function, documented in the next paragraph, is used to convert an error code to a human readable string.<br />
-Success is always indicated by a return value zero (WDI_SUCCESS) while any error will be a negative value.<br />
+All of the liwdi API function, apart from '''[[Usage#wiki-const_char_wdi_strerrorint_errcode|wdi_strerror]]''', '''[[Usage#wiki-bool_wdi_is_driver_supportedint_driver_type_VS_FIXEDFILEINFO_driver_info|wdi_is_driver_supported]]''' and '''[[Usage#wiki-bool_wdi_is_file_embeddedchar_path_char_name|wdi_is_file_embedded]]''', return one of the error codes below.<br />
+The '''[[Usage#wiki-const_char_wdi_strerrorint_errcode|wdi_strerror]]''' function, documented further down, is used to convert an error code to a human readable string.<br />
+Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) while any error will be a negative value.<br />
 
 * '''WDI_SUCCESS''':<br /> This code is used to indicate that the function completed successfully. Its value is hardcoded to 0.
 
@@ -80,7 +80,7 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 ==== struct wdi_device_info ====
 |-
 | This structure provides all the information related to the device installation
-* '''struct wdi_device_info* next''' ''(Optional)''<br />Used for wdi_device_info chained lists returned by '''[[#int_wdi_create_list.28struct_wdi_device_info.2A.2A_list.2C_struct_wdi_options_create_list.2A_options.29|wdi_create_list]]'''. If unused, set to NULL.
+* '''struct wdi_device_info* next''' ''(Optional)''<br />Used for wdi_device_info chained lists returned by '''[[Usage#wiki-int_wdi_create_liststruct_wdi_device_info_list_struct_wdi_options_create_list_options|wdi_create_list]]'''. If unused, set to NULL.
 * '''unsigned short vid''' ''(Mandatory)''<br />USB Vendor ID of the USB device.
 * '''unsigned short pid''' ''(Mandatory)''<br />USB Product ID of the USB device.
 * '''bool is_composite''' ''(Mandatory)''<br />Whether the device is a composite USB device. 
@@ -90,8 +90,8 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 * '''char* device_id''' ''(Optional)''<br />Microsoft's device URI string. If unused, set to NULL.
 * '''char* hardware_id''' ''(Optional)''<br />Microsoft's hardware ID string. If unused, set to NULL.
 * '''char* compatible_id''' (v1.2.0 or later) ''(Optional)''<br />Microsoft's compatible ID string. Meant to be used for [[WCID_devices|WCID Devices]]. If unused, set to NULL.
-* '''char* upper_filter''' (v1.2.0 or later) ''(Optional)''<br />Microsoft's Upper Filter driver ID string. Provided by '''[[#int_wdi_create_list.28struct_wdi_device_info.2A.2A_list.2C_struct_wdi_options_create_list.2A_options.29|wdi_create_list]]''' for information purposes. If unused, set to NULL.
-* '''UINT64 driver_version''' (v1.2.0 or later) ''(Optional)''<br />Existing driver version (quad WORD). Provided by '''[[#int_wdi_create_list.28struct_wdi_device_info.2A.2A_list.2C_struct_wdi_options_create_list.2A_options.29|wdi_create_list]]''' for information purposes. If unused, set to 0.
+* '''char* upper_filter''' (v1.2.0 or later) ''(Optional)''<br />Microsoft's Upper Filter driver ID string. Provided by '''[[Usage#wiki-int_wdi_create_liststruct_wdi_device_info_list_struct_wdi_options_create_list_options|wdi_create_list]]''' for information purposes. If unused, set to NULL.
+* '''UINT64 driver_version''' (v1.2.0 or later) ''(Optional)''<br />Existing driver version (quad WORD). Provided by '''[[Usage#wiki-int_wdi_create_liststruct_wdi_device_info_list_struct_wdi_options_create_list_options|wdi_create_list]]''' for information purposes. If unused, set to 0.
 |}
 
 
@@ -101,7 +101,7 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 
 ==== struct wdi_options_create_list ====
 |-
-| This structure is used by '''[[#int_wdi_create_list.28struct_wdi_device_info.2A.2A_list.2C_struct_wdi_options_create_list.2A_options.29|wdi_create_list]]''' to set optional parameters
+| This structure is used by '''[[Usage#wiki-int_wdi_create_liststruct_wdi_device_info_list_struct_wdi_options_create_list_options|wdi_create_list]]''' to set optional parameters
 * '''bool list_all''' <br />indicates whether the list should enumerate all USB devices (true) or only USB devices that don't have a driver installed (false). If the pointer passed to the call is NULL, the default only list driverless devices (false).
 * '''bool list_hubs''' <br />when list_all is enabled, indicates whether the list should also include USB Hubs and Composite Parent devices (true) or not (false). If the pointer passed to the call is NULL, the default is not to list such devices (false).
 * '''bool trim_whitespaces''' <br />indicates whether device description string retrieved during enumeration should be trimmed of trailing whitespaces. If the pointer passed to the call is NULL, the default is to not trim trailing whitespaces (false).
@@ -116,7 +116,7 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 |-
 | This structure is used by ''wdi_prepare_driver'' to set optional parameters
 * '''int driver_type''' <br />type of driver to extract. Should be either '''WDI_WINUSB''', '''WDI_LIBUSB0''', '''WDI_LIBUSBK''' or '''WDI_USER''', depending on whether WinUSB, libusb0.sys, libusbK.sys or a custom user driver should be used. <br />If the pointer passed to the call is NULL, the default will be to use the first driver available, in the order above.
-* '''char* vendor_name''' <br />an UTF-8 string that will override the Vendor name generated for the inf. Ultimately, this content appears under "Manufacturer" in the device manager's device properties. <br />If either the pointer passed to the call or this string is NULL, libwdi will try to resolve the vendor name from the device's vid by calling '''[[#const_char.2A_wdi_get_vendor_name.28unsigned_short_vid.29|wdi_get_vendor_name]]'''<br />If this option is provided, it takes precedence over automated resolution.
+* '''char* vendor_name''' <br />an UTF-8 string that will override the Vendor name generated for the inf. Ultimately, this content appears under "Manufacturer" in the device manager's device properties. <br />If either the pointer passed to the call or this string is NULL, libwdi will try to resolve the vendor name from the device's vid by calling '''[[Usage#wiki-const_char_wdi_get_vendor_nameunsigned_short_vid|wdi_get_vendor_name]]'''<br />If this option is provided, it takes precedence over automated resolution.
 * '''char* device_guid''' (v1.1.0 or later)<br />a GUID string (including braces) that is meant to override the DeviceGUID automatically generated by libwdi when creating a generic inf for WinUSB, libusb0 or libusbK.<br />Be mindful that, if you need to force a DeviceGUID, this means that your device is no longer a generic one, in which case you should embed your driver file, including the static inf, as user files.<br />If either the pointer passed to the call or this string is NULL, libwdi will automatically generate a Device GUID.
 * '''bool disable_cat''' (v1.1.0 or later)<br />If set to true, a cat file will not be automatically generated when using WinUSB, libusb0 or libusbK. This option only has an effect on Windows Vista or later, and if the libwdi application is running with elevated privileges.
 * '''bool disable_signing''' (v1.1.0 or later)<br />If set to true, the cat file will not be self-signed, which will result in users seeing a [https://sourceforge.net/apps/mediawiki/libwdi/index.php?title=File:Zadig_05.png "Windows cannot verify the publisher of this driver software"] security warning during installation. This option only has an effect on Windows Vista or later, and if the libwdi application is running with elevated privileges.
@@ -159,7 +159,7 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 |'''Synopsis:'''
 : Convert a wdi error code to a human readable string. This can be used to provide a more explicit libwdi error message to the end users of your program.
 '''Parameters:'''<br />
-: '''errcode''': The '''[[#Error_Codes|enum wdi_error]]''' value to convert to an error message.
+: '''errcode''': The '''[Usage#wiki-Error_Codes|enum wdi_error]]''' value to convert to an error message.
 '''Return value:'''
 : The error message string, in English.
 |}
@@ -227,8 +227,8 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 |'''Synopsis:'''
 : Create a '''struct wdi_device_info''' list of USB device currently present on the system.
 '''Parameters:'''
-: '''list''': a pointer to a '''[[#struct_wdi_device_info|struct wdi_device_info]]*''' to act as the start of the list
-: '''options''': a pointer to a '''[[#struct_wdi_options_create_list|struct wdi_options_create_list]]''' or NULL for the default options.
+: '''list''': a pointer to a '''[[Usage#wiki-struct_wdi_device_info|struct wdi_device_info]]*''' to act as the start of the list
+: '''options''': a pointer to a '''[[Usage#wiki-struct_wdi_options_create_list|struct wdi_options_create_list]]''' or NULL for the default options.
 '''Return value:'''
 : '''WDI_SUCCESS''' if the list of devices was successfully created.
 : '''WDI_ERROR_NO_DEVICE''' if the list is empty (*list will also be set to NULL).
@@ -246,9 +246,9 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 ==== int wdi_destroy_list(struct wdi_device_info* list) ====
 |-
 | '''Synopsis:'''
-: Frees the '''[[#struct_wdi_device_info|struct wdi_device_info]]''' list returned by '''[[#int_wdi_create_list.28struct_wdi_device_info.2A.2A_list.2C_struct_wdi_options_create_list.2A_options.29|wdi_create_list]]'''
+: Frees the '''[[Usage#wiki-struct_wdi_device_info|struct wdi_device_info]]''' list returned by '''[[Usage#wiki-int_wdi_create_liststruct_wdi_device_info_list_struct_wdi_options_create_list_options|wdi_create_list]]'''
 '''Parameters:'''
-: '''list''': a pointer to the first '''[[#struct_wdi_device_info|struct wdi_device_info]]''' device in the list
+: '''list''': a pointer to the first '''[[Usage#wiki-struct_wdi_device_info|struct wdi_device_info]]''' device in the list
 '''Return value:'''
 : '''WDI_SUCCESS''' if the list of devices was successfully destroyed.
 : '''WDI_ERROR_BUSY''' if another instance of this function call is in process.
@@ -264,10 +264,10 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 |'''Synopsis:'''
 : Extract the driver files, and, where applicable, create the relevant inf for a specific device.
 '''Parameters:'''
-: '''device_info''': a pointer to the '''[[#struct_wdi_device_info|struct wdi_device_info]]''' device to create the inf for
+: '''device_info''': a pointer to the '''[[Usage#wiki-struct_wdi_device_info|struct wdi_device_info]]''' device to create the inf for
 : '''path''': the directory where the inf and driver files should be created
 : '''inf_name''': the name of the inf to generate (including the .inf extension)
-: '''options''': a pointer to a '''[[#struct_wdi_options_prepare_driver|struct wdi_options_prepare_driver]]''' or NULL for the default options.
+: '''options''': a pointer to a '''[[Usage#wiki-struct_wdi_options_prepare_driver|struct wdi_options_prepare_driver]]''' or NULL for the default options.
 '''Return value:'''
 : '''WDI_SUCCESS''' if the driver files were successfully extracted (WDI_USER) and the inf package was successfully generated (WDI_WINUSB, WDI_LIBUSB0 or WDI_LIBUSBK only).
 : '''WDI_ERROR_INVALID_PARAM''' if either one of the parameters is NULL or if driver_type is invalid.
@@ -278,7 +278,7 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 : If driver type is '''WDI_USER''', the device_info and inf_name paramaters are ignored and the driver files are extracted only. An inf is not generated in this case.
 : To find out more about the use of user supplied driver files, please see the [[Install#Using_a_custom_driver_file_with_libwdi|libwdi installation and configuration guide]].
 : Even if your application runs in elevated mode, the driver files and directories will be owned by the user who launched the application.
-: If you provide a vendor_name in the options, this name will be used for the [Manufacturer] section of the inf. If not, '''[[#int__wdi_prepare_driver.28struct_wdi_device_info.2A_device_info.2C_char.2A_path.2C_char.2A_inf_name.2C_struct_wdi_options_prepare_driver.2A_options.29|wdi_prepare_driver]]''' will try to resolve the vendor name according to the VID.
+: If you provide a vendor_name in the options, this name will be used for the [Manufacturer] section of the inf. If not, '''[[Usage#wiki-int_wdi_prepare_driverstruct_wdi_device_info_device_info_char_path_char_inf_name_struct_wdi_options_prepare_driver_options|wdi_prepare_driver]]''' will try to resolve the vendor name according to the VID.
 |}
 <br />
 
@@ -291,10 +291,10 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 |'''Synopsis:'''
 : Perform the actual driver installation using the inf file named '''inf_name''' and driver files located in the directory pointed by '''path'''.
 '''Parameters:'''
-: '''device_info''': a pointer to the '''[[#struct_wdi_device_info|struct wdi_device_info]]''' device to install the driver for
+: '''device_info''': a pointer to the '''[[Usage#wiki-struct_wdi_device_info|struct wdi_device_info]]''' device to install the driver for
 : '''path''': the directory where the driver and inf files are located created
 : '''inf_name''': the name of the inf file to use for installation (including the .inf extension)
-: '''options''': a pointer to a '''[[#struct_wdi_options_install_driver|struct wdi_options_install_driver]]''' or NULL for the default options. If a HWND handle to a Windows application is provided as an option, a progress dialog will be displayed
+: '''options''': a pointer to a '''[[Usage#wiki-struct_wdi_options_install_driver|struct wdi_options_install_driver]]''' or NULL for the default options. If a HWND handle to a Windows application is provided as an option, a progress dialog will be displayed
 '''Return value:'''
 : '''WDI_SUCCESS''' if the driver was installed successfully.
 : '''WDI_ERROR_INVALID_PARAM''' if either one of the parameters is NULL or the path to the inf file is invalid.
@@ -327,7 +327,7 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 : Installs or updates the certificate '''cert_name''' into the system's Trusted Publisher store. This call must be run from an application running with elevated privileges on platforms with UAC else it will fail with WDI_ERROR_NEEDS_ADMIN.
 '''Parameters:'''
 : '''cert_name''': a string identifying the embedded certificate file to use. If two certificate files with the same name have been embedded, in different locations, only the first one found will be used
-: '''options''': a pointer to a '''[[#struct_wdi_options_install_cert|struct wdi_options_install_cert]]''' or NULL for the default options. Unless the disable_warning option is provided, a warning will be displayed before a new certificate is installed or an existing one renewed.
+: '''options''': a pointer to a '''[[Usage#wiki-struct_wdi_options_install_cert|struct wdi_options_install_cert]]''' or NULL for the default options. Unless the disable_warning option is provided, a warning will be displayed before a new certificate is installed or an existing one renewed.
 '''Return value:'''
 : '''WDI_SUCCESS''' if the certificate was installed successfully.
 : '''WDI_ERROR_EXISTS''' if an identical certificate already exists in the store.
@@ -364,7 +364,7 @@ Success is always indicated by a return value zero (WDI_SUCCESS) while any error
 ==== int wdi_register_logger(HWND hWnd, UINT message, DWORD buffsize) ====
 |-
 |'''Synopsis:'''
-: Register a Window as destination for logging messages. This Window will be notified with a message event and should call '''[[#int_wdi_read_logger.28char.2A_buffer.2C_DWORD_buffer_size.2C_DWORD.2A_message_size.29|wdi_read_logger]]''' to retreive the message data.
+: Register a Window as destination for logging messages. This Window will be notified with a message event and should call '''[[Usage#wiki-int_wdi_read_loggerchar_buffer_DWORD_buffer_size_DWORD_message_size|wdi_read_logger]]''' to retreive the message data.
 '''Parameters:'''
 : '''hWnd''': the handle of the Window that should receive log notification messages.
 : '''message''': the value of the message ID that the logger should send back to the Window when log data is available.
