@@ -1,0 +1,88 @@
+<big>'''Installing and compiling libwdi'''</big>
+
+== Latest official release ==
+
+The latest official release of libwdi can be donwloaded [http://sourceforge.net/projects/libwdi/files/releases/ here].
+Or you can also [http://sourceforge.net/scm/?type=git&group_id=395589 use git] to retrieve the latest development tree.
+
+== Prerequisites ==
+
+Compilation of libwdi is supported for the following environments, with the restrictions indicated below:
+* [http://www.mingw.org MinGW] (32 bit):<br />Will only allow the production of a 32 bit library, which is incompatible with 64 bit Windows platforms. The produced binary can be used on Windows 2000 and later.
+
+* [http://mingw-w64.sourceforge.net/ MinGW-w64] (64 bit):<br />By default, will only produce 64 bit binaries, that are incompatible with 32 bit platforms. However, you can either [http://pete-tech.blogspot.com/2010/07/compiling-mingw-w64-with-multilib-on.html recompile MinGW-w64 so that it supports the -m32 option] (for production of 32 bit binaries) or use [http://tdm-gcc.tdragon.net/download TDM64] to produce 32 bit binaries that are compatible with 64 bit platforms. The produced binary can be used on Windows 2000 and later.
+
+* [http://msdn.microsoft.com/en-us/visualc/default.aspx Microsoft Visual C++ (Visual Studio)], either Express or full version:<br />Currently only Visual Studio 2008 project files are provided. If you have the commercial version of Visual Studio, you should be able to produce both win32 and x64 binaries with Visual C++. The produced binary can be used on Windows XP and later.<br />Note that if you have the free Express version and you want to produce 64 bit binaries, you may have to install the Windows SDK.
+
+* [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows DDK build environment]:<br />This is the '''free, recommended''' environment for libwdi compilation. This will produce both the 32 and 64 bits binaries required for universal use of libwdi. The produced binary can be used on Windows XP and later.
+
+* Cross compilation:<br />Is supported, as per git revision w120 (or libwdi v1.0.3). The standard <code>--host=<host-triplet></code> option can be applied to either <code>configure</code> or <code>autogen.sh</code><br />Because the building if libwdi relies on running a custom embedder during the build process, your build platform must be able to compile code that can run on the platform. As such, you might have to specify the <code>CC_FOR_BUILD</code> environment variable with the relevant options for your build environment. For more information, have a look at the [[Faq#Is_it_possible_to_cross-compile_libwdi.3F|FAQ]].
+
+Depending on the driver files you are planning to enable in libwdi, you will also require:
+* The WinUSB driver files from the [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows DDK]. This is regardless of whether you use the DDK build environment to compile libwdi.
+* The latest libusb0.sys driver files from [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32]
+
+MinGW compilation also requires the following packages to be installed:
+* autotools (automake, autoconf, libtool), if running the autogen.sh from git
+* getopt, to compile the zadic sample
+
+== Configuration & Compilation ==
+
+Provided that you have one of the environments highlighted above and retrieved the source (either from a tarball or the git repository), you need to configure the building of libwdi as follows:
+
+* '''MinGW, cygwin or cross compilation''':<br />
+** (Optional) If cross-compiling, and if the default CC (as detected by configure) does not produce executables that can run on your platform, define a <code>CC_FOR_BUILD</code> environment variable with the required options.
+** (Optional) If downloaded from git, from a shell prompt, run <code>./autogen.sh</code>. This is required to create the configure and Makefile scripts. You can feed the same options to autogen.sh as the ones you feed to configure<br />
+** Run <code>configure --help</code> to select your options, or refer to the list below, and then run <code>configure</code>:
+*** <code>--enable-shared</code>: build shared libraries (default y)
+*** <code>--enable-static</code>: build static libraries (default y)
+*** <code>--enable-32bit</code>: build 32 bit compatible library if -m32 is available (default y)
+*** <code>--enable-64bit</code>: build 64 bit compatible library if -m64 is available (default y)
+*** <code>--enable-log</code>: enable library logging (default y)
+*** <code>--enable-debug-log</code>: force debug logging (cannot be disabled, default n)
+*** <code>--enable-toggable-debug</code>: enable switchable debug logging (default n)
+*** <code>--enable-debug</code>: include debug symbols for gdb (default y)
+*** <code>--enable-examples-build</code>: build example applications (default n)
+*** <code>--with-ddkdir="<dir>"</code>: embed WinUSB driver files from the following DDK location
+*** <code>--with-libusb0="<dir>"</code>: embed libusb0 driver files from the following location
+*** <code>--with-libusbk="<dir>"</code>: embed libusbK driver files from the following location
+*** <code>--with-userdir="<dir>"</code>: embed user defined driver files from the following location<br />Notes:
+**# '''At least one of <code>--with-ddkdir</code>, <code>--with-libusb0</code>, <code>--with-libusbK</code>, <code>--with-userdir</code> must be specified when running <code>configure</code>'''.
+**# If not cross-compiling, configure will check the ddk, libusb0 and libusbK directories for the relevant driver files, and alert you if they are not found.
+** Run '<code>make</code>'
+** The resulting library and examples can be retrieved in the <code>.libs</code> directory
+
+* '''DDK or Visual Studio''':<br />
+** '''Common''' Edit the file msvc/config.h to set/modify your options, or refer to the list below:
+*** <code>#define DDK_DIR "<dir>"</code>: embed WinUSB driver files from the following DDK location
+*** <code>#define LIBUSB0_DIR "<dir>"</code>: embed libusb-win32 driver files from the following location
+*** <code>#define LIBUSBK_DIR "<dir>"</code>: embed libusbK driver files from the following location
+*** <code>#define USER_DIR "<dir>"</code>: embed user defined driver files from the following location
+*** <code>#define OPT_M32</code>: build 32 bit compatible library if possible
+*** <code>#define OPT_M64</code>: build 64 bit compatible library if possible
+*** <code>#define ENABLE_LOGGING</code>: enable library logging
+*** <code>#define ENABLE_DEBUG_LOGGING</code>: force debug logging (cannot be disabled)
+*** <code>#define INCLUDE_DEBUG_LOGGING</code>: enable switchable debug logging
+*** <code>#define WDF_VER</code>: define the version of the WDF CoInstaller for WinUSB. If you are using the current version, this should be set to "01009"<br />Notes:
+**# '''Make sure you edit msvc/config.h and set at least one of DDK_DIR, LIBUSB0_DIR, LIBUSBK_DIR or USER_DIR to a valid directory'''.
+**# As DDK_DIR is automatically set when building from the DDK, if you want to prevent the embedding of the WinUSB files, you need to edit libwdi/embedder_files.h
+** '''Visual Studio''': 
+*** Select your target (!Release/Debug, Win32/x64) and select 'Build'
+*** The resulting library and examples can be retrieved from <arch>\<Release|Debug> (eg: ".\x64\Release\")
+** '''DDK''':
+*** Open the relevant build command prompt (eg. "Windows XP x86 Free Build" for a 32/64 library compatible with XP and later), then navigate to the libwdi directory and run '<code>ddk_build.cmd</code>' or '<code>ddk_build DLL</code>' to build either the static or dynamic version of the library. DLL must be specified in uppercase if needed.
+*** The resulting library and examples can be retrieved from their respective source directory.
+
+== Using a custom driver file with libwdi ==
+
+If you have a custom driver that you would like to use with libwdi (eg, a custom USB .sys file and DLL, or a driver with a signed .inf+.cat), you can configure libwdi to install your driver instead of libusb0/libusbK/WinUSB:
+
+# Create a directory containing all the required driver files you need to embed in the library. This directory will be parsed recursively when creating the library, and recreated with the exact same structure (but in the libwdi user directory) before installation.
+# Use either the <code>--with-userdir</code> option when running configure ('''MinGW/cross-compilation''') or set the <code>#define USER_DIR in msvc/config.h</code> ('''MS environments''') to point to the directory above. You can also setup the WinUSB, libusb0 or libusbK directories if you want to include these driver files as well.
+# In your application, use <code>wdi_prepare_driver()</code> with the driver_type set to <code>WDI_USER</code> for the options parameter (or, if this is the only driver embedded, you can leave the options blank) and call wdi_install_driver with the name of your inf file.
+
+Notes:
+# Unless you manually edit <code>libdwi/embedder_files.h</code> it is not possible to differentiate between a 32 bit or 64 bit install, so both the 32 and 64 bit driver files must be included in your directory
+# Because it is impossible for libwdi to guess how the inf file for a custom driver should be generated, you must provide your own inf file along with the driver, and set all its parameters accordingly.
+----
+<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
