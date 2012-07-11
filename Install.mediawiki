@@ -64,8 +64,8 @@ Provided that you have one of the environments highlighted above and retrieved t
 *** <code>#define ENABLE_DEBUG_LOGGING</code>: force debug logging (cannot be disabled)
 *** <code>#define INCLUDE_DEBUG_LOGGING</code>: enable switchable debug logging
 *** <code>#define WDF_VER</code>: define the version of the WDF CoInstaller for WinUSB. If you are using the current version, this should be set to "01009"<br />Notes:
-**# '''Make sure you edit msvc/config.h and set at least one of DDK_DIR, LIBUSB0_DIR, LIBUSBK_DIR or USER_DIR to a valid directory'''.
-**# As DDK_DIR is automatically set when building from the DDK, if you want to prevent the embedding of the WinUSB files, you need to edit libwdi/embedder_files.h
+***# '''Make sure you edit <code>msvc/config.h<code> and set at least one of <code>DDK_DIR</code>, <code>LIBUSB0_DIR</code>, <code>LIBUSBK_DIR</code> or <code>USER_DIR</code> to a valid directory'''.
+***# As <code>DDK_DIR</code> is automatically set when building from the DDK, if you want to prevent the embedding of the WinUSB files, you need to edit </code>libwdi/embedder_files.h<code>.
 ** '''Visual Studio''': 
 *** Select your target (!Release/Debug, Win32/x64) and select 'Build'
 *** The resulting library and examples can be retrieved from <arch>\<Release|Debug> (eg: ".\x64\Release\")
