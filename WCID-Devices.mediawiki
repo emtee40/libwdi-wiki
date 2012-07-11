@@ -46,7 +46,7 @@ For end-users not running Windows 8, or if you choose to use [http://sourceforge
 
 Also, while WCID requires the addition on additional descriptors, a lot of effort has been devoted in this page to ensure that you have all the information required to so quickly and painlessly (i.e. near zero-cost), especially as the simple registry checks detailed below, the use of Zadig or the use of other test applications such as the [http://libusbx.org libusbx] sample application [https://github.com/libusbx/libusbx/blob/master/examples/xusb.c xusb] (a Windows binary version of which is also available [https://sourceforge.net/projects/libusbx/files/releases/1.0.12/Windows/ here]) or Linux's [http://packages.debian.org/search?keywords=usbutils usb-utils] (when updated to dump Microsoft OS Descriptors) can easily validate whether your descriptors have been set properly. 
 
-For examples of actual WCID device implementations for AVR and PIC, as well as a typical WCID USB query trace, please have a look at the [[#WCID_Device_Examples|Examples section]].
+For examples of actual WCID device implementations for AVR and PIC, as well as a typical WCID USB query trace, please have a look at the [[WCID-Devices#wiki-WCID_Device_Examples|Examples section]].
 
 If positive customer experience is one of your priorities, and you want to reduce both development and support costs, you should seriously consider implementing WCID into your next device.
 
@@ -79,10 +79,10 @@ The following table details how exactly the Microsoft OS String Descriptor shoul
 |-
 |<code>0x03</code> || BYTE || Descriptor type (3 = String)
 |- 
-|<code>0x4D, 0x00, 0x53, 0x00, 0x46, 0x00, 0x54, 0x00, 0x31, 0x00, 0x30, 0x00, 0x30, 0x00</code> || 7 WORDS Unicode String (LE) || Signature:
+|<code>0x4D, 0x00, 0x53, 0x00, 0x46, 0x00, 0x54,</code><br/><code>0x00, 0x31, 0x00, 0x30, 0x00, 0x30, 0x00</code> || 7 WORDS Unicode String (LE) || Signature:
 <code>"MSFT100"</code> 
 |-
-|<code>0x</code>'''<code>##</code>''' || BYTE || '''Vendor Code'''
+|'''<code>0x##</code>''' || BYTE || '''Vendor Code'''
 |-
 |<code>0x00</code> || BYTE || Padding
 |}
@@ -226,11 +226,11 @@ Just like with the Compatible ID, this too is done through a Feature Descriptor,
 |-
 |<code>0x28, 0x00</code> || WORD (LE) || Property name length (40 bytes)
 |-
-|<code>0x44, 0x00, 0x65, 0x00, 0x76, 0x00, /.../ 0x49, 0x00, 0x44, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"DeviceInterfaceGUID"</code>)
+|<code>0x44, 0x00, 0x65, 0x00, 0x76, 0x00,</code><br/><code>(...)</code><br/><code>0x49, 0x00, 0x44, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"DeviceInterfaceGUID"</code>)
 |-
 |<code>0x4e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data length (78 bytes)
 |-
-|<code>0x7b, 0x00, 0x46, 0x00, 0x37, 0x00, /.../ 0x32, 0x00, 0x7d, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"</code>)
+|<code>0x7b, 0x00, 0x46, 0x00, 0x37, 0x00,</code><br/><code>(...)</code><br/><code>0x32, 0x00, 0x7d, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"</code>)
 |}
 
 The property data types that you can use are defined in the following table:
@@ -337,7 +337,7 @@ Closing device...</pre>
 * There is currently no known way to have the device populate its name during the drive installation, which means that all WCID devices are identified under the same generic name in Device Manager
 * Only WinUSB on Windows 8 requires no user intervention whatsoever. For libusb-win32 or libusbK, or for WinUSB on Windows 7, the WCID driver must have been manually installed at least once (but only once)
 
-== WCID Device Examples ==
+== WCID Device Examples: ==
 
 === PIC ===
 
