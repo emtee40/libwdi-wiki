@@ -1,0 +1,574 @@
+This section documents the use of a driver signing digital credential and libwdi to create a driver installer application that allows the installation of a Windows driver without prompts. Note that from libwdi version 1.1.0 and if you are using one of the default WinUSB, libusb0 or libusbK official driver files, none of these operations are necessary, as the driver files are already digitally signed, and libwdi will also self-sign driver packages on the fly to prevent additional prompts. The following is only necessary if you are planning to embed your own custom driver (a.k.a. user driver) with libwdi or with a non libwdi based application.
+
+== Prerequisites ==
+
+# A set of driver binaries, along with a static inf file matching the devices you plan to support. These would typically be driver files which you have (re)compiled yourself as, as mentioned above, when using the official WinUSB or libusb0/K drivers in libwdi, the operations described below would either already have been performed, or be automated from libwdi.
+# A valid driver signing certificate (see "Obtaining a driver signing certificate")
+# The latest libwdi source, and one of the supported libwdi development environments. Since you will also need the latest WDK below, it might be a good idea to use it as your development environment
+# The [http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff latest WDK]
+
+For the purpose of this exercise, we will be using the libusb-win32_ft2232_driver files, from the latest [http://www.freddiechopin.info/index.php/en/download/category/10-openocd-dev OpenOCD-dev 0.5.0], as well as driver signing credentials obtained from GlobalSign (this would be a .pfx, along with the private key password). The development toolchain will be WDK 7.0.0.
+
+== Obtaining a driver signing certificate ==
+
+To be able to digitally sign a Windows driver, you need a Microsoft Authenticode code signing credential. A credential consists of a public key, embedded in a public certificate, containing your trusted third party verified information, as well as the matching private key, to encrypt elements such as binary hashes, that should only be decipherable when using the public key.
+
+Most of the Authenticode driver signing credentials seem to originate either from [http://www.verisign.com/ VeriSign] or [http://www.globalsign.com/ GlobalSign]. Other Certification Authorities providing these services [http://www.microsoft.com/whdc/driver/install/drvsign/crosscert.mspx also exist], but Verisign and GlobalSign are the two that appear to be most commonly used.
+
+==== Verisign ====
+* 1st year driver signing credentials [https://winqual.microsoft.com/help/why_is_a_digital_certificate_required_for_winqual_membership.htm can be obtained for $99]
+* A lot more expensive than !GlobalSign in the long run: $499/year
+* Might not provide credentials for non registered companies
+
+==== Globalsign ====
+* More competitive on pricing (long term) compared to Verisign
+* Even if non affiliated to a registered company, individual developers can obtain certificates for [http://www.globalsign.com/code-signing/code-signing-for-individual-developers.html $129 (US & Canada)] / [http://www.globalsign.eu/code-signing/buy-code-signing-for-individual-developers.html  €99 (EU)] (promotional offer)
+* More friendly to non-US based customers (based in Belgium)
+
+From the date of registration, delivery of your certificate can take a few days to a few weeks.
+
+== Signing the driver binaries ==
+
+After downloading either one of the openocd[-x64]-0.5.0-dev windows binaries, we find the libusb-win32_ft2232_driver-101028.zip archive in the drivers/ directory.
+Further extracting reveals that it contains an inf file, along with the amd64/ and x86/ directories that contain the the actual driver binaries. If you look at the binaries' properties, you will see that they have already been signed by the libusb-win32 developers, but since we are using these files for illustration purpose, we will assume that they are unsigned (a new signature overwrites any existing one). If you were to modify and recompile the [https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/ libusb-win32] drivers from source, there would obviously be no signature. Also, more relevant to a real life scenario, since there is no signed .cat, Windows will not trust the .inf during installation and issue a security prompt, which is the other item we will be addressing after we're done signing the driver binaries.
+
+==== Timestamping ====
+
+While using a trusted time source for signature creation or validation is something you should always consider when using PKI, the reason you want to use timestamping from a trusted authority when signing your drivers is to ensures that they can still be used in Windows, even after the code signing certificate expires. If you don't do that, then you have to provide your users with updated drivers files every time your original certificate expires. For instance, if you purchase a one year certificate and don't use timestamping during signing, your drivers will cease functioning after one year.
+
+Windows Authenticode Certifications Authorities usually provide a Windows timestamping service (usually a dll) that you can reference when signing. Currently these URLs are:
+* http://timestamp.verisign.com/scripts/timstamp.dll (Verisign)
+* http://timestamp.globalsign.com/scripts/timstamp.dll (GlobalSign)
+
+==== Additional Certificate ====
+
+While the Windows certificate store has both the GlobalSign and Verisign root CA certificates as Trusted Root Certification Authorities, these CA certificates are not the ones used for driver code signing. Instead Microsoft have their own "Microsoft Code Verification Root" certificate, which curiously don't appear at the top of the certification chain for signed code certificates, and which they used to sign the root certificate used by the Certification Authorities they entrusted to provide Authenticode credentials to customers. Microsoft calls that a cross certificate.
+
+By default however, Windows platforms only have the Microsoft Code Verification Root certificate installed, not the the ones from subsidiaries, therefore, to be able to validate the trust chain, the CA's Authenticode root certificate must also be provided.
+
+In short, this means that you have to download the root Authenticode certificate from GlobalSign, Verisign or your other third party authority so that it can be embedded in the signature. Currently, these certificates can be obtained from:
+* http://www.microsoft.com/whdc/driver/install/drvsign/crosscert.mspx#EWAAC (Verisign)
+* http://www.microsoft.com/whdc/driver/install/drvsign/crosscert.mspx#EMG (GlobalSign)
+For the record, all the certificates above seem set to expire on 2016.05.23. What happens to Windows signed driver users past that date is something that probably warrants some testing... [TODO]
+
+Hint: For some weird reasons, Microsoft thought it was a good idea to provide these certificates in the form of an executable. If you want to extract certificate without running the exe, just open it in [http://www.7-zip.org/ 7-Zip], then open the _winzip_ file and you'll get to the MSCV-GlobalSign.cer or MSCV-VSClass3.cer certificates.
+
+==== Signing process ====
+
+With your driver signing .pfx file, the corresponding private key password, the MSVC-#### certificate above and the timestamp URL, you are now good to sign your driver files.
+For this exercise, I will place the CA certificate (MSCV-GlobalSign.cer) along with the pfx (akeo.pfx) in an easily accessible local directory. The timestamping authority will also be the one provided by GlobalSign, and you need to be connected to the internet for time stamping to work. Be mindful that, even when protected by a strong password, leaving .pfx files lying around is not a good idea, so don't forget to cleanup and secure the .pfx when you're done. <br />
+Preferably you want to sign all the driver files, including the DLLs, but technically, only the .sys should be required.
+
+To sign the file, open one of the WDK command prompts (eg. Windows XP x86 Free Build Environment), then navigate to the directory containing the driver files you want to sign (eg "libusb-win32_ft2232_driver-101028\amd64\libusb0.sys" and issue the following:
+
+<blockquote style="background: white; border: 1px solid rgb(153, 153, 153); padding: 1em; margin-left: 0em">
+<code>signtool sign /v /ac D:\codesign\MSCV-GlobalSign.cer /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t <nowiki>http://timestamp.globalsign.com/scripts/timstamp.dll libusb0.sys</nowiki></code>
+</blockquote>
+
+'''example:'''
+<pre>
+D:\libusb-win32_ft2232_driver-101028\amd64>signtool sign /v /ac D:\codesign\MSCV-GlobalSign.cer
+ /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t http://timestamp.globalsign.com/scripts/timstamp.dll libusb0.sys
+The following certificate was selected:
+    Issued to: Akeo Consulting
+    Issued by: GlobalSign ObjectSign CA
+    Expires:   Sun Jun 26 10:05:35 2011
+    SHA1 hash: 0BF5319EE093F9234D8504527D63CFAFEADEECF8
+
+Cross certificate chain (using machine store):
+    Issued to: Microsoft Code Verification Root
+    Issued by: Microsoft Code Verification Root
+    Expires:   Sat Nov 01 13:54:03 2025
+    SHA1 hash: 8FBE4D070EF8AB1BCCAF2A9D5CCAE7282A2C66B3
+
+        Issued to: GlobalSign Root CA
+        Issued by: Microsoft Code Verification Root
+        Expires:   Mon May 23 17:10:51 2016
+        SHA1 hash: 3EEB2750A199F5E7B6A8952430BE5062FE04E9E5
+
+            Issued to: GlobalSign Primary Object Publishing CA
+            Issued by: GlobalSign Root CA
+            Expires:   Fri Jan 27 12:00:00 2017
+            SHA1 hash: 1AAF4DF10D36215E09E4EEFD70E340C2E4DECF38
+
+                Issued to: GlobalSign ObjectSign CA
+                Issued by: GlobalSign Primary Object Publishing CA
+                Expires:   Fri Jan 27 11:00:00 2017
+                SHA1 hash: B859853EF366AC9335763C340A87BD208113055F
+
+                    Issued to: Akeo Consulting
+                    Issued by: GlobalSign ObjectSign CA
+                    Expires:   Sun Jun 26 10:05:35 2011
+                    SHA1 hash: 0BF5319EE093F9234D8504527D63CFAFEADEECF8
+
+Done Adding Additional Store
+Successfully signed and timestamped: libusb0.sys
+
+Number of files successfully Signed: 1
+Number of warnings: 0
+Number of errors: 0
+</pre>
+
+For details on what each of the option above does, though they should be fairly explicit, you can issue: <code>signtool sign /?</code>.
+
+==== Checking the signed driver files ====
+
+Optional, but probably a good idea, as you will get the timestamping info as well:
+
+<blockquote style="background: white; border: 1px solid rgb(153, 153, 153); padding: 1em; margin-left: 0em">
+<code>signtool verify /kp /v libusb0.sys</code>
+</blockquote>
+
+'''example:'''
+<pre>
+D:\libusb-win32_ft2232_driver-101028\amd64>signtool verify /kp /v libusb0.sys
+
+Verifying: libusb0.sys
+Hash of file (sha1): B4C09901487067EB10454F6CFFCFA3C64988EE86
+
+Signing Certificate Chain:
+    Issued to: GlobalSign Root CA
+    Issued by: GlobalSign Root CA
+    Expires:   Fri Jan 28 12:00:00 2028
+    SHA1 hash: B1BC968BD4F49D622AA89A81F2150152A41D829C
+
+        Issued to: GlobalSign Primary Object Publishing CA
+        Issued by: GlobalSign Root CA
+        Expires:   Fri Jan 27 12:00:00 2017
+        SHA1 hash: 1AAF4DF10D36215E09E4EEFD70E340C2E4DECF38
+
+            Issued to: GlobalSign ObjectSign CA
+            Issued by: GlobalSign Primary Object Publishing CA
+            Expires:   Fri Jan 27 11:00:00 2017
+            SHA1 hash: B859853EF366AC9335763C340A87BD208113055F
+
+                Issued to: Akeo Consulting
+                Issued by: GlobalSign ObjectSign CA
+                Expires:   Sun Jun 26 10:05:35 2011
+                SHA1 hash: 0BF5319EE093F9234D8504527D63CFAFEADEECF8
+
+The signature is timestamped: Tue Feb 08 13:54:32 2011
+Timestamp Verified by:
+    Issued to: GlobalSign Root CA
+    Issued by: GlobalSign Root CA
+    Expires:   Fri Jan 28 12:00:00 2028
+    SHA1 hash: B1BC968BD4F49D622AA89A81F2150152A41D829C
+
+        Issued to: GlobalSign Timestamping CA
+        Issued by: GlobalSign Root CA
+        Expires:   Fri Jan 28 12:00:00 2028
+        SHA1 hash: 958D23902D5448314F2F811034356A58255CDC9B
+
+            Issued to: GlobalSign Time Stamping Authority
+            Issued by: GlobalSign Timestamping CA
+            Expires:   Tue Dec 22 09:32:56 2020
+            SHA1 hash: AEDF7DF76BBA2410D67DBAF18F5BA15B417E496C
+
+Cross Certificate Chain:
+    Issued to: Microsoft Code Verification Root
+    Issued by: Microsoft Code Verification Root
+    Expires:   Sat Nov 01 13:54:03 2025
+    SHA1 hash: 8FBE4D070EF8AB1BCCAF2A9D5CCAE7282A2C66B3
+
+        Issued to: GlobalSign Root CA
+        Issued by: Microsoft Code Verification Root
+        Expires:   Mon May 23 17:10:51 2016
+        SHA1 hash: 3EEB2750A199F5E7B6A8952430BE5062FE04E9E5
+
+            Issued to: GlobalSign Primary Object Publishing CA
+            Issued by: GlobalSign Root CA
+            Expires:   Fri Jan 27 12:00:00 2017
+            SHA1 hash: 1AAF4DF10D36215E09E4EEFD70E340C2E4DECF38
+
+                Issued to: GlobalSign ObjectSign CA
+                Issued by: GlobalSign Primary Object Publishing CA
+                Expires:   Fri Jan 27 11:00:00 2017
+                SHA1 hash: B859853EF366AC9335763C340A87BD208113055F
+
+                    Issued to: Akeo Consulting
+                    Issued by: GlobalSign ObjectSign CA
+                    Expires:   Sun Jun 26 10:05:35 2011
+                    SHA1 hash: 0BF5319EE093F9234D8504527D63CFAFEADEECF8
+
+Successfully verified: libusb0.sys
+
+Number of files successfully Verified: 1
+Number of warnings: 0
+Number of errors: 0
+</pre>
+
+== Creating a signed cat file ==
+
+==== Why would you want a signed catalog file? ====
+
+What we did above allows the installation of drivers in a Windows environment outside of test mode, which is fine and all, but unless you sign the inf as well, you will get the following prompt on Vista and later versions of Windows during driver installation:
+
+[[Image:zadig_05.png]]
+
+One way to avoid this prompt is to go through WHQL. However, this is an expensive and time-consuming process, and Microsoft are currently [http://sourceforge.net/mailarchive/message.php?msg_id=26883764 abusing their position] to prevent GPL licensed drivers ([http://sourceforge.net/mailarchive/message.php?msg_id=27019186 both GPLv2 '''and''' GPLv3]) from being accepted through the WHQL process.
+
+The other solution then is to use your driver signing credentials to sign the inf, and create a cat file.
+
+At this stage, it may be important to stress out that the trust validation for signed '''driver binaries''' (.sys, .dll) and the trust validation for signed '''driver packages''' (.cat) are a completely separate process, in that you don't have to use an authenticode certificate to sign driver packages. A self-signed or any kind of commercial certificate will work equally well, as long as it is installed in the relevant certificate stores. Thus, you don't really have to re-use your driver signing certificate (as a matter of fact libwdi uses the self-signed certificate approach to avoid prompts when it generates the WinUSB, libusb0 or libusbK driver packages). It may however a good idea to vouch for your driver by reusing the same certificate, as it is provides your user with the confidence that the driver maker and the driver packager are the same entity.
+
+Now, the one limitation of reusing the authenticode certificate to sign the catalog, is that, as we already mentioned, authenticode provider authorities are not trusted by default as software publishers. What this means is that, even if you use your authenticode certificate from Verisign or GlobalSign on a vanilla Windows platform, it will be trusted by default for cat signing, regardless of the existing Verisign or GlobalSign root CA certificates existing in the Windows certificate store. This is because different root CAs are used to validate different chains of trust, and none of the default root CAs will match the root CA of an authenticode certificate, even if both were issued by the same company (As a matter of fact, the root CA for authenticode is neither GlobalSign or Verisign, but actually Microsoft, and only appears otherwise because of cross signing).
+
+Therefore users may get a prompt such as the one below, about trusting the company identified by the certificate
+
+[[Image:walkthrough_01.png]]
+
+This security alert will be displayed to users unless:
+# they previously checked "Always trust software from company X" when previously prompted with a similar query
+# you already installed your certificate in the Trusted Publisher system store
+In essence, the end result from either using a self signed certificate or an authenticode certificate is that your certificate must end up as a Trusted Publisher on the user system to avoid yet another security prompt. As we will see further down, libwdi actually provides an API to take care of option 2.
+
+==== Signing a catalog file ====
+
+Since we're using the WDK, we have access to the <code>inf2cat</code> tool, which is the most convenient way to create a cat out of an inf file.
+Before you can use inf2cat, you must ensure that your .inf contains a CatalogFile entry in the <code>[Version]</code> section, that provides the name of the .cat to be created. The <code>libusb-win32_ft2232_driver.inf</code> file we use is missing it, so we add it:
+<pre>
+CatalogFile = "libusb-win32_ft2232_driver.cat"
+</pre>
+Then, you can simply run:
+
+<blockquote style="background: white; border: 1px solid rgb(153, 153, 153); padding: 1em; margin-left: 0em">
+<code>inf2cat /v /driver:. /os:XP_X86,XP_X64,Vista_X86,Vista_X64,7_X86,7_X64</code>
+</blockquote>
+
+'''example:'''
+<pre>
+D:\libusb-win32_ft2232_driver-101028>inf2cat /v /driver:. /os:XP_X86,XP_X64,Vista_X86,Vista_X64,7_X86,7_X64
+Processing directory (D:\libusb-win32_ft2232_driver-101028\) file (info.txt)
+Processing directory (D:\libusb-win32_ft2232_driver-101028\) file (libusb-win32_ft2232_driver.inf)
+Processing directory (D:\libusb-win32_ft2232_driver-101028\amd64) file (libusb0.dll)
+Processing directory (D:\libusb-win32_ft2232_driver-101028\amd64) file (libusb0.sys)
+Processing directory (D:\libusb-win32_ft2232_driver-101028\x86) file (libusb0.sys)
+Processing directory (D:\libusb-win32_ft2232_driver-101028\x86) file (libusb0_x86.dll)
+Parsing INF: D:\libusb-win32_ft2232_driver-101028\libusb-win32_ft2232_driver.inf
+Finished parsing INFs
+Processing INF: D:\libusb-win32_ft2232_driver-101028\libusb-win32_ft2232_driver.inf
+Finished processing INFs
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+Testing driver package...
+
+Signability test complete.
+
+Errors:
+None
+
+Warnings:
+None
+
+Catalog generation complete.
+</pre>
+
+After that, you would sign the generated .cat as follows:
+
+<blockquote style="background: white; border: 1px solid rgb(153, 153, 153); padding: 1em; margin-left: 0em">
+<code>signtool sign /v /ac D:\codesign\MSCV-GlobalSign.cer /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t <nowiki>http://timestamp.globalsign.com/scripts</nowiki></code>
+</blockquote>
+
+'''example:'''
+<pre>
+D:\libusb-win32_ft2232_driver-101028>signtool sign /v /ac D:\codesign\MSCV-GlobalSign.cer /f D:\codesign\akeo.pfx
+ /p "<YOUR_PASSWORD>" /t http://timestamp.globalsign.com/scripts/timestamp.dll libusb-win32_ft2232_driver.cat
+The following certificate was selected:
+    Issued to: Akeo Consulting
+    Issued by: GlobalSign ObjectSign CA
+    Expires:   Sun Jun 26 10:05:35 2011
+    SHA1 hash: 0BF5319EE093F9234D8504527D63CFAFEADEECF8
+
+Cross certificate chain (using machine store):
+    Issued to: Microsoft Code Verification Root
+    Issued by: Microsoft Code Verification Root
+    Expires:   Sat Nov 01 13:54:03 2025
+    SHA1 hash: 8FBE4D070EF8AB1BCCAF2A9D5CCAE7282A2C66B3
+
+        Issued to: GlobalSign Root CA
+        Issued by: Microsoft Code Verification Root
+        Expires:   Mon May 23 17:10:51 2016
+        SHA1 hash: 3EEB2750A199F5E7B6A8952430BE5062FE04E9E5
+
+            Issued to: GlobalSign Primary Object Publishing CA
+            Issued by: GlobalSign Root CA
+            Expires:   Fri Jan 27 12:00:00 2017
+            SHA1 hash: 1AAF4DF10D36215E09E4EEFD70E340C2E4DECF38
+
+                Issued to: GlobalSign ObjectSign CA
+                Issued by: GlobalSign Primary Object Publishing CA
+                Expires:   Fri Jan 27 11:00:00 2017
+                SHA1 hash: B859853EF366AC9335763C340A87BD208113055F
+
+                    Issued to: Akeo Consulting
+                    Issued by: GlobalSign ObjectSign CA
+                    Expires:   Sun Jun 26 10:05:35 2011
+                    SHA1 hash: 0BF5319EE093F9234D8504527D63CFAFEADEECF8
+
+Done Adding Additional Store
+Successfully signed and timestamped: libusb-win32_ft2232_driver.cat
+
+Number of files successfully Signed: 1
+Number of warnings: 0
+Number of errors: 0
+</pre>
+
+== Embedding the signed files in libwdi ==
+
+Since we went the trouble of creating a fully signed driver package, that can install without prompts, we might as well deliver the whole thing in an installer that is attractive for end users. For that, we will of course use the custom driver facility of libwdi along with [http://www.jrsoftware.org/isinfo.php Inno Setup] or [http://nsis.sourceforge.net/Main_Page NSIS]. It may be possible to use other driver installation tools, such as Microsoft's own <code>dpinst.exe</code> but one of the many advantages of using libwdi is that it also includes provisions to add your certificate as a Trusted Publisher.
+
+As for the the development environment, we'll keep using the WDK. In the following guide, I'll assume that you also have the latest version of the libwdi sources available in <code>D:\libwdi</code>).
+
+Our first point of order then is to configure libwdi to only include the signed driver package. If you were using MinGW or cross-compilation, you would simply pass the <code>--with-userdir</code> option when calling <code>configure</code> but for MS environments, such as WDK or Visual Studio, we edit the <code>msvc/config.h</code> file from libwdi manually. If not done already, you will need to comment the <code>DDK_DIR</code>, <code>LIBUSB0_DIR</code> and <code>LIBUSBK_DIR</code> defines, and then uncomment and set <code>USER_DIR</code> to the path where your custom driver files reside, with something like:
+<pre>#define USER_DIR "D:/libusb-win32_ft2232_driver-101028"</pre>
+
+The second item we need to sort out is the inclusion of the public certificate in libwdi along with the signed driver files. When a user directory is specified, libwdi will recursively include all of its file into the library. One element that we must not forget to add to the disk directory then is the public part of the Authenticode signing credential (.cer), so that it can be read and installed from the library at runtime. Microsoft does not seem to provide native tools to extract the public certificate part from a pfx, so the usual way to do it is through import/export with the cert manager. If you have <code>openssl</code> installed, you can use the pkcs12 and x509 option to extract the .cer from the command line (see [[#Appendix_A:_Creating_a_Windows_.cer_from_a_.pfx.2C_using_openssl|Appendix A]]). To be safe, you probably want the .cer you use must to include ALL the certificates required to validate the certification chain, not just the root CA one. You should also be mindful that if you are using Verisign authenticode certificates, the certification chain may break on Windows XP machines unless the .pfx has been exported in a specific manner (see [[#Appendix_B:_Windows_XP_issue_when_trying_to_use_a_Verisign_authenticode_certificate_to_sign_a_.cat|Appendix B]]).
+In this example, we will copy the .cer part, which we extracted as "Akeo.cer" to the base of our USER_DIR directory.
+
+As to the driver installer executable that, can be referenced from the Inno Setup/NSIS installer, we will make use of wdi-simple, from the libwdi samples, as it contains everything we require and can handle automated certificate installation. When running the libwdi WDK compilation script, the sample will be built automatically so there is not additional configuration required here. If required, you can of course customize the wdi-simple.c source or create your own libwdi based driver installer executable.
+
+For the build process itself, in order to build libwdi along with a wdi-simple sample that is compatible with all versions of Windows from XP, including 64 bit versions, we recommend that you use the Windows XP x86 command prompt (yes, it will build x64 binaries as well as x86 ones), from where, after having navigated to the libwdi directory, you can simply invoke:
+
+<blockquote style="background: white; border: 1px solid rgb(153, 153, 153); padding: 1em; margin-left: 0em">
+<code>ddk_build.cmd</code>
+</blockquote>
+
+If compilation was successful, you should now have the various sample executables in the <code>examples\</code> directory. The next step then is to reference that executable from your application intaller.
+
+== Installing the certificate as a Trusted Publisher, from an Inno Setup or NSIS script ==
+
+If you look at the wdi-simple source, you'll see that it's just a commandline application that controls the driver installation process through various options. Before setting everything up in Inno Setup or NSIS (Nullsoft Scriptable Install System) it may be a good idea to test the various parameters you want to feed to wdi-simple. To see the various options at your disposal, you can run:
+<pre>D:\libwdi\examples>wdi-simple --help
+
+-n, --name <name>          set the device name
+-f, --inf <name>           set the inf name
+-m, --manufacturer <name>  set the manufacturer name
+-v, --vid <id>             set the vendor ID (VID, use 0x prefix for hex)
+-p, --pid <id>             set the product ID (PID, use 0x prefix for hex)
+-i, --iid <id>             set the interface ID (MI)
+-t, --type <driver_type>   set the driver to install
+                           (0=WinUSB, 1=libusb0, 2=libusbK, 3=custom)
+-d, --dest <dir>           set the extraction directory
+-x, --extract              extract files only (don't install)
+-c, --cert <certname>      install certificate <certname> from the
+                           embedded user files as a trusted publisher
+    --stealth-cert         installs certificate above without prompting
+-s, --silent               silent mode
+-b, --progressbar=[HWND]   display a progress bar during install
+                           an optional HWND can be specified
+-l, --log                  set log level (0 = debug, 4 = none)
+-h, --help                 display usage</pre>
+
+The options are fairly explicit. The one we are interested in here, that deals with the installation of a custom certificate in Trusted Publishers, is the <code>--cert</code> option. <code>--cert</code> is basically just a wrapper for the [[Usage#int_wdi_install_trusted_certificate.28char.2A_cert_name.2C_struct_wdi_options_install_cert.2A_options.29|wdi_install_trusted_certificate()]] API call, which takes as the name of an embedded certificate as parameter. In our case, since we have the "Akeo.cer" embedded in our files, this is the certificate we will reference.
+
+Let's say our application is targeted at one of the Olimex USB-TINY JTAG adapters referenced in the inf file we got from OpenOCD.
+To install the driver using wdi-simple, then one could issue the following '''from an elevated prompt''':
+
+<pre>wdi-simple --type 3 --name "Olimex ARM-USB-TINY (Channel A)" --vid 0x15BA --pid 0x0004 --iid 0 --inf "libusb-win32_ft2232_driver.inf" --cert "Akeo.cer" --progressbar</pre>
+
+Note: If you try the following from a non-elevated prompt, you will see the following security notice:
+
+[[Image:walkthrough_01.png]]
+
+You may wonder why this still occurs, despite the fact that the <code>--cert</code> option was specified with the name of the embedded cert, but the error report indicates that indeed the [[Usage#int_wdi_install_trusted_certificate.28char.2A_cert_name.2C_struct_wdi_options_install_cert.2A_options.29|wdi_install_trusted_certificate()]] API call requires elevated privileges to run. This won't be a problem from Inno Setup/NSIS, as we can ensure the application runs elevated there.
+
+
+Now, even from an elevated prompt, if you use only the options above, you will still get the following security warning:
+
+[[Image:walkthrough_02.png]]
+
+This security notice is actually issued by libwdi, and not by the OS. This is because libwdi considers that it is bad practice to install a certificate as a Trusted Publisher without first notifying the user. It can however be disabled if you use the <code>--stealth-cert</code> option as follows:
+
+<pre>wdi-simple --type 3 --name "Olimex ARM-USB-TINY (Channel A)" --vid 0x15BA --pid 0x0004 --iid 0 --inf "libusb-win32_ft2232_driver.inf" --cert "Akeo.cer" --stealth-cert --progressbar</pre>
+
+If you do that, you should now see the driver installation succeed, without any prompts:
+<pre>D:\libwdi\examples>wdi-simple --type 3 --name "Olimex ARM-USB-TINY (Channel A)" --vid 0x15BA --pid 0x0004 --iid 0 
+ --inf "libusb-win32_ft2232_driver.inf" --cert "Akeo.cer" --stealth-cert --progressbar
+Extracting driver files...
+  Success
+Installing certificate 'Akeo.cer' as a Trusted Publisher...
+  Success
+Installing driver(s)...
+  Success
+</pre>
+
+Armed with our choice of options, we can now create a <code>.iss</code> Inno Setup or <code>.nis</code> NSIS script. The only addition we make to the parameters above is the addon of the installer HWND handle (<code>{wizardhwnd}</code> for Inno Setup, <code>$HWNDPARENT</code> for NSIS) to the --progressbar option, as it allows libwdi to center the progressbar dialog onto the installer Window. The scripts below are based on the <code>wdi-simple.iss/.nis</code> scripts that are also provided in the examples directory.
+
+==== Inno Setup Script ====
+<pre>
+[Setup]
+AppName = MyApp
+AppVerName = MyApp 1.0.0.1
+AppPublisher = Akeo Consulting
+AppPublisherURL = http://akeo.ie
+AppVersion = 1.0.0.1
+DefaultDirName = {pf}\MyApp
+DefaultGroupName = MyApp
+Compression = lzma
+SolidCompression = yes
+MinVersion = 5,5
+PrivilegesRequired = admin
+
+[Files]
+Source: "wdi-simple.exe"; DestDir: "{app}"; Flags: replacesameversion promptifolder;
+
+[Icons]
+Name: "{group}\Uninstall MyApp"; Filename: "{uninstallexe}"
+
+[Run]
+Filename: "{app}\wdi-simple.exe"; Flags: "runhidden"; Parameters: " --type 3 --name ""Olimex ARM-USB-TINY (Channel A)"" --vid 0x15BA --pid 0x0004 --iid 0 --inf ""libusb-win32_ft2232_driver.inf"" --cert ""Akeo.cer"" --stealth-cert --progressbar={wizardhwnd}"; StatusMsg: "Installing the Olimex ARM-USB-TINY driver (this may take a few seconds) ...";
+</pre>
+
+==== Nullsoft Scriptable Install System Script ====
+
+<pre>
+; Use modern interface
+  !include MUI2.nsh
+  !define MUI_FINISHPAGE_NOAUTOCLOSE
+
+; General
+  Name                  "libwdi-example"
+  OutFile               "libwdi-example-setup.exe"
+  InstallDir            $PROGRAMFILES\libwdi-example
+  InstallDirRegKey      HKLM "Software\libwdi-example" "Install_Dir"
+  ShowInstDetails       show
+  RequestExecutionLevel admin
+
+; Pages
+  !insertmacro MUI_PAGE_DIRECTORY
+  !insertmacro MUI_PAGE_INSTFILES
+  !insertmacro MUI_UNPAGE_INSTFILES 
+  !insertmacro MUI_UNPAGE_FINISH
+
+; Installer
+Section "libwdi-example" SecDummy
+  SetOutPath $INSTDIR
+  File "wdi-simple.exe"
+  WriteRegStr HKLM SOFTWARE\libwdi-example "Install_Dir" "$INSTDIR"
+  ; Write the uninstall keys for Windows
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\libwdi-example" "DisplayName" "libwdi example"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\libwdi-example" "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\libwdi-example" "NoModify" 1
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\libwdi-example" "NoRepair" 1
+  WriteUninstaller "uninstall.exe"
+SectionEnd
+
+; Call wdi-simple
+Section "wdi-simple"
+  DetailPrint "Running $INSTDIR\wdi-simple.exe"
+  nsExec::ExecToLog '"$INSTDIR\wdi-simple.exe" --type 3 --name "Olimex ARM-USB-TINY (Channel A)" --vid 0x15BA --pid 0x0004 --iid 0 --inf "libusb-win32_ft2232_driver.inf" --cert "Akeo.cer" --progressbar=$HWNDPARENT'
+SectionEnd
+
+; Uninstaller
+Section "Uninstall"
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\libwdi-example"
+  DeleteRegKey HKLM SOFTWARE\libwdi-example
+  Delete $INSTDIR\wdi-simple.exe
+  Delete $INSTDIR\uninstall.exe
+  RMDir "$SMPROGRAMS\libwdi-example"
+  RMDir "$INSTDIR"
+SectionEnd
+</pre>
+
+If you compile the scripts above with Inno/NSIS you should find that everything works and that you can now easily create installers that can install your own signed driver packages.
+
+== Links ==
+
+* [http://www.microsoft.com/whdc/driver/install/drvsign/kmcs-walkthrough.mspx Microsoft's Kernel-Mode Code Signing Walkthrough] (in Microsoft Office 2007 .docx format)
+* [http://www.globalsign.com/support/code-signing/codesign_vista64.php GlobalSign's code signing page]
+
+== Appendix A: Creating a Windows .cer from a .pfx, using openssl ==
+
+This section details how to create a Windows compatible .cer certificate (X509 DER) from an authenticode .pfx (PKCS#12), which can then be used for .cat signing.
+Once again, we're going to use the Akeo.pfx authenticode certificate which we got from GlobalSign. Much of this content, as well as clarification with regards to using authenticode certificates for .cat signing, is courtesy of ''Bob Paddock''.
+
+<pre>
+# openssl pkcs12 -in akeo.pfx -out globalsign_cacerts.pem -cacerts -nokeys 
+Enter Import Password: *******************
+MAC verified OK
+</pre>
+
+The <code>-cacerts</code> indicates that we only want the certificates from the Certification Authority trust chain, and exclude our end user part (the Akeo certificate itself) <code>-nokeys</code> option ensures that a private key will not be contained in the generated .pem file. The option is likely redundant, as we don't export anything from the end user part, but you obvioulsy don't want to run the risk of your private key being revealed.
+
+If you look at the content of the generated file, you should see something like this:
+<pre>
+# vi globalsign_cacerts.pem
+Bag Attributes
+    friendlyName: GlobalSign ObjectSign CA - GlobalSign nv-sa
+subject=/C=BE/O=GlobalSign nv-sa/OU=ObjectSign CA/CN=GlobalSign ObjectSign CA
+issuer=/C=BE/O=GlobalSign nv-sa/OU=Primary Object Publishing CA/CN=GlobalSign Primary Object Publishing CA
+-----BEGIN CERTIFICATE-----
+MIIEvjCCA6agAwIBAgILBAAAAAABHkSl7L4wDQYJKoZIhvcNAQEFBQAwgYExCzAJ
+................................................................
+Bf9+9VGAoBY42LaAoFFPrPaY
+-----END CERTIFICATE-----
+Bag Attributes
+    friendlyName: GlobalSign Primary Object Publishing CA - GlobalSign nv-sa
+subject=/C=BE/O=GlobalSign nv-sa/OU=Primary Object Publishing CA/CN=GlobalSign Primary Object Publishing CA
+issuer=/C=BE/O=GlobalSign nv-sa/OU=Root CA/CN=GlobalSign Root CA
+-----BEGIN CERTIFICATE-----
+MIID+DCCAuCgAwIBAgILBAAAAAABHkSl4k4wDQYJKoZIhvcNAQEFBQAwVzELMAkG
+................................................................
+QGYX32KNKzSnQmcl
+-----END CERTIFICATE-----
+Bag Attributes
+    friendlyName: GlobalSign Root CA
+subject=/C=BE/O=GlobalSign nv-sa/OU=Root CA/CN=GlobalSign Root CA
+issuer=/C=BE/O=GlobalSign nv-sa/OU=Root CA/CN=GlobalSign Root CA
+-----BEGIN CERTIFICATE-----
+MIIDdTCCAl2gAwIBAgILBAAAAAABFUtaw5QwDQYJKoZIhvcNAQEFBQAwVzELMAkG
+................................................................
+HMUfpIBvFSDJ3gyICh3WZlXi/EjJKSZp4A==
+-----END CERTIFICATE-----
+</pre>
+This tells us that our trust chain has 3 certificates above our Akeo credentials. From highest (root CA) to lowest: <br />
+GlobalSign Root CA &rarr; GlobalSign Primary Object Publishing CA &rarr; GlobalSign ObjectSign CA
+
+Now, we only have the certificate chain as a .pem file, which we cannot use with Windows and libwdi. We need an X509 DER file. However, the default from openssl is to only process the first relevant section from a PEM file (<code>Bag Attributes</code>), and if we use the .pem as is, the .cer generated will only contain the "GlobalSign ObjectSign CA" certificate, and none of the others. Since we want to have the full certification chain in our .cer, with all the intermediate certificates, we must edit the .pem to remove all the <code>Bag Attributes</code> sections, except the first one:
+<pre>
+# vi globalsign_cacerts.pem
+Bag Attributes
+    friendlyName: GlobalSign ObjectSign CA - GlobalSign nv-sa
+subject=/C=BE/O=GlobalSign nv-sa/OU=ObjectSign CA/CN=GlobalSign ObjectSign CA
+issuer=/C=BE/O=GlobalSign nv-sa/OU=Primary Object Publishing CA/CN=GlobalSign Primary Object Publishing CA
+-----BEGIN CERTIFICATE-----
+MIIEvjCCA6agAwIBAgILBAAAAAABHkSl7L4wDQYJKoZIhvcNAQEFBQAwgYExCzAJ
+................................................................
+Bf9+9VGAoBY42LaAoFFPrPaY
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIID+DCCAuCgAwIBAgILBAAAAAABHkSl4k4wDQYJKoZIhvcNAQEFBQAwVzELMAkG
+................................................................
+QGYX32KNKzSnQmcl
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIIDdTCCAl2gAwIBAgILBAAAAAABFUtaw5QwDQYJKoZIhvcNAQEFBQAwVzELMAkG
+................................................................
+HMUfpIBvFSDJ3gyICh3WZlXi/EjJKSZp4A==
+-----END CERTIFICATE-----
+</pre>
+Then we can issue:
+<pre># openssl x509 -in globalsign_cacerts.pem -inform PEM -out globalsign.cer -outform DER</pre>
+If you open the certificate in Windows, you should then be able to see the certificate with the full chain, and you will also be able to use this certificate with libwdi.
+
+== Appendix B: Windows XP issue when trying to use a Verisign authenticode certificate to sign a .cat  ==
+
+Once againg courtesy of ''Bob Paddock'':
+<blockquote>In CertMgr if the Certification Path for your certificate only shows three items in the tree, it means there will be problems using the certificate on XP machines that are not up to date.
+
+The problem stems back from the original private key that was exported out of Windows to make the .pfx file.  If the file is around 6.6K it indicates that part of the chain is missing, that it seems outdated XP machines need, and nothing else does.  The .pfx file needs to be around the size of 7.4K if it has the correct chain of certificates to make XP happy.  The exact file size will vary somewhat due to variations of length in the certificate name (has nothing to do with the name of the file), and the particular CA that was used.
+
+When you export the Private Key make sure 'Include all certificates in the certificate path if possible' and 'Export all extended properties' are checked, to make old XP machines happy.</blockquote>
+----
+<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
