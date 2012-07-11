@@ -76,7 +76,7 @@ Depending on the OS being run, libwdi requires a 32 or 64 bit version of the dri
 </pre>
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/libwdi.c /libwdi/libwdi.c] &rarr; install_driver_internal()</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/libwdi.c /libwdi/libwdi.c] &rarr; install_driver_internal()</tt>
 |}
 
 == Compiling a project for both 32 and 64 bit ==
@@ -86,16 +86,16 @@ When possible, because of the need for an embedded driver installer that matches
 * For MinGW, provided that you use a multilib MinGW-w64 for compilation, switching between 32 and 64 bit can be easily achieved on the fly as well with the <code>-m32</code>/<code>-m64</code> <code>CFLAGS</code>/<code>LDFLAGS</code> options. You can also do configure time 32/64 bit support detection or enabling/disabling through configure.ac, or to set the default to be 32 bit, with only the required files as 64.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): (MinGW) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/Makefile.am /Makefile.am] [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=configure.ac /configure.ac]</tt>
+| style="background:#f7f7f7;" | File(s): (MinGW) || <tt>[https://github.com/pbatard/libwdi/blob/master/Makefile.am /Makefile.am] [https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac]</tt>
 |- 
-| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=ddk_build.cmd /ddk_build.cmd]</tt>
+| style="background:#f7f7f7;" | File(s): (DDK) || <tt>https://github.com/pbatard/libwdi/blob/master/ddk_build.cmd /ddk_build.cmd]</tt>
 |}
 
 == Folder selection / File open/save Windows dialogs that uses to new enhanced Vista or Windows 7 controls when available (and default to the regular version on older platforms) ==
 This is all done in the <code>file_dialog()</code> and <code>browse_for_folder()</code> calls from <code>zadig_stdlg.c</code>.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/zadig_stdlg.c /examples/zadig_stdlg.c]</tt>
+| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/zadig_stdlg.c /examples/zadig_stdlg.c]</tt>
 |}
 
 == USB hotplug detection ==
@@ -103,13 +103,13 @@ This is all done in the <code>file_dialog()</code> and <code>browse_for_folder()
 # When using <code>RegisterDeviceNotification()</code>, it is possible to get unique <code>WM_DEVICECHANGE</code> events but only for devices that already have a driver, because there is no device interface class for unknown/driverless devices and Microsoft has not publicized any way of doing so, it is NOT possible to get a single notification event for insertion/removal of devices that don't have a driver.<br />Our solution then is to initiate delayed notification thread on the first <code>WM_DEVICECHANGE</code> message we receive, and wait for this thread to send a user defined event back to our main callback.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/zadig.c /examples/zadig.c] &rarr; main_callback() & notification_delay_thread()</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/zadig.c /examples/zadig.c] &rarr; main_callback() & notification_delay_thread()</tt>
 |}
 
 == USB device listing, including driverless devices ==
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/libwdi.c /libwdi/libwdi.c] &rarr; wdi_create_list()</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/libwdi.c /libwdi/libwdi.c] &rarr; wdi_create_list()</tt>
 |}
 
 == Automatic incrementation of executable/DLL version numbers using git tags ==
@@ -120,23 +120,23 @@ If you are using versioning in .rc files, it would obviously be nice to bump the
 Additionally, the script also updates the USB VID &rarr; Vendor ID string source (see below).
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=_bump.sh /_bump.sh]</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/_bump.sh /_bump.sh]</tt>
 |}
 
 == Windows GUI MouseOver/Hover Tooltip ==
 A simple call that creates and displays a tooltip when hovering over a dialog item (eg. text field)
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/zadig_stdlg.c /examples/zadig_stdlg.c] &rarr; create_tooltip()</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/zadig_stdlg.c /examples/zadig_stdlg.c] &rarr; create_tooltip()</tt>
 |}
 
 == Sed script to convert the USB VIDs into a C source that will resolve then to Vendor ID strings ==
-In our applications, this is used to display the Vendor name of a specific USB device when hovering over the VID hex string.<br />http://www.linux-usb.org/usb.ids does a great job at maintaining known Vendor IDs, but the list still needs to be converted into something [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/vid_data.c a bit more C-friendly]. For that purpose we built a shell script that, when executed:
+In our applications, this is used to display the Vendor name of a specific USB device when hovering over the VID hex string.<br />http://www.linux-usb.org/usb.ids does a great job at maintaining known Vendor IDs, but the list still needs to be converted into something [https://github.com/pbatard/libwdi/blob/master/libwdi/vid_data.c a bit more C-friendly]. For that purpose we built a shell script that, when executed:
 # uses wget to retrieve the latest version of the list
 # uses sed to convert it to a C source with a function call that will take a VID and return the matching string.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/vid_data.sh /libwdi/vid_data.sh]</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/vid_data.sh /libwdi/vid_data.sh]</tt>
 |}
 
 == UTF-8 wrappers to Wide Char (UTF-16) MS API ==
@@ -158,7 +158,7 @@ Our UTF-8 wrapper API provides just that, for a selected subset of the Windows A
 * <code>UpdateDriverForPlugAndPlayDevices</code>/<code>SetupCopyOEMInf</code> (<code>UpdateDriverForPlugAndPlayDevicesU</code>/<code>SetupCopyOEMInfU</code>)
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/msapi_utf8.h /libwdi/msapi_utf8.h]</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/msapi_utf8.h /libwdi/msapi_utf8.h]</tt>
 |}
 
 == Installing a certificate into the Trusted Publisher repository ==
@@ -166,7 +166,7 @@ If you want your signed drivers to be installed without security prompts, but ca
 The code will also detect whether the certificate is about to be effectively written to the store, so as to let end-users with the possibility to refuse the certificate installation if they so choose.<br />The code must be executed from a process running in elevated mode.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToTrustedPublisher()</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToTrustedPublisher()</tt>
 |}
 
 == WDK's MakeCat/Inf2Cat, MakeCert, CertMgr, SignTool, with source ==
@@ -176,25 +176,25 @@ The only thing we ask, which seems like a fair request considering that Microsof
 '''MakeCert:'''
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; CreateSelfSignedCert()</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; CreateSelfSignedCert()</tt>
 |}
 
 '''CertMgr:'''
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToStore(), RemoveCertFromStore()</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToStore(), RemoveCertFromStore()</tt>
 |}
 
 '''MakeCat:'''
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; CreateCat(), AddFileHash(), etc.</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; CreateCat(), AddFileHash(), etc.</tt>
 |}
 
 '''SignTool:'''
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/pki.c /libwdi/pki.c] &rarr; SelfSignFile()</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; SelfSignFile()</tt>
 |}
 
 == Programmatically setting a Local Group Policy on Vista and Windows 7 ==
@@ -244,7 +244,7 @@ pLGPO->lpVtbl->Release(pLGPO);
 
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/installer.c /libwdi/installer.c] &rarr; disable_system_restore()</tt>
+| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/installer.c /libwdi/installer.c] &rarr; disable_system_restore()</tt>
 |}
 ----
 <center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
