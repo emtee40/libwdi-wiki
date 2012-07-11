@@ -1,0 +1,363 @@
+== What is WCID? ==
+
+A '''WCID device''', where WCID stands for "'''W'''indows '''C'''ompatible '''ID'''", is an USB device that provides extra information to a Windows system, in order to facilitate driver installation and, in some circumstances, enable immediate access.
+
+WCID allows a device to be used by a Windows application as soon as it is plugged in, as opposed to the the usual scenario where an USB device that is neither [http://en.wikipedia.org/wiki/Human_interface_device HID] nor [http://en.wikipedia.org/wiki/USB_mass_storage_device_class Mass Storage] requires end-users to perform a manual driver installation. As such, WCID can bring the 'Plug-and-Play' functionality of HID and Mass Storage to '''any''' USB device.
+
+WCID is an extension of the [http://msdn.microsoft.com/en-us/library/windows/hardware/hh450799.aspx WinUSB Device] functionality, put forward by Microsoft during the Windows 8 Developer Preview. However, it uses capabilities ([http://msdn.microsoft.com/en-us/windows/hardware/gg463179 Microsoft OS Descriptors], or MODs) that have been part of Windows since Windows XP SP2.
+
+== History ==
+
+Before WCID, only USB devices that belonged to a well supported class such as [http://en.wikipedia.org/wiki/Human_interface_device HID] (USB keyboards, mice, joysticks, etc.) or [http://en.wikipedia.org/wiki/USB_mass_storage_device_class Mass Storage] (USB disk or flash based storage, media players such as iPods, etc.) required no intervention for driver installation, as Windows took care of it automatically when inserted for the first time. But any other device required either an internet connection to fetch a WHQL driver for a known device (if available) or the user to manually provide and install the driver themselves. This detracted from ease of use and limited the the ability of people, who aren't familiar with the driver installation process on Windows, to use generic USB applications such as the ones based on [http://www.libusbx.org/ libusbx], [http://libusbdotnet.sourceforge.net/V2/Index.html LibUsbDotNet], [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32], [http://code.google.com/p/usb-travis/ libusbK] or [http://msdn.microsoft.com/en-us/library/windows/hardware/ff540046.aspx#winusb WinUSB].
+
+However, the methods for automated driver installation of HID or Mass Storage devices (reliance of a common class, instead of a specific device ID) and the method of providing specific OS related device information (Microsoft OS Descriptors), which have been present since Windows XP SP2, can actually be combined to allow for the automated driver installation of any type of USB device. 
+
+In 2011, WCID [http://msdn.microsoft.com/en-gb/library/windows/hardware/hh450799.aspx was put forward by Microsoft] in the Windows 8 Developer Preview, through an updated WinUSB driver, and was confirmed to be applicable for more than just WinUSB devices.
+
+As it greatly enhances user experience, WCID is now being leveraged in USB devices such as the LibusbDotNet Benchmark device, with many more expected to follow.
+
+== Example ==
+
+The following is a screenshot of a "WINUSB" WCID device as detected by [http://sourceforge.net/projects/libwdi/files/zadig/ Zadig].
+
+On Windows 8, this device, which is neither HID nor Mass Storage, sees a driver installed automatically, without any form of user intervention and with no requirement for an internet connection.
+
+The same can also be achieved on Windows 7, where this screenshot was taken, or any version of Windows from XP SP2, if a WinUSB WCID driver (i.e. a generic driver) has been installed at least once.
+
+[[Image:WCID_Zadig.png|none|frame|Example of a "WINUSB" WCID device]]
+
+== WCID for end-users ==
+
+What WCID means for end-user is that, as long as a device is WCID, and a WCID driver of the same type has been made available on the system '''at most once''', no driver installation is required when plugging in this device or any other WCID device of the same type. "At most once" means that, even if that one-time operation took place a long time ago, and was for a completely different device from a different manufacturer, a WCID device will still see its driver automatically installed, and on some systems, such as Windows 8, even that one-time installation may not even be necessary.
+
+Moreover, an application such as [http://sourceforge.net/projects/libwdi/files/zadig/ Zadig] can already perform that one-time WCID driver installation today, ensuring that, when you plug a WCID device in the future, you won't have anything to do.
+
+Thus, if you are an end-user, and the device you want to use is neither HID or Mass Storage, you should ask the manufacturer whether it is WCID compatible. If not, you should ask them whether they can update the device firmware and convert it to WCID, which is very easy for them to do, as this will greatly enhance your user experience.
+
+All in all, once manufacturers start using WCID, you will find that any USB device on Windows can actually become Plug-and-Play and that custom USB driver installations can become a thing of the past.
+
+== WCID for manufacturers ==
+
+Obviously, the main advantage of WCID for device manufacturers is that it alleviates the need to provide your own custom driver installer application, as well as educate users with regards to driver requirements for devices that do not belong to well established USB classes. It also alleviates the need to go through WHQL, for every single device you produce, should you want users to obtain your driver through Windows Update. This obviously also benefits users that are not connected to internet or may be placed behind a strict firewall (eg. corporate users), as they can still use your device right away.
+
+For any user running Windows 8, as long as you use <code>"WINUSB"</code> for your WCID type (in the Compatible ID Descriptor - see below), nothing more is required, and the WinUSB WCID driver, which comes with the OS, will be installed automatically the first time the user plugs the device in. Thus you can start developing [http://msdn.microsoft.com/en-us/library/windows/hardware/ff540174.aspx WinUSB] or [http://libusbx.org libusbx] based applications, without having to worry about driver installation.
+
+For end-users not running Windows 8, or if you choose to use [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32] or [http://code.google.com/p/usb-travis/ libusbK] to develop your application, you can simply either provide a one-time WCID driver installer application, such as [http://sourceforge.net/projects/libwdi/files/zadig/ Zadig] or [http://libwdi.sf.net libwdi]'s [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/wdi-simple.c wdi-simple] (both of which being Open Source and customizable to your needs), as these applications can install the WCID version of the WinUSB, libusb-win32 or libusbK drivers.
+
+Also, while WCID requires the addition on additional descriptors, a lot of effort has been devoted in this page to ensure that you have all the information required to so quickly and painlessly (i.e. near zero-cost), especially as the simple registry checks detailed below, the use of Zadig or the use of other test applications such as the [http://libusbx.org libusbx] sample application [http://libusbx.git.sourceforge.net/git/gitweb.cgi?p=libusbx/libusbx;a=blob;f=examples/xusb.c xusb] (a Windows binary version of which is also available [https://sourceforge.net/projects/libusbx/files/releases/1.0.10/Windows/ here]) or Linux's [http://packages.debian.org/search?keywords=usbutils usb-utils] (when updated to dump Microsoft OS Descriptors) can easily validate whether your descriptors have been set properly. 
+
+For examples of actual WCID device implementations for AVR and PIC, as well as a typical WCID USB query trace, please have a look at the [[#WCID_Device_Examples|Examples section]].
+
+If positive customer experience is one of your priorities, and you want to reduce both development and support costs, you should seriously consider implementing WCID into your next device.
+
+== Implementation ==
+
+Hereafter you can find an extended description of how WCID driver installation works on Windows, as well as the means one can use to confirm a device is properly set for WCID.
+It is important to remember that most of the actions described below take place before any driver is installed, and that they apply not to just Windows 8, but to earlier versions of Windows as well, starting with Windows XP SP2. Most of the information provided comes from the various references listed in the Additional Links section below.
+
+'''Important:''' Only USB 2.0 devices or later can be recognized as WCID. As per [http://blogs.msdn.com/b/usbcoreblog/archive/2009/10/31/how-does-usb-stack-enumerate-a-device.aspx the following]: ''"If the USB Device Descriptor’s bcdUSB field is equal to 0x0100 or 0x0110, the hub driver will skip the query for the MS OS Descriptor and move to the “Serial Number String Descriptor Query” state"''. Thus your Device Descriptor’s bcdUSB field '''must''' be set to 0x0200 or higher.<br>
+Of course, this does not mean that your device has to operate at High Speed. It just means that your device complies with the USB 2.0 Specifications.
+
+=== '''Microsoft OS String Descriptor''' ===
+
+The first time an USB device is plugged in, the Microsoft USB port driver (<code>usbport.sys</code>) will read the standard USB Descriptors, which includes the standard Device,        Configuration, Interface and String Descriptors, and it will also attempt to read an additional String Descriptor located at index <code>0xEE</code>. This String Descriptor, which is not mandated by the USB specifications, is a Microsoft extension called an OS String Descriptor and it is the first of two elements that establish whether a device is WCID.
+
+When Windows checks for this String Descriptor, one of the first thing that happens is the creation of a registry entry, under <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\usbflags</code>, that is the concatenation of <code>VID+PID+BCD_RELEASE_NUMBER</code> (This key is never deleted). In this new section, a <code>osvc</code> 2 byte <code>REG_BINARY</code> key is created, that indicates whether an appropriate Microsoft OS String Descriptor was found.
+
+* If the <code>0xEE</code> descriptor doesn't exist, or if it doesn't match the Microsoft signature (<code>"MSTF100"</code>), then <code>osvc</code> is set to <code>0x0000</code>, which, in our case, means that the device is not WCID.
+* If the <code>0xEE</code> descriptor exists and matches the expected organization of a Microsoft OS String Descriptor, then <code>oscv</code> is set to <code>0x01##</code>, where <code>01</code> indicates that the device satisfies the MS OS Vendor extensions and where <code>##</code> is the Vendor Code byte value (see below). 
+
+The following table details how exactly the Microsoft OS String Descriptor should be set in your firmware:
+
+{| border="1" cellpadding="2"
+|+'''Table 1: Microsoft OS String Descriptor'''
+!style="background:#efefef;" width="190"|Value
+!style="background:#efefef;" width="100"|Type
+!style="background:#efefef;"|Description
+|-
+|<code>0x12</code> || BYTE || Descriptor length (18 bytes)
+|-
+|<code>0x03</code> || BYTE || Descriptor type (3 = String)
+|- 
+|<code>0x4D, 0x00, 0x53, 0x00, 0x46, 0x00, 0x54, 0x00, 0x31, 0x00, 0x30, 0x00, 0x30, 0x00</code> || 7 WORDS Unicode String (LE) || Signature:
+<code>"MSFT100"</code> 
+|-
+|<code>0x</code>'''<code>##</code>''' || BYTE || '''Vendor Code'''
+|-
+|<code>0x00</code> || BYTE || Padding
+|}
+
+
+Below is an example of the key created by Windows 7 for a WCID device (LibusbDotNet's Benchmark device, with VID <code>0x04D8</code>, PID <code>0xFA2E</code> and BCD Release Number <code>0x0001</code>):
+
+[[Image:WCID_osvc.png|none|frame|Osvc entry created by a WCID enabled Benchmark Device]]
+
+In the example above, the Vendor Code was set to <code>0x20</code> in the firmware. Thus, you can easily find out if Windows has been able to read a valid OS Vendor signature from your device by checking the registry.
+
+=== '''Microsoft Compatible ID Feature Descriptor''' ===
+
+If the osvc is valid, then additional Microsoft-defined Feature Descriptor are issued, with each call being broken down by the OS into header retrieval, to find the size, and then full payload retrieval (thus a device should see twice as many requests as calls that are issued).
+
+At least one of these calls is for the <code>Compatible ID Feature Descriptor</code> 
+
+This is issued by the OS as a Vendor Request (control transfer), with <code>wIndex</code> set to <code>0x0004</code> and <code>bRequest</code> set to the Vendor Code previously returned, as well as the recipient part of <code>bmRequestType</code> set to Device (<code>0x00</code>, the full <code>bmRequestType</code> being set to <code>0xC0</code>). While these calls are issued by Windows, and you shouldn't have to duplicate them, if you want an example of <code>Compatible ID</code> as well as <code>Extended Properties</code> Feature Descriptor retrieval using [http://libusbx.org libusbx], see the <code>[http://libusbx.git.sourceforge.net/git/gitweb.cgi?p=libusbx/libusbx;a=blob;f=examples/xusb.c#l528 read_ms_winsub_feature_descriptors()]</code> function in the [http://libusbx.git.sourceforge.net/git/gitweb.cgi?p=libusbx/libusbx;a=blob;f=examples/xusb.c xusb.c] sample source.
+
+Thus, the second part of making your device WCID is ensuring that your firmware answers a Vendor Request with <code>wIndex=0x0004</code> and <code>bRequest=0x##</code>, to return a Compatible ID.
+
+In its simplest form, and as documented [http://msdn.microsoft.com/en-gb/library/windows/hardware/hh450799.aspx here] the format of the data packet is as follows:
+
+{| border="1" cellpadding="2"
+|+'''Table 2: Microsoft Compatible ID Feature Descriptor'''
+!style="background:#efefef;" width="190"|Value
+!style="background:#efefef;" width="100"|Type
+!style="background:#efefef;"|Description
+|-
+|<code>0x28, 0x00, 0x00, 0x00</code> || DWORD (LE) || Descriptor length (40 bytes)
+|-
+|<code>0x00, 0x01</code> || BCD WORD (LE) || version (<code>'1.0'</code>)
+|-
+|<code>0x04, 0x00</code> || WORD (LE) || Compatibility ID Descriptor index (<code>0x0004</code>)
+|-
+|<code>0x01</code> || '''BYTE''' || Number of sections (1)
+|-
+|<code>0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00</code> || 7 BYTES || Reserved
+|-
+|<code>0x00</code> || BYTE || Interface Number (Interface #0)
+|-
+|<code>0x01</code> || BYTE || Reserved
+|-
+|<code>0x57, 0x49, 0x4E, 0x55, 0x53, 0x42, 0x00, 0x00</code> || 8 BYTES (NUL-terminated?) ASCII String || Compatible ID (<code>"WINUSB\0\0"</code>)
+|-
+|<code>0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00</code> || 8 BYTES (NUL-terminated?) ASCII String || Sub-Compatible ID (unused)
+|-
+|<code>0x00, 0x00, 0x00, 0x00, 0x00, 0x00</code> || 6 BYTES || Reserved
+|}
+
+You can then check if the Compatible ID was properly read from your device by browsing the registry's <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB</code> tree at the location of your device. Similarly to the <code>osvc</code> key which is created on first insertion, you should find an entry with the VID and PID of your device under <code>USB</code> (eg: <code>VID_04D8&PID_FA2E</code>).
+
+Under this entry, possibly under an additional sub-entry, you should verify the content of the <code>CompatibleIDs</code> key (which is a <code>REG_MULTI_SZ/code>).
+If Windows was able to read the <code>Compatible ID</code> from your device, this key should include a <code>USB\MS_COMP_XXXXXXXX/code> string, where <code>XXXXXXXX</code> is what was defined in your report. For instance, if you defined <code>LIBUSB0</code>, you should get <code>USB\MS_COMP_LIBUSB0</code> there.
+
+Here is an example of the registry entry created from the Compatible ID Feature Descriptor (<code>"WINUSB"</code>):
+
+[[Image:WCID_CompatibleID.png|none|frame|Compatible IDs registry entry created by a WCID enabled Benchmark Device]]
+
+If you can find an <code>USB\MS_COMP_XXXXXXXX</code> entry for your device (here <code>USB\MS_COMP_WINUSB</code>), then your device qualifies as a WCID device. In other words, defining a Microsoft OS String Descriptor and a Microsoft Compatible ID Feature Descriptor in your firmware is all that's needed to turn it into a WCID device and benefit from the automated driver installation feature of Windows.
+
+Other Compatible IDs than <code>"WINSUB"</code> can also be used according to the driver you want to automate the installation of. The following table provides a reference of which Compatible ID string you should use, according to the type of application you want to use your device with:
+
+{| border="1" cellpadding="2"
+|+'''Table 3: Compatible ID to Application Type'''
+!style="background:#efefef;"|Compatible ID String
+!style="background:#efefef;"|Application Type
+|-
+|<code>"WINUSB\0\0"</code> || [http://libusb.org libusb-1.0 application]<br />[http://libusbdotnet.sourceforge.net/V2/Index.html LibUsbDotNet application]<br />[http://msdn.microsoft.com/en-us/library/windows/hardware/ff540174.aspx native WinUSB application]
+|-
+|<code>"LIBUSB0\0"</code> || [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32 application]<br />[http://libusbdotnet.sourceforge.net/V2/Index.html LibUsbDotNet application]
+|-
+|<code>"LIBUSBK\0"</code> || [http://code.google.com/p/usb-travis/ libusbK application]<br />[http://libusbdotnet.sourceforge.net/V2/Index.html LibUsbDotNet application]
+|}
+
+=== '''Windows Automated Driver Installation''' ===
+
+The WCID automated driver installation process is best illustrated through the native automated WinUSB driver installation of Windows 8.
+
+Here again, there are two requirements that must be met to allow for the automated installation of a device driver.
+
+First, the inf file must include <code>USB\MS_COMP_XXXXXXXX</code> as a device identifier string. In Windows 8 (x64), if you look at the <code>winusb.inf</code> from your <code>\Windows\System32\DriverStore\FileRepository\winusb.inf_amd64_50cb26e12c0e99f2\</code> (or similar), you will find that this is indeed the case see a:
+<pre>[Manufacturer]
+%Generic.Mfg%=Generic.Section,NTamd64
+
+[Generic.Section.NTamd64]
+%USB\MS_COMP_WINUSB.DeviceDesc%=WINUSB,USB\MS_COMP_WINUSB
+
+[Strings]
+Generic.Mfg="WinUsb Device"
+USB\MS_COMP_WINUSB.DeviceDesc="WinUsb Device"</pre>
+
+In comparison, the <code>winusb.inf</code> you'll find at the same location in Windows 7 is missing a <code>[Manufacturer]</code> section pointing to a compatible ID.
+
+Secondly, the driver must have been pre-installed onto the system, which mostly means that an entry for it must exist in <code>\Windows\System32\DriverStore\FileRepository\</code>
+
+As both these conditions are met by default for the WinUSB driver on Windows 8, it becomes possible to plug in a WinUSB WCID device (i.e. a WCID device that returns <code>"WINUSB"</code> for the Compatible ID Descriptor) and have its driver installed automatically: once Windows has populated the <code>CompatibleIDs</code> list in the registry, it will search the inf repository for a match, and if it finds one, install the relevant driver.
+
+This whole process is actually nothing new, as a the same occurs for USB Class devices, such as HID or Mass Storage, where the <code>USB\Class_...</code> entry is used for the match. For instance, if you look at <code>input.inf</code> from <code>DriverStore\</code> you would see:
+
+<pre>[Manufacturer]
+; Game controllers
+%StdMfg%=Standard,NTamd64
+
+[Standard.NTamd64]
+; Generic HID Interface (HidUsb as service)
+%HID.DeviceDesc% = HID_Inst,,GENERIC_HID_DEVICE,USB\Class_03&SubClass_01,USB\Class_03
+
+[Strings]
+HID.DeviceDesc  = "USB Input Device"
+StdMfg          = "(Standard system devices)"</pre>
+
+and <code>USB\Class_03</code> is what you would find as one of the <code>CompatibleIDs</code> string for an HID Joystick for instance.
+
+Note however that the name under which the device is installed (i.e. the name that will appear in the Device Manager) is the one that defined in the inf file, rather than the one provided from the USB String Descriptors. As such, all WCID devices appear with the same name (eg. "WinUSB Generic Device" for WinUSB).
+
+=== '''Defining a Device Interface GUID or other device specific properties''' ===
+
+If you read the Microsoft documentation, you will find that Microsoft OS Descriptors can be used for more than just WCID, at WCID is only a subset of it. For instance, they can be used to provide icons, URLs or other data. 
+
+One item that may be of interest to you, with regards to WCID devices, is the provision of additional device registry settings and especially the provision of the Device Interface GUID that your device should be installed under.
+Just like with the Compatible ID, this too is done through a Feature Descriptor, called <code>Extended Properties Feature Descriptor</code> and located at <code>wIndex = 0x0005</code>. And as is the case for the Compatible ID, this is queried using a Device Request with the full <code>bmRequestType</code> being set to <code>0xC0</code>.
+
+{| border="1" cellpadding="2"
+|+'''Table 4: Microsoft Extended Properties Feature Descriptor'''
+!style="background:#efefef;" width="190"|Value
+!style="background:#efefef;" width="100"|TYPE
+!style="background:#efefef;"|Description
+|-
+|<code>0x8e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Descriptor length (242 bytes)
+|-
+|<code>0x00, 0x01</code> || BCD WORD (LE) || version (<code>'1.0'</code>)
+|-
+|<code>0x05, 0x00</code> || WORD (LE) || Extended Property Descriptor index (<code>0x0005</code>)
+|-
+|<code>0x01, 0x00</code> || '''WORD''' (LE) || Number of sections (1)
+|-
+|<code>0x84, 0x00, 0x00, 0x00</code> || DWORD (LE) || Size of the property section (132 bytes)
+|-
+|<code>0x01, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type (1 = Unicode REG_SZ, see table below)
+|-
+|<code>0x28, 0x00</code> || WORD (LE) || Property name length (40 bytes)
+|-
+|<code>0x44, 0x00, 0x65, 0x00, 0x76, 0x00, /.../ 0x49, 0x00, 0x44, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"DeviceInterfaceGUID"</code>)
+|-
+|<code>0x4e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data length (78 bytes)
+|-
+|<code>0x7b, 0x00, 0x46, 0x00, 0x37, 0x00, /.../ 0x32, 0x00, 0x7d, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"</code>)
+|}
+
+The property data types that you can use are defined in the following table:
+
+{| border="1" cellpadding="2"
+|+'''Table 5: Data Types for the Microsoft Extended Properties Feature Descriptor'''
+!style="background:#efefef;"|Value
+!style="background:#efefef;"|Type
+|-
+|1 || NUL-terminated Unicode String (REG_SZ)
+|-
+|2 || NUL-terminated Unicode String, that may include environment variables (REG_EXPAND_SZ)
+|-
+|3 || binary data (REG_BINARY)
+|-
+|4 || DWORD value, little endian (REG_DWORD_LITTLE_ENDIAN)
+|-
+|5 || DWORD value, big-endian (REG_DWORD_BIG_ENDIAN)
+|-
+|6 || NUL-terminated Unicode string, that may include a symbolic link (REG_LINK)
+|-
+|7 || Multiple NUL-terminated Unicode strings (REG_MULTI_SZ)
+|}
+
+Should you define DeviceInterfaceGUID as highlighted above, or any other Extended Properties at index <code>0x0005</code>, you will find that it is copied into the registry, under the <code>Device Parameters</code> subsection of your device, as illustrated below:
+
+[[Image:WCID_DeviceParameters.png|none|frame|Device Parameters registry entry created by a WCID enabled Benchmark Device]]
+
+As you can see, the <code>{F70242C7-FB25-443B-9E7E-A4260F373982}</code> that was defined in the Extended Properties Descriptors (see below) has properly been populated in the registry.
+You can therefore use the Extended Properties Descriptors to define any additional registry entry that your device may require, and then use the usual Microsoft APIs, such as [http://msdn.microsoft.com/en-us/library/windows/hardware/ff549791.aspx SetupDi] to read this data in your application.
+
+=== '''Example of a complete OS Feature Descriptor query''' ===
+
+For further details of the data that a WCID device, that also has the (optional) <code>DeviceInterfaceGUID</code> defined, should return, what follows is an example of what xusb against WCID-enabled Benchmark device. All the screenshots and data sections described above have been produced with this device. You can obtain a Windows executable xusb by downloading the [http://libusb.org/wiki/windows_backend#LatestBinarySnapshots latest libusb-1.0 Windows binary archive]
+
+<pre>D:\libusb\examples>xusb 4d8:fa2e
+Using libusb v1.0.8.10345
+
+Opening device...
+bus: 7, port path from HCD: 4->3
+speed: 12 Mbit/s (USB 1.0 FullSpeed)
+
+Reading device descriptor:
+            length: 18
+      device class: 0
+               S/N: 3
+           VID:PID: 04D8:FA2E
+         bcdDevice: 0001
+   iMan:iProd:iSer: 1:2:3
+          nb confs: 1
+
+Reading configuration descriptors:
+             nb interfaces: 1
+              interface[0]: id = 0
+interface[0].altsetting[0]: num endpoints = 2
+   Class.SubClass.Protocol: 00.00.00
+       endpoint[0].address: 01
+           max packet size: 0020
+          polling interval: 00
+       endpoint[1].address: 81
+           max packet size: 0020
+          polling interval: 00
+
+Claiming interface 0...
+
+Reading string descriptors:
+   String (0x01): "Travis Robinson"
+   String (0x02): "Benchmark Device"
+   String (0x03): "LUSBW1"
+   String (0xEE): "MSFT100 "
+
+Reading Extended Compat ID OS Feature Descriptor (wIndex = 0x0004):
+
+  00000000  28 00 00 00 00 01 04 00 01 00 00 00 00 00 00 00  (...............
+  00000010  00 01 57 49 4e 55 53 42 00 00 00 00 00 00 00 00  ..WINUSB........
+  00000020  00 00 00 00 00 00 00 00                          ........
+
+Reading Extended Properties OS Feature Descriptor (wIndex = 0x0005):
+
+  00000000  8e 00 00 00 00 01 05 00 01 00 84 00 00 00 01 00  ................
+  00000010  00 00 28 00 44 00 65 00 76 00 69 00 63 00 65 00  ..(.D.e.v.i.c.e.
+  00000020  49 00 6e 00 74 00 65 00 72 00 66 00 61 00 63 00  I.n.t.e.r.f.a.c.
+  00000030  65 00 47 00 55 00 49 00 44 00 00 00 4e 00 00 00  e.G.U.I.D...N...
+  00000040  7b 00 46 00 37 00 30 00 32 00 34 00 32 00 43 00  {.F.7.0.2.4.2.C.
+  00000050  37 00 2d 00 46 00 42 00 32 00 35 00 2d 00 34 00  7.-.F.B.2.5.-.4.
+  00000060  34 00 33 00 42 00 2d 00 39 00 45 00 37 00 45 00  4.3.B.-.9.E.7.E.
+  00000070  2d 00 41 00 34 00 32 00 36 00 30 00 46 00 33 00  -.A.4.2.6.0.F.3.
+  00000080  37 00 33 00 39 00 38 00 32 00 7d 00 00 00        7.3.9.8.2.}...
+
+Releasing interface 0...
+Closing device...</pre>
+
+== WCID Advantages ==
+
+* Actual Plug-and-Play for end-users
+* '''Zero''' (Windows 8 with WinUSB) or '''one''' driver installation required, ever
+* No need to go through WHQL and have a driver in Windows Update
+* Reduced time to market, with applications that can support future devices
+* Faster driver installation than through Windows Update
+* Works on '''all''' currently supported versions of Windows, starting with Windows XP SP2
+
+== WCID Drawbacks ==
+
+* There is currently no known way to have the device populate its name during the drive installation, which means that all WCID devices are identified under the same generic name in Device Manager
+* Only WinUSB on Windows 8 requires no user intervention whatsoever. For libusb-win32 or libusbK, or for WinUSB on Windows 7, the WCID driver must have been manually installed at least once (but only once)
+
+== WCID Device Examples ==
+
+=== PIC ===
+
+For reference, an implementation of a typical [http://code.google.com/p/usb-travis/source/browse/#svn%2Ftrunk%2FBmFW%2FMCP%2FUSB_Device_Benchmark%2FFirmware Microchip PIC USB device firmware] (with this [http://code.google.com/p/usb-travis/source/detail?r=141# diff] providing an accurate indication of how much work is actually needed).
+
+=== AVR (LUFA) ===
+
+Also for reference, a simple [http://www.fourwalledcubicle.com/LUFA.php LUFA] based WCID firmware for Atmel AVR chips, that can be compiled using [http://www.atmel.com/microsite/avr_studio_5/default.asp?source=redirect AVR Studio 5], is also provided [http://sourceforge.net/projects/libwdi/files/misc/ here].
+
+=== Other ===
+
+Finally, a [http://www.microsoft.com/download/en/details.aspx?id=4865 Microsoft NetMon] trace (using the USB extensions &mdash; for more details, please see [http://pete.akeo.ie/2011/03/troubleshooting-usb-device-development.html this blog post]) is also available [http://sourceforge.net/projects/libwdi/files/misc/ here], that illustrates the USB queries your device will receive, and how it should answer them, the first time it is plugged on a Windows machine.
+
+== Aditional Links ==
+
+* [http://msdn.microsoft.com/en-us/library/windows/hardware/hh450799.aspx WinUSB Device (MSDN)]
+* [http://www.sourcequest.com/modsContent.htm Overview of Microsoft OS Descriptors by SourceQuest]
+* [http://msdn.microsoft.com/en-us/library/windows/hardware/ff537430.aspx Microsoft-Defined USB Descriptors (MSDN)]
+* [http://msdn.microsoft.com/en-us/windows/hardware/gg487321 Microsoft USB FAQ (MSDN)] &rarr; "What is a Microsoft OS Descriptor?"
+* [http://msdn.microsoft.com/en-us/windows/hardware/gg463179 Microsoft OS Descriptors Overview (MSDN)]
+* [http://blogs.msdn.com/b/usbcoreblog/archive/2009/10/31/how-does-usb-stack-enumerate-a-device.aspx How does USB stack enumerate a device? (MSDN)]
+----
+<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
