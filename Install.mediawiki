@@ -47,8 +47,8 @@ Provided that you have one of the environments highlighted above and retrieved t
 *** <code>--with-libusb0="<dir>"</code>: embed libusb0 driver files from the following location
 *** <code>--with-libusbk="<dir>"</code>: embed libusbK driver files from the following location
 *** <code>--with-userdir="<dir>"</code>: embed user defined driver files from the following location<br />Notes:
-**# '''At least one of <code>--with-ddkdir</code>, <code>--with-libusb0</code>, <code>--with-libusbK</code>, <code>--with-userdir</code> must be specified when running <code>configure</code>'''.
-**# If not cross-compiling, configure will check the ddk, libusb0 and libusbK directories for the relevant driver files, and alert you if they are not found.
+***# '''At least one of <code>--with-ddkdir</code>, <code>--with-libusb0</code>, <code>--with-libusbK</code>, <code>--with-userdir</code> must be specified when running <code>configure</code>'''.
+***# If not cross-compiling, configure will check the DDK, libusb0 and libusbK directories for the relevant driver files, and alert you if they are not found.
 ** Run '<code>make</code>'
 ** The resulting library and examples can be retrieved in the <code>.libs</code> directory
 
