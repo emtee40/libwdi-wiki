@@ -67,7 +67,7 @@ To sign the file, open one of the WDK command prompts (eg. Windows XP x86 Free B
 '''Example:'''
 <pre>
 D:\libusb-win32_ft2232_driver-101028>signtool sign /v /ac "D:\codesign\GlobalSign Root CA.crt" /f D:\codesign\akeo.pfx
-/p "**********" /t http://timestamp.globalsign.com/scripts/timstamp.dll x86\libusb0.sys
+  /p "**********" /t http://timestamp.globalsign.com/scripts/timstamp.dll x86\libusb0.sys
 The following certificate was selected:
     Issued to: Akeo Consulting
     Issued by: GlobalSign ObjectSign CA
@@ -285,7 +285,7 @@ After that, you would sign the generated .cat as follows:
 '''Example:'''
 <pre>
 D:\libusb-win32_ft2232_driver-101028>signtool sign /v /ac D:\codesign\MSCV-GlobalSign.cer /f D:\codesign\akeo.pfx
- /p "**********" /t http://timestamp.globalsign.com/scripts/timestamp.dll libusb-win32_ft2232_driver.cat
+  /p "**********" /t http://timestamp.globalsign.com/scripts/timestamp.dll libusb-win32_ft2232_driver.cat
 The following certificate was selected:
     Issued to: Akeo Consulting
     Issued by: GlobalSign ObjectSign CA
@@ -335,7 +335,7 @@ As for the the development environment, we'll keep using the WDK. In the followi
 Our first point of order then is to configure libwdi to only include the signed driver package. If you were using MinGW or cross-compilation, you would simply pass the <code>--with-userdir</code> option when calling <code>configure</code> but for MS environments, such as WDK or Visual Studio, we edit the <code>msvc/config.h</code> file from libwdi manually. If not done already, you will need to comment the <code>DDK_DIR</code>, <code>LIBUSB0_DIR</code> and <code>LIBUSBK_DIR</code> defines, and then uncomment and set <code>USER_DIR</code> to the path where your custom driver files reside, with something like:
 <pre>#define USER_DIR "D:/libusb-win32_ft2232_driver-101028"</pre>
 
-The second item we need to sort out is the inclusion of the public certificate in libwdi along with the signed driver files. When a user directory is specified, libwdi will recursively include all of its file into the library. One element that we must not forget to add to the disk directory then is the public part of the Authenticode signing credential (.cer), so that it can be read and installed from the library at runtime. Microsoft does not seem to provide native tools to extract the public certificate part from a pfx, so the usual way to do it is through import/export with the cert manager. If you have <code>openssl</code> installed, you can use the pkcs12 and x509 option to extract the .cer from the command line (see [[#Appendix_A:_Creating_a_Windows_.cer_from_a_.pfx.2C_using_openssl|Appendix A]]). To be safe, you probably want the .cer you use must to include ALL the certificates required to validate the certification chain, not just the root CA one. You should also be mindful that if you are using Verisign authenticode certificates, the certification chain may break on Windows XP machines unless the .pfx has been exported in a specific manner (see [[#Appendix_B:_Windows_XP_issue_when_trying_to_use_a_Verisign_authenticode_certificate_to_sign_a_.cat|Appendix B]]).
+The second item we need to sort out is the inclusion of the public certificate in libwdi along with the signed driver files. When a user directory is specified, libwdi will recursively include all of its file into the library. One element that we must not forget to add to the disk directory then is the public part of the Authenticode signing credential (<code>.cer</code>/<code>.crt</code>), so that it can be read and installed from the library at runtime. Microsoft does not seem to provide native tools to extract the public certificate part from a pfx, so the usual way to do it is through import/export with the cert manager. If you have <code>openssl</code> installed, you can use the pkcs12 and x509 option to extract the <code>.cer</code> from the command line (see [[Signed-Driver-Walkthrough#wiki-Appendix_A_Creating_a_Windows_cer_from_a_pfx_using_openssl|Appendix A]]). To be safe, you probably want the <code>.cer</code> you use must to include ALL the certificates required to validate the certification chain, not just the root CA one. You should also be mindful that if you are using Verisign authenticode certificates, the certification chain may break on Windows XP machines unless the <code>.pfx</code> has been exported in a specific manner (see [[#Appendix_B:_Windows_XP_issue_when_trying_to_use_a_Verisign_authenticode_certificate_to_sign_a_.cat|Appendix B]]).
 In this example, we will copy the .cer part, which we extracted as "Akeo.cer" to the base of our USER_DIR directory.
 
 As to the driver installer executable that, can be referenced from the Inno Setup/NSIS installer, we will make use of wdi-simple, from the libwdi samples, as it contains everything we require and can handle automated certificate installation. When running the libwdi WDK compilation script, the sample will be built automatically so there is not additional configuration required here. If required, you can of course customize the wdi-simple.c source or create your own libwdi based driver installer executable.
@@ -564,7 +564,7 @@ Then we can issue:
 <pre># openssl x509 -in globalsign_cacerts.pem -inform PEM -out globalsign.cer -outform DER</pre>
 If you open the certificate in Windows, you should then be able to see the certificate with the full chain, and you will also be able to use this certificate with libwdi.
 
-== Appendix B: Windows XP issue when trying to use a Verisign authenticode certificate to sign a .cat  ==
+== Appendix B: Using a Verisign authenticode certificate to sign a .cat on XP  ==
 
 Once againg courtesy of ''Bob Paddock'':
 <blockquote>In CertMgr if the Certification Path for your certificate only shows three items in the tree, it means there will be problems using the certificate on XP machines that are not up to date.
