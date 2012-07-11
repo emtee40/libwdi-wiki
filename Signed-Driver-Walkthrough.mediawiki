@@ -64,7 +64,7 @@ To sign the file, open one of the WDK command prompts (eg. Windows XP x86 Free B
 <code>signtool sign /v /ac "D:\codesign\GlobalSign Root CA.crt" /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t http://timestamp.globalsign.com/scripts/timstamp.dll libusb0.sys</code>
 </blockquote>
 
-'''example:'''
+'''Example:'''
 <pre>
 D:\libusb-win32_ft2232_driver-101028>signtool sign /v /ac "D:\codesign\GlobalSign Root CA.crt" /f D:\codesign\akeo.pfx
 /p "**********" /t http://timestamp.globalsign.com/scripts/timstamp.dll x86\libusb0.sys
@@ -118,7 +118,7 @@ Optional, but probably a good idea, as you will get the timestamping info as wel
 <code>signtool verify /kp /v libusb0.sys</code>
 </blockquote>
 
-'''example:'''
+'''Example:'''
 <pre>
 D:\libusb-win32_ft2232_driver-101028\amd64>signtool verify /kp /v libusb0.sys
 
@@ -206,11 +206,13 @@ What we did above allows the installation of drivers in a Windows environment ou
 
 One way to avoid this prompt is to go through WHQL. However, this is an expensive and time-consuming process, and Microsoft are currently [http://sourceforge.net/mailarchive/message.php?msg_id=26883764 abusing their position] to prevent GPL licensed drivers ([http://sourceforge.net/mailarchive/message.php?msg_id=27019186 both GPLv2 '''and''' GPLv3]) from being accepted through the WHQL process.
 
-The other solution then is to use your driver signing credentials to sign the inf, and create a cat file.
+The other solution then is to use your driver signing credentials to sign the <code>.inf</code>, and create a catalog (<code>.cat</code>) file.
 
-At this stage, it may be important to stress out that the trust validation for signed '''driver binaries''' (.sys, .dll) and the trust validation for signed '''driver packages''' (.cat) are a completely separate process, in that you don't have to use an authenticode certificate to sign driver packages. A self-signed or any kind of commercial certificate will work equally well, as long as it is installed in the relevant certificate stores. Thus, you don't really have to re-use your driver signing certificate (as a matter of fact libwdi uses the self-signed certificate approach to avoid prompts when it generates the WinUSB, libusb0 or libusbK driver packages). It may however a good idea to vouch for your driver by reusing the same certificate, as it is provides your user with the confidence that the driver maker and the driver packager are the same entity.
+At this stage, it may be important to stress out that the trust validation for signed '''driver binaries''' (<code>.sys</code>, <code>.dll</code>) and the trust validation for signed '''driver packages''' (<code>.cat</code>) are a completely separate process, in that you don't have to use a kernel mode Authenticode certificate to sign driver packages. A self-signed or any kind of commercial certificate will work equally well, as long as it is installed in the relevant certificate stores.
 
-Now, the one limitation of reusing the authenticode certificate to sign the catalog, is that, as we already mentioned, authenticode provider authorities are not trusted by default as software publishers. What this means is that, even if you use your authenticode certificate from Verisign or GlobalSign on a vanilla Windows platform, it will be trusted by default for cat signing, regardless of the existing Verisign or GlobalSign root CA certificates existing in the Windows certificate store. This is because different root CAs are used to validate different chains of trust, and none of the default root CAs will match the root CA of an authenticode certificate, even if both were issued by the same company (As a matter of fact, the root CA for authenticode is neither GlobalSign or Verisign, but actually Microsoft, and only appears otherwise because of cross signing).
+Thus, you don't really have to re-use your driver signing certificate (as a matter of fact libwdi uses the self-signed certificate approach to avoid prompts when it generates the WinUSB, libusb0 or libusbK driver packages). It may however a good idea to vouch for your driver by reusing the same certificate, as it is provides your user with the confidence that the driver maker and the driver packager are the same entity.
+
+Now, the one limitation of reusing the Authenticode certificate to sign the catalog, is that, as we already mentioned, Authenticode provider authorities are not trusted by default as software publishers. What this means is that, even if you use your Authenticode certificate from Verisign or GlobalSign on a vanilla Windows platform, it will not be trusted by default for cat signing, regardless of the existing Verisign or GlobalSign root CA certificates existing in the Windows certificate store. This is because different root CAs are used to validate different chains of trust, and none of the default root CAs will match the root CA of an authenticode certificate, even if both were issued by the same company (As a matter of fact, the root CA for Authenticode is neither GlobalSign or Verisign, but actually Microsoft, and only appears otherwise because of cross signing).
 
 Therefore users may get a prompt such as the one below, about trusting the company identified by the certificate
 
@@ -219,12 +221,13 @@ Therefore users may get a prompt such as the one below, about trusting the compa
 This security alert will be displayed to users unless:
 # they previously checked "Always trust software from company X" when previously prompted with a similar query
 # you already installed your certificate in the Trusted Publisher system store
-In essence, the end result from either using a self signed certificate or an authenticode certificate is that your certificate must end up as a Trusted Publisher on the user system to avoid yet another security prompt. As we will see further down, libwdi actually provides an API to take care of option 2.
+In essence, the end result from either using a self signed certificate or an Authenticode certificate is that your certificate must end up as a Trusted Publisher on the user system to avoid yet another security prompt.<br />
+As we will see further down, libwdi actually provides an API to take care of option 2.
 
 ==== Signing a catalog file ====
 
-Since we're using the WDK, we have access to the <code>inf2cat</code> tool, which is the most convenient way to create a cat out of an inf file.
-Before you can use inf2cat, you must ensure that your .inf contains a CatalogFile entry in the <code>[Version]</code> section, that provides the name of the .cat to be created. The <code>libusb-win32_ft2232_driver.inf</code> file we use is missing it, so we add it:
+Since we're using the WDK, we have access to the <code>inf2cat</code> tool, which is the most convenient way to create a <code>.cat</code> out of a <code>.inf</code> file.
+Before you can use <code>inf2cat</code>, you must ensure that your <code>.inf</code> contains a <code>CatalogFile</code> entry in the <code>[Version]</code> section, that provides the name of the .cat to be created. The <code>libusb-win32_ft2232_driver.inf</code> file we use is missing it, so we add it:
 <pre>
 CatalogFile = "libusb-win32_ft2232_driver.cat"
 </pre>
@@ -234,7 +237,7 @@ Then, you can simply run:
 <code>inf2cat /v /driver:. /os:XP_X86,XP_X64,Vista_X86,Vista_X64,7_X86,7_X64</code>
 </blockquote>
 
-'''example:'''
+'''Example:'''
 <pre>
 D:\libusb-win32_ft2232_driver-101028>inf2cat /v /driver:. /os:XP_X86,XP_X64,Vista_X86,Vista_X64,7_X86,7_X64
 Processing directory (D:\libusb-win32_ft2232_driver-101028\) file (info.txt)
@@ -279,10 +282,10 @@ After that, you would sign the generated .cat as follows:
 <code>signtool sign /v /ac D:\codesign\MSCV-GlobalSign.cer /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t <nowiki>http://timestamp.globalsign.com/scripts</nowiki></code>
 </blockquote>
 
-'''example:'''
+'''Example:'''
 <pre>
 D:\libusb-win32_ft2232_driver-101028>signtool sign /v /ac D:\codesign\MSCV-GlobalSign.cer /f D:\codesign\akeo.pfx
- /p "<YOUR_PASSWORD>" /t http://timestamp.globalsign.com/scripts/timestamp.dll libusb-win32_ft2232_driver.cat
+ /p "**********" /t http://timestamp.globalsign.com/scripts/timestamp.dll libusb-win32_ft2232_driver.cat
 The following certificate was selected:
     Issued to: Akeo Consulting
     Issued by: GlobalSign ObjectSign CA
