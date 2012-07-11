@@ -3,7 +3,7 @@
 == Latest official release ==
 
 The latest official release of libwdi can be donwloaded [http://sourceforge.net/projects/libwdi/files/releases/ here].
-Or you can also [http://sourceforge.net/scm/?type=git&group_id=395589 use git] to retrieve the latest development tree.
+Or you can also [https://github.com/libusbx/libusbx use git] to retrieve the latest development tree.
 
 == Prerequisites ==
 
@@ -16,14 +16,14 @@ Compilation of libwdi is supported for the following environments, with the rest
 
 * [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows DDK build environment]:<br />This is the '''free, recommended''' environment for libwdi compilation. This will produce both the 32 and 64 bits binaries required for universal use of libwdi. The produced binary can be used on Windows XP and later.
 
-* Cross compilation:<br />Is supported, as per git revision w120 (or libwdi v1.0.3). The standard <code>--host=<host-triplet></code> option can be applied to either <code>configure</code> or <code>autogen.sh</code><br />Because the building if libwdi relies on running a custom embedder during the build process, your build platform must be able to compile code that can run on the platform. As such, you might have to specify the <code>CC_FOR_BUILD</code> environment variable with the relevant options for your build environment. For more information, have a look at the [[Faq#Is_it_possible_to_cross-compile_libwdi.3F|FAQ]].
+* Cross compilation:<br />Is supported, as per git revision w120 (or libwdi v1.0.3). The standard <code>--host=<host-triplet></code> option can be applied to either <code>configure</code> or <code>autogen.sh</code><br />Because the building if libwdi relies on running a custom embedder during the build process, your build platform must be able to compile code that can run on the platform. As such, you might have to specify the <code>CC_FOR_BUILD</code> environment variable with the relevant options for your build environment. For more information, have a look at the [[FAQ#wiki-Is_it_possible_to_crosscompile_libwdi|FAQ]].
 
 Depending on the driver files you are planning to enable in libwdi, you will also require:
 * The WinUSB driver files from the [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows DDK]. This is regardless of whether you use the DDK build environment to compile libwdi.
-* The latest libusb0.sys driver files from [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32]
+* The latest <code>libusb0.sys</code> driver files from [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32], and/or the latest <code>libusbK.sys</code> driver files from [http://code.google.com/p/usb-travis/ libusbK].
 
 MinGW compilation also requires the following packages to be installed:
-* autotools (automake, autoconf, libtool), if running the autogen.sh from git
+* autotools (automake, autoconf, libtool), if running the <code>autogen.sh</code> from git
 * getopt, to compile the zadic sample
 
 == Configuration & Compilation ==
