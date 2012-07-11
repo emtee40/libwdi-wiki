@@ -89,7 +89,7 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 * '''char* driver''' ''(Optional)''<br />Current driver (service) used by the device. If unused, set to NULL.
 * '''char* device_id''' ''(Optional)''<br />Microsoft's device URI string. If unused, set to NULL.
 * '''char* hardware_id''' ''(Optional)''<br />Microsoft's hardware ID string. If unused, set to NULL.
-* '''char* compatible_id''' (v1.2.0 or later) ''(Optional)''<br />Microsoft's compatible ID string. Meant to be used for [[WCID_devices|WCID Devices]]. If unused, set to NULL.
+* '''char* compatible_id''' (v1.2.0 or later) ''(Optional)''<br />Microsoft's compatible ID string. Meant to be used for [[WCID Devices]]. If unused, set to NULL.
 * '''char* upper_filter''' (v1.2.0 or later) ''(Optional)''<br />Microsoft's Upper Filter driver ID string. Provided by '''[[Usage#wiki-int_wdi_create_liststruct_wdi_device_info_list_struct_wdi_options_create_list_options|wdi_create_list]]''' for information purposes. If unused, set to NULL.
 * '''UINT64 driver_version''' (v1.2.0 or later) ''(Optional)''<br />Existing driver version (quad WORD). Provided by '''[[Usage#wiki-int_wdi_create_liststruct_wdi_device_info_list_struct_wdi_options_create_list_options|wdi_create_list]]''' for information purposes. If unused, set to 0.
 |}
