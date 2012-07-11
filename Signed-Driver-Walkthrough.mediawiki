@@ -203,7 +203,7 @@ Number of errors: 0
 
 What we did above allows the installation of drivers in a Windows environment outside of test mode, which is fine and all, but unless you sign the inf as well, you will get the following prompt on Vista and later versions of Windows during driver installation:
 
-[[Image:zadig_05.png]]
+[[images/zadig_04.png]]
 
 One way to avoid this prompt is to go through WHQL. However, this is an expensive and time-consuming process, and Microsoft are currently [http://sourceforge.net/mailarchive/message.php?msg_id=26883764 abusing their position] to prevent GPL licensed drivers ([http://sourceforge.net/mailarchive/message.php?msg_id=27019186 both GPLv2 '''and''' GPLv3]) from being accepted through the WHQL process.
 
@@ -215,7 +215,7 @@ Now, the one limitation of reusing the authenticode certificate to sign the cata
 
 Therefore users may get a prompt such as the one below, about trusting the company identified by the certificate
 
-[[Image:walkthrough_01.png]]
+[[images/Walkthrough_01.png]]
 
 This security alert will be displayed to users unless:
 # they previously checked "Always trust software from company X" when previously prompted with a similar query
@@ -379,14 +379,14 @@ To install the driver using wdi-simple, then one could issue the following '''fr
 
 Note: If you try the following from a non-elevated prompt, you will see the following security notice:
 
-[[Image:walkthrough_01.png]]
+[[Images/Walkthrough_01.png]]
 
 You may wonder why this still occurs, despite the fact that the <code>--cert</code> option was specified with the name of the embedded cert, but the error report indicates that indeed the [[Usage#int_wdi_install_trusted_certificate.28char.2A_cert_name.2C_struct_wdi_options_install_cert.2A_options.29|wdi_install_trusted_certificate()]] API call requires elevated privileges to run. This won't be a problem from Inno Setup/NSIS, as we can ensure the application runs elevated there.
 
 
 Now, even from an elevated prompt, if you use only the options above, you will still get the following security warning:
 
-[[Image:walkthrough_02.png]]
+[[images/Walkthrough_02.png]]
 
 This security notice is actually issued by libwdi, and not by the OS. This is because libwdi considers that it is bad practice to install a certificate as a Trusted Publisher without first notifying the user. It can however be disabled if you use the <code>--stealth-cert</code> option as follows:
 
