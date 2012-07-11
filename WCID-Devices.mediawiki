@@ -24,7 +24,7 @@ On Windows 8, this device, which is neither HID nor Mass Storage, sees a driver 
 
 The same can also be achieved on Windows 7, where this screenshot was taken, or any version of Windows from XP SP2, if a WinUSB WCID driver (i.e. a generic driver) has been installed at least once.
 
-[[Image:WCID_Zadig.png|none|frame|Example of a "WINUSB" WCID device]]
+[[images/WCID_Zadig.png|none|frame|Example of a "WINUSB" WCID device]]
 
 == WCID for end-users ==
 
@@ -60,7 +60,7 @@ Of course, this does not mean that your device has to operate at High Speed. It 
 
 === '''Microsoft OS String Descriptor''' ===
 
-The first time an USB device is plugged in, the Microsoft USB port driver (<code>usbport.sys</code>) will read the standard USB Descriptors, which includes the standard Device,        Configuration, Interface and String Descriptors, and it will also attempt to read an additional String Descriptor located at index <code>0xEE</code>. This String Descriptor, which is not mandated by the USB specifications, is a Microsoft extension called an OS String Descriptor and it is the first of two elements that establish whether a device is WCID.
+The first time an USB device is plugged in, the Microsoft USB port driver (<code>usbport.sys</code>) will read the standard USB Descriptors, which includes the standard Device, Configuration, Interface and String Descriptors, and it will also attempt to read an additional String Descriptor located at index <code>0xEE</code>. This String Descriptor, which is not mandated by the USB specifications, is a Microsoft extension called an OS String Descriptor and it is the first of two elements that establish whether a device is WCID.
 
 When Windows checks for this String Descriptor, one of the first thing that happens is the creation of a registry entry, under <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\usbflags</code>, that is the concatenation of <code>VID+PID+BCD_RELEASE_NUMBER</code> (This key is never deleted). In this new section, a <code>osvc</code> 2 byte <code>REG_BINARY</code> key is created, that indicates whether an appropriate Microsoft OS String Descriptor was found.
 
@@ -90,7 +90,7 @@ The following table details how exactly the Microsoft OS String Descriptor shoul
 
 Below is an example of the key created by Windows 7 for a WCID device (LibusbDotNet's Benchmark device, with VID <code>0x04D8</code>, PID <code>0xFA2E</code> and BCD Release Number <code>0x0001</code>):
 
-[[Image:WCID_osvc.png|none|frame|Osvc entry created by a WCID enabled Benchmark Device]]
+[[images/WCID_osvc.png|none|frame|Osvc entry created by a WCID enabled Benchmark Device]]
 
 In the example above, the Vendor Code was set to <code>0x20</code> in the firmware. Thus, you can easily find out if Windows has been able to read a valid OS Vendor signature from your device by checking the registry.
 
@@ -140,7 +140,7 @@ If Windows was able to read the <code>Compatible ID</code> from your device, thi
 
 Here is an example of the registry entry created from the Compatible ID Feature Descriptor (<code>"WINUSB"</code>):
 
-[[Image:WCID_CompatibleID.png|none|frame|Compatible IDs registry entry created by a WCID enabled Benchmark Device]]
+[[images/WCID_CompatibleID.png|none|frame|Compatible IDs registry entry created by a WCID enabled Benchmark Device]]
 
 If you can find an <code>USB\MS_COMP_XXXXXXXX</code> entry for your device (here <code>USB\MS_COMP_WINUSB</code>), then your device qualifies as a WCID device. In other words, defining a Microsoft OS String Descriptor and a Microsoft Compatible ID Feature Descriptor in your firmware is all that's needed to turn it into a WCID device and benefit from the automated driver installation feature of Windows.
 
@@ -257,7 +257,7 @@ The property data types that you can use are defined in the following table:
 
 Should you define DeviceInterfaceGUID as highlighted above, or any other Extended Properties at index <code>0x0005</code>, you will find that it is copied into the registry, under the <code>Device Parameters</code> subsection of your device, as illustrated below:
 
-[[Image:WCID_DeviceParameters.png|none|frame|Device Parameters registry entry created by a WCID enabled Benchmark Device]]
+[[images/WCID_DeviceParameters.png|none|frame|Device Parameters registry entry created by a WCID enabled Benchmark Device]]
 
 As you can see, the <code>{F70242C7-FB25-443B-9E7E-A4260F373982}</code> that was defined in the Extended Properties Descriptors (see below) has properly been populated in the registry.
 You can therefore use the Extended Properties Descriptors to define any additional registry entry that your device may require, and then use the usual Microsoft APIs, such as [http://msdn.microsoft.com/en-us/library/windows/hardware/ff549791.aspx SetupDi] to read this data in your application.
