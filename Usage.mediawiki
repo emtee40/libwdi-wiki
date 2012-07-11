@@ -159,7 +159,7 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 |'''Synopsis:'''
 : Convert a wdi error code to a human readable string. This can be used to provide a more explicit libwdi error message to the end users of your program.
 '''Parameters:'''<br />
-: '''errcode''': The '''[Usage#wiki-Error_Codes|enum wdi_error]]''' value to convert to an error message.
+: '''errcode''': The '''[[Usage#wiki-Error_Codes|enum wdi_error]]''' value to convert to an error message.
 '''Return value:'''
 : The error message string, in English.
 |}
