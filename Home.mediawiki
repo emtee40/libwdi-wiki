@@ -1,15 +1,15 @@
 <h4>'''libwdi: Windows Driver Installer library for USB devices'''</h4>
 [[images/libwdi.png]]
 = Description =
-== '''About''' ==
+== About ==
 
 The aim of this project is to provide Windows application developers and driver makers, with a convenient way of extracting and installing USB drivers on end-users systems. Such drivers can then be used with, but not limited to, libusb applications using [http://libusbx.org/ libusbx], [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32] or [http://code.google.com/p/usb-travis/ libusbK].
 
-== '''Getting Support''' ==
+== Getting Support''' ==
 
 If you have a question that cannot be answered in these pages, your best option is to send a mail to the [http://lists.sourceforge.net/lists/listinfo/libwdi-devel libwdi-devel mailing list] (registration required). Or you can also try to e-mail [mailto://pete@akeo.ie?subject=libwdi the developers] directly.
 
-== '''Features''' ==
+== Features ==
 
 === Main Features ===
 
@@ -35,7 +35,7 @@ If you have a question that cannot be answered in these pages, your best option 
 * <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/libwdi-1.2.1.tar.gz/download libwdi v1.2.1]''' (released 2011.11.02)</h4>
 * <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/ All libwdi releases]'''</h4>
 * <h4>'''[http://sourceforge.net/projects/libwdi/files/zadig/ Zadig]'''</h4>
-[[Zadig]] is a standalone driver installer GUI application, built on libwdi and ready to run. You may have to install a decompressor, such as [http://www.7-zip.org/download.html 7-zip], to be able to uncompress the .7z file.
+[[Zadig]] is a standalone driver installer GUI application, built on libwdi and ready to run. You may have to install a decompressor, such as [http://www.7-zip.org/download.html 7-zip], to be able to uncompress the <code>.7z</code> file.
 
 = Documentation =
 
@@ -52,20 +52,20 @@ As a FOSS developer, there's nothing more frustrating than having to reinvent th
 On the other hand, googling around and looking through scores of FOSS code listings to find that particular section of code which might be of interest to you is quite time consuming. Wouldn't it be just swell if the developers simply gave an detailed, high level overview of the problems they solved, whose solutions they think you can reuse?
 
 The following page does just that and goes through a list of the features we implemented, which you might be interested in (provided your license is compatible with LGPL):
-* <h4 style="margin:0; padding:0">'''[[reuse|Libwdi Reuse]]'''</h4>
+* <h4 style="margin:0; padding:0">'''[[Reuse|libwdi reuse]]'''</h4>
 
 = Development =
 
-== '''Supported Environments''' ==
+== Supported Environments ==
 
 The following development environments are currently supported for libwdi on Windows:
-* [http://www.mingw.org MinGW] (32 bit) or [http://mingw-w64.sourceforge.net/ MinGW-w64]. To compile a library that is both 32 and 64 bit compatible, you should use a version of MinGW-w64 that supports both -m32 and -m64 (a.k.a. "multilib"). [http://tdm-gcc.tdragon.net/download TDM64] is a good MinGW-w64 distribution under Windows which fulfils this requirement.
+* [http://www.mingw.org MinGW] (32 bit) or [http://mingw-w64.sourceforge.net/ MinGW-w64]. To compile a library that is both 32 and 64 bit compatible, you should use a version of MinGW-w64 that supports both <code>-m32</code> and <code>-m64</code> (a.k.a. "multilib"). [http://tdm-gcc.tdragon.net/download TDM64] is a good MinGW-w64 distribution under Windows which fulfils this requirement.
 * [http://msdn.microsoft.com/en-us/visualc/default.aspx Microsoft Visual C++ (Visual Studio) 2008]. Only the full version will allow you to produce 64 bit or or 32+64 bit binaries.
-* [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows DDK build environment], which is '''freely available''', through the use of the 'ddk_build.cmd' file. This will also produce all of 32, 64 or 32+64 bits binaries. Note that if you want to produce libwdi applications that are compatible with all supported platforms from XP onwards, '''you will need to use the Windows XP WDK build environment for the 32bit builds and Windows Server 2003 build environment for the 64bit build'''.
+* [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows DDK build environment], which is '''freely available''', through the use of the <code>ddk_build.cmd</code> file. This will also produce all of 32, 64 or 32+64 bits binaries. Note that if you want to produce libwdi applications that are compatible with all supported platforms from XP onwards, '''you will need to use the Windows XP WDK build environment for the 32bit builds and Windows Server 2003 build environment for the 64bit build'''.
 
 The recommended development environment to compile the library/apps is the latest Windows WDK as it allows the building of a 32+64 bit compatible library, and ensures that the required WinUSB DLL files are available.
 
-== '''Source''' ==
+== Source ==
 
 The current development tree is available from our [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi SourceForge repository].
 
@@ -82,14 +82,14 @@ Also note that, for MinGW you need to run <code>./autogen.sh</code> (after editi
 
 To create projects relying on libwdi, please refer to how the sample executables zadic, wdi-simple (console) and zadig (GUI) are compiled.
 
-== '''Development Considerations''' ==
+== Development Considerations ==
 
 * Because the driver installation requires administrative privileges, but enumeration does not, the library compiled and embeds a 32/64 bit installer, that requires UAC elevation on platforms supporting UAC (Windows Vista and later).
 * The project also uses a customer embedder to include the required driver resources (DLLs, 32 and 64 bit installer) along with any files you want to add (eg. signed inf).
-* The reliance on DifXAPI.dll was dropped in w20, as the DLL is not available by default on XP and would increase the binary size.
+* The reliance on <code>DifXAPI.dll</code>, which we originally used, was dropped early on as the DLL is not available by default on XP and embedding it would drastically increase the binary size.
 * It is possible to produce a 32 bit library that is 32+64 bit compatible, but the opposite is not true. As such, when compiling for 64 bit, 32 bit compatibility will be removed to make the library smaller.
 
-== '''Progress''' ==
+== Progress ==
 
 '''To Do'''
 * Downloading vs embedding of the driver files
@@ -102,26 +102,26 @@ To create projects relying on libwdi, please refer to how the sample executables
 * libusb-win32 filter driver support
 * WCID driver support
 * provision of a custom GUID and other inf features
-* self signed .cat creation, for promptless install
+* self signed <code>.cat</code> creation, for promptless install
 * disabling of the creation of a restore point
-* libusbK support
+* <code>libusbk.sys</code> driver support
 * trusted publisher certificate installation for promptless install
 * cross-compilation & embedder improvements
-* GUI sample application (zadig)
-* Documentation
+* GUI sample application (Zadig)
+* documentation
 * allow the editing of the device name
-* libusb0.sys driver support
+* <code>libusb0.sys</code> driver support
 * MinGW/cygwim/MSVC/DDK support
 * 32 and 64 bit support and compilation time detection
 * UAC elevation
 * retrieval of device name
-* automated inf generation
+* automated <code>.inf</code> generation
 
-== '''Status log''' ==
+== Status log ==
 
-Please consult the '''[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=summary git log]''' or the WDI section of the '''raw''' [[Activity Log]].
+Please consult the '''[https://github.com/pbatard/libwdi/commits/master git log]''' or the WDI section of the '''raw''' [[Activity Log]].
 
-== '''Links''' ==
+== Links ==
 
 * [http://msdn.microsoft.com/en-us/library/ms790227.aspx Writing a Device Installation Application]
 * [http://msdn.microsoft.com/en-us/library/aa906206.aspx Determining Whether a Device Is Plugged In and removal of phantom devices]
