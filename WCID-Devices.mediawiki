@@ -79,7 +79,7 @@ The following table details how exactly the Microsoft OS String Descriptor shoul
 |-
 |<code>0x03</code> || BYTE || Descriptor type (3 = String)
 |- 
-|<code>0x4D, 0x00, 0x53, 0x00, 0x46, 0x00, 0x54,</code><br/><code>0x00, 0x31, 0x00, 0x30, 0x00, 0x30, 0x00</code> || 7 WORDS Unicode String (LE) || Signature:
+|<code>0x4D, 0x00, 0x53, 0x00,</code><br/><code>0x46, 0x00, 0x54, 0x00,</code><br/><code>0x31, 0x00, 0x30, 0x00,</code><br/><code>0x30, 0x00</code> || 7 WORDS Unicode String (LE) || Signature:
 <code>"MSFT100"</code> 
 |-
 |'''<code>0x##</code>''' || BYTE || '''Vendor Code'''
@@ -120,17 +120,17 @@ In its simplest form, and as documented [http://msdn.microsoft.com/en-gb/library
 |-
 |<code>0x01</code> || '''BYTE''' || Number of sections (1)
 |-
-|<code>0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00</code> || 7 BYTES || Reserved
+|<code>0x00, 0x00, 0x00, 0x00,</code><br/><code>0x00, 0x00, 0x00</code> || 7 BYTES || Reserved
 |-
 |<code>0x00</code> || BYTE || Interface Number (Interface #0)
 |-
 |<code>0x01</code> || BYTE || Reserved
 |-
-|<code>0x57, 0x49, 0x4E, 0x55, 0x53, 0x42, 0x00, 0x00</code> || 8 BYTES (NUL-terminated?) ASCII String || Compatible ID (<code>"WINUSB\0\0"</code>)
+|<code>0x57, 0x49, 0x4E, 0x55,</code><br/><code>0x53, 0x42, 0x00, 0x00</code> || 8 BYTES (NUL-terminated?) ASCII String || Compatible ID (<code>"WINUSB\0\0"</code>)
 |-
-|<code>0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00</code> || 8 BYTES (NUL-terminated?) ASCII String || Sub-Compatible ID (unused)
+|<code>0x00, 0x00, 0x00, 0x00,</code><br/><code>0x00, 0x00, 0x00, 0x00</code> || 8 BYTES (NUL-terminated?) ASCII String || Sub-Compatible ID (unused)
 |-
-|<code>0x00, 0x00, 0x00, 0x00, 0x00, 0x00</code> || 6 BYTES || Reserved
+|<code>0x00, 0x00, 0x00, 0x00,</code><br/><code>0x00, 0x00</code> || 6 BYTES || Reserved
 |}
 
 You can then check if the Compatible ID was properly read from your device by browsing the registry's <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB</code> tree at the location of your device. Similarly to the <code>osvc</code> key which is created on first insertion, you should find an entry with the VID and PID of your device under <code>USB</code> (eg: <code>VID_04D8&PID_FA2E</code>).
@@ -226,11 +226,11 @@ Just like with the Compatible ID, this too is done through a Feature Descriptor,
 |-
 |<code>0x28, 0x00</code> || WORD (LE) || Property name length (40 bytes)
 |-
-|<code>0x44, 0x00, 0x65, 0x00, 0x76, 0x00,</code><br/><code>(...)</code><br/><code>0x49, 0x00, 0x44, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"DeviceInterfaceGUID"</code>)
+|<code>0x44, 0x00, 0x65, 0x00,</code><br/><code>(...)</code><br/><code>0x44, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"DeviceInterfaceGUID"</code>)
 |-
 |<code>0x4e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data length (78 bytes)
 |-
-|<code>0x7b, 0x00, 0x46, 0x00, 0x37, 0x00,</code><br/><code>(...)</code><br/><code>0x32, 0x00, 0x7d, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"</code>)
+|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x7d, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"</code>)
 |}
 
 The property data types that you can use are defined in the following table:
