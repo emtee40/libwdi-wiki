@@ -15,7 +15,7 @@ If you have a question that cannot be answered in these pages, your best option 
 
 * Automated '''signed''' driver package creation and installation, using the name reported by the USB device
 * '''No''' security warnings during driver installation, when running in elevated mode
-* One-off [[WCID_devices|WCID device]] driver installation support, so that no further driver installation is required for any WCID device of the same type
+* One-off [[WCID Devices|WCID device]] driver installation support, so that no further driver installation is required for any WCID device of the same type
 * Dual 32 and 64 bit platform support
 * Supports any Windows platforms, from Windows XP up to Windows 8
 * Single library that can be statically or dynamically linked to your application in order to provide driver installation facilities at runtime
