@@ -114,7 +114,7 @@ In its simplest form, and as documented [http://msdn.microsoft.com/en-gb/library
 |-
 |<code>0x28, 0x00, 0x00, 0x00</code> || DWORD (LE) || Descriptor length (40 bytes)
 |-
-|<code>0x00, 0x01</code> || BCD WORD (LE) || version (<code>'1.0'</code>)
+|<code>0x00, 0x01</code> || BCD WORD (LE) || Version (<code>'1.0'</code>)
 |-
 |<code>0x04, 0x00</code> || WORD (LE) || Compatibility ID Descriptor index (<code>0x0004</code>)
 |-
