@@ -348,7 +348,7 @@ For the build process itself, in order to build libwdi along with a wdi-simple s
 
 If compilation was successful, you should now have the various sample executables in the <code>examples\</code> directory. The next step then is to reference that executable from your application intaller.
 
-== Installing the certificate as a Trusted Publisher, from an Inno Setup or NSIS script ==
+== Installing the certificate as a Trusted Publisher with Inno Setup or NSIS ==
 
 If you look at the wdi-simple source, you'll see that it's just a commandline application that controls the driver installation process through various options. Before setting everything up in Inno Setup or NSIS (Nullsoft Scriptable Install System) it may be a good idea to test the various parameters you want to feed to wdi-simple. To see the various options at your disposal, you can run:
 <pre>D:\libwdi\examples>wdi-simple --help
