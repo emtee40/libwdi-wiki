@@ -2,7 +2,7 @@
 
 Libwdi implements reusable solutions to the following problems:
 
-== Creating a Windows application that uses the exact same codebase for MSVC, WDK/DDK, MinGW and cygwin ==
+== Creating an application that uses the same codebase for MSVC, WDK/DDK, MinGW and cygwin ==
 3 sets of files are being used for that:
 * For MinGW/cygwin, autotools scripts, that automatically generate the <code>config.h</code> and Makefiles used during compilation
 * For MSVC/Visual Studio, a regular set of project files, depending on the manually edited <code>/msvc/config.h</code>
@@ -10,11 +10,11 @@ Libwdi implements reusable solutions to the following problems:
 
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): (MinGW/cygwin) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=autogen.sh /autogen.sh], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=configure.ac /configure.ac], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=Makefile.am /Makefile.am], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=libwdi/Makefile.am /libwdi/Makefile.am], [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=examples/Makefile.am /examples/Makefile.am]</tt>
+| style="background:#f7f7f7;" | File(s): (MinGW/cygwin) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=autogen.sh /autogen.sh], [https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac], [https://github.com/pbatard/libwdi/blob/master/Makefile.am /Makefile.am], [https://github.com/pbatard/libwdi/blob/master/libwdi/Makefile.am /libwdi/Makefile.am], [https://github.com/pbatard/libwdi/blob/master/examples/Makefile.am /examples/Makefile.am]</tt>
 |-
 | style="background:#f7f7f7;" | File(s): (MSVC) || <tt>*.sln, .msvc/*.vcproj .msvc/*.vcxproj</tt>
 |-
-| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi;a=blob;f=ddk_build.cmd ddk_build.cmd], .msvc/*_sources</tt>
+| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[https://github.com/pbatard/libwdi/blob/master/ddk_build.cmd ddk_build.cmd], .msvc/*_sources</tt>
 |}
 
 == Creating a Windows application that is compatible with all versions of Windows from Windows 2000 ==
