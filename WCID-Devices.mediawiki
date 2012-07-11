@@ -151,7 +151,7 @@ Other Compatible IDs than <code>"WINSUB"</code> can also be used according to th
 !style="background:#efefef;"|Compatible ID String
 !style="background:#efefef;"|Application Type
 |-
-|<code>"WINUSB\0\0"</code> || [http://libusb.org libusb-1.0 application]<br />[http://libusbdotnet.sourceforge.net/V2/Index.html LibUsbDotNet application]<br />[http://msdn.microsoft.com/en-us/library/windows/hardware/ff540174.aspx native WinUSB application]
+|<code>"WINUSB\0\0"</code> || [http://libusbx.org libusbx application]<br />[http://libusbdotnet.sourceforge.net/V2/Index.html LibUsbDotNet application]<br />[http://msdn.microsoft.com/en-us/library/windows/hardware/ff540174.aspx native WinUSB application]
 |-
 |<code>"LIBUSB0\0"</code> || [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32 application]<br />[http://libusbdotnet.sourceforge.net/V2/Index.html LibUsbDotNet application]
 |-
@@ -164,7 +164,7 @@ The WCID automated driver installation process is best illustrated through the n
 
 Here again, there are two requirements that must be met to allow for the automated installation of a device driver.
 
-First, the inf file must include <code>USB\MS_COMP_XXXXXXXX</code> as a device identifier string. In Windows 8 (x64), if you look at the <code>winusb.inf</code> from your <code>\Windows\System32\DriverStore\FileRepository\winusb.inf_amd64_50cb26e12c0e99f2\</code> (or similar), you will find that this is indeed the case see a:
+First, the inf file must include <code>USB\MS_COMP_XXXXXXXX</code> as a device identifier string. In Windows 8 (x64), if you look at the <code>winusb.inf</code> from your <code>\Windows\System32\DriverStore\FileRepository\winusb.inf_amd64_50cb26e12c0e99f2\</code> (or similar), you will find that this is indeed the case see:
 <pre>[Manufacturer]
 %Generic.Mfg%=Generic.Section,NTamd64
 
@@ -214,7 +214,7 @@ Just like with the Compatible ID, this too is done through a Feature Descriptor,
 |-
 |<code>0x8e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Descriptor length (242 bytes)
 |-
-|<code>0x00, 0x01</code> || BCD WORD (LE) || version (<code>'1.0'</code>)
+|<code>0x00, 0x01</code> || BCD WORD (LE) || Version (<code>'1.0'</code>)
 |-
 |<code>0x05, 0x00</code> || WORD (LE) || Extended Property Descriptor index (<code>0x0005</code>)
 |-
@@ -244,15 +244,15 @@ The property data types that you can use are defined in the following table:
 |-
 |2 || NUL-terminated Unicode String, that may include environment variables (REG_EXPAND_SZ)
 |-
-|3 || binary data (REG_BINARY)
+|3 || Binary Data (REG_BINARY)
 |-
-|4 || DWORD value, little endian (REG_DWORD_LITTLE_ENDIAN)
+|4 || DWORD Value, little endian (REG_DWORD_LITTLE_ENDIAN)
 |-
-|5 || DWORD value, big-endian (REG_DWORD_BIG_ENDIAN)
+|5 || DWORD Value, big endian (REG_DWORD_BIG_ENDIAN)
 |-
-|6 || NUL-terminated Unicode string, that may include a symbolic link (REG_LINK)
+|6 || NUL-terminated Unicode String, that may include a symbolic link (REG_LINK)
 |-
-|7 || Multiple NUL-terminated Unicode strings (REG_MULTI_SZ)
+|7 || Multiple NUL-terminated Unicode Strings (REG_MULTI_SZ)
 |}
 
 Should you define DeviceInterfaceGUID as highlighted above, or any other Extended Properties at index <code>0x0005</code>, you will find that it is copied into the registry, under the <code>Device Parameters</code> subsection of your device, as illustrated below:
