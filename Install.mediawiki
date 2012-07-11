@@ -68,7 +68,7 @@ Provided that you have one of the environments highlighted above and retrieved t
 ***# As <code>DDK_DIR</code> is automatically set when building from the DDK, if you want to prevent the embedding of the WinUSB files, you need to edit <code>libwdi/embedder_files.h</code>.
 ** '''Visual Studio''': 
 *** Select your target (Release/Debug, Win32/x64) and select 'Build'
-*** The resulting library and examples can be retrieved from <code>&lt;arch&gt;\&lt;Release|Debug&gt;</code> (eg: <code>.\x64\Release\</code>)
+*** The resulting library and examples can be retrieved from <code><arch>\<Release|Debug></code> (eg: <code>.\x64\Release\</code>)
 ** '''DDK/WDK''':
 *** Open the relevant build command prompt (eg. "Windows XP x86 Free Build" for a 32/64 library compatible with XP and later), then navigate to the libwdi directory and run '<code>ddk_build.cmd</code>' or '<code>ddk_build DLL</code>' to build either the static or dynamic version of the library. DLL must be specified in uppercase if needed.
 *** The resulting library and examples can be retrieved from their respective source directory.
