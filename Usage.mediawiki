@@ -19,8 +19,8 @@ if (wdi_create_list(&list, NULL) == WDI_SUCCESS) {
 }
 </pre>
 
-In the program excerpt above, first we start by creating a list of all the driverless USB devices on the system using '''[[#int_wdi_create_list.28struct_wdi_device_info.2A.2A_list.2C_struct_wdi_options_create_list.2A_options.29|wdi_create_list]]'''. If any are found, the call returns success with a chained list of '''wdi_device_info''' elements containing, among other things, the system description of each device, as well as its USB VID & PID.<br />
-Using these properties, we then extract the driver files and generate an inf through '''wdi_prepare_driver''', and finally call '''wdi_install_driver''', which starts the Operating System driver installation procedure.
+In the program excerpt above, first we start by creating a list of all the driverless USB devices on the system using '''[[Usage#wiki-int_wdi_create_liststruct_wdi_device_info_list_struct_wdi_options_create_list_options|wdi_create_list]]'''. If any are found, the call returns success with a chained list of '''[[Usage#wiki-struct_wdi_device_info|wdi_device_info]]''' elements containing, among other things, the system description of each device, as well as its USB VID & PID.<br />
+Using these properties, we then extract the driver files and generate an inf through '''[[Usage#wiki-int_wdi_prepare_driverstruct_wdi_device_info_device_info_char_path_char_inf_name_struct_wdi_options_prepare_driver_options|wdi_prepare_driver]]''', and finally call '''[[Usage#wiki-int_wdi_install_driverstruct_wdi_device_info_device_info_char_path_char_inf_name_struct_wdi_options_install_driver_options|wdi_install_driver]]''', which starts the Operating System driver installation procedure.
 <br />
 
 == Error Codes ==
