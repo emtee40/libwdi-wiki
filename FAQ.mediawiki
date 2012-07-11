@@ -83,4 +83,4 @@ If you ask this, you probably would like to have libwdi set the class GUID, name
 
 This being said, if you really want to have your own class properties defined in the inf, and you know the VID:PIDs of your devices, which should always be the case if you want to restrict the class from the default generic one, there's nothing preventing you from reusing WinUSB, libusb-win32 or libusbK as a custom driver with a customized inf that you control.
 ----
-<center>[[CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
+<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
