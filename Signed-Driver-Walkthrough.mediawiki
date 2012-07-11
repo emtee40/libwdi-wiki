@@ -32,75 +32,72 @@ From the date of registration, delivery of your certificate can take a few days 
 
 After downloading either one of the <code>openocd[-x64]-0.5.0-dev</code> windows binaries, we find the libusb-<code>win32_ft2232_driver-101028.zip</code> archive in the <code>drivers/</code> directory.
 Further extracting reveals that it contains a <code>.inf</code> file, along with the <code>amd64/</code> and <code>x86/</code> directories where the actual driver binaries reside. If you look at the binaries' properties, you will see that they have already been signed by the libusb-win32 developers. However, since we are using these files for illustration purpose, we will assume that they are unsigned (our new signature will overwrite the existing one), as they would be if we were to modify and recompile the [https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/ libusb-win32] drivers from source.<br/>
-Also, more relevant to a real life scenario, since there is no signed <code>.cat</code>, Windows will not trust the <code>.inf</code> during installation and issue a security prompt, which is another item we will be addressing in this guides.
+Also, more relevant to a real life scenario, since there is no signed <code>.cat</code>, Windows will not trust the <code>.inf</code> during installation and issue a security prompt, which is another item we will be addressing in this guide.
 
 ==== Timestamping ====
 
-While using a trusted time source for signature creation or validation is something you should always consider when using PKI, the reason you want to use timestamping from a trusted authority when signing your drivers is to ensures that they can still be used in Windows, even after the code signing certificate expires. If you don't do that, then you have to provide your users with updated drivers files every time your original certificate expires. For instance, if you purchase a one year certificate and don't use timestamping during signing, your drivers will cease functioning after one year.
+While using a trusted time source for signature creation or validation is always good practice, the reason you really want to use timestamping from a trusted authority when signing your drivers is that it will ensure they can still be used in Windows, even after the code signing certificate expires. If you don't timestamp, then you will have to provide your users with updated drivers files, and ask them to upgrade drivers every time your original certificate expires. In other words, if you use a certificate with an expiration date of one year and you don't use timestamping during signing, your drivers will cease functioning after a year.
 
-Windows Authenticode Certifications Authorities usually provide a Windows timestamping service (usually a dll) that you can reference when signing. Currently these URLs are:
-* http://timestamp.verisign.com/scripts/timstamp.dll (Verisign)
-* http://timestamp.globalsign.com/scripts/timstamp.dll (GlobalSign)
+Windows Authenticode Certifications Authorities usually provide a Windows timestamping service (usually a dll) that you can reference when signing. Some of these URLs are:
+* <code>http://timestamp.verisign.com/scripts/timstamp.dll</code> (Verisign)
+* <code>http://timestamp.globalsign.com/scripts/timstamp.dll</code> (GlobalSign)
 
 ==== Additional Certificate ====
 
-While the Windows certificate store has both the GlobalSign and Verisign root CA certificates as Trusted Root Certification Authorities, these CA certificates are not the ones used for driver code signing. Instead Microsoft have their own "Microsoft Code Verification Root" certificate, which curiously don't appear at the top of the certification chain for signed code certificates, and which they used to sign the root certificate used by the Certification Authorities they entrusted to provide Authenticode credentials to customers. Microsoft calls that a cross certificate.
+While the Windows certificate store has both the GlobalSign and Verisign root CA certificates as Trusted Root Certification Authorities, these CA certificates are not the ones used for driver code signing. Instead Microsoft use their own "Microsoft Code Verification Root" certificate, which curiously doesn't appear at the top of the certification chain for signed code certificates, and which they used to sign the root certificate that Certification Authorities use to provide Authenticode credentials to customers. Microsoft calls that a cross certificate.
 
-By default however, Windows platforms only have the Microsoft Code Verification Root certificate installed, not the the ones from subsidiaries, therefore, to be able to validate the trust chain, the CA's Authenticode root certificate must also be provided.
+By default however, Windows platforms only have the Microsoft Code Verification Root certificate installed and not the the ones from subsidiaries, therefore, to be able to validate the trust chain, the CA's Authenticode root certificate must also be provided.
 
-In short, this means that you have to download the root Authenticode certificate from GlobalSign, Verisign or your other third party authority so that it can be embedded in the signature. Currently, these certificates can be obtained from:
-* http://www.microsoft.com/whdc/driver/install/drvsign/crosscert.mspx#EWAAC (Verisign)
-* http://www.microsoft.com/whdc/driver/install/drvsign/crosscert.mspx#EMG (GlobalSign)
-For the record, all the certificates above seem set to expire on 2016.05.23. What happens to Windows signed driver users past that date is something that probably warrants some testing... [TODO]
-
-Hint: For some weird reasons, Microsoft thought it was a good idea to provide these certificates in the form of an executable. If you want to extract certificate without running the exe, just open it in [http://www.7-zip.org/ 7-Zip], then open the _winzip_ file and you'll get to the MSCV-GlobalSign.cer or MSCV-VSClass3.cer certificates.
+In short, this means that you have to download the root Authenticode certificate from GlobalSign, Verisign or your other third party authority, so that it is embedded in the signature. These certificates can be obtained from:
+* [http://www.microsoft.com/whdc/driver/install/drvsign/crosscert.mspx]
+For the record, these certificates are currently set to expire in 2021, which is hopefully long enough. 
 
 ==== Signing process ====
 
-With your driver signing .pfx file, the corresponding private key password, the MSVC-#### certificate above and the timestamp URL, you are now good to sign your driver files.
-For this exercise, I will place the CA certificate (MSCV-GlobalSign.cer) along with the pfx (akeo.pfx) in an easily accessible local directory. The timestamping authority will also be the one provided by GlobalSign, and you need to be connected to the internet for time stamping to work. Be mindful that, even when protected by a strong password, leaving .pfx files lying around is not a good idea, so don't forget to cleanup and secure the .pfx when you're done. <br />
-Preferably you want to sign all the driver files, including the DLLs, but technically, only the .sys should be required.
+With your driver signing <code>.pfx</code> file, the corresponding private key password, the <code>.crt</code> certificate above and the timestamp URL, you are now good to sign your driver files.
+For this exercise, I will place the CA certificate (<code>GlobalSign Root CA.crt</code>) along with the pfx (<code>akeo.pfx</code>) in an easily accessible local directory. The timestamping authority will also be the one provided by GlobalSign, and you need to be connected to the internet for time stamping to work. Be mindful that, even when protected by a strong password, leaving <code>.pfx</code> files lying around is not a good idea, so don't forget to secure your credentials when you're done.<br />
+Preferably you want to sign all the driver files, including the DLLs, but technically, only the <code>.sys</code> should be required.
 
-To sign the file, open one of the WDK command prompts (eg. Windows XP x86 Free Build Environment), then navigate to the directory containing the driver files you want to sign (eg "libusb-win32_ft2232_driver-101028\amd64\libusb0.sys" and issue the following:
+To sign the file, open one of the WDK command prompts (eg. Windows XP x86 Free Build Environment), then navigate to the directory containing the driver files you want to sign (eg <code>libusb-win32_ft2232_driver-101028\amd64\libusb0.sys</code> and issue the following:
 
 <blockquote style="background: white; border: 1px solid rgb(153, 153, 153); padding: 1em; margin-left: 0em">
-<code>signtool sign /v /ac D:\codesign\MSCV-GlobalSign.cer /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t <nowiki>http://timestamp.globalsign.com/scripts/timstamp.dll libusb0.sys</nowiki></code>
+<code>signtool sign /v /ac "D:\codesign\GlobalSign Root CA.crt" /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t ht
+tp://timestamp.globalsign.com/scripts/timstamp.dll libusb0.sys</code>
 </blockquote>
 
 '''example:'''
 <pre>
-D:\libusb-win32_ft2232_driver-101028\amd64>signtool sign /v /ac D:\codesign\MSCV-GlobalSign.cer
- /f D:\codesign\akeo.pfx /p "<YOUR_PASSWORD>" /t http://timestamp.globalsign.com/scripts/timstamp.dll libusb0.sys
+D:\libusb-win32_ft2232_driver-101028>signtool sign /v /ac "D:\codesign\GlobalSign Root CA.crt" /f D:\codesign\akeo.pfx /p "**********" /t http://timestamp.globalsign.com/scripts/timstamp.dll x86\libusb0.sys
 The following certificate was selected:
     Issued to: Akeo Consulting
     Issued by: GlobalSign ObjectSign CA
-    Expires:   Sun Jun 26 10:05:35 2011
+    Expires:   Sun Jun 26 11:05:35 2011
     SHA1 hash: 0BF5319EE093F9234D8504527D63CFAFEADEECF8
 
 Cross certificate chain (using machine store):
     Issued to: Microsoft Code Verification Root
     Issued by: Microsoft Code Verification Root
-    Expires:   Sat Nov 01 13:54:03 2025
+    Expires:   Sat Nov 01 14:54:03 2025
     SHA1 hash: 8FBE4D070EF8AB1BCCAF2A9D5CCAE7282A2C66B3
 
         Issued to: GlobalSign Root CA
         Issued by: Microsoft Code Verification Root
-        Expires:   Mon May 23 17:10:51 2016
-        SHA1 hash: 3EEB2750A199F5E7B6A8952430BE5062FE04E9E5
+        Expires:   Thu Apr 15 21:05:08 2021
+        SHA1 hash: CC1DEEBF6D55C2C9061BA16F10A0BFA6979A4A32
 
             Issued to: GlobalSign Primary Object Publishing CA
             Issued by: GlobalSign Root CA
-            Expires:   Fri Jan 27 12:00:00 2017
+            Expires:   Fri Jan 27 13:00:00 2017
             SHA1 hash: 1AAF4DF10D36215E09E4EEFD70E340C2E4DECF38
 
                 Issued to: GlobalSign ObjectSign CA
                 Issued by: GlobalSign Primary Object Publishing CA
-                Expires:   Fri Jan 27 11:00:00 2017
+                Expires:   Fri Jan 27 12:00:00 2017
                 SHA1 hash: B859853EF366AC9335763C340A87BD208113055F
 
                     Issued to: Akeo Consulting
                     Issued by: GlobalSign ObjectSign CA
-                    Expires:   Sun Jun 26 10:05:35 2011
+                    Expires:   Sun Jun 26 11:05:35 2011
                     SHA1 hash: 0BF5319EE093F9234D8504527D63CFAFEADEECF8
 
 Done Adding Additional Store
@@ -174,8 +171,8 @@ Cross Certificate Chain:
 
         Issued to: GlobalSign Root CA
         Issued by: Microsoft Code Verification Root
-        Expires:   Mon May 23 17:10:51 2016
-        SHA1 hash: 3EEB2750A199F5E7B6A8952430BE5062FE04E9E5
+        Expires:   Thu Apr 15 21:05:08 2021
+        SHA1 hash: CC1DEEBF6D55C2C9061BA16F10A0BFA6979A4A32
 
             Issued to: GlobalSign Primary Object Publishing CA
             Issued by: GlobalSign Root CA
