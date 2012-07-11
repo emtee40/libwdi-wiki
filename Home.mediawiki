@@ -1,5 +1,5 @@
 <h4>'''libwdi: Windows Driver Installer library for USB devices'''</h4>
-[[libwdi.png]]
+[[images/libwdi.png]]
 = Description =
 == '''About''' ==
 
@@ -139,4 +139,4 @@ Please consult the '''[http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi
 * [http://msdn.microsoft.com/en-us/library/aa380252.aspx Microsoft's cryptographic functions]
 * [http://www.jensign.com/JavaScience/cryptoutils/index.html Cryptographic Utilities by Michel Gallant]
 ----
-<center>[[CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
+<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
