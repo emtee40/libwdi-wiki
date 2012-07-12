@@ -17,14 +17,14 @@ Libwdi implements reusable solutions to the following problems:
 | style="background:#f7f7f7;" | File(s): (DDK) || <tt>[https://github.com/pbatard/libwdi/blob/master/ddk_build.cmd ddk_build.cmd], .msvc/*_sources</tt>
 |}
 
-== Creating a Windows application that is compatible with all versions of Windows from Windows 2000 ==
+== Creating an application that is compatible with all versions of Windows from Windows 2000 ==
 The trick is to use MinGW as the compiler along with the <code>-DWINVER=0x500</code> flag.
 {| border="1" cellspacing="0"
 |- 
 | style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac]</tt>
 |}
 
-== Creating a Windows GUI application that use the latest Windows visual enhancements (Aero Glass look on Vista or Windows 7), even if compiled from MinGW/cygwin ==
+== Creating a GUI application that uses the latest Windows visual enhancements (Aero Glass look on Vista/Windows 7), even if compiled from MinGW/cygwin ==
 The default from all compilers, including Microsoft ones, is NOT to use the default look and feel from each platform, but to force the XP/2k one.<br />
 To enable a more up to date look and feel in standard GUI applications, you need to manually embed the [https://github.com/pbatard/libwdi/blob/master/examples/common_controls.manifest common-controls manifest], as well as include <code><commctrl.h></code> in your source.
 * For MSVC projects, just adding the manifest to your resources files in the project will do.
@@ -48,7 +48,7 @@ And of course, you need a matching section at the end.
 | style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/common_controls.manifest common-controls manifest], [https://github.com/pbatard/libwdi/blob/master/examples/.msvc/zadig_sources example DDK sources (Zadig)], [https://github.com/pbatard/libwdi/blob/master/examples/zadig.rc example MinGW manifest from .rc (Zadig)]</tt>
 |}
 
-== Creating Windows application from MSVC, WDK/DDK, MinGW and cygwin that require UAC elevation, even if compiled from MinGW/cygwin ==
+== Creating an application that will request elevation, using MSVC, WDK/DDK, MinGW or cygwin ==
 The solution to that is similar to the above one, in that you need to use [https://github.com/pbatard/libwdi/blob/master/examples/elevation.manifest a manifest for elevation].<br />
 In our project, you will see that we combine multiple manifests were needed (this is the case for the Zadig example above for instance), as DDK is not able to merge separate manifests files. Also, recent versions of Visual Studio don't require an explicit manifest file for elevation, as this can be taken care of in Linker &rarr; Manifest File &rarr; UAC Execution Level.
 {| border="1" cellspacing="0"
@@ -91,7 +91,7 @@ When possible, because of the need for an embedded driver installer that matches
 | style="background:#f7f7f7;" | File(s): (DDK) || <tt>https://github.com/pbatard/libwdi/blob/master/ddk_build.cmd /ddk_build.cmd]</tt>
 |}
 
-== Folder selection / File open/save Windows dialogs that uses to new enhanced Vista or Windows 7 controls when available (and default to the regular version on older platforms) ==
+== Folder/File selection dialogs that uses the new enhanced Vista or Windows 7 controls when available ==
 This is all done in the <code>file_dialog()</code> and <code>browse_for_folder()</code> calls from <code>zadig_stdlg.c</code>.
 {| border="1" cellspacing="0"
 |- 
@@ -112,7 +112,7 @@ This is all done in the <code>file_dialog()</code> and <code>browse_for_folder()
 | style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/libwdi.c /libwdi/libwdi.c] &rarr; wdi_create_list()</tt>
 |}
 
-== Automatic incrementation of executable/DLL version numbers using git tags ==
+== Automatic incrementation of executable/DLL version numbers, using git tags ==
 If you are using versioning in .rc files, it would obviously be nice to bump the version minor according to major commits that you push into your git repository.<br />In libwdi's case, we use incremental git tags to identify minor versions ("w123", "w124", ...) and we use the numeric part of that tag as the minor for the exe/DLL (eg. "1, 0, 0, 123"). The shell script linked below will:
 # retrieve and increment the current git tag
 # update the version in the .rc files using sed
@@ -130,7 +130,7 @@ A simple call that creates and displays a tooltip when hovering over a dialog it
 | style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/zadig_stdlg.c /examples/zadig_stdlg.c] &rarr; create_tooltip()</tt>
 |}
 
-== Sed script to convert the USB VIDs into a C source that will resolve then to Vendor ID strings ==
+== Sed script to convert the USB VIDs into a source that resolves the Vendor ID strings ==
 In our applications, this is used to display the Vendor name of a specific USB device when hovering over the VID hex string.<br />http://www.linux-usb.org/usb.ids does a great job at maintaining known Vendor IDs, but the list still needs to be converted into something [https://github.com/pbatard/libwdi/blob/master/libwdi/vid_data.c a bit more C-friendly]. For that purpose we built a shell script that, when executed:
 # uses wget to retrieve the latest version of the list
 # uses sed to convert it to a C source with a function call that will take a VID and return the matching string.
@@ -139,7 +139,7 @@ In our applications, this is used to display the Vendor name of a specific USB d
 | style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/vid_data.sh /libwdi/vid_data.sh]</tt>
 |}
 
-== UTF-8 wrappers to Wide Char (UTF-16) MS API ==
+== UTF-8 wrappers for the WideChar (UTF-16) MS API ==
 This is what Microsoft should have done a long time ago. Along with the A (Ansi) and W (!WideChar/Unicode) versions of an API call, it should have implemented U (UTF-8) as well, as it usually makes more sense to use UTF-8 than UTF-16 in an application, especially one that is not localized but still wants to support localized user input. For instance, wouldn't it be nice if there existed a  [http://msdn.microsoft.com/en-us/library/aa363858.aspx CreateFile] version that accepted an UTF-8 char * for the file name?<br />
 Our UTF-8 wrapper API provides just that, for a selected subset of the Windows API calls, with:
 * <code>FormatMessage</code> (<code>FormatMessageU</code>)
