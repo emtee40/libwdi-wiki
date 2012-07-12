@@ -16,7 +16,7 @@ However, the methods for automated driver installation of HID or Mass Storage de
 
 In 2011, WCID [http://msdn.microsoft.com/en-gb/library/windows/hardware/hh450799.aspx was put forward by Microsoft] in the Windows 8 Developer Preview, through an updated WinUSB driver, and was confirmed to be applicable for more than just WinUSB devices.
 
-In 2012, Microsoft also added the WinUSB WCID driver files to Windows Update, with the effect of bringing WCID capabilities and automated WinUSB driver installation to older versions of Windows.
+In 2012, Microsoft also added the WinUSB WCID driver files to Windows Update, with the effect of bringing WCID capabilities and automated WinUSB driver installation to other recent versions of Windows.
 
 As it greatly enhances user experience, WCID is now being leveraged in USB devices such as the LibusbDotNet Benchmark device, with many more expected to follow.
 
