@@ -5,9 +5,10 @@
 
 The aim of this project is to provide Windows application developers and driver makers, with a convenient way of extracting and installing USB drivers on end-users systems. Such drivers can then be used with, but not limited to, libusb applications using [http://libusbx.org/ libusbx], [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32] or [http://code.google.com/p/usb-travis/ libusbK].
 
-== Getting Support''' ==
+== Getting Support ==
 
 If you have a question that cannot be answered in these pages, your best option is to send a mail to the [http://lists.sourceforge.net/lists/listinfo/libwdi-devel libwdi-devel mailing list] (registration required). Or you can also try to e-mail [mailto://pete@akeo.ie?subject=libwdi the developers] directly.
+Alternatively, you can also use the github facility to [https://github.com/pbatard/libwdi/issues log an issue].
 
 == Features ==
 
