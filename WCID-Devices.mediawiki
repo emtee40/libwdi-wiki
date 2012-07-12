@@ -6,7 +6,7 @@ WCID allows a device to be used by a Windows application almost as soon as it is
 
 WCID is an extension of the [http://msdn.microsoft.com/en-us/library/windows/hardware/hh450799.aspx WinUSB Device] functionality, put forward by Microsoft during the Windows 8 Developer Preview. However, it uses capabilities ([http://msdn.microsoft.com/en-us/windows/hardware/gg463179 Microsoft OS Descriptors], or MODs) that have been part of Windows since Windows XP SP2.
 
-As of May 2012, an automated WinUSB WCID driver is provided on all platforms starting with Windows Vista. On Windows 8, it is native to the system (i.e. there's no need to fetch the driver online) whereas, for Vista and Windows 7, it needs to initially be obtained from the internet, through Windows Update.
+As of May 2012, an automated WinUSB WCID driver is provided on all platforms starting with Windows Vista. On Windows 8, it is native to the system (i.e. there's no need to fetch the driver online) whereas, for Vista and Windows 7, it will be obtained from the internet, through Windows Update.
 
 == History ==
 
