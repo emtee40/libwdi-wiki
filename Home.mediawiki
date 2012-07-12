@@ -8,6 +8,7 @@ The aim of this project is to provide Windows application developers and driver 
 == Getting Support ==
 
 If you have a question that cannot be answered in these pages, your best option is to send a mail to the [http://lists.sourceforge.net/lists/listinfo/libwdi-devel libwdi-devel mailing list] (registration required). Or you can also try to e-mail [mailto://pete@akeo.ie?subject=libwdi the developers] directly.
+
 Alternatively, you can also use the github facility to [https://github.com/pbatard/libwdi/issues log an issue].
 
 == Features ==
