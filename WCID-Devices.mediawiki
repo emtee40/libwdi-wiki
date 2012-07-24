@@ -351,6 +351,18 @@ For reference, an implementation of a typical [http://code.google.com/p/usb-trav
 
 Also for reference, a simple [http://www.fourwalledcubicle.com/LUFA.php LUFA] based WCID firmware for Atmel AVR chips, that can be compiled using [http://www.atmel.com/microsite/avr_studio_5/default.asp?source=redirect AVR Studio 5], is also provided [http://sourceforge.net/projects/libwdi/files/misc/ here].
 
+=== STM32 ===
+
+Another sample, for STM32 based (32-bit ARM Cortex) WCID devices, has been provided by '''Darren Kattan''' of [http://immense.net Immense Networks]. The sample is based on the USB Device Library V3.3.0, freely available on the ST website. Here is what Darren had to say about the samples:
+<blockquote>I literally made zero changes to core USB code. The stack is designed in such a way that there are callbacks to your user code for USB requests that the core code doesn’t recognize. Nothing but 4 files had to be changed to make it work:
+* <code>USB_prop.c/.h</code>
+* <code>USB_desc.c/.h</code>
+I had to change the PLL settings to work with my hardware, so people working with dev boards will have to change them back. My target has a 16MHz clock instead of a 25MHz like most Connectivity Line dev boards have.</blockquote>
+
+The v3.3.0 library archive can be found [https://sourceforge.net/projects/libwdi/files/misc/ here] and is labelled <code>STM32F1XX V3.3.0 (WinUSB).rar</code>. Also in the same directory are v2.1.0 library files labelled <code>STM32_USB-Host-Device_Lib_V2.1.0 (WINUSB HID).rar</code>.
+
+Note that the only project that was modified in each library was the HID project.
+
 === Other ===
 
 Finally, a [http://www.microsoft.com/download/en/details.aspx?id=4865 Microsoft NetMon] trace (using the USB extensions &mdash; for more details, please see [http://pete.akeo.ie/2011/03/troubleshooting-usb-device-development.html this blog post]) is also available [http://sourceforge.net/projects/libwdi/files/misc/ here], that illustrates the USB queries your device will receive, and how it should answer them, the first time it is plugged on a Windows machine.
