@@ -145,7 +145,7 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 |-
 | This structure is used by ''wdi_install_trusted_certificate'' to set optional parameters.
 * '''HWND hWnd''' <br />Handle to a Window application that can receive a modal warning dialog. When this parameter is provided, a modal warning dialog may be displayed to let the user know that a certificate in the system's Trusted Publishers store is going to be added/updated. Note that this warning may also displayed in this parameter is NULL (this option is intended for re-centering of the warning with regards to the parent Windows application)
-* '''bool disable_warning''' <br />disables the above warning when set to true. For security reasons, disabling of the warning should only be set for distribution of a lwdi installer by the administrators of a corporate environment, as it will otherwise lead to a code signing certificate being installed as trusted without the end-user's knowledge, which is bad practice.
+* '''bool disable_warning''' <br />disables the above warning when set to true. For security reasons, disabling of the warning should only be set for distribution of a libwdi installer by the administrators of a corporate environment, as it will otherwise lead to a code signing certificate being installed as trusted without the end-user's knowledge, which is bad practice.
 |}
 <br />
 
