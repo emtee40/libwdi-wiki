@@ -34,7 +34,7 @@ Alternatively, you can also use the github facility to [https://github.com/pbata
 
 = Downloads =
 
-* <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/libwdi-1.2.1.tar.gz/download libwdi v1.2.1]''' (released 2011.11.02)</h4>
+* <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/libwdi-1.2.2.tar.gz/download libwdi v1.2.1]''' (released 2012.09.19)</h4>
 * <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/ All libwdi releases]'''</h4>
 * <h4>'''[http://sourceforge.net/projects/libwdi/files/zadig/ Zadig]'''</h4>
 [[Zadig]] is a standalone driver installer GUI application, built on libwdi and ready to run. You may have to install a decompressor, such as [http://www.7-zip.org/download.html 7-zip], to be able to uncompress the <code>.7z</code> file.
@@ -62,31 +62,30 @@ The following page does just that and goes through a list of the features we imp
 
 The following development environments are currently supported for libwdi on Windows:
 * [http://www.mingw.org MinGW] (32 bit) or [http://mingw-w64.sourceforge.net/ MinGW-w64]. To compile a library that is both 32 and 64 bit compatible, you should use a version of MinGW-w64 that supports both <code>-m32</code> and <code>-m64</code> (a.k.a. "multilib"). [http://tdm-gcc.tdragon.net/download TDM64] is a good MinGW-w64 distribution under Windows which fulfils this requirement.
-* [http://msdn.microsoft.com/en-us/visualc/default.aspx Microsoft Visual C++ (Visual Studio) 2008]. Only the full version will allow you to produce 64 bit or or 32+64 bit binaries.
+* [http://msdn.microsoft.com/en-us/visualc/default.aspx Microsoft Visual C++ (Visual Studio) 2008 or later]. If using the Express version, you may have to download and additional SDKs to produce 64 bit or or 32+64 bit binaries.
 * [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows DDK build environment], which is '''freely available''', through the use of the <code>ddk_build.cmd</code> file. This will also produce all of 32, 64 or 32+64 bits binaries. Note that if you want to produce libwdi applications that are compatible with all supported platforms from XP onwards, '''you will need to use the Windows XP WDK build environment for the 32bit builds and Windows Server 2003 build environment for the 64bit build'''.
 
-The recommended development environment to compile the library/apps is the latest Windows WDK as it allows the building of a 32+64 bit compatible library, and ensures that the required WinUSB DLL files are available.
+The recommended development environment to compile the library/apps is the Windows 7 WDK as it allows the building of a 32+64 bit compatible library, and ensures that the required WinUSB DLL files are available.
 
 == Source ==
 
-The current development tree is available from our [http://libwdi.git.sourceforge.net/git/gitweb.cgi?p=libwdi/libwdi SourceForge repository].
+The current development tree is available from our [https://github.com/pbatard/libwdi github repository].
 
 For those not familiar with git, here are the git commands you can use retrieve and compile libwdi:
 <pre>
-git clone git://libwdi.git.sourceforge.net/gitroot/libwdi/libwdi ; retrieve development branch (this only needs to be done once)
-git pull                                                         ; for further updates, once the clone has been done
+git clone git://github.com/pbatard/libwdi.git ; retrieve development branch (this only needs to be done once)
+git pull                                      ; for further updates, once the clone has been done
 </pre>
 
-If you don't want to use git from the commandline, you can use [http://code.google.com/p/tortoisegit TortoiseGit] or [http://code.google.com/p/gitextensions/ Git Extensions] to access and keep in sync with the git repository.
-Git Extensions comes ready to use, but note that before you can install [http://code.google.com/p/tortoisegit TortoiseGit] you need to install [http://code.google.com/p/msysgit MSysGit].
+If you don't want to use git from the commandline, you can use [http://code.google.com/p/tortoisegit TortoiseGit] to access and keep in sync with the git repository. Note that before you can install [http://code.google.com/p/tortoisegit TortoiseGit] you need to install [http://code.google.com/p/msysgit MSysGit].
 
 Also note that, for MinGW you need to run <code>./autogen.sh</code> (after editing it according to your paths) or run the autotools creation utilities, in order to have configure and Makefile created for you.
 
-To create projects relying on libwdi, please refer to how the sample executables zadic, wdi-simple (console) and zadig (GUI) are compiled.
+To create projects relying on libwdi, please refer to how the sample executables zadic, wdi-simple (console) or zadig (GUI) are compiled.
 
 == Development Considerations ==
 
-* Because the driver installation requires administrative privileges, but enumeration does not, the library compiled and embeds a 32/64 bit installer, that requires UAC elevation on platforms supporting UAC (Windows Vista and later).
+* Because driver installation requires administrative privileges, but enumeration does not, the library compiles and embeds a 32/64 bit installer which will require elevation on platforms supporting UAC (Windows Vista and later).
 * The project also uses a customer embedder to include the required driver resources (DLLs, 32 and 64 bit installer) along with any files you want to add (eg. signed inf).
 * The reliance on <code>DifXAPI.dll</code>, which we originally used, was dropped early on as the DLL is not available by default on XP and embedding it would drastically increase the binary size.
 * It is possible to produce a 32 bit library that is 32+64 bit compatible, but the opposite is not true. As such, when compiling for 64 bit, 32 bit compatibility will be removed to make the library smaller.
