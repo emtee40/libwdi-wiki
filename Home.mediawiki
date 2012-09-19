@@ -34,7 +34,7 @@ Alternatively, you can also use the github facility to [https://github.com/pbata
 
 = Downloads =
 
-* <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/libwdi-1.2.2.tar.gz/download libwdi v1.2.1]''' (released 2012.09.19)</h4>
+* <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/libwdi-1.2.2.tar.gz/download libwdi v1.2.2]''' (released 2012.09.19)</h4>
 * <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/ All libwdi releases]'''</h4>
 * <h4>'''[http://sourceforge.net/projects/libwdi/files/zadig/ Zadig]'''</h4>
 [[Zadig]] is a standalone driver installer GUI application, built on libwdi and ready to run. You may have to install a decompressor, such as [http://www.7-zip.org/download.html 7-zip], to be able to uncompress the <code>.7z</code> file.
