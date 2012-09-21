@@ -568,7 +568,7 @@ If you open the certificate in Windows, you should then be able to see the certi
 
 == Appendix B: Using a Verisign authenticode certificate to sign a .cat on XP  ==
 
-Once againg courtesy of ''Bob Paddock'':
+Once again courtesy of ''Bob Paddock'':
 <blockquote>In CertMgr if the Certification Path for your certificate only shows three items in the tree, it means there will be problems using the certificate on XP machines that are not up to date.
 
 The problem stems back from the original private key that was exported out of Windows to make the .pfx file.  If the file is around 6.6K it indicates that part of the chain is missing, that it seems outdated XP machines need, and nothing else does.  The .pfx file needs to be around the size of 7.4K if it has the correct chain of certificates to make XP happy.  The exact file size will vary somewhat due to variations of length in the certificate name (has nothing to do with the name of the file), and the particular CA that was used.
