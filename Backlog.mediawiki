@@ -42,6 +42,8 @@ For the record, if anything requires action on [http://libusbx.org libusbx], it 
 [[images/x.png]]: Use the github API for e-mail notifications on new issues (Est. 2 weeks)<br/>
 [[images/x.png]]: libusbx hotplug event API (Est. 6 weeks)<br/>
 [[images/r.png]]: Folder selection support (Est. 2 weeks)<br/>
+[[images/r.png]]: Optical Disc support (Est. 2 weeks)<br/>
+[[images/r.png]]: GPT/UEFI support (Est. 4 weeks)<br/>
 
 === High priority, if I could develop Open Source all day long ===
 [[images/r.png]]: Commandline support (Est. 3 weeks)<br/>
