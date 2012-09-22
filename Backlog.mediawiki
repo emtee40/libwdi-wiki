@@ -11,7 +11,7 @@ What you should also understand is that I have my finger in more than one pie, a
 
 To make this a lot more explicit, and give you and idea of '''why''' the feature you are interested in is still not being worked on, I will list below, more or less in order of importance, the current state of my backlog, in the hope that it can give you an idea of how long you may have to wait, so that I don't have to answer yet another ETA question.
 
-If it seems to long, you can of course try to cajole me into altering my priorities, but don't count on that happening too much. You will also find that I am providing estimates, which is the time I think adding the feature will take me, '''provided I can spend all my free time on it and without distractions''', which is an unlikely scenario as too optimistic. More realistically, you should at least double these times, and be smart enough to realize that these estimates are by no means the promise of an ETA. They're just an indication of the most favourable estimate (i.e. earliest completion, under the best possible circumstances).
+If it seems too long, you can of course try to cajole me into altering my priorities, but don't count on that happening too much. You will also find that I am providing estimates, which is the time I think adding the feature will take me, '''provided I can spend all my free time on it and without distractions''', which is an unlikely scenario as too optimistic. More realistically, you should at least double these times, and be smart enough to realize that these estimates are by no means the promise of an ETA. They're just an indication of the most favourable estimate (i.e. earliest completion, under the best possible circumstances).
 
 == Pete's current backlog ==
 
