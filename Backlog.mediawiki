@@ -52,6 +52,7 @@ For the record, if anything requires action on [http://libusbx.org libusbx], it 
 [[images/w.png]]: Generic driver support (not USB only) (Est. 2 months)<br/>
 [[images/u.png]]: Finalize how to produce bare-metal code compatible with UBRX (Est. 3 weeks)<br/>
 [[images/u.png]]: Add USB 3.0 serial debug (Est. 6 weeks)<br/>
+[[images/c.png]]: Complete CECD using a virtual HDMI/CEC device (Est. 6 weeks)<br/>
 [[images/r.png]]: VMDK/VHD support (Est. 6 weeks)<br/>
 [[images/r.png]]: Run Windows from USB (Est. 4 weeks)<br/>
 [[images/r.png]]: Check for new versions (Est. 2 weeks)<br/>
