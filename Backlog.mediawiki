@@ -31,7 +31,7 @@ For the record, if anything requires action on [http://libusbx.org libusbx], it 
 [[images/x.png]]: Add FX2 EEPROM upload and FX3 support to libusbx' <code>fxload</code> sample (Est. 2 weeks)<br/>
 [[images/x.png]]: Fix <code>libusb-win32</code> filter driver support for composite device members (Est. 1 week)<br/>
 [[images/x.png]]: Add reset+isochronous support for <code>libusb-win32</code> and <code>libusbK</code> (Est. 3 weeks)<br/>
-[[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6 weeks)<br/>
+[[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
 [[images/x.png]]: Update the old <code>-pbatard</code> hotplug branch for libusbx (Est. 1 week)
 
 === High priority, if only I had more time ===
