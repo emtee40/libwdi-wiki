@@ -41,13 +41,19 @@ For the record, if anything requires action on [http://libusbx.org libusbx], it 
 [[images/x.png]]: Setup Gerrit+Jenkins for libusbx (Est. 2 weeks)<br/>
 [[images/x.png]]: Use the github API for e-mail notifications on new issues (Est. 2 weeks)<br/>
 [[images/x.png]]: libusbx hotplug event API (Est. 6 weeks)<br/>
+[[images/r.png]]: Folder selection support (Est. 2 weeks)<br/>
 
 === High priority, if I could develop Open Source all day long ===
+[[images/r.png]]: Commandline support (Est. 3 weeks)<br/>
+[[images/w.png]]: Download vs embedding (Est. 3 weeks)<br/>
 [[images/w.png]]: Generic driver support (not USB only) (Est. 2 months)<br/>
 [[images/u.png]]: Finalize how to produce bare-metal code compatible with UBRX (Est. 3 weeks)<br/>
 [[images/u.png]]: Add USB 3.0 serial debug (Est. 6 weeks)<br/>
+[[images/r.png]]: VMDK/VHD support (Est. 6 weeks)<br/>
+[[images/r.png]]: Run Windows from USB (Est. 4 weeks)<br/>
+[[images/r.png]]: Check for new versions (Est. 2 weeks)<br/>
 
-=== What I know I won't ever have time to waste on ===
+=== What I'll never have time to waste on ===
 [[images/r.png]]: Multiboot/grub4dos (If you need this, you should know enough not to require an automated tool to do that for you!)<br/>
 
 
