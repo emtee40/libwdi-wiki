@@ -24,6 +24,7 @@ If it seems to long, you can of course try to cajole me into altering my priorit
 For the record, if anything requires action on [http://libusbx.org libusbx], it '''always''' take precedence. The reason is that the project is quite new and, as a fork in direct competition with a well established one. Therefore it cannot afford to be seen as lacking involvement by the maintainers. If the feature you want is not libusbx related, expect it to take second fiddle on a very regular basis.
 
 === High priority ===
+[[images/r.png]]: Investigate Kaspersky rescue CD support (Est. 1 day)<br/>
 [[images/x.png]]: Add <code>libusb_strerror()</code> with localization (Est. 3 days)<br/>
 [[images/r.png]]: Add support for > 64 GB drives and release Rufus 1.2.1 (Est. 2 weeks)<br/>
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 2 weeks)<br/>
@@ -36,4 +37,17 @@ For the record, if anything requires action on [http://libusbx.org libusbx], it 
 === High priority, if only I had more time ===
 [[images/r.png]]: Add localization to Rufus (Est. 2 weeks)<br/>
 [[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
+[[images/x.png]]: Create a guide for Gerrit+Jenkins installation (Est. 1-2 weeks)<br/>
+[[images/x.png]]: Setup Gerrit+Jenkins for libusbx (Est. 2 weeks)<br/>
+[[images/x.png]]: Use the github API for e-mail notifications on new issues (Est. 2 weeks)<br/>
+[[images/x.png]]: libusbx hotplug event API (Est. 6 weeks)<br/>
+
+=== High priority, if I could develop Open Source all day long ===
+[[images/w.png]]: Generic driver support (not USB only) (Est. 2 months)<br/>
+[[images/u.png]]: Finalize how to produce bare-metal code compatible with UBRX (Est. 3 weeks)<br/>
+[[images/u.png]]: Add USB 3.0 serial debug (Est. 6 weeks)<br/>
+
+=== What I know I won't ever have time to waste on ===
+[[images/r.png]]: Multiboot/grub4dos (If you need this, you should know enough not to require an automated tool to do that for you!)<br/>
+
 
