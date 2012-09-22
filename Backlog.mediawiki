@@ -1,0 +1,39 @@
+= Pete's backlog or "Why is feature X not being worked on?" =
+
+== Background ==
+Being involved in '''many''' Open Source projects at once makes for an interesting challenge in scheduling, and every so often (more than I would like to care to have to answer), I get asked about some feature from one of these projects, and when I think it will be available.
+
+Now, as much as I would like to spend my full day coding and adding features, the first thing you should know is that I have a 9 to 5 job, in a company that has no interest whatsoever in fostering their employee's Open Source activities (and are actively preventing access to sites like SourceForge.net for instance). 
+
+As far as '''you''' are concerned, what this means is that, for the best part of the day, I do not have the possibility to engage in anything Open Source related and the time I can can spend working on the projects highlighted below is all too short.
+
+What you should also understand is that I have my finger in more than one pie, and very much plan to keep it that way, so even the time I manage to scrape may not go to the project you are interested in.
+
+To make this a lot more explicit, and give you and idea of '''why''' the feature you are interested in is still not being worked on, I will list below, more or less in order of importance, the current state of my backlog, in the hope that it can give you an idea of how long you may have to wait, so that I don't have to answer yet another ETA question.
+
+If it seems to long, you can of course try to cajole me into altering my priorities, but don't count on that happening too much. You will also find that I am providing estimates, which is the time I think adding the feature will take me, '''provided I can spend all my free time on it and without distractions''', which is an unlikely scenario as too optimistic. More realistically, you should at least double these times, and be smart enough to realize that these estimates are by no means the promise of an ETA. They're just an indication of the most favourable estimate (i.e. earliest completion, under the best possible circumstances).
+
+== Pete's current backlog ==
+
+=== Legend ===
+[[images/x.png]]: [http://libusbx.org libusbx]<br/>
+[[images/r.png]]: [http://rufus.akeo.ie rufus]<br/>
+[[images/w.png]]: [http://libwdi.akeo.ie libwdi]<br/>
+[[images/c.png]]: [http://cecd.akeo.ie libcec/cecd]<br/>
+[[images/u.png]]: [http://ubrx.akeo.ie UBRX]<br/>
+For the record, if anything requires action on [http://libusbx.org libusbx], it '''always''' take precedence. The reason is that the project is quite new and, as a fork in direct competition with a well established one. Therefore it cannot afford to be seen as lacking involvement by the maintainers. If the feature you want is not libusbx related, expect it to take second fiddle on a very regular basis.
+
+=== High priority ===
+[[images/x.png]]: Add <code>libusb_strerror()</code> with localization (Est. 3 days)<br/>
+[[images/r.png]]: Add support for > 64 GB drives and release Rufus 1.2.1 (Est. 2 weeks)<br/>
+[[images/x.png]]: Add WinCE backend to libusbx (Est. 2 weeks)<br/>
+[[images/x.png]]: Add FX2 EEPROM upload and FX3 support to libusbx' <code>fxload</code> sample (Est. 2 weeks)<br/>
+[[images/x.png]]: Fix <code>libusb-win32</code> filter driver support for composite device members (Est. 1 week)<br/>
+[[images/x.png]]: Add reset+isochronous support for <code>libusb-win32</code> and <code>libusbK</code> (Est. 3 weeks)<br/>
+[[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6 weeks)<br/>
+[[images/x.png]]: Update the old <code>-pbatard</code> hotplug branch for libusbx (Est. 1 week)
+
+=== High priority, if only I had more time ===
+[[images/r.png]]: Add localization to Rufus (Est. 2 weeks)<br/>
+[[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
+
