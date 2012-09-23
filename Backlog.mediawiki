@@ -1,17 +1,17 @@
 = Pete's backlog or "Why is feature X not being worked on?" =
 
 == Background ==
-Being involved in multiple Open Source projects at once makes for an interesting scheduling challenge. Every so often (usually more than I'd like to have to answer), I get asked about the state of feature X for one of these projects, and when I think it will be available...
+Being involved in multiple Open Source projects at once makes for an interesting scheduling challenge. Every so often (usually more than I'd like to have to answer), I get asked about the state of feature X with regards to one of these projects, and when I think it will be available. For this reason, I have decide to create a page that I can simply point to to try to answer that question.
 
-The first thing you should understand, and unfortunately this is true for many Open Source developers, is that as much as we would like to spend our full days coding and adding features, most of us have 9 to 5 job in companies that usually have little interest in fostering their employee's Open Source activities. This is currently the case of the company I work for, that actively prohibits access to sites like SourceForge.net on their network for instance.
+The first thing you should understand, and this is unfortunately true for most Open Source developers, is that, as much as we would like to spend our full day coding and adding features for our projects, most of us also hold a 9 to 5 job in companies that usually have little interest in fostering their employee's Open Source activities. This is currently my case, and just to give you an idea, the company I currently work for actively prohibits access to sites like SourceForge.net on their network for instance.
 
-As far as '''you''' are concerned, what this means is that, for the best part of the day, I do not have the possibility to engage in anything Open Source related and as a result the time I can can spend working on the projects highlighted below is a lot more limited than you think.
+As far as '''you''' are concerned, what this means is that, for the best part of the day, I do not have the possibility to engage in anything Open Source related and as a result the time I can can spend working on the features highlighted below is a lot more limited than you think.
 
-What I also want ot illustrate from this page is that I have my fingers in more than one pie, and I very much intend to keep it that way. As such, even the time I manage to scrape together may not go to the project you are interested in.
+What I am also trying to illustrate from this page is that I have my fingers in more than one pie. As such, even the time I manage to scrape together may not go to the feature you are interested in, due to another project or feature taking precedence.
 
-For all these reasons, and to make this a lot more explicit by giving you a better idea of why the feature you may be interested in is still not being worked on, I am going to list below, more or less in order of importance, the current state of my backlog. Please understand that this is in no way done as a means of complaining, but only in the hope that it'll give you some hints of how long you may have to wait for a feature.
+So please find below, more or less in order of importance, the current state of my backlog. You will also see that I provide estimates of the time I think adding the feature will take. Note however that this is a best case scenario '''provided I could devote all my free time on it''', which is unlikely. More realistically then, you want to at least double these times, as well as remember that these estimates are by no means the promise of an ETA.
 
-I am also providing estimates of the time I think adding the feature will take, '''provided I can devote all my free time on it without distractions''', which, as you can expect, is an unlikely scenario in practice. More realistically then, you should at least double these times, and realize that these estimates are by no means the promise of an ETA.
+And so, without further ado...
 
 == Pete's current backlog ==
 
