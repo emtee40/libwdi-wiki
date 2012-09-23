@@ -1,7 +1,9 @@
 = Pete's backlog or "Why is feature X not being worked on?" =
 
 == Background ==
-Being involved in multiple Open Source projects at once makes for an interesting scheduling challenge. Every so often (usually more than I'd like to have to answer), I get asked about the state of feature X with regards to one of these projects, and when I think it will be available. For this reason, I have decide to create a page that I can simply point to to try to answer that question.
+Being involved in multiple Open Source projects at once makes for an interesting scheduling challenge.
+
+Every so often (usually more than I'd like to have to answer), I get asked about the state of feature X with regards to one of these projects, and when I think it will be available. Because of this, I have decide to create a page that I can simply point to to try to answer that question.
 
 The first thing you should understand, and this is unfortunately true for most Open Source developers, is that, as much as we would like to spend our full day coding and adding features for our projects, most of us also hold a 9 to 5 job in companies that usually have little interest in fostering their employee's Open Source activities. This is currently my case, and just to give you an idea, the company I currently work for actively prohibits access to sites like SourceForge.net on their network for instance.
 
