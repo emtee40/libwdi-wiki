@@ -21,7 +21,7 @@ And so, without further ado...
 [[images/w.png]]: [http://libwdi.akeo.ie libwdi]<br/>
 [[images/c.png]]: [http://cecd.akeo.ie libcec/cecd]<br/>
 [[images/u.png]]: [http://ubrx.akeo.ie UBRX]<br/>
-For the record, if anything requires action on [http://libusbx.org libusbx], it '''always''' take precedence. The reason is that the project is quite new and, as a fork in direct competition with a well established one. Therefore it cannot afford to be seen as lacking involvement by the maintainers. If the feature you want is not libusbx related, expect it to take second fiddle on a very regular basis.
+For the record, if anything happens there [http://libusbx.org libusbx] '''always''' take precedence. The reason is that the project is quite new and is a fork in direct competition with a well established one, and so requires every bit of commitment it can get.
 
 === High priority ===
 [[images/x.png]]: Create a Wiki page for obtaining troubleshooting help (Est. 2 days)<br/>
