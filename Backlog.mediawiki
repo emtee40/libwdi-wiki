@@ -60,7 +60,7 @@ Oh, and as you will find, those are all 'high priority' because I would really l
 [[images/r.png]]: Run Windows from USB (Est. 4 weeks)<br/>
 [[images/r.png]]: Check for new versions (Est. 2 weeks)<br/>
 
-=== What I know I'll never have time to waste on ===
+=== What I know I'll never have time to spend on ===
 [[images/r.png]]: Multiboot/grub4dos (If you need this, you should know enough not to require an automated tool to do that for you!)<br/>
 
 
