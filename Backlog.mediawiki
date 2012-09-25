@@ -29,7 +29,9 @@ Oh, and as you will find, those are all 'high priority' because I would really l
 === High priority ===
 [[images/x.png]]: Well, that bMaxPower switch didn't go donw to well, did it? (Est. 1 day)<br/>
 [[images/x.png]]: Create a Wiki page for obtaining troubleshooting help (Est. 2 days)<br/>
+[[images/x.png]]: Create a Wiki page for software to test for releases (Est. 1 day)<br/>
 [[images/x.png]]: Add <code>libusb_strerror()</code> with localization (Est. 3 days)<br/>
+[[images/x.png]]: Produce a 1.1.0 release (Est. 2 days)<br/>
 [[images/r.png]]: Add support for > 64 GB drives and release Rufus 1.2.1 (Est. 2 weeks)<br/>
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 2 weeks)<br/>
 [[images/x.png]]: Add FX2 EEPROM upload and FX3 support to libusbx' <code>fxload</code> sample (Est. 2 weeks)<br/>
