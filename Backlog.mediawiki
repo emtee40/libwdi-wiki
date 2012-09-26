@@ -23,6 +23,7 @@ And so, without further ado...
 [[images/w.png]]: [http://libwdi.akeo.ie libwdi]<br/>
 [[images/c.png]]: [http://cecd.akeo.ie libcec/cecd]<br/>
 [[images/u.png]]: [http://ubrx.akeo.ie UBRX]<br/>
+[[images/b.png]]: [http://peteakeo.ie blog] and miscellanea<br/>
 For the record, if anything happens there [http://libusbx.org libusbx] '''always''' take precedence. The reason is that the project is quite new and is a fork in direct competition with a well established one, and so requires every bit of commitment it can get.</br/>
 Oh, and as you will find, those are all 'high priority' because I would really like to complete them all equally, and my only issue here is time.
 
@@ -43,7 +44,7 @@ Oh, and as you will find, those are all 'high priority' because I would really l
 === High priority, if only I had more time ===
 [[images/r.png]]: Add localization to Rufus (Est. 2 weeks)<br/>
 [[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
-[[images/x.png]]: Create a guide for Gerrit+Jenkins installation (Est. 1-2 weeks)<br/>
+[[images/b.png]]: Create a guide for Gerrit+Jenkins installation (Est. 1-2 weeks)<br/>
 [[images/x.png]]: Setup Gerrit+Jenkins for libusbx (Est. 2 weeks)<br/>
 [[images/x.png]]: Use the github API for e-mail notifications on new issues (Est. 2 weeks)<br/>
 [[images/x.png]]: libusbx hotplug event API (Est. 6 weeks)<br/>
