@@ -29,6 +29,8 @@ Oh, and as you will find, those are all 'high priority' because I would really l
 
 === High priority ===
 [[images/x.png]]: Well, that bMaxPower switch didn't go donw to well, did it? (Est. 1 day)<br/>
+[[images/x.png]]: Create a Wiki page for proposed API changes (Est. 1 day)<br/>
+[[images/x.png]]: initial libusbx 2.0 token release (Est. 1 week)<br/>
 [[images/x.png]]: Create a Wiki page for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/x.png]]: Create a Wiki page for software to test for releases (Est. 1 day)<br/>
 [[images/x.png]]: Add <code>libusb_strerror()</code> with localization (Est. 3 days)<br/>
