@@ -7,7 +7,7 @@ Every so often (usually more than I'd like to have to answer), I get asked about
 
 The first thing you should understand, and this is unfortunately true for most Open Source developers, is: as much as we would like, we cannot spend our entire days coding and adding features on Open Source projects, as most of us also hold a 9 to 5 job, in companies that usually have little interest in fostering their employee's Open Source activities. At least, this is my case, and to give you an idea, the company I currently work for even actively prohibits access to sites like SourceForge.net from their network.
 
-As far as '''you''' are concerned, what this means is that, for the best part of the day, I do not have the possibility to engage in anything Open Source related and as a result the time I can can spend working on the features highlighted below is a more limited than you think.
+As far as '''you''' are concerned, what this means is that, for the best part of the day, I do not have the possibility to engage in anything Open Source related and as a result the time I can can spend working on the features highlighted below is more limited than you think.
 
 What I am also trying to illustrate from this page is that I have my fingers in more than one pie. As such, even the time I manage to scrape together may not go to the feature you are interested in, due to another project or another feature taking precedence.
 
