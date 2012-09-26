@@ -59,7 +59,7 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/u.png]]: Add USB 3.0 serial debug (Est. 6 weeks)<br/>
 [[images/c.png]]: Complete CECD using a virtual HDMI/CEC device (Est. 6 weeks)<br/>
 [[images/r.png]]: VMDK/VHD support (Est. 6 weeks)<br/>
-[[images/r.png]]: Run Windows from USB (Est. 4 weeks)<br/>
+[[images/r.png]]: Run Windows 8 from USB (Est. 4 weeks, provided MS documents the feature and it isn't hardware constrained)<br/>
 [[images/r.png]]: Check for new versions (Est. 2 weeks)<br/>
 
 === What I know I'll never have time to spend on ===
