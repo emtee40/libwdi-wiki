@@ -41,8 +41,8 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/x.png]]: Add reset+isochronous support for <code>libusb-win32</code> and <code>libusbK</code> 
 (Est. 3 weeks)<br/>
 [[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
-[[images/x.png]]: Update the old <code>-pbatard</code> hotplug branch for libusbx (Est. 1 week)
-[[images/b.png]]: Fix the linux driver sample (Est. 1 day)<br/>
+[[images/x.png]]: Update the old <code>-pbatard</code> hotplug branch for libusbx (Est. 1 week)<br/>
+[[images/b.png]]: Fix the Linux driver sample (Est. 1 day)<br/>
 
 === High priority, if only I had more time ===
 [[images/r.png]]: Add localization to Rufus (Est. 2 weeks)<br/>
