@@ -7,9 +7,9 @@ Every so often (more times than I'd like to have to answer), I get asked about t
 
 The first thing you should understand, and this is unfortunately true for most Open Source developers, is: as much as we would like, we cannot spend our entire days coding and adding features to our Open Source projects. Most of us also hold a 9 to 5 job, in companies that usually have little interest in fostering their employee's Open Source initiatives. And for some, as is currently my case, the company may actually go as far as actively prohibiting access to sites like SourceForge.net from their network. :(
 
-What this means for '''you''' is that, for the best part of the day, I do not have the possibility to engage in anything Open Source related and as a result the time I can spend working on the features highlighted below is quite limited and this negatively impacts how soon a feature you may wish for will happen (if it happens at all), especially as I have my fingers in more than one pie.
+What this means for '''you''' is that, for the best part of the day, I do not have the possibility to engage in anything Open Source related and as a result the time I can spend working on the features highlighted below is very limited.
 
-But, without further ado, please find below, more or less in the order I plan to tackle it, the current state of my backlog. I am also providing estimates of the time I think adding the feature, without any other distractions, would take. But I must stress out that this is a best case scenario, only likely to occur if I can devote all my free time on the task, which rarely happens. More realistically, you want to at least double these times, as well as remember that these estimates are by no means the promise of an ETA.
+And so, without further ado, please find below, the current state of my backlog more or less in the order I plan to tackle it. Besides each task, you will also find estimates of the time adding the feature is likely to take (on its own: these times need to be cumulated). But I must stress out that these estimate are always a best case scenario. Realistically, you want to at least double these times, and remember that they are not by any means the promise of an ETA.
 
 == Pete's current backlog ==
 
