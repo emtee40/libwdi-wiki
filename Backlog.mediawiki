@@ -3,7 +3,7 @@
 == Background ==
 Being involved in multiple Open Source projects at once makes for an interesting scheduling challenge.
 
-Every so often (usually more than I'd like to have to answer), I get asked about the state of feature X with regards to one of these projects, and when it may become available. Because of this, I have decided to create a page that I can simply point to, to try to answer that question.
+Every so often (more times than I'd like to have to answer), I get asked about the state of feature X from one of these projects, and when it will become available. Because of this, I have decided to create a page that I can simply point to, to try to answer these questions.
 
 The first thing you should understand, and this is unfortunately true for most Open Source developers, is: as much as we would like, we cannot spend our entire days coding and adding features to our Open Source projects. Most of us also hold a 9 to 5 job, in companies that usually have little interest in fostering their employee's Open Source initiatives. At least, this is my case. Even worse, the company I currently work for goes as far as actively prohibits access to sites like SourceForge.net from their network. :(
 
