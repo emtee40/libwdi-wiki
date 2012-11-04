@@ -33,8 +33,7 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/x.png]]: Create a Wiki page for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/x.png]]: Add <code>libusb_strerror()</code> with localization (Est. 3 days)<br/>
 [[images/r.png]]: That menu.c32 issue/Rufus #98 (1 day?)<br/>
-[[images/r.png]]: Only DOS avail with empty card reader/Rufus #96 (1 day?)<br/>
-[[images/r.png]]: Add support for > 64 GB drives, fix UI issues and release Rufus 1.2.1 (Est. 2 weeks)<br/>
+[[images/r.png]]: Release Rufus 1.2.1 (Est. 2 weeks)<br/>
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 2 weeks)<br/>
 [[images/x.png]]: Add FX2 EEPROM upload and FX3 support to libusbx' <code>fxload</code> sample (Est. 2 weeks)<br/>
 [[images/x.png]]: Fix <code>libusb-win32</code> filter driver support for composite device members or on top of WinUSB (Est. 1 week)<br/>
