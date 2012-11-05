@@ -24,7 +24,7 @@ For the record, if anything happens there [http://libusbx.org libusbx] '''always
 Oh, and all these tasks are flagged 'high priority', on the sole ground that I would really like to complete them all equally if I could, and my only issue here is time.
 
 === High priority ===
-[[images/b.png]]: Renew code signing key (Est. ???? days - "Ah come the £$%^*£$ on, Comodo!!!")<br/>
+[[images/b.png]]+[[images/r.png]]+[[images/w.png]]: Renew code signing key (Est. ???? days - "Ah come the £$%^*£$ on, Comodo!!!")<br/>
 [[images/r.png]]+[[images/w.png]]: Add a check for updates in Rufus (and Zadig?) (Est. 2 days)<br/>
 [[images/r.png]]: That menu.c32 issue/Rufus #98 (1 day?)<br/>
 [[images/r.png]]: Release Rufus 1.2.1 (Est. 3 days)<br/>
