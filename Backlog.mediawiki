@@ -24,16 +24,17 @@ For the record, if anything happens there [http://libusbx.org libusbx] '''always
 Oh, and all these tasks are flagged 'high priority', on the sole ground that I would really like to complete them all equally if I could, and my only issue here is time.
 
 === High priority ===
+[[images/b.png]]: Renew code signing key (Est. ???? days - "Ah come the £$%^*£$ on, Comodo!!!")<br/>
+[[images/r.png]][[images/w.png]]: Add a check for updates in Rufus (and Zadig?) (Est. 2 days)
+[[images/r.png]]: That menu.c32 issue/Rufus #98 (1 day?)<br/>
+[[images/r.png]]: Release Rufus 1.2.1 (Est. 3 days)<br/>
 [[images/w.png]]: Add libusbk.dll installation with libusb-win32 driver install (Est. 2 days)<br/>
 [[images/w.png]]: KMDF 1.09 + KMDF 1.11 versions of Zadig (could use 1.11 for Vista style dialogs) (Est. 2 days)<br/>
-[[images/b.png]]: Renew code signing key (Est. 1 day)<br/>
 [[images/x.png]]: Xcode support integration (Hopefully less than 1 day)<br/>
 [[images/x.png]]: 2.0 API changes and consultation period (Est. ? weeks)<br/>
 [[images/x.png]]: initial libusbx 2.0 token release (Est. 1 week)<br/>
 [[images/x.png]]: Create a Wiki page for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/x.png]]: Add <code>libusb_strerror()</code> with localization (Est. 3 days)<br/>
-[[images/r.png]]: That menu.c32 issue/Rufus #98 (1 day?)<br/>
-[[images/r.png]]: Release Rufus 1.2.1 (Est. 2 weeks)<br/>
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 2 weeks)<br/>
 [[images/x.png]]: Add FX2 EEPROM upload and FX3 support to libusbx' <code>fxload</code> sample (Est. 2 weeks)<br/>
 [[images/x.png]]: Fix <code>libusb-win32</code> filter driver support for composite device members or on top of WinUSB (Est. 1 week)<br/>
@@ -43,6 +44,7 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
 [[images/x.png]]: Update the old <code>-pbatard</code> hotplug branch for libusbx (Est. 1 week)<br/>
 [[images/b.png]]: Fix the Linux driver sample (Est. 1 day)<br/>
+[[images/w.png]]: Investigate the "Operation timed out" message further (see George Atkins' message from 2012.11.02 - Est. 2 days)
 
 === High priority, if only I had more time ===
 [[images/r.png]]: Add localization to Rufus (Est. 2 weeks)<br/>
