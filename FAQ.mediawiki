@@ -73,7 +73,7 @@ The default on Windows Vista and later is to create restore a point before insta
 == '''Are the extracted driver files removed after installation?''' ==
 They aren't. The reason behind this is twofold. First, it is a bad idea to have an application running in elevated mode to delete files, as, if the extraction directory was user selected, we could end up deleting important data. Secondly, it is possible to use libwdi to setup the driver files for the next time the device is plugged in, in which case we must ensure that the files are still available. Deletion of the file is therefore left either to the end user or your application.
 
-== '''Why doesn't lbwdi use dpinst.exe instead of a custom installer?''' ==
+== '''Why doesn't libwdi use dpinst.exe instead of a custom installer?''' ==
 The two main reasons here are the size factor (each dpinst is about 1 MB in size or 300 KB compressed, whereas our installer is a lot smaller) as well as the ability to have greater control over the installation process. We might provide an option to embed and use dpinst in future versions of the library.
 
 == '''Why doesn't libwdi offer the option to set additional inf parameters?''' ==
@@ -82,5 +82,12 @@ If you ask this, you probably would like to have libwdi/Zadig set the class GUID
 # The main reason people want to set class parameters in the inf is either to place their own branding in the device manager (which makes it more confusing for end-users to locate their devices) or to define a class GUID that restricts the generic access that libwdi provides to hardware and software ("walled garden"). We don't think restrictions that impair the ability for end users to use the device of their choosing, including a cloned version, should be part of the libwdi generic driver installation process.
 
 This being said, if you really want to have your own class properties defined in the inf, and you know the VID:PIDs of your devices, which should always be the case if you want to restrict the class from the default generic one, there's nothing preventing you from reusing WinUSB, libusb-win32 or libusbK as a custom driver with a customized inf that you control.
+
+= Zadig =
+
+== '''I'm using Zadig on XP, and it doesn't seem to work''' ==
+This is a known issue for v2.0.1.156 and later due to switching to Microsoft KMDF 1.11, as per the latest WinUSB drivers, which is incompatible with XP. Future versions of Zadig will see 2 releases, one with KDMF 1.9 for XP users, and one with 1.11 for Vista and later.
+In the meantime, if running on XP, please use v2.0.1.154.
+
 ----
 <center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
