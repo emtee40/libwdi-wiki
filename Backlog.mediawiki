@@ -34,6 +34,7 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/x.png]]: Add <code>libusb_strerror()</code> with localization (Est. 3 days)<br/>
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 2 weeks)<br/>
 [[images/w.png]]: And now we have [https://github.com/pbatard/libwdi/issues/9 an issue with cathash] (Est. 2 days)<br/>
+[[images/w.png]]: Also [https://github.com/pbatard/libwdi/issues/4 this] and [https://github.com/pbatard/libwdi/issues/6 this] need to go (Est. 2 days)<br/>
 [[images/x.png]]: Add FX2 EEPROM upload and FX3 support to libusbx' <code>fxload</code> sample (Est. 2 weeks)<br/>
 [[images/x.png]]: Fix <code>libusb-win32</code> filter driver support for composite device members or on top of WinUSB (Est. 1 week)<br/>
 [[images/x.png]]: Try to pass priv-sub_api rather than SUB_API_NOTSET always (Est. 2 days)<br/>
