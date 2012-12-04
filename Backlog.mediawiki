@@ -24,15 +24,15 @@ For the record, if anything happens there [http://libusbx.org libusbx] '''usuall
 Oh, and all these tasks are flagged 'high priority', on the sole ground that I would really like to complete them all equally if I could, and my only issue here is time.
 
 === High priority ===
-[[images/r.png]]+[[images/w.png]]: Add a check for updates in Rufus (and Zadig?) (Est. 4 days)<br/>
+[[images/r.png]]: Check for updates in Rufus (Est. 2 more days)<br/>
 [[images/r.png]]: That menu.c32 issue/Rufus #98 (1 day?)<br/>
-[[images/r.png]]: Release Rufus 1.2.1 (Est. 3 days)<br/>
+[[images/r.png]]: Release Rufus 1.3.0 (Est. 3 days)<br/>
+[[images/x.png]]: Add WinCE backend to libusbx (Est. 1 week)<br/>
+[[images/x.png]]: Create a Wiki page for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/x.png]]: Xcode support integration (Hopefully less than 1 day)<br/>
 [[images/x.png]]: 2.0 API changes and consultation period (Est. ? weeks)<br/>
 [[images/x.png]]: initial libusbx 2.0 token release (Est. 1 week)<br/>
-[[images/x.png]]: Create a Wiki page for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/x.png]]: Add <code>libusb_strerror()</code> with localization (Est. 3 days)<br/>
-[[images/x.png]]: Add WinCE backend to libusbx (Est. 2 weeks)<br/>
 [[images/w.png]]: And now we have [https://github.com/pbatard/libwdi/issues/9 an issue with cathash] (Est. 2 days)<br/>
 [[images/w.png]]: Also [https://github.com/pbatard/libwdi/issues/4 this] and [https://github.com/pbatard/libwdi/issues/6 this] need to go (Est. 2 days)<br/>
 [[images/x.png]]: Add FX2 EEPROM upload and FX3 support to libusbx' <code>fxload</code> sample (Est. 2 weeks)<br/>
