@@ -41,6 +41,7 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/x.png]]: Try to pass priv-sub_api rather than SUB_API_NOTSET always (Est. 2 days)<br/>
 [[images/x.png]]: Add reset+isochronous support for <code>libusb-win32</code> and <code>libusbK</code> 
 (Est. 3 weeks)<br/>
+[[images/r.png]]: Syslinux NTFS support (Est. 1 week)<br/>
 [[images/b.png]]: Fix the Linux driver sample (Est. 1 day)<br/>
 [[images/w.png]]: Investigate the "Operation timed out" message further (see George Atkins' message from 2012.11.02 - Est. 2 days)
 
@@ -66,7 +67,6 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/c.png]]: Complete CECD using a virtual HDMI/CEC device (Est. 6 weeks)<br/>
 [[images/r.png]]: VMDK/VHD support (Est. 6 weeks)<br/>
 [[images/r.png]]: Run Windows 8 from USB (Est. 4 weeks, provided MS documents the feature and it isn't hardware constrained)<br/>
-[[images/r.png]]: Check for new versions (Est. 2 weeks)<br/>
 
 === What I know I'll never have time to spend on ===
 [[images/r.png]]: Multiboot/grub4dos (If you need this, you should know enough not to require an automated tool to do that for you!)<br/>
