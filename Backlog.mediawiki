@@ -68,6 +68,6 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/r.png]]: Run Windows 8 from USB (Est. 4 weeks, provided MS documents the feature and it isn't hardware constrained)<br/>
 
 === What I know I'll never have time to spend on ===
-[[images/r.png]]: Multiboot/grub4dos (If you need this, you should know enough not to require an automated tool to do that for you!)<br/>
+[[images/r.png]]: Multiboot/grub4dos (If you need this, you should know enough not to require an automated tool to do that for you! Or you should look into purchasing an [http://isostick.com/ isostick])<br/>
 
 
