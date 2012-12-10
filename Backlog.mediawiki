@@ -25,7 +25,7 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 
 === High priority ===
 [[images/r.png]]: That menu.c32 issue/Rufus #98 (1 day?)<br/>
-[[images/r.png]]: Release Rufus 1.3.0 (Est. 3 days)<br/>
+[[images/r.png]]: Release Rufus 1.3.0 (Est. 1 days)<br/>
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 1 week)<br/>
 [[images/x.png]]: Create a Wiki page for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/x.png]]: Xcode support integration (Hopefully less than 1 day)<br/>
@@ -45,7 +45,8 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/w.png]]: Investigate the "Operation timed out" message further (see George Atkins' message from 2012.11.02 - Est. 2 days)
 
 === High priority, if only I had more time ===
-[[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
+[[images/r.png]]: GPT/UEFI test/support (Est. 4 weeks)<br/>
+[[images/r.png]]: Commandline support (Est. 3 weeks)<br/>
 [[images/r.png]]: Add localization to Rufus (Est. 2 weeks)<br/>
 [[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
 [[images/b.png]]: Create a guide for Gerrit+Jenkins installation (Est. 1-2 weeks)<br/>
@@ -54,10 +55,9 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/x.png]]: libusbx hotplug event API (Est. 6 weeks)<br/>
 [[images/r.png]]: Folder selection support (Est. 2 weeks)<br/>
 [[images/r.png]]: Optical Disc support (Est. 2 weeks)<br/>
-[[images/r.png]]: GPT/UEFI support (Est. 4 weeks)<br/>
+[[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
 
 === High priority, if I could develop Open Source all day long ===
-[[images/r.png]]: Commandline support (Est. 3 weeks)<br/>
 [[images/w.png]]: Download vs embedding (Est. 3 weeks)<br/>
 [[images/w.png]]: Generic driver support (not USB only) (Est. 2 months)<br/>
 [[images/x.png]]: HID support for OS-X (Est. 4 weeks)<br/>
