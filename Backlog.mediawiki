@@ -25,7 +25,7 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 
 === High priority ===
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 1 week)<br/>
-[[images/x.png]]: Create a Wiki page for obtaining troubleshooting help (Est. 2 days)<br/>
+[[images/x.png]]: Create a [https://github.com/libusbx/libusbx/wiki/Troubleshooting Wiki page] for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/x.png]]: Xcode support integration (Hopefully less than 1 day)<br/>
 [[images/x.png]]: 2.0 API changes and consultation period (Est. ? weeks)<br/>
 [[images/x.png]]: initial libusbx 2.0 token release (Est. 1 week)<br/>
