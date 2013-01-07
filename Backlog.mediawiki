@@ -24,7 +24,6 @@ For the record, if anything happens there [http://libusbx.org libusbx] '''usuall
 Oh, and all these tasks are flagged 'high priority', on the sole ground that I would really like to complete them all equally if I could, and my only issue here is time.
 
 === High priority ===
-[[images/r.png]]: Get some stats going for rufus.akeo.ie (Est. 1 day)<br/>
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 1 week)<br/>
 [[images/x.png]]: That 32 entries HID limitation (Est. 1 day hopefully)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
