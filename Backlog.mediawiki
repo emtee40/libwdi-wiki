@@ -24,8 +24,8 @@ For the record, if anything happens there [http://libusbx.org libusbx] '''usuall
 Oh, and all these tasks are flagged 'high priority', on the sole ground that I would really like to complete them all equally if I could, and my only issue here is time.
 
 === High priority ===
+[[images/r.png]]: Release Rufus 1.3.1 to [https://github.com/pbatard/rufus/issues/115 fix XP support] (Est. 1 day)<br/>
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 1 week)<br/>
-[[images/r.png]]: Dammit, somehow [https://github.com/pbatard/rufus/issues/115 XP is broken again]! (Est. ? days)<br/>
 [[images/x.png]]: That 32 entries HID limitation (Est. 1 day hopefully)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/x.png]]: Jeez, can't people just wait just a few more weeks for a new libusbx release? (Est. 1 day)<br/>
