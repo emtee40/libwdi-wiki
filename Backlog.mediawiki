@@ -25,7 +25,7 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 
 === High priority ===
 [[images/x.png]]: Add WinCE backend to libusbx (Est. 1 day)<br/>
-[[images/r.png]]: UEFI/GPT support (Est. 3 days)<br/>
+[[images/r.png]]: UEFI/GPT + Windows EFI boot support (Est. 3 days)<br/>
 [[images/x.png]]: That 32 entries HID limitation (Est. 1 day hopefully)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/x.png]]: Jeez, can't people just wait just a few more weeks for a new libusbx release? (Est. 1 day)<br/>
