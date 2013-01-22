@@ -47,7 +47,6 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/w.png]]: Investigate the "Operation timed out" message further (see George Atkins' message from 2012.11.02 - Est. 2 days)
 
 === High priority, if only I had more time ===
-[[images/r.png]]: GPT/UEFI test/support (Est. 4 weeks)<br/>
 [[images/r.png]]: Commandline support (Est. 3 weeks)<br/>
 [[images/r.png]]: Add localization to Rufus (Est. 2 weeks)<br/>
 [[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
