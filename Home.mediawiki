@@ -96,7 +96,7 @@ To create projects relying on libwdi, please refer to how the sample executables
 * Downloading vs embedding of the driver files
 * 7z based improved embedder
 
-'''In Progress'''
+'''Dropped until further notice'''
 * Standalone signing utilities for the MinGW-w64 project
 
 '''Done'''
