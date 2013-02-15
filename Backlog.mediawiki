@@ -24,8 +24,8 @@ For the record, if anything happens there [http://libusbx.org libusbx] '''usuall
 Oh, and all these tasks are flagged 'high priority', on the sole ground that I would really like to complete them all equally if I could, and my only issue here is time.
 
 === High priority ===
-[[images/x.png]]: Fix cross compilation breaks with --disable-shared (Est. 1 day)<br/>
 [[images/x.png]]: That 32 entries HID limitation (Est. 1 day hopefully)<br/>
+[[images/x.png]]: Fix cross compilation breaks with --disable-shared (Est. 1 day)<br/>
 [[images/r.png]]: Formatting overall for unmounted drives (Est. 3 days)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/x.png]]: Jeez, can't people just wait just a few more weeks for a new libusbx release? (Est. 1 day)<br/>
