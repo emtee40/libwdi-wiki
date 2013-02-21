@@ -24,7 +24,7 @@ For the record, if anything happens there [http://libusbx.org libusbx] '''usuall
 Oh, and all these tasks are flagged 'high priority', on the sole ground that I would really like to complete them all equally if I could, and my only issue here is time.
 
 === High priority ===
-[[images/x.png]]: That "'dev_info' may be used uninitialized" warning (Est. 1 day)<br/>#
+[[images/x.png]]: That "'dev_info' may be used uninitialized" warning (Est. 1 day)<br/>
 [[images/x.png]]: WinCE Cleanup (Est. 1 day)<br/>
 [[images/x.png]]: Fix cross compilation breaks with --disable-shared (Est. 1 day)<br/>
 [[images/r.png]]: Formatting overall for unmounted drives (Est. 3 days)<br/>
