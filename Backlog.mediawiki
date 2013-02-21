@@ -27,7 +27,7 @@ Oh, and all these tasks are flagged 'high priority', on the sole ground that I w
 [[images/x.png]]: That "'dev_info' may be used uninitialized" warning (Est. 1 day)<br/>
 [[images/x.png]]: WinCE Cleanup (Est. 1 day)<br/>
 [[images/x.png]]: Fix cross compilation breaks with --disable-shared (Est. 1 day)<br/>
-[[images/r.png]]: Formatting overall for unmounted drives (Est. 3 days)<br/>
+[[images/r.png]]: Formatting overhaul for unmounted drives (Est. 3 days)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/x.png]]: Jeez, can't people just wait just a few more weeks for a new libusbx release? (Est. 1 day)<br/>
 [[images/u.png]]: Now that interest is picking up, move UBRX to github and apply fixes (Est. 1 day)<br/>
