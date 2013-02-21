@@ -56,6 +56,7 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/x.png]]: libusbx hotplug event API (Est. 6 weeks)<br/>
 [[images/r.png]]: Folder selection support (Est. 2 weeks)<br/>
 [[images/r.png]]: Optical Disc support (Est. 2 weeks)<br/>
+[[images/r.png]]: Run Windows 8 from USB (Est. 2 weeks)<br/>
 [[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
 
 === High priority, if I could develop Open Source all day long ===
@@ -66,7 +67,6 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/u.png]]: Add USB 3.0 serial debug (Est. 6 weeks)<br/>
 [[images/c.png]]: Complete CECD using a virtual HDMI/CEC device (Est. 6 weeks)<br/>
 [[images/r.png]]: VMDK/VHD support (Est. 6 weeks)<br/>
-[[images/r.png]]: Run Windows 8 from USB (Est. 4 weeks, provided MS documents the feature and it isn't hardware constrained)<br/>
 
 === What I know I'll never have time to spend on ===
 [[images/r.png]]: Multiboot/grub4dos (If you need this, you should know enough not to require an automated tool to do that for you! Or you should look into purchasing an [http://isostick.com/ isostick])<br/>
