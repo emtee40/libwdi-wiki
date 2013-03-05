@@ -208,7 +208,7 @@ Note however that the name under which the device is installed (i.e. the name th
 If you read the Microsoft documentation, you will find that Microsoft OS Descriptors can be used for more than just WCID, at WCID is only a subset of it. For instance, they can be used to provide icons, URLs or other data. 
 
 One item that may be of interest to you, with regards to WCID devices, is the provision of additional device registry settings and especially the provision of the Device Interface GUID that your device should be installed under.
-Just like with the Compatible ID, this too is done through a Feature Descriptor, called <code>Extended Properties Feature Descriptor</code> and located at <code>wIndex = 0x0005</code>. And as is the case for the Compatible ID, this is queried using a Device Request with the full <code>bmRequestType</code> being set to <code>0xC0</code>.
+Just like with the Compatible ID, this too is done through a Feature Descriptor, called <code>Extended Properties Feature Descriptor</code> and located at <code>wIndex = 0x0005</code>. However, as opposed to the Compatible ID, this should be queried using an Interface Request with the full <code>bmRequestType</code> being set to <code>0xC1</code>.
 
 {| border="1" cellpadding="2"
 |+'''Table 4: Microsoft Extended Properties Feature Descriptor'''
