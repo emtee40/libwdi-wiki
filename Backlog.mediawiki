@@ -23,12 +23,10 @@ Thus, without further ado, please find below the state of my current backlog, mo
 
 === High priority ===
 [[images/x.png]]: That "'dev_info' may be used uninitialized" warning (Est. 1 day)<br/>
-[[images/x.png]]: WinCE Cleanup (Est. 1 day)<br/>
 [[images/x.png]]: Fix cross compilation breaks with --disable-shared (Est. 1 day)<br/>
 [[images/r.png]]: Formatting overhaul for unmounted drives (Est. 3 days)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/x.png]]: Jeez, can't people just wait just a few more weeks for a new libusbx release? (Est. 1 day)<br/>
-[[images/u.png]]: Now that interest is picking up, move UBRX to github and apply fixes (Est. 1 day)<br/>
 [[images/x.png]]: Create a [https://github.com/libusbx/libusbx/wiki/Troubleshooting Wiki page] for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/r.png]]: Release Rufus 1.3.3 (Est. 2 days)<br/>
 [[images/x.png]]: Xcode support integration (Hopefully less than 1 day)<br/>
