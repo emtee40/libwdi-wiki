@@ -62,7 +62,7 @@ It is important to remember that most of the actions described below take place 
 '''Important:''' Only USB 2.0 devices or later can be recognized as WCID. As per [http://blogs.msdn.com/b/usbcoreblog/archive/2009/10/31/how-does-usb-stack-enumerate-a-device.aspx the following]:<blockquote>''If the USB Device Descriptor’s bcdUSB field is equal to <code>0x0100</code> or <code>0x0110</code>, the hub driver will skip the query for the MS OS Descriptor and move to the “Serial Number String Descriptor Query” state</blockquote>Thus your Device Descriptor’s bcdUSB field '''must''' be set to <code>0x0200</code> or higher.<br>
 Of course, this does not mean that your device has to operate at High Speed. It just means that your device complies with the USB 2.0 Specifications.
 
-=== '''Microsoft OS String Descriptor''' ===
+=== Microsoft OS String Descriptor ===
 
 The first time an USB device is plugged in, the Microsoft USB port driver (<code>usbport.sys</code>) will read the standard USB Descriptors, which includes the standard Device, Configuration, Interface and String Descriptors, and it will also attempt to read an additional String Descriptor located at index <code>0xEE</code>. This String Descriptor, which is not mandated by the USB specifications, is a Microsoft extension called an OS String Descriptor and it is the first of two elements that establish whether a device is WCID.
 
@@ -98,7 +98,7 @@ Below is an example of the key created by Windows 7 for a WCID device (LibusbDot
 
 In the example above, the Vendor Code was set to <code>0x20</code> in the firmware. Thus, you can easily find out if Windows has been able to read a valid OS Vendor signature from your device by checking the registry.
 
-=== '''Microsoft Compatible ID Feature Descriptor''' ===
+=== Microsoft Compatible ID Feature Descriptor ===
 
 If the osvc is valid, then additional Microsoft-defined Feature Descriptor are issued, with each call being broken down by the OS into header retrieval, to find the size, and then full payload retrieval (thus a device should see twice as many requests as calls that are issued).
 
@@ -162,7 +162,7 @@ Other Compatible IDs than <code>"WINSUB"</code> can also be used according to th
 |<code>"LIBUSBK\0"</code> || [http://code.google.com/p/usb-travis/ libusbK application]<br />[http://libusbdotnet.sourceforge.net/V2/Index.html LibUsbDotNet application]
 |}
 
-=== '''Windows Automated Driver Installation''' ===
+=== Windows Automated Driver Installation ===
 
 The WCID automated driver installation process is best illustrated through the native automated WinUSB driver installation of Windows 8.
 
@@ -203,7 +203,7 @@ and <code>USB\Class_03</code> is what you would find as one of the <code>Compati
 
 Note however that the name under which the device is installed (i.e. the name that will appear in the Device Manager) is the one that defined in the inf file, rather than the one provided from the USB String Descriptors. As such, all WCID devices appear with the same name (eg. "WinUSB Generic Device" for WinUSB).
 
-=== '''Defining a Device Interface GUID or other device specific properties''' ===
+=== Defining a Device Interface GUID or other device specific properties ===
 
 If you read the Microsoft documentation, you will find that Microsoft OS Descriptors can be used for more than just WCID, at WCID is only a subset of it. For instance, they can be used to provide icons, URLs or other data. 
 
@@ -266,7 +266,7 @@ Should you define DeviceInterfaceGUID as highlighted above, or any other Extende
 As you can see, the <code>{F70242C7-FB25-443B-9E7E-A4260F373982}</code> that was defined in the Extended Properties Descriptors (see below) has properly been populated in the registry.
 You can therefore use the Extended Properties Descriptors to define any additional registry entry that your device may require, and then use the usual Microsoft APIs, such as [http://msdn.microsoft.com/en-us/library/windows/hardware/ff549791.aspx SetupDi] to read this data in your application.
 
-=== '''Example of a complete OS Feature Descriptor query''' ===
+=== Example of a complete OS Feature Descriptor query ===
 
 For further details of the data that a WCID device, that also has the (optional) <code>DeviceInterfaceGUID</code> defined, should return, what follows is an example of what xusb against WCID-enabled Benchmark device. All the screenshots and data sections described above have been produced with this device. You can obtain a Windows executable xusb by downloading the [http://libusb.org/wiki/windows_backend#LatestBinarySnapshots latest libusb-1.0 Windows binary archive]
 
