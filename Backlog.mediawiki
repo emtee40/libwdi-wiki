@@ -22,11 +22,11 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/x.png]]: LIBUSB_CAPS for HID (Est. 1 day)<br/>
-[[images/x.png]]: Some Darwin fixes? (Est. 1 day)<br/>
 [[images/x.png]]: Get into libusbx release mode (Est. 1 day)<br/>
 [[images/r.png]]: Formatting overhaul for unmounted drives (Est. 3 days)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
+[[images/r.png]]: Create a FAQ (Est. 1 day)<br/>
+[[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
 [[images/x.png]]: Create a [https://github.com/libusbx/libusbx/wiki/Troubleshooting Wiki page] for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/r.png]]: Release Rufus 1.3.3 (Est. 2 days)<br/>
 [[images/x.png]]: Xcode support integration (Hopefully less than 1 day)<br/>
@@ -36,7 +36,7 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/w.png]]: And now we have [https://github.com/pbatard/libwdi/issues/9 an issue with cathash] (Est. 2 days)<br/>
 [[images/w.png]]: Also [https://github.com/pbatard/libwdi/issues/4 this] and [https://github.com/pbatard/libwdi/issues/6 this] need to go (Est. 2 days)<br/>
 [[images/x.png]]: Update the old <code>-pbatard</code> hotplug branch for libusbx (Est. 1 week)<br/>
-[[images/x.png]]: Add FX2 EEPROM upload and FX3 support to libusbx' <code>fxload</code> sample (Est. 2 weeks)<br/>
+[[images/x.png]]: Add FX2 EEPROM write support to <code>fxload</code> (Est. 1 week)<br/>
 [[images/x.png]]: Fix <code>libusb-win32</code> filter driver support for composite device members or on top of WinUSB (Est. 1 week)<br/>
 [[images/x.png]]: Try to pass priv-sub_api rather than SUB_API_NOTSET always (Est. 2 days)<br/>
 [[images/x.png]]: Add reset+isochronous support for <code>libusb-win32</code> and <code>libusbK</code> 
@@ -45,7 +45,7 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/w.png]]: Investigate the "Operation timed out" message further (see George Atkins' message from 2012.11.02 - Est. 2 days)
 
 === High priority, if only I had more time ===
-[[images/r.png]]: Commandline support (Est. 3 weeks)<br/>
+[[images/r.png]]: Commandline support (Est. 2 weeks)<br/>
 [[images/r.png]]: Add localization to Rufus (Est. 2 weeks)<br/>
 [[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
 [[images/b.png]]: Create a guide for Gerrit+Jenkins installation (Est. 1-2 weeks)<br/>
