@@ -22,10 +22,11 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/x.png]]: Get into libusbx release mode (Est. 1 day)<br/>
+[[images/x.png]]: Add the reworked CAPs (Est. 1 day)<br/>
+[[images/x.png]]: Toby's HID descriptor fix and fxload warnings (Est. 1 day)<br/>
+[[images/x.png]]: Go RC (Est. 1 day)<br/>
 [[images/r.png]]: Formatting overhaul for unmounted drives (Est. 3 days)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
-[[images/r.png]]: Create a FAQ (Est. 1 day)<br/>
 [[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
 [[images/x.png]]: Create a [https://github.com/libusbx/libusbx/wiki/Troubleshooting Wiki page] for obtaining troubleshooting help (Est. 2 days)<br/>
 [[images/r.png]]: Release Rufus 1.3.3 (Est. 2 days)<br/>
