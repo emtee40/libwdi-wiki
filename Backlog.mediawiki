@@ -22,9 +22,6 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/x.png]]: Test, test, test! (Est. 2 days)<br/>
-[[images/x.png]]: Fix fxload warnings and other fxload related stuff (Est. 1 day)<br/>
-[[images/x.png]]: 1.0.15 release (Est. 1 day)<br/>
 [[images/b.png]]: FX3 hands on (Est. 1 day)<br/>
 [[images/r.png]]: Formatting overhaul for unmounted drives (Est. 3 days)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
