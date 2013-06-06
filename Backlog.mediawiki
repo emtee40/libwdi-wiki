@@ -22,16 +22,15 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/b.png]]: FX3 hands on (Est. 1 day)<br/>
-[[images/r.png]]: Formatting overhaul for unmounted drives (Est. 3 days)<br/>
+[[images/r.png]]: Release Rufus 1.3.3 (Est. 1 day)<br/>
+[[images/r.png]]: Add localization (Est. 2 weeks)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
+[[images/b.png]]: FX3 hands on (Est. 1 day)<br/>
 [[images/x.png]]: Create a [https://github.com/libusbx/libusbx/wiki/Troubleshooting Wiki page] for obtaining troubleshooting help (Est. 2 days)<br/>
-[[images/r.png]]: Release Rufus 1.3.3 (Est. 2 days)<br/>
 [[images/x.png]]: Xcode support integration (Hopefully less than 1 day)<br/>
 [[images/x.png]]: 2.0 API changes and consultation period (Est. ? weeks)<br/>
 [[images/x.png]]: initial libusbx 2.0 token release (Est. 1 week)<br/>
-[[images/x.png]]: Add <code>libusb_strerror()</code> with localization (Est. 3 days)<br/>
 [[images/w.png]]: And now we have [https://github.com/pbatard/libwdi/issues/9 an issue with cathash] (Est. 2 days)<br/>
 [[images/w.png]]: Also [https://github.com/pbatard/libwdi/issues/4 this] and [https://github.com/pbatard/libwdi/issues/6 this] need to go (Est. 2 days)<br/>
 [[images/x.png]]: Update the old <code>-pbatard</code> hotplug branch for libusbx (Est. 1 week)<br/>
@@ -44,12 +43,10 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/w.png]]: Investigate the "Operation timed out" message further (see George Atkins' message from 2012.11.02 - Est. 2 days)
 
 === High priority, if only I had more time ===
-[[images/r.png]]: Commandline support (Est. 2 weeks)<br/>
-[[images/r.png]]: Add localization to Rufus (Est. 2 weeks)<br/>
+[[images/r.png]]: Commandline support (Est. 1 weeks)<br/>
 [[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
-[[images/b.png]]: Create a guide for Gerrit+Jenkins installation (Est. 1-2 weeks)<br/>
 [[images/x.png]]: Setup Gerrit+Jenkins for libusbx (Est. 2 weeks)<br/>
-[[images/x.png]]: Use the github API for e-mail notifications on new issues (Est. 2 weeks)<br/>
+[[images/x.png]]: Use the github API for e-mail notifications on new issues (Est. 1 week)<br/>
 [[images/x.png]]: libusbx hotplug event API (Est. 6 weeks)<br/>
 [[images/r.png]]: Folder selection support (Est. 2 weeks)<br/>
 [[images/r.png]]: Optical Disc support (Est. 2 weeks)<br/>
@@ -62,8 +59,9 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/x.png]]: HID support for OS-X (Est. 4 weeks)<br/>
 [[images/u.png]]: Finalize how to produce bare-metal code compatible with UBRX (Est. 3 weeks)<br/>
 [[images/u.png]]: Add USB 3.0 serial debug (Est. 6 weeks)<br/>
-[[images/c.png]]: Complete CECD using a virtual HDMI/CEC device (Est. 6 weeks)<br/>
 [[images/r.png]]: VMDK/VHD support (Est. 6 weeks)<br/>
+[[images/b.png]]: Create a guide for Gerrit+Jenkins installation (Est. 1-2 weeks)<br/>
+[[images/c.png]]: Complete CECD using a virtual HDMI/CEC device (Est. 6 weeks)<br/>
 
 === What I know I'll never have time to spend on ===
 [[images/r.png]]: Multiboot/grub4dos (If you need this, you should know enough not to require an automated tool to do that for you! Or you should look into purchasing an [http://isostick.com/ isostick])<br/>
