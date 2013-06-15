@@ -22,7 +22,6 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Release Rufus 1.3.3 (Est. 1 day)<br/>
 [[images/r.png]]: Add localization (Est. 2 weeks)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
