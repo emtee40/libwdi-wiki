@@ -23,7 +23,7 @@ Thus, without further ado, please find below the state of my current backlog, mo
 
 === High priority ===
 [[images/r.png]]: Release Rufus v1.3.4, including an Alpha Chinese version (Est. 2 days)<br/>
-[[images/u.png]]: Speedtouch v546v6 OpenOCD stuff (Est. 1 day)<br/>
+[[images/u.png]]: Speedtouch 546v6 OpenOCD stuff (Est. 1 day)<br/>
 [[images/r.png]]: More localization (Est. 2 weeks)<br/>
 [[images/x.png]]: initial libusbx hotplug support for Windows (Est. ? weeks)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
