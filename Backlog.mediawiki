@@ -35,8 +35,7 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/x.png]]: initial libusbx 2.0 token release (Est. 1 week)<br/>
 [[images/w.png]]: And now we have [https://github.com/pbatard/libwdi/issues/9 an issue with cathash] (Est. 2 days)<br/>
 [[images/w.png]]: Also [https://github.com/pbatard/libwdi/issues/4 this] and [https://github.com/pbatard/libwdi/issues/6 this] need to go (Est. 2 days)<br/>
-[[images/x.png]]: Update the old <code>-pbatard</code> hotplug branch for libusbx (Est. 1 week)<br/>
-[[images/x.png]]: Add FX2 EEPROM write support to <code>fxload</code> (Est. 1 week)<br/>
+[[images/x.png]]: Add FX2/FX3 EEPROM write support to <code>fxload</code> (Est. 1 week)<br/>
 [[images/x.png]]: Fix <code>libusb-win32</code> filter driver support for composite device members or on top of WinUSB (Est. 1 week)<br/>
 [[images/x.png]]: Try to pass priv-sub_api rather than SUB_API_NOTSET always (Est. 2 days)<br/>
 [[images/x.png]]: Add reset+isochronous support for <code>libusb-win32</code> and <code>libusbK</code> 
