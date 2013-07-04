@@ -22,7 +22,10 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Add localization (Est. 2 weeks)<br/>
+[[images/r.png]]: Release Rufus v1.3.4, including an Alpha Chinese version (Est. 2 days)<br/>
+[[images/u.png]]: Speedtouch v546v6 OpenOCD stuff (Est. 1 day)<br/>
+[[images/r.png]]: More localization (Est. 2 weeks)<br/>
+[[images/x.png]]: initial libusbx hotplug support for Windows (Est. ? weeks)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
 [[images/b.png]]: FX3 hands on (Est. 1 day)<br/>
@@ -44,15 +47,15 @@ Thus, without further ado, please find below the state of my current backlog, mo
 === High priority, if only I had more time ===
 [[images/r.png]]: Commandline support (Est. 1 weeks)<br/>
 [[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
-[[images/x.png]]: Setup Gerrit+Jenkins for libusbx (Est. 2 weeks)<br/>
 [[images/x.png]]: Use the github API for e-mail notifications on new issues (Est. 1 week)<br/>
 [[images/x.png]]: libusbx hotplug event API (Est. 6 weeks)<br/>
 [[images/r.png]]: Folder selection support (Est. 2 weeks)<br/>
 [[images/r.png]]: Optical Disc support (Est. 2 weeks)<br/>
 [[images/r.png]]: Run Windows 8 from USB (Est. 2 weeks)<br/>
-[[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
+[[images/x.png]]: Setup Gerrit+Jenkins for libusbx (Est. 2 weeks)<br/>
 
 === High priority, if I could develop Open Source all day long ===
+[[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
 [[images/w.png]]: Download vs embedding (Est. 3 weeks)<br/>
 [[images/w.png]]: Generic driver support (not USB only) (Est. 2 months)<br/>
 [[images/x.png]]: HID support for OS-X (Est. 4 weeks)<br/>
