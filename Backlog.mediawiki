@@ -22,7 +22,7 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/u.png]]: Speedtouch 546v6 OpenOCD stuff (Est. 1 day)<br/>
+[[images/b.png]]: Speedtouch 546v6 OpenOCD stuff (Est. 1 day)<br/>
 [[images/r.png]]: Release Rufus v1.3.4, including an Alpha Chinese version (Est. 2 days)<br/>
 [[images/r.png]]: More localization (Est. 2 weeks)<br/>
 [[images/r.png]]: A better download button on the web page would be nice (Est. 1 day)<br/>
