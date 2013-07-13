@@ -22,11 +22,11 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/b.png]]: Speedtouch 546v6 OpenOCD stuff (Est. 1 day)<br/>
 [[images/r.png]]: Release Rufus v1.3.4, including an Alpha Chinese version (Est. 2 days)<br/>
 [[images/r.png]]: More localization (Est. 2 weeks)<br/>
 [[images/x.png]]: Change the libusbx references back to libusb (Est. 2 days)<br/>
 [[images/r.png]]: A better download button on the web page would be nice (Est. 1 day)<br/>
+[[images/b.png]]: Review the OpenOCD gerrit patches? (Est. 1 day)<br/>
 [[images/x.png]]: initial libusbx hotplug support for Windows (Est. ? weeks)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
