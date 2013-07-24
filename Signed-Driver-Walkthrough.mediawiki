@@ -205,7 +205,9 @@ What we did above allows the installation of drivers in a Windows environment ou
 
 [[images/zadig_04.png]]
 
-One way to avoid this prompt is to go through WHQL. However, this is an expensive and time-consuming process, and Microsoft are currently [http://sourceforge.net/mailarchive/message.php?msg_id=26883764 abusing their position] to prevent GPL licensed drivers ([http://sourceforge.net/mailarchive/message.php?msg_id=27019186 both GPLv2 '''and''' GPLv3]) from being accepted through the WHQL process.
+Even worse, unlike Windows 7 and earlier, Windows 8 does not even prompt you with a warning, but flat out refuses to install any unsigned driver packages.
+
+One way to avoid these issues then is to go through WHQL. However, this is an expensive and time-consuming process, and Microsoft are currently [http://sourceforge.net/mailarchive/message.php?msg_id=26883764 abusing their position] to prevent GPL licensed drivers ([http://sourceforge.net/mailarchive/message.php?msg_id=27019186 both GPLv2 '''and''' GPLv3]) from being accepted through the WHQL process.
 
 The other solution then is to use your driver signing credentials to sign the <code>.inf</code>, and create a catalog (<code>.cat</code>) file.
 
