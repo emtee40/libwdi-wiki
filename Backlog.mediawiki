@@ -23,6 +23,8 @@ Thus, without further ado, please find below the state of my current backlog, mo
 
 === High priority ===
 [[images/r.png]]: More localization (Est. 2 weeks)<br/>
+[[images/x.png]]: Look at Toby's Windows patches (Est. 1 day)<br/>
+[[images/x.png]]: The Windows backend is missing <tt>get_config_descriptor_by_value</tt> (Est. 1 day)<br/>
 [[images/x.png]]: Change the libusbx references back to libusb (Est. 2 days)<br/>
 [[images/r.png]]: A better download button on the web page would be nice (Est. 1 day)<br/>
 [[images/b.png]]: Review the OpenOCD gerrit patches? (Est. 1 day)<br/>
