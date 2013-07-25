@@ -33,9 +33,8 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
 [[images/b.png]]: FX3 hands on (Est. 1 day)<br/>
 [[images/x.png]]: Create a [https://github.com/libusbx/libusbx/wiki/Troubleshooting Wiki page] for obtaining troubleshooting help (Est. 2 days)<br/>
-[[images/x.png]]: Xcode support integration (Hopefully less than 1 day)<br/>
 [[images/x.png]]: 2.0 API changes and consultation period (Est. ? weeks)<br/>
-[[images/x.png]]: initial libusbx 2.0 token release (Est. 1 week)<br/>
+[[images/x.png]]: initial libusb 2.0 token release (Est. 1 week)<br/>
 [[images/w.png]]: And now we have [https://github.com/pbatard/libwdi/issues/9 an issue with cathash] (Est. 2 days)<br/>
 [[images/w.png]]: Also [https://github.com/pbatard/libwdi/issues/4 this] and [https://github.com/pbatard/libwdi/issues/6 this] need to go (Est. 2 days)<br/>
 [[images/x.png]]: Add FX2/FX3 EEPROM write support to <code>fxload</code> (Est. 1 week)<br/>
