@@ -9,7 +9,7 @@ The first thing you should understand, and this is unfortunately true for most O
 
 What this means for '''you''' is that, for the best part of the day, I do not have the possibility to engage in anything Open Source related and as a result the time I can spend working on the features highlighted below is very limited.
 
-Thus, without further ado, please find below the state of my current backlog, more or less in the order I plan to tackle it. Besides each task, you'll also find estimates of the time adding the feature is likely to take (for that task alone). But I must stress out that these estimate are always a best case scenario. Realistically, you want to at least double these times, and remember that they are not by any means the promise of an ETA.
+And so, without further ado, please find below the state of my current backlog, more or less in the order I plan to tackle it. Besides each task, you'll also find estimates of the time adding the feature is likely to take (for that task alone). But I must stress out that these estimate are always a best case scenario. Realistically, you want to at least double these times, and remember that they are not by any means the promise of an ETA.
 
 == Pete's current backlog ==
 
@@ -22,7 +22,7 @@ Thus, without further ado, please find below the state of my current backlog, mo
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: More localization (Est. 2 weeks)<br/>
+[[images/r.png]]: [https://github.com/pbatard/rufus/commits/localization More localization] (Est. 2 weeks)<br/>
 [[images/x.png]]: Look at Toby's Windows patches (Est. 1 day)<br/>
 [[images/x.png]]: The Windows backend is missing <tt>get_config_descriptor_by_value</tt> (Est. 1 day)<br/>
 [[images/x.png]]: Change the libusbx references back to libusb (Est. 2 days)<br/>
