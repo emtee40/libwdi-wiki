@@ -23,7 +23,7 @@ And so, without further ado, please find below the state of my current backlog, 
 
 === High priority ===
 [[images/r.png]]: [https://github.com/pbatard/rufus/commits/localization More localization] (Est. 2 weeks):<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Fallback to <tt>en-US</tt> if message doesn't exist.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Enable current dir's <tt>rufus.loc</tt> override for WIP (button/commandline option to extract from embedded?).<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Create translator wiki.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Left-to-right support.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<tt>b</tt>, <tt>f</tt>, <tt>v</tt> instructions.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Easy reload (unlikely).<br/>
-[[images/r.png]]: Produce a patch for Syslinux to append <tt>ldlinux.sys</tt>/<tt>ldlinux.bss</tt> at the end of <tt>isolinux.bin</tt>.
+[[images/r.png]]: Produce a patch for Syslinux to append <tt>ldlinux.sys</tt>/<tt>ldlinux.bss</tt> at the end of <tt>isolinux.bin</tt>.<br/>
 [[images/x.png]]: Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)<br/>
 [[images/x.png]]: The Windows backend is missing <tt>get_config_descriptor_by_value</tt> (Est. 1 day)<br/>
 [[images/x.png]]: Change the remaining libusbx references back to libusb (Est. 1 day - Thanks Nathan!)<br/>
