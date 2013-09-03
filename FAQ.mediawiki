@@ -86,8 +86,7 @@ This being said, if you really want to have your own class properties defined in
 = Zadig =
 
 == I'm using Zadig on XP, and it doesn't seem to work ==
-This is a known issue for v2.0.1.156 and later due to switching to Microsoft KMDF 1.11, as per the latest WinUSB drivers, which is incompatible with XP. Future versions of Zadig will see 2 releases, one with KDMF 1.9 for XP users, and one with 1.11 for Vista and later.
-In the meantime, if running on XP, please use v2.0.1.154.
+This is a known issue for v2.0.1.156 and later due to switching to Microsoft KMDF 1.11, as per the latest WinUSB drivers, which is incompatible with XP. Newer versions of Zadig see 2 releases, one with KDMF 1.09 for XP users, and one with 1.11 for Vista and later. Please make sure you download the version that is suitable for your platform.
 
 ----
 <center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
