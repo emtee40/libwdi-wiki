@@ -22,13 +22,15 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
+[[images/b.png]]: DON'T EXPECT MUCH UNTIL 2013.09.17<br/>
+[[images/x.png]]: Look at Hans' Windows patch from 2013.09.06 (Est. 1 day)<br/>
+[[images/x.png]]: Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)<br/>
+[[images/x.png]]: Aaagh - Now I also need to review [https://github.com/manuelnaranjo/libusbx/tree/windows-hotplug this] when I really want to get going with Rufus' localization (Est. ?? days)<br/>
 [[images/r.png]]: [https://github.com/pbatard/rufus/commits/localization More localization] (Est. 2 weeks):<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Fallback to <tt>en-US</tt> if message doesn't exist.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Enable current dir's <tt>rufus.loc</tt> override for WIP (button/commandline option to extract from embedded?).<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Create translator wiki.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Left-to-right support.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<tt>b</tt>, <tt>f</tt>, <tt>v</tt> instructions.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Easy reload (unlikely).<br/>
 [[images/r.png]]: Produce a patch for Syslinux to append <tt>ldlinux.sys</tt>/<tt>ldlinux.bss</tt> at the end of <tt>isolinux.bin</tt>.<br/>
-[[images/x.png]]: Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)<br/>
 [[images/x.png]]: The Windows backend is missing <tt>get_config_descriptor_by_value</tt> (Est. 1 day)<br/>
 [[images/x.png]]: Change the remaining libusbx references back to libusb (Est. 1 day - Thanks Nathan!)<br/>
 [[images/b.png]]: Review the OpenOCD gerrit patches? (Est. 1 day)<br/>
-[[images/x.png]]: initial libusbx hotplug support for Windows (Est. ? weeks)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
 [[images/b.png]]: FX3 hands on (Est. 1 day)<br/>
