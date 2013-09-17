@@ -22,7 +22,6 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/b.png]]: DON'T EXPECT MUCH UNTIL 2013.09.17<br/>
 [[images/x.png]]: Look at Hans' Windows patch from 2013.09.06 (Est. 1 day)<br/>
 [[images/x.png]]: Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)<br/>
 [[images/x.png]]: Aaagh! - Now I also need to review [https://github.com/manuelnaranjo/libusbx/tree/windows-hotplug this] when I really want to get going with Rufus' localization (Est. ?? days)<br/>
