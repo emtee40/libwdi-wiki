@@ -140,7 +140,7 @@ In its simplest form, and as documented [http://msdn.microsoft.com/en-gb/library
 You can then check if the Compatible ID was properly read from your device by browsing the registry's <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB</code> tree at the location of your device. Similarly to the <code>osvc</code> key which is created on first insertion, you should find an entry with the VID and PID of your device under <code>USB</code> (eg: <code>VID_04D8&PID_FA2E</code>).
 
 Under this entry, possibly under an additional sub-entry, you should verify the content of the <code>CompatibleIDs</code> key (which is a <code>REG_MULTI_SZ</code>).
-If Windows was able to read the <code>Compatible ID</code> from your device, this key should include a <code>USB\MS_COMP_XXXXXXXX/code> string, where <code>XXXXXXXX</code> is what was defined in your report. For instance, if you defined <code>LIBUSB0</code>, you should get <code>USB\MS_COMP_LIBUSB0</code> there.
+If Windows was able to read the <code>Compatible ID</code> from your device, this key should include a <code>USB\MS_COMP_XXXXXXXX</code> string, where <code>XXXXXXXX</code> is what was defined in your report. For instance, if you defined <code>LIBUSB0</code>, you should get <code>USB\MS_COMP_LIBUSB0</code> there.
 
 Here is an example of the registry entry created from the Compatible ID Feature Descriptor (<code>"WINUSB"</code>):
 
