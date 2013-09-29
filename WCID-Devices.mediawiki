@@ -210,13 +210,16 @@ If you read the Microsoft documentation, you will find that Microsoft OS Descrip
 One item that may be of interest to you, with regards to WCID devices, is the provision of additional device registry settings and especially the provision of the Device Interface GUID that your device should be installed under.
 Just like with the Compatible ID, this too is done through a Feature Descriptor, called <code>Extended Properties Feature Descriptor</code> and located at <code>wIndex = 0x0005</code>. However, as opposed to the Compatible ID, this should be queried using an Interface Request with the full <code>bmRequestType</code> being set to <code>0xC1</code>.
 
+'''IMPORTANT NOTE:''' There is a bug/limitation in WinUSB that will force the wIndex of any Interface Request to the interface number, which means that, if you are using WinUSB to verify the content of your Extended Properties Feature Descriptor, you won't be able to retrieve it (unless it is defined for interface #5).<br />
+If you use WinUSB to validate your descriptors, our advice is to have your device firmware answer both Device and Interface requests when the Extended Properties Feature Descriptor is queried, so that you can use a Device rather than an Interface request to query this descriptor.
+
 {| border="1" cellpadding="2"
 |+'''Table 4: Microsoft Extended Properties Feature Descriptor'''
 !style="background:#efefef;" width="190"|Value
 !style="background:#efefef;" width="100"|TYPE
 !style="background:#efefef;"|Description
 |-
-|<code>0x8e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Descriptor length (242 bytes)
+|<code>0x92, 0x00, 0x00, 0x00</code> || DWORD (LE) || Descriptor length (246 bytes)
 |-
 |<code>0x00, 0x01</code> || BCD WORD (LE) || Version (<code>'1.0'</code>)
 |-
@@ -224,17 +227,17 @@ Just like with the Compatible ID, this too is done through a Feature Descriptor,
 |-
 |<code>0x01, 0x00</code> || '''WORD''' (LE) || Number of sections (1)
 |-
-|<code>0x84, 0x00, 0x00, 0x00</code> || DWORD (LE) || Size of the property section (132 bytes)
+|<code>0x88, 0x00, 0x00, 0x00</code> || DWORD (LE) || Size of the property section (136 bytes)
 |-
-|<code>0x01, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type (1 = Unicode REG_SZ, see table below)
+|<code>0x07, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type (7 = Unicode REG_MULTI_SZ, see table below)
 |-
-|<code>0x28, 0x00</code> || WORD (LE) || Property name length (40 bytes)
+|<code>0x2a, 0x00</code> || WORD (LE) || Property name length (42 bytes)
 |-
-|<code>0x44, 0x00, 0x65, 0x00,</code><br/><code>(...)</code><br/><code>0x44, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"DeviceInterfaceGUID"</code>)
+|<code>0x44, 0x00, 0x65, 0x00,</code><br/><code>(...)</code><br/><code>0x73, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"DeviceInterfaceGUIDs"</code>)
 |-
-|<code>0x4e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data length (78 bytes)
+|<code>0x50, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data length (80 bytes)
 |-
-|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x7d, 0x00, 0x00, 0x00</code> || NUL-terminated Unicode String (LE) || Property Name (<code>L"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"</code>)
+|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x00, 0x00, 0x00, 0x00</code> || '''double''' NUL-terminated Unicode String (LE) || Property Name (<code>L"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}\0\0"</code>)
 |}
 
 The property data types that you can use are defined in the following table:
@@ -259,7 +262,7 @@ The property data types that you can use are defined in the following table:
 |7 || Multiple NUL-terminated Unicode Strings (REG_MULTI_SZ)
 |}
 
-Should you define DeviceInterfaceGUID as highlighted above, or any other Extended Properties at index <code>0x0005</code>, you will find that it is copied into the registry, under the <code>Device Parameters</code> subsection of your device, as illustrated below:
+Should you define DeviceInterfaceGUIDs as highlighted above, or any other Extended Properties at index <code>0x0005</code>, you will find that it is copied into the registry, under the <code>Device Parameters</code> subsection of your device, as illustrated below:
 
 [[images/WCID_DeviceParameters.png|none|frame|Device Parameters registry entry created by a WCID enabled Benchmark Device]]
 
