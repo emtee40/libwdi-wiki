@@ -210,8 +210,10 @@ If you read the Microsoft documentation, you will find that Microsoft OS Descrip
 One item that may be of interest to you, with regards to WCID devices, is the provision of additional device registry settings and especially the provision of the Device Interface GUID that your device should be installed under.
 Just like with the Compatible ID, this too is done through a Feature Descriptor, called <code>Extended Properties Feature Descriptor</code> and located at <code>wIndex = 0x0005</code>. However, as opposed to the Compatible ID, this should be queried using an Interface Request with the full <code>bmRequestType</code> being set to <code>0xC1</code>.
 
-'''IMPORTANT NOTE:''' There is a bug/limitation in WinUSB that will force the wIndex of any Interface Request to the interface number, which means that, if you are using WinUSB to verify the content of your Extended Properties Feature Descriptor, you won't be able to retrieve it (unless it is defined for interface #5).<br />
+'''IMPORTANT NOTE 1:''' There is a bug/limitation in WinUSB that will force the wIndex of any Interface Request to the interface number, which means that, if you are using WinUSB to verify the content of your Extended Properties Feature Descriptor, you won't be able to retrieve it (unless it is defined for interface #5).<br />
 If you use WinUSB to validate your descriptors, our advice is to have your device firmware answer both Device and Interface requests when the Extended Properties Feature Descriptor is queried, so that you can use a Device rather than an Interface request to query this descriptor.
+
+'''IMPORTANT NOTE 2:''' The official Microsoft documentation shows the definition of a <tt>DeviceInterfaceGUID</tt> as a <tt>REG_SZ</tt>, and our screenshots and sample firmwares below also illustrate the use of <tt>DeviceInterfaceGUID</tt>. However, if you are using a device that has multiple interface, and set another interface but the first one to use WCID, you may run into an issue where issuing a registry query to get the Device Interface GUIDs may not return the GUID for the WCID interface, unless if was defined using <tt>DeviceInterfaceGUIDs</tt> (with an '''s''') as a <tt>REG_MULTI_SZ</tt>, as per the table below.
 
 {| border="1" cellpadding="2"
 |+'''Table 4: Microsoft Extended Properties Feature Descriptor'''
