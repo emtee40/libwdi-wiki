@@ -210,7 +210,7 @@ Just like with the Compatible ID, this too is done through a Feature Descriptor,
 '''IMPORTANT NOTE 1:''' There is a bug/limitation in WinUSB that will force the <code>wIndex</code> of any Interface Request to the interface number. This means that, if you are using WinUSB to verify the content of your Extended Properties Feature Descriptor, you won't be able to retrieve it (unless it is only defined for interface #5).<br />
 If you use WinUSB on Windows to validate your descriptors, our advice then is to have your device firmware answer both Device and Interface requests when the Extended Properties Feature Descriptor is queried, so that you can use a Device Request rather than an Interface Request to validate that your descriptor is set properly. For reference, the latest <code>xusb</code> sample application from libusbx has a <tt>-w</tt> switch that will force the <code>wIndex = 0x0005</code> to use the Device mode.
 
-'''IMPORTANT NOTE 2:''' The official Microsoft documentation shows the definition of a <tt>DeviceInterfaceGUID</tt> as a <tt>REG_SZ</tt>, and our screenshots and sample firmwares below also illustrate the use of <tt>DeviceInterfaceGUID</tt>. However, if you are using a device that has multiple interfaces, you may run into an issue where issuing a registry query to get the Device Interface GUIDs will not return the GUID for the WCID interface if it isn't the first one, '''unless''' you used the <tt>DeviceInterfaceGUIDs</tt> property (with an '''s''') as a <tt>REG_MULTI_SZ</tt>, to define your GUID, which is what the table below now illustrates.
+'''IMPORTANT NOTE 2:''' The official Microsoft documentation shows the definition of a <tt>DeviceInterfaceGUID</tt> as a <tt>REG_SZ</tt>, and this is what the sample firmwares provided at the end are set to. However, if you are using a device that has multiple interfaces, you may run into an issue where issuing a registry query to get the Device Interface GUIDs will not return the GUID for the WCID interface if it isn't the first one, '''unless''' you used the <tt>DeviceInterfaceGUIDs</tt> property (with an '''s''') as a <tt>REG_MULTI_SZ</tt>, to define your GUID, as illustrated below.
 
 {| border="1" cellpadding="2"
 |+'''Table 4: Microsoft Extended Properties Feature Descriptor'''
@@ -316,15 +316,16 @@ Reading Extended Compat ID OS Feature Descriptor (wIndex = 0x0004):
 
 Reading Extended Properties OS Feature Descriptor (wIndex = 0x0005):
 
-  00000000  8e 00 00 00 00 01 05 00 01 00 84 00 00 00 01 00  ................
-  00000010  00 00 28 00 44 00 65 00 76 00 69 00 63 00 65 00  ..(.D.e.v.i.c.e.
+  00000000  92 00 00 00 00 01 05 00 01 00 88 00 00 00 07 00  ................
+  00000010  00 00 2a 00 44 00 65 00 76 00 69 00 63 00 65 00  ..*.D.e.v.i.c.e.
   00000020  49 00 6e 00 74 00 65 00 72 00 66 00 61 00 63 00  I.n.t.e.r.f.a.c.
-  00000030  65 00 47 00 55 00 49 00 44 00 00 00 4e 00 00 00  e.G.U.I.D...N...
-  00000040  7b 00 46 00 37 00 30 00 32 00 34 00 32 00 43 00  {.F.7.0.2.4.2.C.
-  00000050  37 00 2d 00 46 00 42 00 32 00 35 00 2d 00 34 00  7.-.F.B.2.5.-.4.
-  00000060  34 00 33 00 42 00 2d 00 39 00 45 00 37 00 45 00  4.3.B.-.9.E.7.E.
-  00000070  2d 00 41 00 34 00 32 00 36 00 30 00 46 00 33 00  -.A.4.2.6.0.F.3.
-  00000080  37 00 33 00 39 00 38 00 32 00 7d 00 00 00        7.3.9.8.2.}...
+  00000030  65 00 47 00 55 00 49 00 44 00 73 00 00 00 50 00  e.G.U.I.D.s...P.
+  00000040  00 00 7b 00 46 00 37 00 30 00 32 00 34 00 32 00  ..{.F.7.0.2.4.2.
+  00000050  43 00 37 00 2d 00 46 00 42 00 32 00 35 00 2d 00  C.7.-.F.B.2.5.-.
+  00000060  34 00 34 00 33 00 42 00 2d 00 39 00 45 00 37 00  4.4.3.B.-.9.E.7.
+  00000070  45 00 2d 00 41 00 34 00 32 00 36 00 30 00 46 00  E.-.A.4.2.6.0.F.
+  00000080  33 00 37 00 33 00 39 00 38 00 32 00 7d 00 00 00  3.7.3.9.8.2.}...
+  00000090  00 00                                            ..
 
 Releasing interface 0...
 Closing device...</pre>
