@@ -18,14 +18,14 @@ To be able to digitally sign a Windows driver, you must have a Microsoft-authori
 Most of the Authenticode driver signing credentials seem to originate either from [http://www.verisign.com/ VeriSign] or [http://www.globalsign.com/ GlobalSign]. Other Certification Authorities providing these services [http://www.microsoft.com/whdc/driver/install/drvsign/crosscert.mspx also exist], but Verisign and GlobalSign appear to be the two most commonly used.
 
 ==== Verisign ====
-* 1st year driver signing credentials [https://winqual.microsoft.com/help/why_is_a_digital_certificate_required_for_winqual_membership.htm can be obtained for $99]
-* A lot more expensive than !GlobalSign in the long run: $499/year
+* 1st year driver signing credentials [https://winqual.microsoft.com/help/why_is_a_digital_certificate_required_for_winqual_membership.htm '''could''' be obtained for $99] (dead link)
+* Normally a lot more expensive than !GlobalSign in the long run: $499/year
 * Might not provide credentials for non registered companies
 
 ==== Globalsign ====
-* More competitive on pricing (long term) compared to Verisign
+* Normally more competitive on pricing (long term) compared to Verisign
 * Even if non affiliated to a registered company, individual developers can obtain certificates for [http://www.globalsign.com/code-signing/code-signing-for-individual-developers.html $129 (US & Canada)] / [http://www.globalsign.eu/code-signing/buy-code-signing-for-individual-developers.html  €99 (EU)] (promotional offer)
-* More friendly to non-US based customers (based in Belgium)
+* More friendly to non-US based customers (Belgium-based)
 
 From the date of registration, delivery of your certificate can take a few days to a few weeks.
 
