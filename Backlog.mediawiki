@@ -5,7 +5,7 @@ Being involved in multiple Open Source projects at once makes for an interesting
 
 Every so often (more times than I'd like to have to answer), I get asked about the state of feature X from one of these projects, and when it will become available. Because of this, I have decided to create a page that I can simply point to, to try to answer these questions.
 
-The first thing you should understand, and this is unfortunately true for most Open Source developers, is: as much as we would like, we cannot spend our entire days coding and adding features to our Open Source projects. Most of us also hold a 9 to 5 job, in companies that usually have little interest in fostering their employee's Open Source initiatives. And for some, the company may actually go as far as actively prohibiting access to sites like SourceForge.net from their network. :(
+The first thing you should understand, and this is unfortunately true for most Open Source developers, is: as much as we would like, we cannot spend our entire days coding and adding features to our Open Source projects. Most of us also hold a 9 to 5 job, in companies that usually have little interest in fostering their employee's Open Source initiatives. And for some, the company may actually go as far as actively prohibiting access to sites like SourceForge or github from their network. :(
 
 What this means for '''you''' is that, for the best part of the day, I do not have the possibility to engage in anything Open Source related and as a result the time I can spend working on the features highlighted below is very limited.
 
