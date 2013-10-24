@@ -22,7 +22,7 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: More localization (Est. 1 week):<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Create translator wiki.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Left-to-right support (Day 2).<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;UI language selection<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<tt>f</tt>, <tt>v</tt> instructions (Day 2).<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Easy reload (Day 2?).<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;See if there's a way to have gelocalization.com support .loc files. (NOPE, of course they won't...)<br/>
+[[images/r.png]]: More localization (Est. 2 days):<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Create translator wiki.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Left-to-right support (Day 2).<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;UI language selection<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<tt>f</tt>, <tt>v</tt> instructions (Day 2).<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Easy reload (Day 2?).<br/>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Versioning and changelog for the .loc file<br/>
 [[images/b.png]]: More libcdio stuff (Est. 1 day)<br/>
 [[images/x.png]]: libusbx haphazard stuff (Est. ?? days)<br/>
 [[images/b.png]]: Better Android WCID implementation (Est. 2 days)<br/>
