@@ -22,9 +22,10 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Add more Rufus translations<br/>
-[[images/x.png]]: libusbx haphazard stuff (Est. ?? days)<br/>
-[[images/r.png]]: Release Rufus 1.4.0<br/>
+[[images/r.png]]: Final push for Rufus v1.4.0 release (Est. 1 week - Sorry libusb(x) but this takes precedence!)<br/>
+[[images/x.png]]: libusbx haphazard stuff (Est. 2 days)<br/>
+[[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
+[[images/r.png]]: Release Rufus 1.4.0 (Est. 1 day)<br/>
 [[images/b.png]]: Better Android WCID implementation (Est. 2 days)<br/>
 [[images/x.png]]: Look at Hans' Windows patch from 2013.09.06 (Est. 1 day)<br/>
 [[images/x.png]]: Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)<br/>
