@@ -28,7 +28,7 @@ MinGW compilation also requires the following packages to be installed:
 
 == Configuration & Compilation ==
 
-'''IMPORTANT''': If you are not using the latest WinUSB driver files (from the Windows 8 Driver Kit), you '''must''' edit your config.h and set <code>WDF_VER</code> to the relevant WDF version. For instance, if you used the WinUSB installer files from WinDDK 7600.16385.0, you should use: <code>WDF_VER=1009</code>.
+'''IMPORTANT''': If you are not using the latest WinUSB driver files (from the Windows 8 Driver Kit), you '''must''' edit your config.h and set <code>WDF_VER</code> to the relevant WDF version. For instance, if you used the WinUSB installer files from WinDDK 7600.16385.0, you should use: <code>WDF_VER=1009</code> (when compiling with MS compilers) or add the option <code>--with-wdfver=1009</code> when invoking <code>configure</code> (MinGW).
 
 Provided that you have one of the environments highlighted above and retrieved the source (either from a tarball or the git repository), you need to configure the building of libwdi as follows:
 
