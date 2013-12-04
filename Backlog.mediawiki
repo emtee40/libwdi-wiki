@@ -23,7 +23,7 @@ And so, without further ado, please find below the state of my current backlog, 
 
 === High priority ===
 [[images/x.png]]: libusbx haphazard stuff (Est. 2 days)<br/>
-[[images/w.png]]: What do you know, CyanogenMod started promoting the use of Zadig, so I'm gonna have to scramble another release with better Android support (Est. 5 days)<br/>
+[[images/w.png]]: What do you know, CyanogenMod started promoting Zadig, so I have to scramble another release with improved Android support (Est. 5 days)<br/>
 [[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
 [[images/b.png]]: Better Android WCID implementation (Est. 2 days)<br/>
 [[images/x.png]]: Look at Hans' Windows patch from 2013.09.06 (Est. 1 day)<br/>
