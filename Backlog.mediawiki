@@ -31,6 +31,7 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/r.png]]: External loc file support (Est. 4 days)<br/>
 [[images/r.png]]: Can we do anything about Syslinux/BSD support? Is that a Syslinux bug? A BSD one? (Est. 3 days)<br/>
 [[images/b.png]]: Better Android WCID implementation (Est. 2 days)<br/>
+[[images/b.png]]: Update SP to latest Slackware ARM (Est. 2 days)<br/>
 [[images/r.png]]: Produce a patch for Syslinux to append <tt>ldlinux.sys</tt>/<tt>ldlinux.bss</tt> at the end of <tt>isolinux.bin</tt> or something (Est. week'''s''', dammit!)<br/>
 [[images/x.png]]: Look at Hans' Windows patch from 2013.09.06 (Est. 1 day)<br/>
 [[images/x.png]]: Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)<br/>
