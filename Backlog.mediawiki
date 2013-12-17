@@ -22,7 +22,7 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Use standard tables for messages, and ensure log messages are always in English<br/>
+[[images/r.png]]: Use standard tables for messages, and ensure log messages are always in English (Est. 1 day)<br/>
 [[images/x.png]]: libusb/libusbx merge (Est. 1 day)<br/>
 [[images/w.png]]: What do you know, CyanogenMod started promoting Zadig, so I have to scramble another release with improved Android support (Est. 5 days)<br/>
 [[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
