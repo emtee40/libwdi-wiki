@@ -20,12 +20,12 @@ if (wdi_create_list(&list, NULL) == WDI_SUCCESS) {
 </pre>
 
 In the program excerpt above, first we start by creating a list of all the driverless USB devices on the system using '''[[Usage#wiki-int_wdi_create_liststruct_wdi_device_info_list_struct_wdi_options_create_list_options|wdi_create_list]]'''. If any are found, the call returns success with a chained list of '''[[Usage#wiki-struct_wdi_device_info|wdi_device_info]]''' elements containing, among other things, the system description of each device, as well as its USB VID & PID.<br />
-Using these properties, we then extract the driver files and generate an inf through '''[[Usage#wiki-int_wdi_prepare_driverstruct_wdi_device_info_device_info_char_path_char_inf_name_struct_wdi_options_prepare_driver_options|wdi_prepare_driver]]''', and finally call '''[[Usage#wiki-int_wdi_install_driverstruct_wdi_device_info_device_info_char_path_char_inf_name_struct_wdi_options_install_driver_options|wdi_install_driver]]''', which starts the Operating System driver installation procedure.
+Using these properties, we then extract the driver files and generate an inf through '''[[Usage#wiki-int_wdi_prepare_driverstruct_wdi_device_info_device_info_const_char_path_const_char_inf_name_struct_wdi_options_prepare_driver_options|wdi_prepare_driver]]''', and finally call '''[[Usage#wiki-int_wdi_install_driverstruct_wdi_device_info_device_info_const_char_path_const_char_inf_name_struct_wdi_options_install_driver_options|wdi_install_driver]]''', which starts the Operating System driver installation procedure.
 <br />
 
 == Error Codes ==
 
-All of the liwdi API function, apart from '''[[Usage#wiki-const_char_wdi_strerrorint_errcode|wdi_strerror]]''', '''[[Usage#wiki-bool_wdi_is_driver_supportedint_driver_type_VS_FIXEDFILEINFO_driver_info|wdi_is_driver_supported]]''' and '''[[Usage#wiki-bool_wdi_is_file_embeddedchar_path_char_name|wdi_is_file_embedded]]''', return one of the error codes below.<br />
+All of the liwdi API function, apart from '''[[Usage#wiki-const_char_wdi_strerrorint_errcode|wdi_strerror]]''', '''[[Usage#wiki-bool_wdi_is_driver_supportedint_driver_type_VS_FIXEDFILEINFO_driver_info|wdi_is_driver_supported]]''' and '''[[Usage#wiki-bool_wdi_is_file_embeddedconst_char_path_const_char_name|wdi_is_file_embedded]]''', return one of the error codes below.<br />
 The '''[[Usage#wiki-const_char_wdi_strerrorint_errcode|wdi_strerror]]''' function, documented further down, is used to convert an error code to a human readable string.<br />
 Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) while any error will be a negative value.<br />
 
@@ -205,7 +205,7 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 |- 
 | style="background:#eef;font-size:110%" |
 
-==== BOOL wdi_is_file_embedded(char* path, char* name) ====
+==== BOOL wdi_is_file_embedded(const char* path, const char* name) ====
 |-
 |'''Synopsis:'''
 : Indicates if the file identified by (path, name) or just (name) is available from the library binary. This can be useful for instance if you are planning to install a driver signing certificate, and want to confirm that the .cer file has properly been embedded in the archive, before calling wdi_install_trusted_certificate.
@@ -259,7 +259,7 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 |- 
 | style="background:#eef;font-size:110%" |
 
-==== int  wdi_prepare_driver(struct wdi_device_info* device_info, char* path, char* inf_name, struct wdi_options_prepare_driver* options) ====
+==== int  wdi_prepare_driver(struct wdi_device_info* device_info, const char* path, const char* inf_name, struct wdi_options_prepare_driver* options) ====
 |-
 |'''Synopsis:'''
 : Extract the driver files, and, where applicable, create the relevant inf for a specific device.
@@ -278,7 +278,7 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 : If driver type is '''WDI_USER''', the device_info and inf_name paramaters are ignored and the driver files are extracted only. An inf is not generated in this case.
 : To find out more about the use of user supplied driver files, please see the [[Install#Using_a_custom_driver_file_with_libwdi|libwdi installation and configuration guide]].
 : Even if your application runs in elevated mode, the driver files and directories will be owned by the user who launched the application.
-: If you provide a vendor_name in the options, this name will be used for the [Manufacturer] section of the inf. If not, '''[[Usage#wiki-int_wdi_prepare_driverstruct_wdi_device_info_device_info_char_path_char_inf_name_struct_wdi_options_prepare_driver_options|wdi_prepare_driver]]''' will try to resolve the vendor name according to the VID.
+: If you provide a vendor_name in the options, this name will be used for the [Manufacturer] section of the inf. If not, '''[[Usage#wiki-int_wdi_prepare_driverstruct_wdi_device_info_device_info_const_char_path_const_char_inf_name_struct_wdi_options_prepare_driver_options|wdi_prepare_driver]]''' will try to resolve the vendor name according to the VID.
 |}
 <br />
 
@@ -286,7 +286,7 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 |- 
 | style="background:#eef;font-size:110%" |
 
-==== int wdi_install_driver(struct wdi_device_info* device_info, char* path, char* inf_name, struct wdi_options_install_driver* options) ====
+==== int wdi_install_driver(struct wdi_device_info* device_info, const char* path, const char* inf_name, struct wdi_options_install_driver* options) ====
 |-
 |'''Synopsis:'''
 : Perform the actual driver installation using the inf file named '''inf_name''' and driver files located in the directory pointed by '''path'''.
@@ -321,7 +321,7 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 |- 
 | style="background:#eef;font-size:110%" |
 
-==== int wdi_install_trusted_certificate(char* cert_name, struct wdi_options_install_cert* options) ====
+==== int wdi_install_trusted_certificate(const char* cert_name, struct wdi_options_install_cert* options) ====
 |-
 |'''Synopsis:'''
 : Installs or updates the certificate '''cert_name''' into the system's Trusted Publisher store. This call must be run from an application running with elevated privileges on platforms with UAC else it will fail with WDI_ERROR_NEEDS_ADMIN.
