@@ -24,13 +24,11 @@ And so, without further ado, please find below the state of my current backlog, 
 === High priority ===
 [[images/x.png]]: SetupAPI can't use window_err_str (thanks Microsoft! - Est. 1 day)<br/>
 [[images/x.png]]: libusb/libusbx merge (Est. 1 day)<br/>
-[[images/r.png]]: What's the deal with FreeNAS/FreeBSD? (Est. ? days)<br/>
 [[images/w.png]]: What do you know, CyanogenMod started promoting Zadig, so I have to scramble another release with improved Android support (Est. 5 days)<br/>
 [[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
 [[images/r.png]]: What the heck is wrong with WDK and libcdio? (Est. 1 day)<br/>
 [[images/r.png]]: Right-to-left language support (Est. 4 days)<br/>
 [[images/r.png]]: External loc file support (Est. 4 days)<br/>
-[[images/r.png]]: Can we do anything about Syslinux/BSD support? Is that a Syslinux bug? A BSD one? (Est. 3 days)<br/>
 [[images/b.png]]: Better Android WCID implementation (Est. 2 days)<br/>
 [[images/b.png]]: Update SP to latest Slackware ARM (Est. 2 days)<br/>
 [[images/r.png]]: Produce a patch for Syslinux to append <tt>ldlinux.sys</tt>/<tt>ldlinux.bss</tt> at the end of <tt>isolinux.bin</tt> or something (Est. week'''s''', dammit!)<br/>
