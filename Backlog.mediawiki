@@ -22,21 +22,20 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Delayed features that will require new translations (Est. 2 day)<br/>
+[[images/r.png]]: Delayed features that will require new translations (Est. 1 day)<br/>
 [[images/x.png]]: Release libusb & libusbx 1.0.18 (Est. 1 day)<br/>
 [[images/w.png]]: What do you know, CyanogenMod started promoting Zadig, so I have to scramble another release with improved Android support (Est. 3 days)<br/>
 [[images/r.png]]: Forward the ReactOS ms-sys patch to Henrik (Est. 1 day)<br/>
 [[images/x.png]]: look at that isoc patch (Est. 2 days)<br/>
-[[images/r.png]]: Right-to-left language support (Est. 4 days)<br/>
 [[images/r.png]]: External loc file support (Est. 4 days)<br/>
 [[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
 [[images/r.png]]: What the heck is wrong with WDK and libcdio? (Est. 1 day)<br/>
 [[images/b.png]]: Better Android WCID implementation (Est. 2 days)<br/>
 [[images/b.png]]: Update SP to latest Slackware ARM (Est. 2 days)<br/>
-[[images/r.png]]: Produce a patch for Syslinux to append <tt>ldlinux.sys</tt>/<tt>ldlinux.bss</tt> at the end of <tt>isolinux.bin</tt> or something (Est. week'''s''', dammit!)<br/>
 [[images/x.png]]: Look at Hans' Windows patch from 2013.09.06 (Est. 1 day)<br/>
 [[images/x.png]]: Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)<br/>
 [[images/x.png]]: The Windows backend is missing <tt>get_config_descriptor_by_value</tt> (Est. 1 day)<br/>
+[[images/r.png]]: Produce a patch for Syslinux to append <tt>ldlinux.sys</tt>/<tt>ldlinux.bss</tt> at the end of <tt>isolinux.bin</tt> or something (Est. week'''s''', dammit!)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
 [[images/b.png]]: FX3 hands on (Est. 1 day)<br/>
@@ -56,11 +55,11 @@ And so, without further ado, please find below the state of my current backlog, 
 === High priority, if only I had more time ===
 [[images/r.png]]: Commandline support (Est. 1 weeks)<br/>
 [[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
-[[images/x.png]]: libusbx hotplug event API (Est. 6 weeks)<br/>
+[[images/x.png]]: libusb hotplug event API (Est. 6 weeks)<br/>
 [[images/r.png]]: Folder selection support (Est. 2 weeks)<br/>
 [[images/r.png]]: Optical Disc support (Est. 2 weeks)<br/>
 [[images/r.png]]: Run Windows 8 from USB (Est. 2 weeks)<br/>
-[[images/x.png]]: Setup Gerrit+Jenkins for libusbx (Est. 2 weeks)<br/>
+[[images/x.png]]: Setup Gerrit+Jenkins for libusb (Est. 2 weeks)<br/>
 
 === High priority, if I could develop Open Source all day long ===
 [[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
