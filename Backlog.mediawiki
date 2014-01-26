@@ -22,8 +22,6 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Delayed features that will require new translations (Est. 1 day)<br/>
-[[images/x.png]]: Release libusb & libusbx 1.0.18 (Est. 1 day)<br/>
 [[images/w.png]]: What do you know, CyanogenMod started promoting Zadig, so I have to scramble another release with improved Android support (Est. 3 days)<br/>
 [[images/r.png]]: Forward the ReactOS ms-sys patch to Henrik (Est. 1 day)<br/>
 [[images/x.png]]: look at that isoc patch (Est. 2 days)<br/>
