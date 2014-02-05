@@ -1,5 +1,7 @@
 <h4>'''libwdi: Windows Driver Installer library for USB devices'''</h4>
+
 [[images/libwdi.png]]
+
 = Description =
 == About ==
 
