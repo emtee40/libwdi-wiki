@@ -134,6 +134,7 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 | This structure is used by ''wdi_install_driver'' to set optional parameters.
 * '''HWND hWnd''' <br />Handle to a Window application that should receive a modal progress dialog. When this parameter is provided, a modal progress dialog will be displayed for the duration of the driver installation process.
 * '''BOOL install_filter_driver''' (v1.2.0 or later)<br />Install a filter driver instead of the regular driver (libusb-win32 only). The default is not to install a filter driver (false).
+* '''UINT32 pending_install_timeout''' (v1.2.3 or later)<br />Number of milliseconds to wait for any pending installations. 0, the default, means no timeout.
 |}
 <br />
 
