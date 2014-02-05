@@ -36,7 +36,7 @@ Alternatively, you can also use the github facility to [https://github.com/pbata
 
 = Downloads =
 
-* <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/libwdi-1.2.2.tar.gz/download libwdi v1.2.2]''' (released 2012.09.19)</h4>
+* <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/libwdi-1.2.3.tar.gz/download libwdi v1.2.3]''', released 2014.02.05 ([https://github.com/pbatard/libwdi/blob/master/ChangeLog ChangeLog])</h4>
 * <h4>'''[http://sourceforge.net/projects/libwdi/files/releases/ All libwdi releases]'''</h4>
 * <h4>'''[http://zadig.akeo.ie/ Zadig]''', a standalone driver installer GUI application, built on libwdi.</h4>
 
