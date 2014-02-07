@@ -88,7 +88,7 @@ This being said, if you really want to have your own class properties defined in
 == I'm using Zadig on XP, and it doesn't seem to work ==
 This is a known issue for v2.0.1.156 and later due to switching to Microsoft KMDF 1.11, as per the latest WinUSB drivers, which is incompatible with XP. Newer versions of Zadig see 2 releases, one with KDMF 1.09 for XP users, and one with 1.11 for Vista and later. Please make sure you download the version that is suitable for your platform.
 
-== Help, Zadig replaced the driver for the wrong device! How can I delete it? ==
+== Help, Zadig replaced the driver for the wrong device! How do I restore it? ==
 
 First of all, I have to stress out that Zadig does exactly what '''you''' tell it to do, so if you select the wrong device, and Zadig happen to replace it's driver, the responsibility is yours. Zadig will try to warn about some of the common system drivers, such as HID or Mass Storage, to try to prevent you from replacing a driver you really don't want to replace, but there's only so many drivers Zadig can guess you probably don't want to replace. So, '''please''' try to pay attention to the device you select next time, and don't just close your eyes and press the install button on the first device you see, OK?
 
