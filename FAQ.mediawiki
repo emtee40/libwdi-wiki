@@ -94,7 +94,7 @@ First of all, I have to stress out that Zadig does exactly what '''you''' tell i
 
 Now, restoring an old system driver, if Zadig replaced it, is pretty simple (as long as you didn't replace the HID driver for your mouse or keyboard). 
 
-In this example, let's say I inadvertently let Zadig install a driver for an USB Flash Drive, which would have replaced the Windows default Mass Storage device, meaning that I can no longer access it in Explorer. As this isn't what I wanted, I want to restore its original driver, so that I cam access it back again a disk drive. To do that:
+In this example, let's say I inadvertently let Zadig install a driver for an USB Flash Drive, which would have replaced the Windows default Mass Storage device. But now, after finding out that I can no longer access the driver in Explorer, I want to restore its original driver. To do just that:
 
 # Open Device Manager
 # Under ''Universal Serial Bus devices'' (or possibly ''libusbk devices''/''libusb-win32 devices'' if you didn't pick <tt>WinUSB</tt> as your driver), right click on your device. In this example, <tt>ADATA UFD</tt> is our device.<br/>[[images/uninstall_01.png|none|frame|Device manager with the device to uninstall]]
