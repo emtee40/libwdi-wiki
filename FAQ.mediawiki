@@ -97,7 +97,7 @@ Now, restoring an old system driver, if Zadig replaced it, is pretty simple (as 
 In this example, let's say I inadvertently let Zadig install a driver for an USB Flash Drive, which would have replaced the Windows default Mass Storage device, meaning that I can no longer access it in Explorer. As this isn't what I wanted, I want to restore its original driver, so that I cam access it back again a disk drive. To do that:
 
 # Open Device Manager
-# Under ''Universal Serial Bus devices'' (or ''libusbk devices''/''libusb-win32 devices'' if you didn't choose <tt>WinUSB</tt> as your driver), right click on your device. In this example, <tt>ADATA UFD</tt> is our device.<br/>[[images/uninstall_01.png|none|frame|Device manager with the device to uninstall]]
+# Under ''Universal Serial Bus devices'' (or possibly ''libusbk devices''/''libusb-win32 devices'' if you didn't pick <tt>WinUSB</tt> as your driver), right click on your device. In this example, <tt>ADATA UFD</tt> is our device.<br/>[[images/uninstall_01.png|none|frame|Device manager with the device to uninstall]]
 # Select ''Uninstall'' and on the dialog box that appears, check the box that says ''Delete the driver software for this device'' then click OK.<br/>[[images/uninstall_02.png|none|frame|Uninstall dialog]]
 # Once the uninstallation is complete, unplug and replug your device. The previous driver should be reinstalled (in our case, the Flash Drive reappears under the ''Disk drives'' category).<br/>[[images/uninstall_03.png|none|frame|Restored device]]
 
