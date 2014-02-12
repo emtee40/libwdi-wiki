@@ -23,7 +23,8 @@ And so, without further ado, please find below the state of my current backlog, 
 
 === High priority ===
 [[images/r.png]]: Rally the translators, again... (Come on guys!!) (Est. 1 day)<br/>
-[[images/x.png]]: Look at that port thingy (Est. 1 days)<br/>
+[[images/x.png]]: Look at that port thingy (Est. 1 day)<br/>
+[[images/x.png]]: Set up libusb github issue notifications (Est. 1 day)<br/>
 [[images/r.png]]: Forward the ReactOS ms-sys patch to Henrik (Est. 1 day)<br/>
 [[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
 [[images/x.png]]: look at that isoc patch (Est. 2 days)<br/>
