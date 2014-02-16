@@ -22,15 +22,13 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Rally the translators, again... (Come on guys!!) (Est. 1 day)<br/>
-[[images/x.png]]: Look at that port thingy (Est. 1 day)<br/>
 [[images/x.png]]: Set up libusb github issue notifications (Est. 1 day)<br/>
 [[images/r.png]]: Forward the ReactOS ms-sys patch to Henrik (Est. 1 day)<br/>
 [[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
 [[images/x.png]]: look at that isoc patch (Est. 2 days)<br/>
 [[images/r.png]]: What the heck is wrong with WDK and libcdio? (Est. 1 day)<br/>
+[[images/b.png]]: Now '''how''' the heck do you modify any part of the AOSP and see it applied to your device (Re: that stupid max volume thingy)??? (Est. 3 day)<br/>
 [[images/b.png]]: Better Android WCID implementation (Est. 2 days)<br/>
-[[images/b.png]]: Update SP to latest Slackware ARM (Est. 2 days)<br/>
 [[images/r.png]]: External loc file support (Est. 4 days)<br/>
 [[images/x.png]]: Look at Hans' Windows patch from 2013.09.06 (Est. 1 day)<br/>
 [[images/x.png]]: Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)<br/>
