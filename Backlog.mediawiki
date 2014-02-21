@@ -22,12 +22,11 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Forward the UDF Unicode patch to libcdio (Est. 1 day)<br/>
+[[images/r.png]]: What the heck is wrong with WDK and libcdio? (Est. 1 day)<br/>
 [[images/x.png]]: Set up libusb github issue notifications (Est. 1 day)<br/>
 [[images/r.png]]: Forward the ReactOS ms-sys patch to Henrik (Est. 1 day)<br/>
 [[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
 [[images/x.png]]: look at that isoc patch (Est. 2 days)<br/>
-[[images/r.png]]: What the heck is wrong with WDK and libcdio? (Est. 1 day)<br/>
 [[images/b.png]]: Now '''how''' the heck do you modify the AOSP to see it applied to your device (Re: that stupid max volume thing)??? (Est. 3 days)<br/>
 [[images/b.png]]: Better Android WCID implementation (Est. 2 days)<br/>
 [[images/r.png]]: External loc file support (Est. 4 days)<br/>
