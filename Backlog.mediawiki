@@ -22,7 +22,6 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: What the heck is wrong with WDK and libcdio? (Est. 1 day)<br/>
 [[images/x.png]]: Set up libusb github issue notifications (Est. 1 day)<br/>
 [[images/r.png]]: Forward the ReactOS ms-sys patch to Henrik (Est. 1 day)<br/>
 [[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
