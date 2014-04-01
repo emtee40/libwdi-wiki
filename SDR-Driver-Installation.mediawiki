@@ -1,0 +1,3 @@
+A lot of people seem to have trouble with the SDR# driver installation using Zadig.
+
+This page attempts to provide some tips that '''may''' help you fix your issues
