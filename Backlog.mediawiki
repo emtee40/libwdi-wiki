@@ -14,6 +14,7 @@ And so, without further ado, please find below the state of my current backlog, 
 == Pete's current backlog ==
 
 === Legend ===
+
 [[images/x.png]]: [http://libusb.info libusb]/[http://libusbx.org libusbx]<br/>
 [[images/r.png]]: [http://rufus.akeo.ie rufus]<br/>
 [[images/w.png]]: [http://libwdi.akeo.ie libwdi]<br/>
@@ -22,6 +23,8 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
+[[images/r.png]]: Sort out the Arabic translation (Est. 1 day)<br/>
+[[images/x.png]]: Dual VID:PID device test (Est. 1 day)<br/>
 [[images/r.png]]: That A: boot issue (Est. ??? days)<br/>
 [[images/r.png]]: That device in use with or without using a VHD issue (Est. ??? days)<br/>
 [[images/w.png]]: That Zadig crashes on XP issue (Est. ??? days)<br/>
