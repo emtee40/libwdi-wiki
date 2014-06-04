@@ -23,10 +23,7 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Sort out the Arabic translation (Est. 1 day)<br/>
-[[images/x.png]]: Dual VID:PID device test (Est. 1 day)<br/>
-[[images/r.png]]: That A: boot issue (Est. ??? days)<br/>
-[[images/r.png]]: That device in use with or without using a VHD issue (Est. ??? days)<br/>
+[[images/r.png]]: That device in use with or without using a VHD issue. Also got that one on Shade when testing Arabic... (Est. ??? days)<br/>
 [[images/w.png]]: That Zadig crashes on XP issue (Est. ??? days)<br/>
 [[images/w.png]]: Write a guide to help with the SDR# driver install and post in Yahoo! groups (Est. 3 days)<br/>
 [[images/x.png]]: Set up libusb github issue notifications (Est. 1 day)<br/>
