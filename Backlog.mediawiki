@@ -1,4 +1,4 @@
-= Pete's backlog or "Why is feature/issue X not being worked on?" =
+= Pete's backlog, a.k.a. "Why is X not being worked on?" =
 
 == Background ==
 Being involved in multiple Open Source projects at once makes for an interesting scheduling challenge.
@@ -23,6 +23,7 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
+[[images/b.png]]: EFI filesystem drivers from Grub source (Est. '''Weeks''' - No idea if this will yield anything, but '''don't''' expect action on '''anything''' else while I'm working on this...)<br/>
 [[images/b.png]]: Sure would be nice to write a follow up post about RTL language support (Est. 1 day)<br/>
 [[images/r.png]]: That device in use with or without using a VHD issue. Also got that one on Shade when testing Arabic... Could try our hand at process detection and stuff. (Est. ??? days)<br/>
 [[images/r.png]]: Windows To Go: (How) does it work??? (Est. ??? days)<br/>
