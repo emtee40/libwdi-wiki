@@ -90,16 +90,16 @@ This is a known issue for v2.0.1.156 and later due to switching to Microsoft KMD
 
 == Help, Zadig replaced the driver for the wrong device! How do I restore it? ==
 
-First of all, I have to stress out that Zadig does exactly what '''you''' tell it to do, so if you select the wrong device, and Zadig happen to replace its driver, the responsibility is yours. Zadig does try to warn about some of the common system drivers, such as HID or Mass Storage, to alert you about some of the driver you really don't want to replace, but there are only so many drivers Zadig can know about. So, '''please''' try to pay attention to the device you select next time. Don't just close your eyes and press the install button for the first device you see, OK?
+First of all, I must point out that Zadig does exactly what '''you''' tell it to do. If you select the wrong device, and Zadig happen to replace its driver, the responsibility is entirely yours. Zadig will try to warn about common system drivers, such as HID or Mass Storage, that you don't usually want to replace, but there are only so many drivers Zadig can know about. So, '''please''', try to pay attention to the device you select next time: don't just close your eyes and press the install button on the first device you see, OK?
 
-Now, restoring an old system driver, if Zadig replaced it, is pretty simple (as long as you didn't replace the HID driver for your mouse or keyboard - if you did you will first need to plug in another keyboard or mouse so that you can open and navigate the device manager before you can apply the steps below). 
+Now, restoring the previous system driver, if it was replaced, is usually pretty simple (as long as you didn't replace the HID driver for your mouse or keyboard - if you did, you will need to plug in another keyboard or mouse, to navigate the device manager). 
 
-In this example, let's say I inadvertently let Zadig install a driver for an USB Flash Drive, which would have replaced the Windows default Mass Storage device. But now, after finding out that I can no longer access the driver in Explorer, I want to restore its original driver. To do just that:
+In this example, let's say I inadvertently let Zadig install a driver for an USB Flash Drive, which made the system end up using WinUSB instead of the Windows default Mass Storage device. And after finding out that this mean I can no longer access my Flash Drive in Explorer, I need to restore it to the original Mass Storage driver. To do just that:
 
 # Open Device Manager
 # Under ''Universal Serial Bus devices'' (or possibly ''libusbk devices''/''libusb-win32 devices'' if you didn't pick <tt>WinUSB</tt> as your driver), right click on your device. In this example, <tt>ADATA UFD</tt> is our device.<br/>[[images/uninstall_01.png|none|frame|Device manager with the device to uninstall]]
 # Select ''Uninstall'' and on the dialog box that appears, check the box that says ''Delete the driver software for this device'' then click OK.<br/>[[images/uninstall_02.png|none|frame|Uninstall dialog]]
-# Once the uninstallation is complete, unplug and replug your device. The previous driver should be now be reinstalled.</br>In our case, we would see the Flash Drive reappearing under the ''Disk drives'' category, which is what we want.<br/>[[images/uninstall_03.png|none|frame|Restored device]]
+# Once the uninstallation is complete, unplug and replug your device. The original system driver should now be reinstalled.</br>In our case, we would see the Flash Drive reappearing under the ''Disk drives'' category, which is what we want.<br/>[[images/uninstall_03.png|none|frame|Restored device]]
 
 
 ----
