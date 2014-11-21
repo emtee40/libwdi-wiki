@@ -82,7 +82,7 @@ The following table details how exactly the Microsoft OS String Descriptor shoul
 |-
 |<code>0x03</code> || BYTE || Descriptor type (3 = String)
 |- 
-|<code>0x4D 0x00 0x53</code><br/><code>0x00 0x46 0x00</code><br/><code>0x54 0x00 0x31</code><br/><code>0x00 0x30 0x00</code><br/><code>0x30 0x00</code> || 7 WORDS Unicode String (LE) || Signature:
+|<code>0x4D 0x00</code><br/><code>0x53 0x00</code><br/><code>0x46 0x00</code><br/><code>0x54 0x00</code><br/><code>0x31 0x00</code><br/><code>0x30 0x00</code><br/><code>0x30 0x00</code> || 7 WORDS Unicode String (LE) || Signature:
 <code>"MSFT100"</code> 
 |-
 |'''<code>0x##</code>''' || BYTE || '''Vendor Code'''
