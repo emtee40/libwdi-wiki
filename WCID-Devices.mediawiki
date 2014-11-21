@@ -222,7 +222,7 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 |-
 |<code>0x00, 0x01</code> || BCD WORD (LE) || Version (<code>'1.0'</code>)
 |-
-|<code>0x05, 0x00</code> || WORD (LE) || Extended Property<br/>Descriptor index (<code>0x0005</code>)
+|<code>0x05, 0x00</code> || WORD (LE) || Extended Property<br/>Descriptor index (5)
 |-
 |<code>0x01, 0x00</code> || '''WORD''' (LE) || Number of sections (1)
 |-
