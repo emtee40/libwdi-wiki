@@ -111,27 +111,27 @@ In its simplest form, and as documented [http://msdn.microsoft.com/en-gb/library
 
 {| border="1" cellpadding="2"
 |+'''Table 2: Microsoft Compatible ID Feature Descriptor'''
-!style="background:#efefef;" width="190"|Value
-!style="background:#efefef;" width="100"|Type
+!style="background:#efefef;"|Value
+!style="background:#efefef;"|Type
 !style="background:#efefef;"|Description
 |-
 |<code>0x28, 0x00,</code><br/><code>0x00, 0x00</code> || DWORD (LE) || Descriptor length (40 bytes)
 |-
 |<code>0x00, 0x01</code> || BCD WORD (LE) || Version (<code>'1.0'</code>)
 |-
-|<code>0x04, 0x00</code> || WORD (LE) || Compatibility ID Descriptor index (<code>0x0004</code>)
+|<code>0x04, 0x00</code> || WORD (LE) || Compatibility ID<br/>Descriptor index (<code>0x0004</code>)
 |-
 |<code>0x01</code> || '''BYTE''' || Number of sections (1)
 |-
 |<code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00</code> || 7 BYTES || Reserved
 |-
-|<code>0x00</code> || BYTE || Interface Number (Interface #0)
+|<code>0x00</code> || BYTE || Interface Number<br/>(Interface #0)
 |-
 |<code>0x01</code> || BYTE || Reserved
 |-
-|<code>0x57, 0x49,</code><br/><code>0x4E, 0x55,</code><br/><code>0x53, 0x42,</code><br/><code>0x00, 0x00</code> || 8 BYTES (NUL-terminated?) ASCII String || Compatible ID (<code>"WINUSB\0\0"</code>)
+|<code>0x57, 0x49,</code><br/><code>0x4E, 0x55,</code><br/><code>0x53, 0x42,</code><br/><code>0x00, 0x00</code> || 8 BYTES<br/>(NUL-terminated?)<br/>ASCII String || Compatible ID<br/>(<code>"WINUSB\0\0"</code>)
 |-
-|<code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00</code> || 8 BYTES (NUL-terminated?) ASCII String || Sub-Compatible ID (unused)
+|<code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00</code> || 8 BYTES<br/>(NUL-terminated?)<br/>ASCII String || Sub-Compatible ID<br/>(unused)
 |-
 |<code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00</code> || 6 BYTES || Reserved
 |}
