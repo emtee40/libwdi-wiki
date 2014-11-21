@@ -21,7 +21,7 @@ Alternatively, you can also use the github facility to [https://github.com/pbata
 * '''No''' security warnings during driver installation, when running in elevated mode
 * One-off [[WCID Devices|WCID device]] driver installation support, so that no further driver installation is required for any WCID device of the same type
 * Dual 32 and 64 bit platform support
-* Supports any Windows platforms, from Windows XP up to Windows 8
+* Supports any Windows platforms, from Windows XP up to Windows 10
 * Single library that can be statically or dynamically linked to your application in order to provide driver installation facilities at runtime
 
 === Additional Features ===
@@ -51,7 +51,7 @@ Alternatively, you can also use the github facility to [https://github.com/pbata
 
 = Reusable Code Parts: Can our code solve your problems? =
 
-As a FOSS developer, there's nothing more frustrating than having to reinvent the wheel while harbouring a strong suspicion that someone, somewhere, might already have solved a similar issue.
+As a Free Software developer, there's nothing more frustrating than having to reinvent the wheel while harbouring a strong suspicion that someone, somewhere, might already have solved a similar issue.
 On the other hand, googling around and looking through scores of FOSS code listings to find that particular section of code which might be of interest to you is quite time consuming. Wouldn't it be just swell if the developers simply gave an detailed, high level overview of the problems they solved, whose solutions they think you can reuse?
 
 The following page does just that and goes through a list of the features we implemented, which you might be interested in (provided your license is compatible with LGPL):
@@ -63,7 +63,7 @@ The following page does just that and goes through a list of the features we imp
 
 The following development environments are currently supported for libwdi on Windows:
 * [http://www.mingw.org MinGW] (32 bit) or [http://mingw-w64.sourceforge.net/ MinGW-w64]. To compile a library that is both 32 and 64 bit compatible, you should use a version of MinGW-w64 that supports both <code>-m32</code> and <code>-m64</code> (a.k.a. "multilib"). [http://tdm-gcc.tdragon.net/download TDM64] is a good MinGW-w64 distribution under Windows which fulfils this requirement.
-* [http://msdn.microsoft.com/en-us/visualc/default.aspx Microsoft Visual C++ (Visual Studio) 2008 or later]. If using the Express version, you may have to download and additional SDKs to produce 64 bit or or 32+64 bit binaries.
+* [http://www.visualstudio.com/products/visual-studio-community-vs Microsoft Visual Studio 2013 Community Edition], which is '''freely available''' for anyone wishing to recompile, run or debug libwdi.
 * [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows DDK build environment], which is '''freely available''', through the use of the <code>ddk_build.cmd</code> file. This will also produce all of 32, 64 or 32+64 bits binaries. Note that if you want to produce libwdi applications that are compatible with all supported platforms from XP onwards, '''you will need to use the Windows XP WDK build environment for the 32bit builds and Windows Server 2003 build environment for the 64bit build'''.
 
 The recommended development environment to compile the library/apps is the Windows 7 WDK as it allows the building of a 32+64 bit compatible library, and ensures that the required WinUSB DLL files are available.
