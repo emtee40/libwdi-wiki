@@ -236,7 +236,7 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 |-
 |<code>0x50, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data<br/>length (80 bytes)
 |-
-|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x00, 0x00, 0x00, 0x00</code> || '''double''' NUL-terminated<br/>Unicode String (LE) || Property Name<br/>(<code>L"{xxxxxxxx-xxxx-</code><br/><code>xxxx-xxxx-xxxxxxxxxxxx}\0\0"</code>)
+|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x00, 0x00, 0x00, 0x00</code> || '''double''' NUL-terminated<br/>Unicode String (LE) || Property Name<br/>(<code>L"{xxxxxxxx-xxxx-</code><br/><code>xxxx-xxxx-</code><br/><code>xxxxxxxxxxxx}\0\0"</code>)
 |}
 
 The property data types that you can use are defined in the following table:
