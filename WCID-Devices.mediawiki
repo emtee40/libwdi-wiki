@@ -222,13 +222,13 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 |-
 |<code>0x00, 0x01</code> || BCD WORD (LE) || Version (<code>'1.0'</code>)
 |-
-|<code>0x05, 0x00</code> || WORD (LE) || Extended Property<br/>Descriptor index (5)
+|<code>0x05, 0x00</code> || WORD (LE) || Extended Property<br/>Descriptor index (<code>5</code>)
 |-
-|<code>0x01, 0x00</code> || '''WORD''' (LE) || Number of sections (1)
+|<code>0x01, 0x00</code> || '''WORD''' (LE) || Number of sections (<code>1</code>)
 |-
 |<code>0x88, 0x00, 0x00, 0x00</code> || DWORD (LE) || Size of the property<br/>section (136 bytes)
 |-
-|<code>0x07, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type<br/>(7 = Unicode<br/>REG_MULTI_SZ,<br/>see table below)
+|<code>0x07, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type<br/>(<code>7</code> = Unicode<br/>REG_MULTI_SZ,<br/>see table below)
 |-
 |<code>0x2a, 0x00</code> || WORD (LE) || Property name<br/>length (42 bytes)
 |-
@@ -236,7 +236,7 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 |-
 |<code>0x50, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data<br/>length (80 bytes)
 |-
-|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x00, 0x00, 0x00, 0x00</code> || '''double''' NUL-terminated<br/>Unicode String (LE) || Property Name<br/><code>"{xxxxxxxx-xxxx-</code><br/><code>xxxx-xxxx-</code><br/><code>xxxxxxxxxxxx}\0\0"</code>
+|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x00, 0x00, 0x00, 0x00</code> || '''double NUL'''-terminated<br/>Unicode String (LE) || Property Name<br/><code>"{xxxxxxxx-xxxx-</code><br/><code>xxxx-xxxx-</code><br/><code>xxxxxxxxxxxx}\0\0"</code>
 |}
 
 The property data types that you can use are defined in the following table:
