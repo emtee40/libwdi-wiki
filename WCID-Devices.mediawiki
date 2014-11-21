@@ -123,17 +123,17 @@ In its simplest form, and as documented [http://msdn.microsoft.com/en-gb/library
 |-
 |<code>0x01</code> || '''BYTE''' || Number of sections (1)
 |-
-|<code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00</code> || 7 BYTES || Reserved
+|<code>0x00, 0x00, 0x00, 0x00,</code><br/><code>0x00, 0x00, 0x00</code> || 7 BYTES || Reserved
 |-
 |<code>0x00</code> || BYTE || Interface Number<br/>(Interface #0)
 |-
 |<code>0x01</code> || BYTE || Reserved
 |-
-|<code>0x57, 0x49,</code><br/><code>0x4E, 0x55,</code><br/><code>0x53, 0x42,</code><br/><code>0x00, 0x00</code> || 8 BYTES<br/>(NUL-terminated?)<br/>ASCII String || Compatible ID<br/>(<code>"WINUSB\0\0"</code>)
+|<code>0x57, 0x49, 0x4E, 0x55,</code><br/><code>0x53, 0x42, 0x00, 0x00</code> || 8 BYTES<br/>(NUL-terminated?)<br/>ASCII String || Compatible ID<br/>(<code>"WINUSB\0\0"</code>)
 |-
-|<code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00</code> || 8 BYTES<br/>(NUL-terminated?)<br/>ASCII String || Sub-Compatible ID<br/>(unused)
+|<code>0x00, 0x00, 0x00, 0x00,</code><br/><code>0x00, 0x00, 0x00, 0x00</code> || 8 BYTES<br/>(NUL-terminated?)<br/>ASCII String || Sub-Compatible ID<br/>(unused)
 |-
-|<code>0x00, 0x00,</code><br/><code>0x00, 0x00,</code><br/><code>0x00, 0x00</code> || 6 BYTES || Reserved
+|<code>0x00, 0x00, 0x00, 0x00,</code><br/><code>0x00, 0x00</code> || 6 BYTES || Reserved
 |}
 
 You can then check if the Compatible ID was properly read from your device by browsing the registry's <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB</code> tree at the location of your device. Similarly to the <code>osvc</code> key which is created on first insertion, you should find an entry with the VID and PID of your device under <code>USB</code> (eg: <code>VID_04D8&PID_FA2E</code>).
