@@ -20,7 +20,10 @@ And since the installation files will be downloaded from the internet, you will 
 * Save the `vs_community.exe` file in the location of your choice.
 * Run `vs_community.exe`
 * Proceed to the screen where it asks for the installation location:  
-![](https://github.com/pbatard/libwdi/wiki/images/vs_install_01.png)
+![](https://github.com/pbatard/libwdi/wiki/images/vs_install_01.png)  
+On this screen:
+    * Check "_I agree to the License Terms and Privacy Policy_"
+    * Uncheck "_Join the Visual Studio Experience Improvement Program_"
 
 ### Windows Driver Kit (WDK) 8.1 installation
 
