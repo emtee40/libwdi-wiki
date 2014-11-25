@@ -19,7 +19,8 @@ And since the installation files will be downloaded from the internet, you will 
 * Go to http://www.visualstudio.com/products/visual-studio-community-vs and click the _Download_ button.
 * Save the `vs_community.exe` file in the location of your choice.
 * Run `vs_community.exe`
-* Proceed to the screen where it asks for the installation location.
+* Proceed to the screen where it asks for the installation location:  
+![](https://github.com/pbatard/libwdi/wiki/images/vs_install_01.png)
 
 ### Windows Driver Kit (WDK) 8.1 installation
 
