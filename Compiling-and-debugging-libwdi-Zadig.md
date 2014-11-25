@@ -14,7 +14,7 @@ Since the installation files will be downloaded from the internet, you will need
 
 Also, this whole installation process will not work on Windows XP, as this version of Windows has been officially retired by Microsoft. If you are still running Windows XP, you should really consider upgrading!
 
-## Installing Visual Studio and the Windows Driver Kit
+## Installing Visual Studio and the WDK
 
 ### Visual Studio 2013 Community Edition
 
@@ -57,3 +57,32 @@ Sadly, the WinUSB redistributable files, which libwdi needs to compile the libra
 ![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_04.png)
 * Close the final screen:
 ![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_05.png)
+
+## Launching Visual Studio and fetching the latest git sources
+
+### First Visual Studio Startup
+
+* Go to _Start_ &rarr; _All Programs_ &rarr; _Visual Studio 2013_ &rarr; _Visual Studio 2013_ or (Windows 8) go to search and type _Visual Studio_ to launch Visual Studio 2013.
+* On the sign in screen:  
+![](https://github.com/pbatard/libwdi/wiki/images/ws_startup_01.png)
+    * For the _Development Settings:_ dropdown, select `Visual C++`.
+    * Click _Not now, maybe later._
+* On the next screen:  
+![](https://github.com/pbatard/libwdi/wiki/images/ws_startup_02.png)
+    * Select the colour scheme that you prefer.
+    * Click _Start Visual Studio_.
+* Wait for Visual Studio to be ready:  
+![](https://github.com/pbatard/libwdi/wiki/images/ws_startup_03.png)
+
+### Fetching the latest libwdi sources from git
+
+Because git is integrated in Visual Studio 2013, there's no need to install a third party client to download the latest sources from github.
+
+* In the main Visual Studio window, on the left handside:  
+![](https://github.com/pbatard/libwdi/wiki/images/ws_git_01.png)
+    * Select _Local Git Repositories_ and make sure the _Clone_ entry is selected.
+    * Enter `https://github.com/pbatard/libwdi.git` for the first field (the libwdi source repository on github).
+    * If desired, change the local destination directory.
+    * Click _Clone_.
+* The libwdi source will be retrieved from the internet:  
+![](https://github.com/pbatard/libwdi/wiki/images/ws_git_02.png)
