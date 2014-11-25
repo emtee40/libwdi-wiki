@@ -10,31 +10,50 @@ Finally, it should be noted that, because libwdi and Zadig and OSI-licensed Open
 
 The installation of Visual Studio and the WDK will require between 3 to 4 GB of disk space for the downloaded files, and about the same for the applications. Thus, if you are not able or willing to spare 8 GB of disk space, you should not proceed.
 
-And since the installation files will be downloaded from the internet, you will need to also consider the time it will take to download about 4 GB worth of data for the installer. If you have a slow connection, it might take a couple hours or more to complete this installation.
+Since the installation files will be downloaded from the internet, you will need to also consider the time it will take to download about 4 GB worth of data for the installer. If you have a slow connection, it might take a couple hours or more to complete this installation.
 
-## Installation Process
+Also, this whole installation process will not work on Windows XP, as this version of Windows has been officially retired by Microsoft. If you are still running Windows XP, you should really consider upgrading!
+
+## Installing Visual Studio and the Windows Driver Kit
 
 ### Visual Studio 2013 Community Edition
 
 * Go to http://www.visualstudio.com/products/visual-studio-community-vs and click the _Download_ button.
-* Save the `vs_community.exe` file in the location of your choice.
-* Run `vs_community.exe`
+* Save the `vs_community.exe` file in the location of your choice and run it.
 * Proceed to the screen where it asks for the installation location:  
 ![](https://github.com/pbatard/libwdi/wiki/images/vs_install_01.png)  
 On this screen:
-    * Check "_I agree to the License Terms and Privacy Policy_"
-    * Uncheck "_Join the Visual Studio Experience Improvement Program_"
-    * Click _Next_
+    * Check "_I agree to the License Terms and Privacy Policy_".
+    * Uncheck "_Join the Visual Studio Experience Improvement Program_".
+    * Click _Next_.
 * On the next screen:  
 ![](https://github.com/pbatard/libwdi/wiki/images/vs_install_02.png)  
     * __Unselect__ everything (as this will reduce the amount you need to download and libwdi only needs the base system).
-    * Click _INSTALL_
+    * Click _INSTALL_.
     * If a prompt asks you for elevated privileges, accept it.
-* The download and installation of the components will take a while:  
+* Depending on your connection and computer speed, the download and installation of the components should take a while:  
 ![](https://github.com/pbatard/libwdi/wiki/images/vs_install_03.png)
 * Once completed, you will see the following dialog:  
 ![](https://github.com/pbatard/libwdi/wiki/images/vs_install_04.png)
     * __DO NOT__ select _LAUNCH_, but instead __close the dialog__, as we need to install the WDK before we can proceed.
 
-### Windows Driver Kit (WDK) 8.1 installation
+### Windows Driver Kit (WDK) 8.1
 
+Sadly, the WinUSB redistributable files, which libwdi needs to compile the library, are no longer provided as a standalone download by Microsoft, so we need to download and install the latest Windows Driver Kit, which is about 500 MB in size, to have them available.
+
+* Click on http://go.microsoft.com/fwlink/?LinkID=317353 to download the WDK 8.1.
+* Save the `wdksetup.exe` file in the location of your choice and run it.
+* Specify the download location of your choice (or keep the default) and click _Next_.
+* On the following screen:  
+![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_01.png)  
+    * Because the installer detects that Visual Studio has been installed, it should automatically select the proper location, so just click _Next_.
+* If asked to join the Customer Experience Improvement Program, select No:  
+![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_02.png)
+* On the License Agreement screen:  
+![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_03.png)
+    * Click _Accept_.
+    * If a prompt asks you for elevated privileges, accept it.
+* Let the download and installation process complete:  
+![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_04.png)
+* Close the final screen:
+![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_05.png)
