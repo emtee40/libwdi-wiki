@@ -85,4 +85,4 @@ Because git is integrated in Visual Studio 2013, there's no need to install a th
     * If desired, change the local destination directory.
     * Click _Clone_.
 * The libwdi source will be retrieved from the internet:  
-![](https://github.com/pbatard/libwdi/wiki/images/vs_git_02.png)
+![https://github.com/pbatard/libwdi/wiki/images/vs_git_02.png](https://github.com/pbatard/libwdi/wiki/images/vs_git_02.png)
