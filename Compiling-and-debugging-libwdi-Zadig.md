@@ -24,6 +24,17 @@ And since the installation files will be downloaded from the internet, you will 
 On this screen:
     * Check "_I agree to the License Terms and Privacy Policy_"
     * Uncheck "_Join the Visual Studio Experience Improvement Program_"
+    * Click _Next_
+* On the next screen:  
+![](https://github.com/pbatard/libwdi/wiki/images/vs_install_02.png)  
+    * __Unselect__ everything (as this will reduce the amount you need to download and libwdi only needs the base system).
+    * Click _INSTALL_
+    * If a prompt asks you for elevated privileges, accept it.
+* The download and installation of the components will take a while:  
+![](https://github.com/pbatard/libwdi/wiki/images/vs_install_03.png)
+* Once completed, you will see the following dialog:  
+![](https://github.com/pbatard/libwdi/wiki/images/vs_install_04.png)
+    * __DO NOT__ select _LAUNCH_, but instead __close the dialog__, as we need to install the WDK before we can proceed.
 
 ### Windows Driver Kit (WDK) 8.1 installation
 
