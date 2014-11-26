@@ -88,3 +88,17 @@ Since git is integrated in Visual Studio 2013, there's no need to install a thir
 * The libwdi source will be retrieved from the internet:  
 [![Git source retrieval](https://github.com/pbatard/libwdi/wiki/images/vs_git_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_02.png)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
+* Eventually a new `libwdi` Local Git Repository will be listed:  
+[![Git source retrieval](https://github.com/pbatard/libwdi/wiki/images/vs_git_03.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_03.png)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
+    * Double Click on the `libwdi` repository.
+* Now the main Visual Studio solution file for this project (`libwdi.sln`) should be listed:  
+[![Git source retrieval](https://github.com/pbatard/libwdi/wiki/images/vs_git_04.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_04.png)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
+    * Double Click on `libwdi.sln`.
+* Finally, click on the _Solution Explorer_ tab at the bottom left (circled), so that you can navigate the source files:
+[![Git source retrieval](https://github.com/pbatard/libwdi/wiki/images/vs_git_05.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_05.png)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
+    * Double Click on `libwdi.sln`.
+
+__Note:__ The above only needs to be done once. On subsequent startups of Visual Studio, you will just need to select `libwdi` from the the list of recent projects.
