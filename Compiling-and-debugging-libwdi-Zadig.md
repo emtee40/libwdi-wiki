@@ -141,8 +141,7 @@ and change it to (add `//` at the beginning of 2 lines):
 You should end up with something similar to this:  
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_compile_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_compile_02.png)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
-* In the menu, select _BUILD_ &rarr; _Build Solution_. The Output window should now fill up with something like this:  
-```
+* In the menu, select _BUILD_ &rarr; _Build Solution_. The Output window should now fill up with something like this:  ```
 1>------ Build started: Project: detect_64build, Configuration: Debug Win32 ------
 2>------ Build started: Project: installer_x86, Configuration: Debug Win32 ------
 3>------ Build started: Project: installer_x64, Configuration: Debug x64 ------
