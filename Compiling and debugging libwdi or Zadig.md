@@ -28,7 +28,7 @@ On this screen:
     * Click _Next_.
 * On the next screen:  
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_install_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_install_02.png)  
-    * __Unselect__ everything (as this will reduce the amount you need to download and libwdi only needs the base system).
+    * __Unselect__ everything (as this will reduce the amount you need to download &mdash; libwdi only needs the base system).
     * Click _INSTALL_.
     * If a prompt asks you for elevated privileges, accept it.
 * Depending on your connection and computer speed, the download and installation of the components should take a while:  
