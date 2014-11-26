@@ -141,7 +141,8 @@ and change it to (add `//` at the beginning of 2 lines):
 You should end up with something similar to this:  
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_compile_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_compile_02.png)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
-* In the menu, select _BUILD_ &rarr; _Build Solution_. The Output window should now fill up with something like this:  ```
+* In the menu, select _BUILD_ &rarr; _Build Solution_. The Output window should now fill up with something like this:  
+```
 1>------ Build started: Project: detect_64build, Configuration: Debug Win32 ------
 2>------ Build started: Project: installer_x86, Configuration: Debug Win32 ------
 3>------ Build started: Project: installer_x64, Configuration: Debug x64 ------
@@ -201,6 +202,31 @@ You should end up with something similar to this:
 ========== Build: 10 succeeded, 0 failed, 0 up-to-date, 1 skipped ==========
 ```
 
-If you don't see any `failed` project, congratulations: you have just successfully built libwdi and Zadig!
+If you don't get any `failed` projects then congratulations: you have just successfully built libwdi and Zadig!
 
+### Debugging
+
+Let's say you have been running the release version of Zadig, and experienced a crash. With the version that you just recompiled above, you should be able to help pinpoint where exactly in the code the problem might be located, which is of __tremendous__ help for the developers.
+
+To do just that:
+
+* In the solution explorer, expand `examples` and right click on `zadig`:
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_debug_01.png)](https://github.com/pbatard/libwdi/wiki/images/vs_debug_01.png)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
+    * In the menu that appears, select _Set as StartUp Project_.
+    * Now click on the _Local Windows Debugger_ button at the top.
+* Because Zadig is an application that requires elevated privileges, and Visual Studio was not started as administrator, you will get the following prompt:  
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_debug_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_debug_02.png)
+    * Click on _Restart under different credentials_.
+* Once Visual Studio has relaunched, click on click on the _Local Windows Debugger_ button again. This time the application will launch in debug mode:  
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_debug_03.png)](https://github.com/pbatard/libwdi/wiki/images/vs_debug_03.png)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
+* From there you can proceed to testing for problems as you would with the regular application, except that if you encounter a condition where the application is about to crash, you will be presented with the following dialog:  
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_debug_04.png)](https://github.com/pbatard/libwdi/wiki/images/vs_debug_04.png)
+    * If that happens, select _Break_.
+* Once you have issued a break, the debugger allows you to pinpoint the location of the code where the most likely cause is located, as well as explore the value of some of the code variables. To access the relevant section of code then, you should ensure that the _Call Stack_ tab at the bottom is the current one selected and in the list from the _Call Stack_, you would usually select one of the topmost entry. If you double click on it, it should then take you close to the line in the source that is the likely culprit. For instance, in the following screenshot, the line just above the arrow is the cause of the crash:
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_debug_05.png)](https://github.com/pbatard/libwdi/wiki/images/vs_debug_05.png)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
+
+Of course, if you do get a crash in the debugger, you probably want to contact the developer of the application so that they can guide you to the information that is likely to be most relevant.
 
