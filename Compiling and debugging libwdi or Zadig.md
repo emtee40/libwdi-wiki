@@ -214,7 +214,7 @@ To do just that:
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_debug_01.png)](https://github.com/pbatard/libwdi/wiki/images/vs_debug_01.png)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
     * In the menu that appears, select _Set as StartUp Project_.
-    * Now click on the _Local Windows Debugger_ button at the top.
+    * After that, click on the _Local Windows Debugger_ button at the top (circled).
 * Because Zadig is an application that requires elevated privileges, and Visual Studio was not started as administrator, you will get the following prompt:  
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_debug_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_debug_02.png)
     * Click on _Restart under different credentials_.
