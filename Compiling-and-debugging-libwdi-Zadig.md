@@ -58,7 +58,7 @@ Sadly, the WinUSB redistributable files, which libwdi needs to compile the libra
 * Close the final screen:
 [![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_05.png)](https://github.com/pbatard/libwdi/wiki/images/wdk_install_05.png)
 
-## Launching Visual Studio and fetching the latest git sources
+## Launching Visual Studio and getting the latest libwdi
 
 ### First Visual Studio Startup
 
@@ -86,19 +86,56 @@ Since git is integrated in Visual Studio 2013, there's no need to install a thir
     * If desired, change the local destination directory.
     * Click _Clone_.
 * The libwdi source will be retrieved from the internet:  
-[![Git source retrieval](https://github.com/pbatard/libwdi/wiki/images/vs_git_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_02.png)  
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_git_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_02.png)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
 * Eventually a new `libwdi` Local Git Repository will be listed:  
 [![Git source retrieval](https://github.com/pbatard/libwdi/wiki/images/vs_git_03.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_03.png)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
     * Double Click on the `libwdi` repository.
 * Now the main Visual Studio solution file for this project (`libwdi.sln`) should be listed:  
-[![Git source retrieval](https://github.com/pbatard/libwdi/wiki/images/vs_git_04.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_04.png)  
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_git_04.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_04.png)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
     * Double Click on `libwdi.sln`.
 * Finally, click on the _Solution Explorer_ tab at the bottom left (circled), so that you can navigate the source files:
-[![Git source retrieval](https://github.com/pbatard/libwdi/wiki/images/vs_git_05.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_05.png)  
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_git_05.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_05.png)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
     * Double Click on `libwdi.sln`.
 
 __Note:__ The above only needs to be done once. On subsequent startups of Visual Studio, you will just need to select `libwdi` from the the list of recent projects.
+
+## Compiling libwdi and debugging Zadig
+
+Now we are finally set to compile and debug libwdi applications. However, we need to modify one of the source files because the only driver we have available (through the WDK 8.1 installation) is WinUSB, and by default, libwdi also expects the libusb-win32 and libusbK drivers to be available.
+
+Rather than ask you to download and install these drivers, we are just going to tell libwdi to ignore them:
+
+* Expand `embedder` &rarr; `Header Files` and double click on `config.h` to open it in the Visual Studio source editor:  
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_compile_01.png)](https://github.com/pbatard/libwdi/wiki/images/vs_compile_01.png)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
+* Navigate to the following section:  
+```
+/* embed libusb0 driver files from the following location */
+#ifndef LIBUSB0_DIR
+#define LIBUSB0_DIR "D:/libusb-win32"
+#endif
+
+/* embed libusbK driver files from the following location */
+#ifndef LIBUSBK_DIR
+#define LIBUSBK_DIR "D:/libusbK/bin"
+#endif
+```  
+and change it to (add `//` at the beginning of 2 lines):  
+```
+/* embed libusb0 driver files from the following location */
+#ifndef LIBUSB0_DIR
+//#define LIBUSB0_DIR "D:/libusb-win32"
+#endif
+
+/* embed libusbK driver files from the following location */
+#ifndef LIBUSBK_DIR
+//#define LIBUSBK_DIR "D:/libusbK/bin"
+#endif
+```  
+You should end up with something similar to this:  
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_compile_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_compile_02.png)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
