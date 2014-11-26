@@ -58,7 +58,7 @@ Sadly, the WinUSB redistributable files, which libwdi needs to compile the libra
 * Close the final screen:
 [![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_05.png)](https://github.com/pbatard/libwdi/wiki/images/wdk_install_05.png)
 
-## Launching Visual Studio and getting the latest libwdi
+## Launching Visual Studio and fetching the latest libwdi source
 
 ### First Visual Studio Startup
 
