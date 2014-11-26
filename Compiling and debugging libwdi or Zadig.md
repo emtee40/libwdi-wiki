@@ -202,7 +202,7 @@ You should end up with something similar to this:
 ========== Build: 10 succeeded, 0 failed, 0 up-to-date, 1 skipped ==========
 ```
 
-If you don't get any `failed` projects then congratulations: you have just successfully built libwdi and Zadig!
+If you don't get any `failed` projects then __congratulations__: you have just rebuilt libwdi and Zadig from the latest sources!
 
 ### Debugging
 
