@@ -105,6 +105,8 @@ __Note:__ The above only needs to be done once. On subsequent startups of Visual
 
 ## Compiling libwdi and debugging Zadig
 
+### Compiling
+
 Now we are finally set to compile and debug libwdi applications. However, we need to modify one of the source files because the only driver we have available (through the WDK 8.1 installation) is WinUSB, and by default, libwdi also expects the libusb-win32 and libusbK drivers to be available.
 
 Rather than ask you to download and install these drivers, we are just going to tell libwdi to ignore them:
@@ -139,3 +141,67 @@ and change it to (add `//` at the beginning of 2 lines):
 You should end up with something similar to this:  
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_compile_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_compile_02.png)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>(Click on the image for bigger size)</sup>
+* In the menu, select _BUILD_ &rarr; _Build Solution_. The Output window should now fill up with something like this:  
+```
+1>------ Build started: Project: detect_64build, Configuration: Debug Win32 ------
+2>------ Build started: Project: installer_x86, Configuration: Debug Win32 ------
+3>------ Build started: Project: installer_x64, Configuration: Debug x64 ------
+4>------ Build started: Project: getopt, Configuration: Debug Win32 ------
+2>  installer.c
+3>  installer.c
+4>  getopt1.c
+4>  getopt.c
+4>  Generating Code...
+5>------ Build started: Project: embedder, Configuration: Debug Win32 ------
+4>  getopt.vcxproj -> C:\Source\Repos\libwdi\Win32\Debug\lib\getopt.lib
+5>  embedder.c
+3>  installer_x64.vcxproj -> C:\Source\Repos\libwdi\x64\Debug\helper\installer_x64.exe
+2>  installer_x86.vcxproj -> C:\Source\Repos\libwdi\Win32\Debug\helper\installer_x86.exe
+5>  embedder.vcxproj -> C:\Source\Repos\libwdi\libwdi\.msvc\\..\embedder.exe
+6>------ Build started: Project: libwdi (static), Configuration: Debug Win32 ------
+7>------ Skipped Build: Project: libwdi (dll), Configuration: Debug Win32 ------
+7>Project not selected to build for this solution configuration 
+6>  detected change for 'C:\Source\Repos\libwdi\Win32\Debug\helper\installer_x86.exe'
+6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x86\WdfCoInstaller01011.dll (2013.06.18)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x86\winusbcoinstaller2.dll (2013.06.18)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x64\WdfCoInstaller01011.dll (2013.06.18)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x64\winusbcoinstaller2.dll (2013.06.18)
+6>    EMBED  C:\Source\Repos\libwdi\Win32\Debug\helper\installer_x86.exe (2014.11.26)
+6>    EMBED  C:\Source\Repos\libwdi\x64\Debug\helper\installer_x64.exe (2014.11.26)
+6>    EMBED  C:\Source\Repos\libwdi\libwdi\winusb.inf.in (2014.11.25)
+6>    EMBED  C:\Source\Repos\libwdi\libwdi\libusb0.inf.in (2014.11.25)
+6>    EMBED  C:\Source\Repos\libwdi\libwdi\libusbk.inf.in (2014.11.25)
+6>    EMBED  C:\Source\Repos\libwdi\libwdi\winusb.cat.in (2014.11.25)
+6>    EMBED  C:\Source\Repos\libwdi\libwdi\libusb0.cat.in (2014.11.25)
+6>    EMBED  C:\Source\Repos\libwdi\libwdi\libusbk.cat.in (2014.11.25)
+6>  vid_data.c
+6>  tokenizer.c
+6>  pki.c
+6>  logging.c
+6>  libwdi_dlg.c
+6>  libwdi.c
+6>  Generating Code...
+6>  libwdi_static.vcxproj -> C:\Source\Repos\libwdi\Win32\Debug\lib\libwdi.lib
+8>------ Build started: Project: wdi-simple, Configuration: Debug Win32 ------
+9>------ Build started: Project: zadic, Configuration: Debug Win32 ------
+10>------ Build started: Project: zadig, Configuration: Debug Win32 ------
+11>------ Build started: Project: inf-wizard, Configuration: Debug Win32 ------
+11>  inf_wizard.c
+10>  zadig_net.c
+9>  zadic.c
+8>  wdi-simple.c
+10>  profile.c
+10>  zadig.c
+9>  zadic.vcxproj -> C:\Source\Repos\libwdi\Win32\Debug\examples\zadic.exe
+8>  wdi-simple.vcxproj -> C:\Source\Repos\libwdi\Win32\Debug\examples\wdi-simple.exe
+10>  zadig_parser.c
+10>  zadig_stdlg.c
+10>  Generating Code...
+10>  zadig.vcxproj -> C:\Source\Repos\libwdi\Win32\Debug\examples\zadig.exe
+11>  inf_wizard.vcxproj -> C:\Source\Repos\libwdi\Win32\Debug\examples\inf-wizard.exe
+========== Build: 10 succeeded, 0 failed, 0 up-to-date, 1 skipped ==========
+```
+
+If you don't see any `failed` project, congratulations: you have just successfully built libwdi and Zadig!
+
+
