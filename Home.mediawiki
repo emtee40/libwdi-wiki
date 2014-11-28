@@ -45,6 +45,7 @@ Alternatively, you can also use the github facility to [https://github.com/pbata
 # <h4>'''[[FAQ]]'''</h4>
 # <h4>'''[[Zadig|Using Zadig (the GUI driver installer application)]]'''</h4>
 # <h4>'''[[Install|Library Installation & Configuration]]'''</h4>
+# <h4>'''[[Compiling-and-debugging-libwdi-or-Zadig|Compiling and debugging Zadig using Visual Studio 2013 Community Edition]]
 # <h4>'''[[Usage|Library API Documentation & Usage]]'''</h4>
 # <h4>'''[[Signed Driver Walkthrough|Signed driver installation walkthrough]]'''</h4>
 # <h4>'''[[WCID Devices]]'''</h4>
