@@ -23,7 +23,7 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
 
 === High priority ===
-[[images/r.png]]: Rufus work (Est. &infin; days)<br/>
+[[images/r.png]]: [https://github.com/pbatard/rufus/issues Rufus work] (Est. '''&infin;''' days)<br/>
 [[images/r.png]]: That device in use with or without using a VHD issue. Also got that one on Shade when testing Arabic... Could try our hand at process detection and stuff. (Est. ??? days)<br/>
 [[images/b.png]]: AltInput B9 issue (Est. 1 day)<br/>
 [[images/b.png]]: Some Windows Storage Spaces blurb is (hopefully) coming (Est. 2 days)<br/>
