@@ -15,9 +15,9 @@ And so, without further ado, please find below the state of my current backlog, 
 
 === Legend ===
 
-[[images/x.png]]: <del>[http://libusb.info libusb]/[http://libusbx.org libusbx]</del><br/>
 [[images/r.png]]: [http://rufus.akeo.ie rufus]<br/>
 [[images/w.png]]: [http://libwdi.akeo.ie libwdi]<br/>
+[[images/x.png]]: <del>[http://libusb.info libusb]/[http://libusbx.org libusbx]</del><br/>
 [[images/c.png]]: [http://cecd.akeo.ie libcec/cecd]<br/>
 [[images/u.png]]: [http://ubrx.akeo.ie UBRX]<br/>
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
@@ -30,43 +30,42 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/b.png]]: Sure would be nice to write a follow up post about RTL language support (Est. 1 day)<br/>
 [[images/b.png]]: Double buffering for [https://github.com/pbatard/efifs efifs] to speed up ext/btrfs (Est. days)<br/>
 [[images/w.png]]: Write a guide to help with the SDR# driver install and post in Yahoo! groups (Est. 3 days)<br/>
-[[images/x.png]]: Set up libusb github issue notifications (Est. 1 day)<br/>
 [[images/r.png]]: Forward the ReactOS ms-sys patch to Henrik (Est. 1 day)<br/>
-[[images/x.png]]: Look at the Windows hotplug patch (Est. 2 days)<br/>
-[[images/x.png]]: look at that isoc patch (Est. 2 days)<br/>
 [[images/b.png]]: Now '''how''' the heck do you modify the AOSP to see it applied to your device (Re: that stupid max volume thing)??? (Est. 3 days)<br/>
 [[images/b.png]]: Better Android WCID implementation (Est. 2 days)<br/>
 [[images/r.png]]: External loc file support (Est. 4 days)<br/>
-[[images/x.png]]: Look at Hans' Windows patch from 2013.09.06 (Est. 1 day)<br/>
-[[images/x.png]]: Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)<br/>
-[[images/x.png]]: The Windows backend is missing <tt>get_config_descriptor_by_value</tt> (Est. 1 day)<br/>
 [[images/r.png]]: Produce a patch for Syslinux to append <tt>ldlinux.sys</tt>/<tt>ldlinux.bss</tt> at the end of <tt>isolinux.bin</tt> or something (Est. week'''s''', dammit!)<br/>
 [[images/b.png]]: Now that I have an UEFI BIOS at last, document my findings (Est. 1 day)<br/>
 [[images/u.png]]: Upload '''Czerno''''s AMD scripts (Est. 1 day)<br/>
 [[images/b.png]]: FX3 hands on (Est. 1 day)<br/>
-[[images/x.png]]: Create a [https://github.com/libusbx/libusbx/wiki/Troubleshooting Wiki page] for obtaining troubleshooting help (Est. 2 days)<br/>
-[[images/x.png]]: 2.0 API changes and consultation period (Est. ? weeks)<br/>
-[[images/x.png]]: initial libusb 2.0 token release (Est. 1 week)<br/>
 [[images/w.png]]: And now we have [https://github.com/pbatard/libwdi/issues/9 an issue with cathash] (Est. 2 days)<br/>
 [[images/w.png]]: Also [https://github.com/pbatard/libwdi/issues/4 this] and [https://github.com/pbatard/libwdi/issues/6 this] need to go (Est. 2 days)<br/>
-[[images/x.png]]: Add FX2/FX3 EEPROM write support to <code>fxload</code> (Est. 1 week)<br/>
-[[images/x.png]]: Fix <code>libusb-win32</code> filter driver support for composite device members or on top of WinUSB (Est. 1 week)<br/>
-[[images/x.png]]: Try to pass priv-sub_api rather than SUB_API_NOTSET always (Est. 2 days)<br/>
-[[images/x.png]]: Add reset+isochronous support for <code>libusb-win32</code> and <code>libusbK</code> 
-(Est. 3 weeks)<br/>
 [[images/b.png]]: Fix the Linux driver sample (Est. 1 day)<br/>
 [[images/w.png]]: Investigate the "Operation timed out" message further (see George Atkins' message from 2012.11.02 - Est. 2 days)
 
 === High priority, if only I had more time ===
 [[images/r.png]]: Commandline support (Est. 1 weeks)<br/>
 [[images/w.png]]: Rework embedding and add <code>7z</code> support to <code>libwdi</code> (Est. 5 weeks)<br/>
-[[images/x.png]]: libusb hotplug event API (Est. 6 weeks)<br/>
 [[images/r.png]]: Folder selection support (Est. 2 weeks)<br/>
 [[images/r.png]]: Optical Disc support (Est. 2 weeks)<br/>
 [[images/r.png]]: Run Windows 8 from USB (Est. 2 weeks)<br/>
-[[images/x.png]]: Setup Gerrit+Jenkins for libusb (Est. 2 weeks)<br/>
 
 === High priority, if I could develop Open Source all day long ===
+[[images/x.png]]: <del>Set up libusb github issue notifications (Est. 1 day)</del><br/>
+[[images/x.png]]: <del>libusb hotplug event API (Est. 6 weeks)</del><br/>
+[[images/x.png]]: <del>Look at the Windows hotplug patch (Est. 2 days)</del><br/>
+[[images/x.png]]: <del>look at that isoc patch (Est. 2 days)</del><br/>
+[[images/x.png]]: <del>Look at Hans' Windows patch from 2013.09.06 (Est. 1 day)</del><br/>
+[[images/x.png]]: <del>Look at Toby's Windows patches from 2013.06.27 (Est. 2 days)</del><br/>
+[[images/x.png]]: <del>The Windows backend is missing <tt>get_config_descriptor_by_value</tt> (Est. 1 day)</del><br/>
+[[images/x.png]]: <del>Create a [https://github.com/libusbx/libusbx/wiki/Troubleshooting Wiki page] for obtaining troubleshooting help (Est. 2 days)</del><br/>
+[[images/x.png]]: <del>Add FX2/FX3 EEPROM write support to <code>fxload</code> (Est. 1 week)</del><br/>
+[[images/x.png]]: <del>Fix <code>libusb-win32</code> filter driver support for composite device members or on top of WinUSB (Est. 1 week)</del><br/>
+[[images/x.png]]: <del>Try to pass priv-sub_api rather than SUB_API_NOTSET always (Est. 2 days)</del><br/>
+[[images/x.png]]: <del>Add reset+isochronous support for <code>libusb-win32</code> and <code>libusbK</code> 
+(Est. 3 weeks)</del><br/>
+[[images/x.png]]: <del>2.0 API changes and consultation period (Est. ? weeks)</del><br/>
+[[images/x.png]]: <del>initial libusb 2.0 token release (Est. 1 week)</del><br/>
 [[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
 [[images/w.png]]: Download vs embedding (Est. 3 weeks)<br/>
 [[images/w.png]]: Generic driver support (not USB only) (Est. 2 months)<br/>
