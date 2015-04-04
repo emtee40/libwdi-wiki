@@ -17,10 +17,10 @@ And so, without further ado, please find below the state of my current backlog, 
 
 [[images/r.png]]: [http://rufus.akeo.ie rufus]<br/>
 [[images/w.png]]: [http://libwdi.akeo.ie libwdi]<br/>
-[[images/x.png]]: <del>[http://libusb.info libusb]/[http://libusbx.org libusbx]</del><br/>
 [[images/c.png]]: [http://cecd.akeo.ie libcec/cecd]<br/>
 [[images/u.png]]: [http://ubrx.akeo.ie UBRX]<br/>
 [[images/b.png]]: [http://pete.akeo.ie blog] and miscellanea<br/>
+[[images/x.png]]: <del>[http://libusb.info libusb]/[http://libusbx.org libusbx]</del><br/>
 
 === High priority ===
 [[images/r.png]]: [https://github.com/pbatard/rufus/issues Rufus work] (Est. '''&infin;''' days)<br/>
@@ -51,6 +51,14 @@ And so, without further ado, please find below the state of my current backlog, 
 [[images/r.png]]: Run Windows 8 from USB (Est. 2 weeks)<br/>
 
 === High priority, if I could develop Open Source all day long ===
+[[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
+[[images/w.png]]: Download vs embedding (Est. 3 weeks)<br/>
+[[images/w.png]]: Generic driver support (not USB only) (Est. 2 months)<br/>
+[[images/u.png]]: Finalize how to produce bare-metal code compatible with UBRX (Est. 3 weeks)<br/>
+[[images/u.png]]: Add USB 3.0 serial debug (Est. 6 weeks)<br/>
+[[images/r.png]]: VMDK/VHD support (Est. 6 weeks)<br/>
+[[images/b.png]]: Create a guide for Gerrit+Jenkins installation (Est. 1-2 weeks)<br/>
+[[images/c.png]]: Complete CECD using a virtual HDMI/CEC device (Est. 6 weeks)<br/>
 [[images/x.png]]: <del>Set up libusb github issue notifications (Est. 1 day)</del><br/>
 [[images/x.png]]: <del>libusb hotplug event API (Est. 6 weeks)</del><br/>
 [[images/x.png]]: <del>Look at the Windows hotplug patch (Est. 2 days)</del><br/>
@@ -66,16 +74,7 @@ And so, without further ado, please find below the state of my current backlog, 
 (Est. 3 weeks)</del><br/>
 [[images/x.png]]: <del>2.0 API changes and consultation period (Est. ? weeks)</del><br/>
 [[images/x.png]]: <del>initial libusb 2.0 token release (Est. 1 week)</del><br/>
-[[images/w.png]]: Create a <code>signtool</code> equivalent based on <code>pki.c</code> for the MinGW-w64 guys (Est. 6-8 weeks)<br/>
-[[images/w.png]]: Download vs embedding (Est. 3 weeks)<br/>
-[[images/w.png]]: Generic driver support (not USB only) (Est. 2 months)<br/>
-[[images/x.png]]: HID support for OS-X (Est. 4 weeks)<br/>
-[[images/u.png]]: Finalize how to produce bare-metal code compatible with UBRX (Est. 3 weeks)<br/>
-[[images/u.png]]: Add USB 3.0 serial debug (Est. 6 weeks)<br/>
-[[images/r.png]]: VMDK/VHD support (Est. 6 weeks)<br/>
-[[images/x.png]]: Use the github API for e-mail notifications on new issues (Est. 1 week)<br/>
-[[images/b.png]]: Create a guide for Gerrit+Jenkins installation (Est. 1-2 weeks)<br/>
-[[images/c.png]]: Complete CECD using a virtual HDMI/CEC device (Est. 6 weeks)<br/>
+[[images/x.png]]: <del>HID support for OS-X (Est. 4 weeks)</del><br/>
 
 === What I know I'll never have time to spend on ===
 [[images/r.png]]: Multiboot/grub4dos (If you need this, you should know enough not to require an automated tool to do that for you! Or you should look into purchasing an [http://isostick.com/ isostick])<br/>
