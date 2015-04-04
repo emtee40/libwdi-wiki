@@ -15,7 +15,7 @@ And so, without further ado, please find below the state of my current backlog, 
 
 === Legend ===
 
-[[images/x.png]]: [http://libusb.info libusb]/[http://libusbx.org libusbx]<br/>
+[[images/x.png]]: <del>[http://libusb.info libusb]/[http://libusbx.org libusbx]</del><br/>
 [[images/r.png]]: [http://rufus.akeo.ie rufus]<br/>
 [[images/w.png]]: [http://libwdi.akeo.ie libwdi]<br/>
 [[images/c.png]]: [http://cecd.akeo.ie libcec/cecd]<br/>
