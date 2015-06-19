@@ -19,11 +19,11 @@ Most of the Authenticode driver signing credentials seem to originate either fro
 
 ==== Verisign ====
 * 1st year driver signing credentials [https://winqual.microsoft.com/help/why_is_a_digital_certificate_required_for_winqual_membership.htm '''could''' be obtained for $99] (dead link)
-* Normally a lot more expensive than !GlobalSign in the long run: $499/year
+* Usually a lot more expensive than GlobalSign in the long run: $499/year
 * Might not provide credentials for non registered companies
 
 ==== Globalsign ====
-* Normally more competitive on pricing (long term) compared to Verisign
+* Usually more competitive on pricing (long term) compared to Verisign
 * Even if non affiliated to a registered company, individual developers can obtain certificates for [http://www.globalsign.com/code-signing/code-signing-for-individual-developers.html $129 (US & Canada)] / [http://www.globalsign.eu/code-signing/buy-code-signing-for-individual-developers.html  €99 (EU)] (promotional offer)
 * More friendly to non-US based customers (Belgium-based)
 
