@@ -107,7 +107,7 @@ __Note:__ The above only needs to be done once. On subsequent startups of Visual
 
 ### Compiling
 
-Now we are finally set to compile and debug libwdi applications. However, we need to modify one of the source files because the only driver we have available (through the WDK 8.1 installation) is WinUSB, and by default, libwdi also expects the libusb-win32 and libusbK drivers to be available.
+Now we are finally set to compile and debug libwdi applications. However, we need to modify one of the source files because the only driver we have available (through the WDK 10 installation) is WinUSB, and by default, libwdi also expects the libusb-win32 and libusbK drivers to be available.
 
 Rather than ask you to download and install these drivers, we are just going to tell libwdi to ignore them:
 
@@ -162,10 +162,10 @@ You should end up with something similar to this:
 7>------ Skipped Build: Project: libwdi (dll), Configuration: Debug Win32 ------
 7>Project not selected to build for this solution configuration 
 6>  detected change for 'C:\Source\Repos\libwdi\Win32\Debug\helper\installer_x86.exe'
-6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x86\WdfCoInstaller01011.dll (2015.03.30)
-6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x86\winusbcoinstaller2.dll (2015.03.30)
-6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x64\WdfCoInstaller01011.dll (2015.03.30)
-6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x64\winusbcoinstaller2.dll (2015.03.30)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\10\redist\wdf\x86\WdfCoInstaller01011.dll (2015.03.30)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\10\redist\wdf\x86\winusbcoinstaller2.dll (2015.03.30)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\10\redist\wdf\x64\WdfCoInstaller01011.dll (2015.03.30)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\10\redist\wdf\x64\winusbcoinstaller2.dll (2015.03.30)
 6>    EMBED  C:\Source\Repos\libwdi\Win32\Debug\helper\installer_x86.exe (2014.11.26)
 6>    EMBED  C:\Source\Repos\libwdi\x64\Debug\helper\installer_x64.exe (2014.11.26)
 6>    EMBED  C:\Source\Repos\libwdi\libwdi\winusb.inf.in (2014.11.25)
