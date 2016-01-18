@@ -1,10 +1,10 @@
 ## Preamble
 
-This is a visual guide on how to compile and debug the latest libwdi/Zadig using the __freely available__ Visual Studio 2013 Community Edition. If you follow this guide through, you should end up with a setup that is extremely close to the one that I, the developer, have been using for all my libwdi and Zadig development, and which should allow you to troubleshoot Zadig crashes for instance.
+This is a visual guide on how to compile and debug the latest libwdi/Zadig using the __freely available__ Visual Studio 2015 Community Edition. If you follow this guide through, you should end up with a setup that is extremely close to the one that I, the developer, have been using for all my libwdi and Zadig development, and which should allow you to troubleshoot Zadig crashes for instance.
 
 This visual guide does not assume any familiarity with any of the development tools mentioned below. Even if you don't know anything about development, if you follow these steps through, you should be in a position to compile, run and debug the application as if you were a well-seasoned developer.
 
-Finally, it should be noted that, because libwdi and Zadig and OSI-licensed Open Source projects (LGPL v2.1 and GPL v3 respectively), you are __fully entitled__ to download and install Visual Studio 2013 Community Edition to build and troubleshoot the project, no matter whether you are an individual doing it at home or an enterprise user doing it within your company.
+Finally, it should be noted that, because libwdi and Zadig and OSI-licensed Open Source projects (LGPL v2.1 and GPL v3 respectively), you are __fully entitled__ to download and install Visual Studio 2015 Community Edition to build and troubleshoot the project, no matter whether you are an individual doing it at home or an enterprise user doing it within your company.
 
 ## Before Installing
 
@@ -16,10 +16,10 @@ Also, this whole installation process will not work on Windows XP, as this versi
 
 ## Installing Visual Studio and the WDK
 
-### Visual Studio 2013 Community Edition
+### Visual Studio 2015 Community Edition
 
 * Go to http://www.visualstudio.com/products/visual-studio-community-vs and click the _Download_ button.
-* Save the `vs_community.exe` file in the location of your choice and run it.
+* Save the `vs_community_###.exe` file in the location of your choice and run it.
 * Proceed to the screen where it asks for the installation location:  
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_install_01.png)](https://github.com/pbatard/libwdi/wiki/images/vs_install_01.png)  
 On this screen:
@@ -37,11 +37,12 @@ On this screen:
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_install_04.png)](https://github.com/pbatard/libwdi/wiki/images/vs_install_04.png)
     * __DO NOT__ select _LAUNCH_, but instead __close the dialog__, as we need to install the WDK before we can proceed.
 
-### Windows Driver Kit (WDK) 8.1
+### Windows Driver Kit (WDK) 10
 
 Sadly, the WinUSB redistributable files, which libwdi needs to compile the library, are no longer provided as a standalone download by Microsoft, so we need to download and install the latest Windows Driver Kit, which is about 500 MB in size, to have them available.
 
-* Click on http://go.microsoft.com/fwlink/?LinkID=317353 to download the WDK 8.1.
+* Go to https://msdn.microsoft.com/en-us/windows/hardware/dn913721.aspx and click `
+Install Windows Driver Kit (WDK) 10`.
 * Save the `wdksetup.exe` file in the location of your choice and run it.
 * Specify the download location of your choice (or keep the default) and click _Next_.
 * On the following screen:  
@@ -62,7 +63,7 @@ Sadly, the WinUSB redistributable files, which libwdi needs to compile the libra
 
 ### First Visual Studio Startup
 
-* Go to _Start_ &rarr; _All Programs_ &rarr; _Visual Studio 2013_ &rarr; _Visual Studio 2013_ or (Windows 8) go to search and type _Visual Studio_ to launch Visual Studio 2013.
+* Go to _Start_ &rarr; _All Programs_ &rarr; _Visual Studio 2015_ &rarr; _Visual Studio 2015_ or (Windows 8 or later) go to search and type _Visual Studio_ to launch Visual Studio 2015.
 * On the sign in screen:  
 [![](https://github.com/pbatard/libwdi/wiki/images/ws_startup_01.png)](https://github.com/pbatard/libwdi/wiki/images/ws_startup_01.png)
     * For the _Development Settings:_ dropdown, select `Visual C++`.
@@ -76,7 +77,7 @@ Sadly, the WinUSB redistributable files, which libwdi needs to compile the libra
 
 ### Cloning the latest libwdi source
 
-Since git is integrated in Visual Studio 2013, there's no need to install a third party client to download the latest sources from github.
+Since git is integrated in Visual Studio 2015, there's no need to install a third party client to download the latest sources from github.
 
 * In the main Visual Studio window, on the left handside:  
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_git_01.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_01.png)  
@@ -162,10 +163,10 @@ You should end up with something similar to this:
 7>------ Skipped Build: Project: libwdi (dll), Configuration: Debug Win32 ------
 7>Project not selected to build for this solution configuration 
 6>  detected change for 'C:\Source\Repos\libwdi\Win32\Debug\helper\installer_x86.exe'
-6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x86\WdfCoInstaller01011.dll (2013.06.18)
-6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x86\winusbcoinstaller2.dll (2013.06.18)
-6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x64\WdfCoInstaller01011.dll (2013.06.18)
-6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x64\winusbcoinstaller2.dll (2013.06.18)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x86\WdfCoInstaller01011.dll (2015.03.30)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x86\winusbcoinstaller2.dll (2015.03.30)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x64\WdfCoInstaller01011.dll (2015.03.30)
+6>    EMBED  C:\Program Files (x86)\Windows Kits\8.1\redist\wdf\x64\winusbcoinstaller2.dll (2015.03.30)
 6>    EMBED  C:\Source\Repos\libwdi\Win32\Debug\helper\installer_x86.exe (2014.11.26)
 6>    EMBED  C:\Source\Repos\libwdi\x64\Debug\helper\installer_x64.exe (2014.11.26)
 6>    EMBED  C:\Source\Repos\libwdi\libwdi\winusb.inf.in (2014.11.25)
