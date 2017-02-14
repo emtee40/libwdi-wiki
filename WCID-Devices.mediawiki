@@ -215,7 +215,7 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 * Use <tt>DeviceInterfaceGUID</tt> with a single NUL terminated GUID if your device has only one interface
 
 {| border="1" cellpadding="2"
-|+'''Table 4: Microsoft Extended Properties Feature Descriptor'''
+|+'''Table 4a: Microsoft Extended Properties Feature Descriptor'''
 !style="background:#efefef;" width="190"|Value
 !style="background:#efefef;" width="100"|TYPE
 !style="background:#efefef;"|Description
@@ -230,7 +230,7 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 |-
 |<code>0x84, 0x00, 0x00, 0x00</code> || DWORD (LE) || Size of the property<br/>section (132 bytes)
 |-
-|<code>0x01, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type<br/>(<code>7</code> = Unicode<br/>REG_SZ,<br/>see table below)
+|<code>0x01, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type<br/>(<code>7</code> = Unicode<br/>'''REG_SZ''',<br/>see table below)
 |-
 |<code>0x28, 0x00</code> || WORD (LE) || Property name<br/>length (40 bytes)
 |-
@@ -244,7 +244,7 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 * Use <tt>DeviceInterfaceGUIDs</tt> with a list of at least two GUIDs, terminated with a double NUL if your device has two interfaces or more.
 
 {| border="1" cellpadding="2"
-|+'''Table 4: Microsoft Extended Properties Feature Descriptor'''
+|+'''Table 4b: Microsoft Extended Properties Feature Descriptor'''
 !style="background:#efefef;" width="190"|Value
 !style="background:#efefef;" width="100"|TYPE
 !style="background:#efefef;"|Description
@@ -259,7 +259,7 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 |-
 |<code>0xd6, 0x00, 0x00, 0x00</code> || DWORD (LE) || Size of the property<br/>section (214 bytes)
 |-
-|<code>0x07, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type<br/>(<code>7</code> = Unicode<br/>REG_MULTI_SZ,<br/>see table below)
+|<code>0x07, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type<br/>(<code>7</code> = Unicode<br/>'''REG_MULTI_SZ''',<br/>see table below)
 |-
 |<code>0x2a, 0x00</code> || WORD (LE) || Property name<br/>length (42 bytes)
 |-
