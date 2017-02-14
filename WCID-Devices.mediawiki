@@ -210,7 +210,9 @@ Just like with the Compatible ID, this too is done through a Feature Descriptor,
 '''IMPORTANT NOTE 1:''' There is a bug/limitation in WinUSB that will force the <code>wIndex</code> of any Interface Request to the interface number. This means that, if you are using WinUSB to verify the content of your Extended Properties Feature Descriptor, you won't be able to retrieve it (unless it is only defined for interface #5).<br />
 If you use WinUSB on Windows to validate your descriptors, our advice then is to have your device firmware answer both Device and Interface requests when the Extended Properties Feature Descriptor is queried, so that you can use a Device Request rather than an Interface Request to validate that your descriptor is set properly. For reference, the latest <code>xusb</code> sample application from libusb has a <tt>-w</tt> switch that will force the <code>wIndex = 0x0005</code> to use the Device mode.
 
-'''IMPORTANT NOTE 2:''' The official Microsoft documentation shows the definition of a <tt>DeviceInterfaceGUID</tt> as a <tt>REG_SZ</tt>, and this is what the sample firmwares we provide at the end are defined with. However, if you are using a device with multiple interfaces, you may run into an issue where issuing a registry query to get the Device Interface GUIDs will not return the GUID of the WCID interface when it isn't the first one, '''unless''' you set your Extended Properties to return a <tt>DeviceInterfaceGUIDs</tt> property (with an '''s''') as a <tt>REG_MULTI_SZ</tt>, to define your GUID. The use of <tt>DeviceInterfaceGUIDs</tt> rather than <tt>DeviceInterfaceGUID</tt> is what we illustrate below, so if you follow this guide, you should not run into this problem.
+'''IMPORTANT NOTE 2:''' The official Microsoft documentation shows the definition of a <tt>DeviceInterfaceGUID</tt> as a <tt>REG_SZ</tt>, and this is what the sample firmwares we provide at the end are defined with. However, if you are using a device with multiple interfaces, you may run into an issue where issuing a registry query to get the Device Interface GUIDs will not return the GUID of the WCID interface when it isn't the first one, '''unless''' you set your Extended Properties to return a <tt>DeviceInterfaceGUIDs</tt> property (with an '''s''') as a <tt>REG_MULTI_SZ</tt>, to define your GUID. To make matters worse, we have gotten reports that trying to use <tt>DeviceInterfaceGUIDs</tt> with a single interface device (to define a single GUID), '''may not work''', and that you therefore should:
+
+* Use <tt>DeviceInterfaceGUID</tt> with a single NUL terminated GUID if your device has only one interface
 
 {| border="1" cellpadding="2"
 |+'''Table 4: Microsoft Extended Properties Feature Descriptor'''
@@ -218,7 +220,7 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 !style="background:#efefef;" width="100"|TYPE
 !style="background:#efefef;"|Description
 |-
-|<code>0x92, 0x00, 0x00, 0x00</code> || DWORD (LE) || Descriptor length<br/>(146 bytes)
+|<code>0x92, 0x00, 0x00, 0x00</code> || DWORD (LE) || Descriptor length<br/>(144 bytes)
 |-
 |<code>0x00, 0x01</code> || BCD WORD (LE) || Version (<code>'1.0'</code>)
 |-
@@ -226,7 +228,36 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 |-
 |<code>0x01, 0x00</code> || '''WORD''' (LE) || Number of sections (<code>1</code>)
 |-
-|<code>0x88, 0x00, 0x00, 0x00</code> || DWORD (LE) || Size of the property<br/>section (136 bytes)
+|<code>0x84, 0x00, 0x00, 0x00</code> || DWORD (LE) || Size of the property<br/>section (132 bytes)
+|-
+|<code>0x01, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type<br/>(<code>7</code> = Unicode<br/>REG_SZ,<br/>see table below)
+|-
+|<code>0x28, 0x00</code> || WORD (LE) || Property name<br/>length (40 bytes)
+|-
+|<code>0x44, 0x00, 0x65, 0x00,</code><br/><code>(...)</code><br/><code>0x74, 0x00, 0x00, 0x00</code> || NUL-terminated<br/>Unicode String (LE) || Property name<br/><code>"DeviceInterfaceGUID"</code>
+|-
+|<code>0x4e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data<br/>length (78 bytes)
+|-
+|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x7d, 0x00, 0x00, 0x00</code> || NUL-terminated<br/>Unicode String (LE) || Property name<br/><code>"{xxxxxxxx-xxxx-</code><br/><code>xxxx-xxxx-</code><br/><code>xxxxxxxxxxxx}\0\0"</code>
+|}
+
+* Use <tt>DeviceInterfaceGUIDs</tt> with a list of at least two GUIDs, terminated with a double NUL if your device has two interfaces or more.
+
+{| border="1" cellpadding="2"
+|+'''Table 4: Microsoft Extended Properties Feature Descriptor'''
+!style="background:#efefef;" width="190"|Value
+!style="background:#efefef;" width="100"|TYPE
+!style="background:#efefef;"|Description
+|-
+|<code>0xe0, 0x00, 0x00, 0x00</code> || DWORD (LE) || Descriptor length<br/>(224 bytes for 2 GUIDs)
+|-
+|<code>0x00, 0x01</code> || BCD WORD (LE) || Version (<code>'1.0'</code>)
+|-
+|<code>0x05, 0x00</code> || WORD (LE) || Extended Property<br/>Descriptor index (<code>5</code>)
+|-
+|<code>0x01, 0x00</code> || '''WORD''' (LE) || Number of sections (<code>1</code>)
+|-
+|<code>0xd6, 0x00, 0x00, 0x00</code> || DWORD (LE) || Size of the property<br/>section (214 bytes)
 |-
 |<code>0x07, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data type<br/>(<code>7</code> = Unicode<br/>REG_MULTI_SZ,<br/>see table below)
 |-
@@ -234,9 +265,9 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 |-
 |<code>0x44, 0x00, 0x65, 0x00,</code><br/><code>(...)</code><br/><code>0x73, 0x00, 0x00, 0x00</code> || NUL-terminated<br/>Unicode String (LE) || Property name<br/><code>"DeviceInterfaceGUIDs"</code>
 |-
-|<code>0x50, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data<br/>length (80 bytes)
+|<code>0x9e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data<br/>length (158 bytes)
 |-
-|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x00, 0x00, 0x00, 0x00</code> || '''double NUL'''-terminated<br/>Unicode String (LE) || Property name<br/><code>"{xxxxxxxx-xxxx-</code><br/><code>xxxx-xxxx-</code><br/><code>xxxxxxxxxxxx}\0\0"</code>
+|<code>0x7b, 0x00, 0x46, 0x00,</code><br/><code>(...)</code><br/><code>0x00, 0x00, 0x00, 0x00</code> || '''double NUL'''-terminated<br/>Unicode String (LE) || Property name<br/><code>"{xxxxxxxx-xxxx-</code><br/><code>xxxx-xxxx-</code><br/><code>xxxxxxxxxxxx}\0</code><br/><code>{xxxxxxxx-xxxx-</code><br/><code>xxxx-xxxx-</code><br/><code>xxxxxxxxxxxx}\0\0"</code>
 |}
 
 The property data types that you can use are defined in the following table:
