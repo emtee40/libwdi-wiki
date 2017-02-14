@@ -303,25 +303,30 @@ You can therefore use the Extended Properties Descriptors to define any addition
 
 For further details of the data that a WCID device, that also has the (optional) <code>DeviceInterfaceGUID</code> defined, should return, what follows is an example of what <code>xusb</code> against WCID-enabled Benchmark device. All the screenshots and data sections described above have been produced with this device. You can obtain a standalone <code>xusb</code> executable for Windows by downloading the latest Windows binary archive from http://libusb.info.
 
-<pre>D:\libusb\examples>xusb 4d8:fa2e
-Using libusb v1.0.8.10345
+<pre>D:\libusb\examples>xusb -i 04d8:fa2f
+Using libusb v1.0.21.11121
 
-Opening device...
-bus: 7, port path from HCD: 4->3
-speed: 12 Mbit/s (USB 1.0 FullSpeed)
+Opening device 04D8:FA2F...
+
+Device properties:
+        bus number: 2
+         port path: 3 (from root hub)
+             speed: 12 Mbit/s (USB FullSpeed)
 
 Reading device descriptor:
             length: 18
       device class: 0
                S/N: 3
-           VID:PID: 04D8:FA2E
+           VID:PID: 04D8:FA2F
          bcdDevice: 0001
    iMan:iProd:iSer: 1:2:3
           nb confs: 1
 
-Reading configuration descriptors:
+Reading BOS descriptor: no descriptor
+
+Reading first configuration descriptor:
              nb interfaces: 1
-              interface[0]: id = 0
+              interface[0]: id = 5
 interface[0].altsetting[0]: num endpoints = 2
    Class.SubClass.Protocol: 00.00.00
        endpoint[0].address: 01
@@ -347,16 +352,15 @@ Reading Extended Compat ID OS Feature Descriptor (wIndex = 0x0004):
 
 Reading Extended Properties OS Feature Descriptor (wIndex = 0x0005):
 
-  00000000  92 00 00 00 00 01 05 00 01 00 88 00 00 00 07 00  ................
-  00000010  00 00 2a 00 44 00 65 00 76 00 69 00 63 00 65 00  ..*.D.e.v.i.c.e.
+  00000000  8e 00 00 00 00 01 05 00 01 00 84 00 00 00 01 00  ................
+  00000010  00 00 28 00 44 00 65 00 76 00 69 00 63 00 65 00  ..(.D.e.v.i.c.e.
   00000020  49 00 6e 00 74 00 65 00 72 00 66 00 61 00 63 00  I.n.t.e.r.f.a.c.
-  00000030  65 00 47 00 55 00 49 00 44 00 73 00 00 00 50 00  e.G.U.I.D.s...P.
-  00000040  00 00 7b 00 46 00 37 00 30 00 32 00 34 00 32 00  ..{.F.7.0.2.4.2.
-  00000050  43 00 37 00 2d 00 46 00 42 00 32 00 35 00 2d 00  C.7.-.F.B.2.5.-.
-  00000060  34 00 34 00 33 00 42 00 2d 00 39 00 45 00 37 00  4.4.3.B.-.9.E.7.
-  00000070  45 00 2d 00 41 00 34 00 32 00 36 00 30 00 46 00  E.-.A.4.2.6.0.F.
-  00000080  33 00 37 00 33 00 39 00 38 00 32 00 7d 00 00 00  3.7.3.9.8.2.}...
-  00000090  00 00                                            ..
+  00000030  65 00 47 00 55 00 49 00 44 00 00 00 4e 00 00 00  e.G.U.I.D...N...
+  00000040  7b 00 46 00 37 00 30 00 32 00 34 00 32 00 43 00  {.F.7.0.2.4.2.C.
+  00000050  37 00 2d 00 46 00 42 00 32 00 35 00 2d 00 34 00  7.-.F.B.2.5.-.4.
+  00000060  34 00 33 00 42 00 2d 00 39 00 45 00 37 00 45 00  4.3.B.-.9.E.7.E.
+  00000070  2d 00 41 00 34 00 32 00 36 00 30 00 46 00 33 00  -.A.4.2.6.0.F.3.
+  00000080  37 00 33 00 39 00 38 00 32 00 7d 00 00 00        7.3.9.8.2.}...
 
 Releasing interface 0...
 Closing device...</pre>
