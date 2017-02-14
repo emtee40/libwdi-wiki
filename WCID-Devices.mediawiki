@@ -305,7 +305,7 @@ For further details of the data that a WCID device, that also has the (optional)
 
 <pre>
 
-xusb -i 04d8:fa2f
+D:\libusb\Win32\Debug\examples&gt;xusb -i 04d8:fa2f
 Using libusb v1.0.21.11121
 
 Opening device 04D8:FA2F...
