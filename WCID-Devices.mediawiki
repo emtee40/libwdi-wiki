@@ -303,7 +303,9 @@ You can therefore use the Extended Properties Descriptors to define any addition
 
 For further details of the data that a WCID device, that also has the (optional) <code>DeviceInterfaceGUID</code> defined, should return, what follows is an example of what <code>xusb</code> against WCID-enabled Benchmark device. All the screenshots and data sections described above have been produced with this device. You can obtain a standalone <code>xusb</code> executable for Windows by downloading the latest Windows binary archive from http://libusb.info.
 
-<pre>xusb -i 04d8:fa2f
+<pre>
+
+xusb -i 04d8:fa2f
 Using libusb v1.0.21.11121
 
 Opening device 04D8:FA2F...
