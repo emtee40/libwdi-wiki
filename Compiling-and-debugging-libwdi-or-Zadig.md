@@ -41,7 +41,7 @@ On this screen:
 
 Sadly, the WinUSB redistributable files, which libwdi needs to compile the library, are no longer provided as a standalone download by Microsoft, so we need to download and install the latest Windows Driver Kit, which is about 500 MB in size, to have them available.
 
-* Go to https://msdn.microsoft.com/en-us/windows/hardware/dn913721.aspx and click `Install Windows Driver Kit (WDK) 10`.
+* Go to https://developer.microsoft.com/en-us/windows/hardware/windows-driver-kit and click `Install Windows Driver Kit (WDK) 10`.
 * Save the `wdksetup.exe` file in the location of your choice and run it.
 * Specify the download location of your choice (or keep the default) and click _Next_.
 * On the following screen:  
