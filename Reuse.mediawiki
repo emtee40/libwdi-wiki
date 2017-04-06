@@ -10,18 +10,18 @@ Libwdi implements reusable solutions to the following problems:
 
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): (MinGW/cygwin) || <tt>[https://github.com/pbatard/libwdi/blob/master/autogen.sh /autogen.sh], [https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac], [https://github.com/pbatard/libwdi/blob/master/Makefile.am /Makefile.am], [https://github.com/pbatard/libwdi/blob/master/libwdi/Makefile.am /libwdi/Makefile.am], [https://github.com/pbatard/libwdi/blob/master/examples/Makefile.am /examples/Makefile.am]</tt>
+| style="background:#f7f7f7;" | File(s): (MinGW/cygwin) || [https://github.com/pbatard/libwdi/blob/master/autogen.sh /autogen.sh], [https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac], [https://github.com/pbatard/libwdi/blob/master/Makefile.am /Makefile.am], [https://github.com/pbatard/libwdi/blob/master/libwdi/Makefile.am /libwdi/Makefile.am], [https://github.com/pbatard/libwdi/blob/master/examples/Makefile.am /examples/Makefile.am]
 |-
 | style="background:#f7f7f7;" | File(s): (MSVC) || <tt>*.sln, .msvc/*.vcproj .msvc/*.vcxproj</tt>
 |-
-| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[https://github.com/pbatard/libwdi/blob/master/ddk_build.cmd ddk_build.cmd], .msvc/*_sources</tt>
+| style="background:#f7f7f7;" | File(s): (DDK) || [https://github.com/pbatard/libwdi/blob/master/ddk_build.cmd ddk_build.cmd], .msvc/*_sources
 |}
 
 == Creating an application that is compatible with all versions of Windows from Windows 2000 ==
 The trick is to use MinGW as the compiler along with the <code>-DWINVER=0x500</code> flag.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac]</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac]
 |}
 
 == Creating a GUI application that uses the latest Windows visual enhancements (Aero Glass look on Vista/Windows 7), even if compiled from MinGW/cygwin ==
@@ -45,7 +45,7 @@ END
 And of course, you need a matching section at the end.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/common_controls.manifest common-controls manifest], [https://github.com/pbatard/libwdi/blob/master/examples/.msvc/zadig_sources example DDK sources (Zadig)], [https://github.com/pbatard/libwdi/blob/master/examples/zadig.rc example MinGW manifest from .rc (Zadig)]</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/examples/common_controls.manifest common-controls manifest], [https://github.com/pbatard/libwdi/blob/master/examples/.msvc/zadig_sources example DDK sources (Zadig)], [https://github.com/pbatard/libwdi/blob/master/examples/zadig.rc example MinGW manifest from .rc (Zadig)]
 |}
 
 == Creating an application that will request elevation, using MSVC, WDK/DDK, MinGW or cygwin ==
@@ -53,7 +53,7 @@ The solution to that is similar to the above one, in that you need to use [https
 In our project, you will see that we combine multiple manifests were needed (this is the case for the Zadig example above for instance), as DDK is not able to merge separate manifests files. Also, recent versions of Visual Studio don't require an explicit manifest file for elevation, as this can be taken care of in Linker &rarr; Manifest File &rarr; UAC Execution Level.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/elevation.manifest /examples/elevation.manifest]</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/examples/elevation.manifest /examples/elevation.manifest]
 |}
 
 == Detecting if an application is running on a 32 or 64 bit Windows OS ==
@@ -76,7 +76,7 @@ Depending on the OS being run, libwdi requires a 32 or 64 bit version of the dri
 </pre>
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/libwdi.c /libwdi/libwdi.c] &rarr; install_driver_internal()</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/libwdi.c /libwdi/libwdi.c] &rarr; install_driver_internal()
 |}
 
 == Compiling a project for both 32 and 64 bit ==
@@ -86,16 +86,16 @@ When possible, because of the need for an embedded driver installer that matches
 * For MinGW, provided that you use a multilib MinGW-w64 for compilation, switching between 32 and 64 bit can be easily achieved on the fly as well with the <code>-m32</code>/<code>-m64</code> <code>CFLAGS</code>/<code>LDFLAGS</code> options. You can also do configure time 32/64 bit support detection or enabling/disabling through configure.ac, or to set the default to be 32 bit, with only the required files as 64.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): (MinGW) || <tt>[https://github.com/pbatard/libwdi/blob/master/Makefile.am /Makefile.am] [https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac]</tt>
+| style="background:#f7f7f7;" | File(s): (MinGW) || [https://github.com/pbatard/libwdi/blob/master/Makefile.am /Makefile.am] [https://github.com/pbatard/libwdi/blob/master/configure.ac /configure.ac]
 |- 
-| style="background:#f7f7f7;" | File(s): (DDK) || <tt>https://github.com/pbatard/libwdi/blob/master/ddk_build.cmd /ddk_build.cmd]</tt>
+| style="background:#f7f7f7;" | File(s): (DDK) || [https://github.com/pbatard/libwdi/blob/master/ddk_build.cmd /ddk_build.cmd]
 |}
 
 == Folder/File selection dialogs that uses the new enhanced Vista or Windows 7 controls when available ==
 This is all done in the <code>file_dialog()</code> and <code>browse_for_folder()</code> calls from <code>zadig_stdlg.c</code>.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): (DDK) || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/zadig_stdlg.c /examples/zadig_stdlg.c]</tt>
+| style="background:#f7f7f7;" | File(s): (DDK) || [https://github.com/pbatard/libwdi/blob/master/examples/zadig_stdlg.c /examples/zadig_stdlg.c]
 |}
 
 == USB hotplug detection ==
@@ -103,13 +103,13 @@ This is all done in the <code>file_dialog()</code> and <code>browse_for_folder()
 # When using <code>RegisterDeviceNotification()</code>, it is possible to get unique <code>WM_DEVICECHANGE</code> events but only for devices that already have a driver, because there is no device interface class for unknown/driverless devices and Microsoft has not publicized any way of doing so, it is NOT possible to get a single notification event for insertion/removal of devices that don't have a driver.<br />Our solution then is to initiate delayed notification thread on the first <code>WM_DEVICECHANGE</code> message we receive, and wait for this thread to send a user defined event back to our main callback.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/zadig.c /examples/zadig.c] &rarr; main_callback() & notification_delay_thread()</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/examples/zadig.c /examples/zadig.c] &rarr; main_callback() & notification_delay_thread()
 |}
 
 == USB device listing, including driverless devices ==
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/libwdi.c /libwdi/libwdi.c] &rarr; wdi_create_list()</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/libwdi.c /libwdi/libwdi.c] &rarr; wdi_create_list()
 |}
 
 == Automatic incrementation of executable/DLL version numbers, using git tags ==
@@ -120,14 +120,14 @@ If you are using versioning in .rc files, it would obviously be nice to bump the
 Additionally, the script also updates the USB VID &rarr; Vendor ID string source (see below).
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/_bump.sh /_bump.sh]</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/_bump.sh /_bump.sh]
 |}
 
 == Windows GUI MouseOver/Hover Tooltip ==
 A simple call that creates and displays a tooltip when hovering over a dialog item (eg. text field)
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/examples/zadig_stdlg.c /examples/zadig_stdlg.c] &rarr; create_tooltip()</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/examples/zadig_stdlg.c /examples/zadig_stdlg.c] &rarr; create_tooltip()
 |}
 
 == Sed script to convert the USB VIDs into a source that resolves the Vendor ID strings ==
@@ -136,7 +136,7 @@ In our applications, this is used to display the Vendor name of a specific USB d
 # uses sed to convert it to a C source with a function call that will take a VID and return the matching string.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/vid_data.sh /libwdi/vid_data.sh]</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/vid_data.sh /libwdi/vid_data.sh]
 |}
 
 == UTF-8 wrappers for the WideChar (UTF-16) MS API ==
@@ -158,7 +158,7 @@ Our UTF-8 wrapper API provides just that, for a selected subset of the Windows A
 * <code>UpdateDriverForPlugAndPlayDevices</code>/<code>SetupCopyOEMInf</code> (<code>UpdateDriverForPlugAndPlayDevicesU</code>/<code>SetupCopyOEMInfU</code>)
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/msapi_utf8.h /libwdi/msapi_utf8.h]</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/msapi_utf8.h /libwdi/msapi_utf8.h]
 |}
 
 == Installing a certificate into the Trusted Publisher repository ==
@@ -166,7 +166,7 @@ If you want your signed drivers to be installed without security prompts, but ca
 The code will also detect whether the certificate is about to be effectively written to the store, so as to let end-users with the possibility to refuse the certificate installation if they so choose.<br />The code must be executed from a process running in elevated mode.
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToTrustedPublisher()</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToTrustedPublisher()
 |}
 
 == WDK's MakeCat/Inf2Cat, MakeCert, CertMgr, SignTool, with source ==
@@ -176,25 +176,25 @@ The only thing we ask, which seems like a fair request considering that Microsof
 '''MakeCert:'''
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; CreateSelfSignedCert()</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; CreateSelfSignedCert()
 |}
 
 '''CertMgr:'''
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToStore(), RemoveCertFromStore()</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; AddCertToStore(), RemoveCertFromStore()
 |}
 
 '''MakeCat:'''
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; CreateCat(), AddFileHash(), etc.</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; CreateCat(), AddFileHash(), etc.
 |}
 
 '''SignTool:'''
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; SelfSignFile()</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c /libwdi/pki.c] &rarr; SelfSignFile()
 |}
 
 == Programmatically setting a Local Group Policy on Vista and Windows 7 ==
@@ -244,7 +244,7 @@ pLGPO->lpVtbl->Release(pLGPO);
 
 {| border="1" cellspacing="0"
 |- 
-| style="background:#f7f7f7;" | File(s): || <tt>[https://github.com/pbatard/libwdi/blob/master/libwdi/installer.c /libwdi/installer.c] &rarr; disable_system_restore()</tt>
+| style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/installer.c /libwdi/installer.c] &rarr; disable_system_restore()
 |}
 ----
 <center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
