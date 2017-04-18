@@ -54,7 +54,7 @@ Provided that you have one of the environments highlighted above and retrieved t
 ** Run '<code>make</code>'
 ** The resulting library and examples can be retrieved in the <code>.libs</code> directory
 
-* '''DDK or Visual Studio''':<br />
+* '''WDK or Visual Studio''':<br />
 ** '''Common''' Edit the file msvc/config.h to set/modify your options, or refer to the list below:
 *** <code>#define DDK_DIR "<dir>"</code>: embed WinUSB driver files from the following DDK location
 *** <code>#define LIBUSB0_DIR "<dir>"</code>: embed libusb-win32 driver files from the following location
@@ -72,7 +72,7 @@ Provided that you have one of the environments highlighted above and retrieved t
 *** Select your target (Release/Debug, Win32/x64) and select 'Build'
 *** The resulting library and examples can be retrieved from <code><arch>\<Release|Debug></code> (eg: <code>.\x64\Release\</code>)
 ** '''DDK/WDK''':
-*** Open the relevant build command prompt (eg. "Windows XP x86 Free Build" for a 32/64 library compatible with XP and later), then navigate to the libwdi directory and run '<code>ddk_build.cmd</code>' or '<code>ddk_build DLL</code>' to build either the static or dynamic version of the library. DLL must be specified in uppercase if needed.
+*** Open the relevant build command prompt (eg. "Windows XP x86 Free Build" for a 32/64 library compatible with XP and later), then navigate to the libwdi directory and run '<code>wdk_build.cmd</code>' or '<code>wdk_build DLL</code>' to build either the static or dynamic version of the library. DLL must be specified in uppercase if needed.
 *** The resulting library and examples can be retrieved from their respective source directory.
 
 == Using a custom driver file with libwdi ==
