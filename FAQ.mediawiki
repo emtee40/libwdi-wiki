@@ -29,14 +29,14 @@ By default, the configure script expects your default build platform's compiler 
 
 == How can I create a 32+64 bit compatible version of libwdi? ==
 # Use Visual Studio (>= 2005) and select Win32 for the target. Note that Visual Studio Express cannot be used, as it doesn't include a 64 bit compiler.
-# Use the [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows Driver Kit] or DDK (v 7.x or later), and run <code>ddk_build.cmd</code> from one of the Windows XP 32 bit command prompts
+# Use the [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows Driver Kit] or WDK (v 7.x or later), and run <code>wdk_build.cmd</code> from one of the Windows XP 32 bit command prompts
 # Use a '''multilib''' version of [http://mingw-w64.sourceforge.net/ MinGW-w64]. Multilib means a compiler that supports both the -m32 and -m64 options. Currently, the binaries provided on the project page are not multilib, so you need to use [http://tdm-gcc.tdragon.net/download TDM64] which only runs under Windows or [http://pete-akeo.blogspot.com/2010/07/compiling-mingw-w64-with-multilib-on.html recompile MinGW-w64] yourself.
 
 == How can I create Windows 2000 compatible version of libwdi? ==
 Currently, the only '''officially supported''' way to do so is to use MinGW32. You may try WDK 6001 version as well but it is unsupported. Take note that MinGW-w64 only officially supports XP onwards (although the libwdi binaries produced appear to work fine on Windows 2000). 
 
-== How can I create a DLL with the DDK environment? ==
-Run <code>ddk_build DLL</code>. Make sure the DLL parameter is specified as uppercase.
+== How can I create a DLL with the WDK environment? ==
+Run <code>wdk_build DLL</code>. Make sure the DLL parameter is specified as uppercase.
 
 == I get "System error: -2147154677" when converting to Visual C++ Express 2010 ==
 Unfortunately, Microsoft's Visual C++ Express 2010 is a crippled version that cannot import project files that contain 64 bit builds. Currently, the only solution is to either not use Visual Studio Express 2010 or re-create the project files manually.
