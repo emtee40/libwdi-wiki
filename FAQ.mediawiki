@@ -1,3 +1,18 @@
+= Zadig =
+
+== Help, Zadig replaced the driver for the wrong device! How do I restore it? ==
+
+First of all, I must point out that Zadig does exactly what '''you''' tell it to do. If you select the wrong device, and Zadig happen to replace its driver, the responsibility is entirely yours. Zadig will try to warn about common system drivers, such as HID or Mass Storage, that you don't usually want to replace, but there are only so many drivers Zadig can know about. So, '''please''', try to pay attention to the device you select next time: don't just close your eyes and press the install button on the first device you see, OK?
+
+Now, restoring the previous system driver, if it was replaced, is usually pretty simple (as long as you didn't replace the HID driver for your mouse or keyboard - if you did, you will need to plug in another keyboard or mouse, to navigate the device manager). 
+
+In this example, let's say I inadvertently let Zadig install a driver for an USB Flash Drive, which made the system end up using WinUSB instead of the Windows default Mass Storage device. And after finding out that this mean I can no longer access my Flash Drive in Explorer, I need to restore it to the original Mass Storage driver. To do just that:
+
+# Open Device Manager
+# Under ''Universal Serial Bus devices'' (or possibly ''libusbk devices''/''libusb-win32 devices'' if you didn't pick <tt>WinUSB</tt> as your driver), right click on your device. In this example, <tt>ADATA UFD</tt> is our device.<br/>[[images/uninstall_01.png|none|frame|Device manager with the device to uninstall]]
+# Select ''Uninstall'' and on the dialog box that appears, '''make sure to check the box that says "''Delete the driver software for this device''"''' then click OK.<br/>[[images/uninstall_02.png|none|frame|Uninstall dialog]]
+# Once the uninstallation is complete, unplug and replug your device. The original system driver should now be reinstalled.</br>In our case, we would see the Flash Drive reappearing under the ''Disk drives'' category, which is what we want.<br/>[[images/uninstall_03.png|none|frame|Restored device]]
+
 = Installing and Compiling libwdi =
 
 == Where can I get binary snapshots of libwdi? ==
@@ -82,22 +97,6 @@ If you ask this, you probably would like to have libwdi/Zadig set the class GUID
 # The main reason people want to set class parameters in the inf is either to place their own branding in the device manager (which makes it more confusing for end-users to locate their devices) or to define a class GUID that restricts the generic access that libwdi provides to hardware and software ("walled garden"). We don't think restrictions that impair the ability for end users to use the device of their choosing, including a cloned version, should be part of the libwdi generic driver installation process.
 
 This being said, if you really want to have your own class properties defined in the inf, and you know the VID:PIDs of your devices, which should always be the case if you want to restrict the class from the default generic one, there's nothing preventing you from reusing WinUSB, libusb-win32 or libusbK as a custom driver with a customized inf that you control.
-
-= Zadig =
-
-== Help, Zadig replaced the driver for the wrong device! How do I restore it? ==
-
-First of all, I must point out that Zadig does exactly what '''you''' tell it to do. If you select the wrong device, and Zadig happen to replace its driver, the responsibility is entirely yours. Zadig will try to warn about common system drivers, such as HID or Mass Storage, that you don't usually want to replace, but there are only so many drivers Zadig can know about. So, '''please''', try to pay attention to the device you select next time: don't just close your eyes and press the install button on the first device you see, OK?
-
-Now, restoring the previous system driver, if it was replaced, is usually pretty simple (as long as you didn't replace the HID driver for your mouse or keyboard - if you did, you will need to plug in another keyboard or mouse, to navigate the device manager). 
-
-In this example, let's say I inadvertently let Zadig install a driver for an USB Flash Drive, which made the system end up using WinUSB instead of the Windows default Mass Storage device. And after finding out that this mean I can no longer access my Flash Drive in Explorer, I need to restore it to the original Mass Storage driver. To do just that:
-
-# Open Device Manager
-# Under ''Universal Serial Bus devices'' (or possibly ''libusbk devices''/''libusb-win32 devices'' if you didn't pick <tt>WinUSB</tt> as your driver), right click on your device. In this example, <tt>ADATA UFD</tt> is our device.<br/>[[images/uninstall_01.png|none|frame|Device manager with the device to uninstall]]
-# Select ''Uninstall'' and on the dialog box that appears, '''make sure to check the box that says "''Delete the driver software for this device''"''' then click OK.<br/>[[images/uninstall_02.png|none|frame|Uninstall dialog]]
-# Once the uninstallation is complete, unplug and replug your device. The original system driver should now be reinstalled.</br>In our case, we would see the Flash Drive reappearing under the ''Disk drives'' category, which is what we want.<br/>[[images/uninstall_03.png|none|frame|Restored device]]
-
 
 ----
 <center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
