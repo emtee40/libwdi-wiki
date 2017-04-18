@@ -347,7 +347,7 @@ As to the driver installer executable that, can be referenced from the Inno Setu
 For the build process itself, in order to build libwdi along with a wdi-simple sample that is compatible with all versions of Windows from XP, including 64 bit versions, we recommend that you use the Windows XP x86 command prompt (yes, it will build x64 binaries as well as x86 ones). From there, after having navigated to the libwdi directory, you can simply invoke:
 
 <blockquote style="background: white; border: 1px solid rgb(153, 153, 153); padding: 1em; margin-left: 0em">
-<code>ddk_build.cmd</code>
+<code>wdk_build.cmd</code>
 </blockquote>
 
 If compilation was successful, you should now have the various sample executables in the <code>examples\</code> directory. The next step then is to reference that executable from your application intaller.
