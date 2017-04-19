@@ -18,7 +18,7 @@ In 2011, WCID [http://msdn.microsoft.com/en-gb/library/windows/hardware/hh450799
 
 In 2012, Microsoft also added the WinUSB WCID driver files to Windows Update, with the effect of bringing WCID capabilities and automated WinUSB driver installation to other recent versions of Windows.
 
-As it greatly enhances user experience, WCID is now being leveraged in USB devices such as Android devices, benchmark devices, with many more expected to follow.
+As it greatly enhances user experience, WCID is now being leveraged in USB devices such as Android devices, medical devices, game controllers, and various USB gadgets, with many more expected to follow. As a matter of fact, WCID is what Microsoft uses in their XBox 360 USB controller, to provided seamless installation of the XBox toolbar driver.
 
 == Example ==
 
