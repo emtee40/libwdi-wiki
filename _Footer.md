@@ -1,0 +1,1 @@
+[![CC-BY-SA 4.0](https://cdn.rawgit.com/wiki/pbatard/rufus/images/cc-by-sa.svg)](https://creativecommons.org/licenses/by-sa/4.0/)<br/>Copyright © 2012-2018 __Pete Batard__
