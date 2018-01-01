@@ -86,5 +86,3 @@ If you have a custom driver that you would like to use with libwdi (eg, a custom
 Notes:
 # Unless you manually edit <code>libdwi/embedder_files.h</code> it is not possible to differentiate between a 32 bit or 64 bit install, so both the 32 and 64 bit driver files must be included in your directory
 # Because it is impossible for libwdi to guess how the inf file for a custom driver should be generated, you must provide your own inf file along with the driver, and set all its parameters accordingly.
-----
-<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
