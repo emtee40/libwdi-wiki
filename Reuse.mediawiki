@@ -246,5 +246,3 @@ pLGPO->lpVtbl->Release(pLGPO);
 |- 
 | style="background:#f7f7f7;" | File(s): || [https://github.com/pbatard/libwdi/blob/master/libwdi/installer.c /libwdi/installer.c] &rarr; disable_system_restore()
 |}
-----
-<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
