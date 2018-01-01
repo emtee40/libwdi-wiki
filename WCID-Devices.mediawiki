@@ -415,5 +415,3 @@ Finally, a [http://www.microsoft.com/download/en/details.aspx?id=4865 Microsoft 
 * [http://msdn.microsoft.com/en-us/windows/hardware/gg487321 Microsoft USB FAQ (MSDN)] &rarr; "What is a Microsoft OS Descriptor?"
 * [http://msdn.microsoft.com/en-us/windows/hardware/gg463179 Microsoft OS Descriptors Overview (MSDN)]
 * [http://blogs.msdn.com/b/usbcoreblog/archive/2009/10/31/how-does-usb-stack-enumerate-a-device.aspx How does USB stack enumerate a device? (MSDN)]
-----
-<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
