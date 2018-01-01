@@ -432,5 +432,3 @@ Success is always indicated by a return value zero (<code>WDI_SUCCESS</code>) wh
 '''Return value:'''
 : An integer representing the internal Microsoft version of WDF used for the embedded WinUSB and libusbK drivers. Currently, this is either <tt>1009</tt> for WDF 1.09 (last WDF that supports Windows XP) or <tt>1011</tt> for WDF 1.11 (compatible only with Windows Vista or later).
 |}
-----
-<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
