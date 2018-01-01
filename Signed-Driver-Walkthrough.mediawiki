@@ -576,5 +576,3 @@ Once again courtesy of ''Bob Paddock'':
 The problem stems back from the original private key that was exported out of Windows to make the .pfx file.  If the file is around 6.6K it indicates that part of the chain is missing, that it seems outdated XP machines need, and nothing else does.  The .pfx file needs to be around the size of 7.4K if it has the correct chain of certificates to make XP happy.  The exact file size will vary somewhat due to variations of length in the certificate name (has nothing to do with the name of the file), and the particular CA that was used.
 
 When you export the Private Key make sure 'Include all certificates in the certificate path if possible' and 'Export all extended properties' are checked, to make old XP machines happy.</blockquote>
-----
-<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
