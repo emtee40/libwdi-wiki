@@ -58,5 +58,3 @@ Here is how the signing process of a driver package occurs in a libwdi based app
 # The private key is destroyed
 
 For more info, see the <code>CreateCat()</code> and <code>SelfSignFile()</code> function calls from [https://github.com/pbatard/libwdi/blob/master/libwdi/pki.c <code>libwdi/pki.c</code>].
-----
-<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
