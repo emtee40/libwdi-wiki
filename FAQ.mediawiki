@@ -97,6 +97,3 @@ If you ask this, you probably would like to have libwdi/Zadig set the class GUID
 # The main reason people want to set class parameters in the inf is either to place their own branding in the device manager (which makes it more confusing for end-users to locate their devices) or to define a class GUID that restricts the generic access that libwdi provides to hardware and software ("walled garden"). We don't think restrictions that impair the ability for end users to use the device of their choosing, including a cloned version, should be part of the libwdi generic driver installation process.
 
 This being said, if you really want to have your own class properties defined in the inf, and you know the VID:PIDs of your devices, which should always be the case if you want to restrict the class from the default generic one, there's nothing preventing you from reusing WinUSB, libusb-win32 or libusbK as a custom driver with a customized inf that you control.
-
-----
-<center>[[images/CC_BY-SA.png|link=http://creativecommons.org/licenses/by-sa/3.0/]]</center>
