@@ -1,4 +1,4 @@
-## Preamble
+# ## ### ## # ## Preamble
 
 This is a visual guide on how to compile and debug the latest libwdi/Zadig using the __freely available__ Visual Studio 2017 Community Edition. If you follow this guide through, you should end up with a setup that is extremely close to the one that I, the developer, have been using for all my libwdi and Zadig development, and which should allow you to troubleshoot Zadig crashes for instance.
 
@@ -125,8 +125,13 @@ Rather than ask you to download and install these drivers, we are just going to 
 #ifndef LIBUSBK_DIR
 #define LIBUSBK_DIR "D:/libusbK/bin"
 #endif
+
+/* embed user defined driver files from the following location */
+#ifndef USER_DIR
+ #define USER_DIR "C:/signed-driver"
+#endif
 ```  
-and change it to (add `//` at the beginning of 2 lines):  
+and change it to (add `//` at the beginning of 3 lines):  
 ```
 /* embed libusb0 driver files from the following location */
 #ifndef LIBUSB0_DIR
@@ -136,6 +141,11 @@ and change it to (add `//` at the beginning of 2 lines):
 /* embed libusbK driver files from the following location */
 #ifndef LIBUSBK_DIR
 //#define LIBUSBK_DIR "D:/libusbK/bin"
+#endif
+
+/* embed user defined driver files from the following location */
+#ifndef USER_DIR
+ //#define USER_DIR "C:/signed-driver"
 #endif
 ```  
 You should end up with something similar to this:  
