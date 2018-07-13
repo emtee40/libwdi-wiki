@@ -18,7 +18,7 @@ Compilation of libwdi is supported for the following environments, with the rest
 
 Depending on the driver files you are planning to enable in libwdi, you will also require:
 * The WinUSB driver files from the [http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=36a2630f-5d56-43b5-b996-7633f2ec14ff Windows DDK]. This is regardless of whether you use the DDK build environment to compile libwdi.
-* The latest <code>libusb0.sys</code> driver files from [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32], and/or the latest <code>libusbK.sys</code> driver files from [http://code.google.com/p/usb-travis/ libusbK].
+* The latest <code>libusb0.sys</code> driver files from [https://sourceforge.net/directory/os:windows/?q=libusb-win32  libusb-win32], and/or the latest <code>libusbK.sys</code> driver files from [http://code.google.com/p/usb-travis/ libusbK].
 
 MinGW compilation also requires the following packages to be installed:
 * autotools (automake, autoconf, libtool), if running the <code>autogen.sh</code> from git
