@@ -1,4 +1,4 @@
-# ## ### ## # ## Preamble
+## Preamble
 
 This is a visual guide on how to compile and debug the latest libwdi/Zadig using the __freely available__ Visual Studio 2017 Community Edition. If you follow this guide through, you should end up with a setup that is extremely close to the one that I, the developer, have been using for all my libwdi and Zadig development, and which should allow you to troubleshoot Zadig crashes for instance.
 
