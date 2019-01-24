@@ -91,11 +91,11 @@ To create projects relying on libwdi, please refer to how the sample executables
 
 == Links ==
 
-* [http://msdn.microsoft.com/en-us/library/ms790227.aspx Writing a Device Installation Application]
-* [http://msdn.microsoft.com/en-us/library/aa906206.aspx Determining Whether a Device Is Plugged In and removal of phantom devices]
+* [https://docs.microsoft.com/en-us/windows-hardware/drivers/install/writing-a-device-installation-application Writing a Device Installation Application]
+* [https://docs.microsoft.com/en-us/windows-hardware/drivers/install/determining-whether-a-device-is-plugged-in Determining Whether a Device Is Plugged In and removal of phantom devices]
 * [http://msdn.microsoft.com/en-us/library/bb530410.aspx#vistauac_topic3 Installer Detection for 32 bit applications]
 * [http://jpassing.com/2008/02/01/how-to-use-manifests-with-buildexe/ Embedding manifests (for UAC elevation) with the DDK build environment]
-* [http://www.microsoft.com/whdc/driver/install/setupapilog.mspx Troubleshooting Device Installation with the SetupAPI Log File]
+* [http://download.microsoft.com/download/e/b/a/eba1050f-a31d-436b-9281-92cdfeae4b45/setupapilog.doc Troubleshooting Device Installation with the SetupAPI Log File]
 * [http://www.microsoft.com/whdc/driver/install/diagnose.mspx Debugging Device Installation in Windows Vista]
 * [http://support.microsoft.com/kb/179378 How To Browse for Folders from the Current Directory]
 * [http://msdn.microsoft.com/en-us/library/aa511279.aspx UI] [http://msdn.microsoft.com/en-us/library/aa511453.aspx design] [http://msdn.microsoft.com/en-us/library/aa511458.aspx guidelines] from MSDN
