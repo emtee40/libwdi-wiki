@@ -2,7 +2,7 @@
 
 == Latest official release ==
 
-The latest official release of libwdi can be donwloaded [http://sourceforge.net/projects/libwdi/files/releases/ here].
+The latest official release of libwdi can be downloaded [http://sourceforge.net/projects/libwdi/files/releases/ here].
 Or you can also [https://github.com/pbatard/libwdi use git] to retrieve the latest development tree.
 
 == Prerequisites ==
