@@ -409,9 +409,8 @@ Finally, a [http://www.microsoft.com/download/en/details.aspx?id=4865 Microsoft 
 
 == Aditional Links ==
 
-* [http://msdn.microsoft.com/en-us/library/windows/hardware/hh450799.aspx WinUSB Device (MSDN)]
-* [http://www.sourcequest.com/modsContent.htm Overview of Microsoft OS Descriptors by SourceQuest]
-* [http://msdn.microsoft.com/en-us/library/windows/hardware/ff537430.aspx Microsoft-Defined USB Descriptors (MSDN)]
-* [http://msdn.microsoft.com/en-us/windows/hardware/gg487321 Microsoft USB FAQ (MSDN)] &rarr; "What is a Microsoft OS Descriptor?"
-* [http://msdn.microsoft.com/en-us/windows/hardware/gg463179 Microsoft OS Descriptors Overview (MSDN)]
-* [http://blogs.msdn.com/b/usbcoreblog/archive/2009/10/31/how-does-usb-stack-enumerate-a-device.aspx How does USB stack enumerate a device? (MSDN)]
+* [https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/automatic-installation-of-winusb WinUSB Device (MSDN)]
+* [https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/microsoft-defined-usb-descriptors Microsoft-Defined USB Descriptors (MSDN)]
+* [https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/microsoft-os-2-0-descriptors-specification Microsoft OS 2.0 Descriptors Specification (MSDN)]
+* [https://msdn.microsoft.com/en-us/windows/hardware/gg463179 Microsoft OS Descriptors Overview (MSDN)]
+* [https://techcommunity.microsoft.com/t5/Microsoft-USB-Blog/How-does-USB-stack-enumerate-a-device/ba-p/270685 How does USB stack enumerate a device? (MSDN)]
