@@ -22,7 +22,7 @@ As it greatly enhances user experience, WCID is now being leveraged in USB devic
 
 == Example ==
 
-The following is a screenshot of a "WINUSB" WCID device as detected by [http://sourceforge.net/projects/libwdi/files/zadig/ Zadig].
+The following is a screenshot of a "WINUSB" WCID device as detected by [https://zadig.akeo.ie Zadig].
 
 On Windows Vista or later, this device, which is neither HID nor Mass Storage, sees a driver installed automatically without any form of user intervention through either Windows Update (Windows Vista, Windows 7) or natively (Windows 8).
 
@@ -34,7 +34,7 @@ The same can also be achieved on Windows XP SP2, if a WinUSB WCID driver (i.e. a
 
 What WCID means for end-user is that, as long as a device is WCID, and a WCID driver with the same generic compatible ID is either available on the system or from Windows Update, no manual driver installation will be required when plugging the device. Instead, Windows will perform the driver installation automatically.
 
-Moreover, an application such as [http://sourceforge.net/projects/libwdi/files/zadig/ Zadig] can ensure that even on platforms where a WCID driver is not provided by Microsoft (eg. XP SP2) or when non Microsoft USB drivers are used (libusb0, libusbK), WCID can still be enabled through a one-time WCID driver installation so that, when you plug a WCID device in the future, you won't have anything to do.
+Moreover, an application such as [https://zadig.akeo.ie Zadig] can ensure that even on platforms where a WCID driver is not provided by Microsoft (eg. XP SP2) or when non Microsoft USB drivers are used (libusb0, libusbK), WCID can still be enabled through a one-time WCID driver installation so that, when you plug a WCID device in the future, you won't have anything to do.
 
 Thus, if you are an end-user, and the device you want to use is neither HID or Mass Storage, you should ask the manufacturer whether it is WCID compatible. If not, you should ask them whether they can update the device firmware and convert it to WCID, which is very easy for them to do, as this means it will greatly enhance your user experience.
 
@@ -46,7 +46,7 @@ Obviously, the main advantage of WCID for device manufacturers is that it allevi
 
 For any user running Windows Vista or later, as long as you use <code>"WINUSB"</code> for your WCID type (in the Compatible ID Descriptor - see below), nothing more is required, and the WinUSB WCID driver, which either comes with the OS or can be fetched from Windows Update, will be installed automatically. Thus you can start developing [http://msdn.microsoft.com/en-us/library/windows/hardware/ff540174.aspx WinUSB] or [http://libusb.info libusb] based applications, without having to worry about driver installation.
 
-For end-users not running Windows Vista or later, or if you choose to use [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32] or [http://code.google.com/p/usb-travis/ libusbK] to develop your application, you can simply either provide a one-time WCID driver installer application, such as [http://sourceforge.net/projects/libwdi/files/zadig/ Zadig] or [http://libwdi.sf.net libwdi]'s [https://github.com/pbatard/libwdi/blob/master/examples/wdi-simple.c wdi-simple] (both of which being Open Source and customizable to your needs), as these applications can install the WCID version of the WinUSB, libusb-win32 or libusbK drivers.
+For end-users not running Windows Vista or later, or if you choose to use [http://sourceforge.net/apps/trac/libusb-win32/wiki libusb-win32] or [http://code.google.com/p/usb-travis/ libusbK] to develop your application, you can simply either provide a one-time WCID driver installer application, such as [https://zadig.akeo.ie Zadig] or [https://github.com/pbatard/libwdi libwdi]'s [https://github.com/pbatard/libwdi/blob/master/examples/wdi-simple.c wdi-simple] (both of which being Open Source and customizable to your needs), as these applications can install the WCID version of the WinUSB, libusb-win32 or libusbK drivers.
 
 Also, while WCID requires the addition on additional descriptors, a lot of effort has been devoted in this page to ensure that you have all the information required to deploy WCID quickly and painlessly (i.e. near zero-cost), especially as the simple registry checks detailed below, the use of Zadig or the use of other test applications such as the [http://libusb.info libusb] sample application [https://github.com/libusb/libusb/blob/master/examples/xusb.c xusb] (a Windows binary version of which is also available [https://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.21/libusb-1.0.21.7z/download here]) or Linux's [http://packages.debian.org/search?keywords=usbutils usb-utils] (when updated to dump Microsoft OS Descriptors) can help validate whether your descriptors have been properly set. 
 
@@ -389,7 +389,7 @@ For reference, an implementation of a typical [http://code.google.com/p/usb-trav
 
 === AVR (LUFA) ===
 
-Also for reference, a simple [http://www.fourwalledcubicle.com/LUFA.php LUFA] based WCID firmware for Atmel AVR chips, that can be compiled using [http://www.atmel.com/microsite/avr_studio_5/default.asp?source=redirect AVR Studio 5], is also provided [http://sourceforge.net/projects/libwdi/files/misc/ here].
+Also for reference, a simple [http://www.fourwalledcubicle.com/LUFA.php LUFA] based WCID firmware for Atmel AVR chips, that can be compiled using [http://www.atmel.com/microsite/avr_studio_5/default.asp?source=redirect AVR Studio 5], is also provided [https://sourceforge.net/projects/libwdi/files/misc/ here].
 
 === STM32 ===
 
@@ -405,7 +405,7 @@ Note that the only project that was modified in each library was the HID project
 
 === Other ===
 
-Finally, a [http://www.microsoft.com/download/en/details.aspx?id=4865 Microsoft NetMon] trace (using the USB extensions &mdash; for more details, please see [http://pete.akeo.ie/2011/03/troubleshooting-usb-device-development.html this blog post]) is also available [http://sourceforge.net/projects/libwdi/files/misc/ here], that illustrates the USB queries your device will receive, and how it should answer them, the first time it is plugged on a Windows machine.
+Finally, a [http://www.microsoft.com/download/en/details.aspx?id=4865 Microsoft NetMon] trace (using the USB extensions &mdash; for more details, please see [http://pete.akeo.ie/2011/03/troubleshooting-usb-device-development.html this blog post]) is also available [https://sourceforge.net/projects/libwdi/files/misc/ here], that illustrates the USB queries your device will receive, and how it should answer them, the first time it is plugged on a Windows machine.
 
 == Aditional Links ==
 
