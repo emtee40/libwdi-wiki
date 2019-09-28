@@ -4,7 +4,7 @@ A '''WCID device''', where WCID stands for "'''W'''indows '''C'''ompatible '''ID
 
 WCID allows a device to be used by a Windows application almost as soon as it is plugged in, as opposed to the the usual scenario where an USB device that is neither [http://en.wikipedia.org/wiki/Human_interface_device HID] nor [http://en.wikipedia.org/wiki/USB_mass_storage_device_class Mass Storage] requires end-users to perform a manual driver installation. As such, WCID can bring the 'Plug-and-Play' functionality of HID and Mass Storage to '''any''' USB device (that sports a WCID aware firmware).
 
-WCID is an extension of the [https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/automatic-installation-of-winusb WinUSB Device] functionality, put forward by Microsoft during the Windows 8 Developer Preview and that uses capabilities ([http://msdn.microsoft.com/en-us/windows/hardware/gg463179 Microsoft OS Descriptors], or MODs) that have been part of Windows since Windows XP SP2.
+WCID is an extension of the [https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/automatic-installation-of-winusb WinUSB Device] functionality, put forward by Microsoft during the Windows 8 Developer Preview and that uses capabilities ([https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/microsoft-defined-usb-descriptors Microsoft OS Descriptors], or MODs) that have been part of Windows since Windows XP SP2.
 
 As of May 2012, an automated WinUSB WCID driver is provided on all platforms starting with Windows Vista. On Windows 8 or later, it is native to the system which means there is no need to go online for the driver to be installed, whereas, for Vista and Windows 7, it will be obtained from the internet, through Windows Update.
 
