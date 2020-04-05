@@ -64,15 +64,15 @@ Sadly, the WinUSB redistributable files, which libwdi needs to compile the libra
 
 * Launch Visual Studio 2019.
 * On the sign in screen:  
-[![](https://github.com/pbatard/libwdi/wiki/images/ws_startup_01.png)](https://github.com/pbatard/libwdi/wiki/images/ws_startup_01.png)
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_startup_01.png)](https://github.com/pbatard/libwdi/wiki/images/vs_startup_01.png)
     * For the _Development Settings:_ dropdown, select `Visual C++`.
     * Click _Not now, maybe later._
 * On the next screen:  
-[![](https://github.com/pbatard/libwdi/wiki/images/ws_startup_02.png)](https://github.com/pbatard/libwdi/wiki/images/ws_startup_02.png)
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_startup_02.png)](https://github.com/pbatard/libwdi/wiki/images/vs_startup_02.png)
     * Select the colour scheme that you prefer.
     * Click _Start Visual Studio_.
 * Wait for Visual Studio to be ready:  
-[![](https://github.com/pbatard/libwdi/wiki/images/ws_startup_03.png)](https://github.com/pbatard/libwdi/wiki/images/ws_startup_03.png)
+[![](https://github.com/pbatard/libwdi/wiki/images/vs_startup_03.png)](https://github.com/pbatard/libwdi/wiki/images/vs_startup_03.png)
 
 ### Cloning the latest libwdi source
 
