@@ -1,10 +1,10 @@
 ## Preamble
 
-This is a visual guide on how to compile and debug the latest libwdi/Zadig using the __freely available__ Visual Studio 2017 Community Edition. If you follow this guide through, you should end up with a setup that is extremely close to the one that I, the developer, have been using for all my libwdi and Zadig development, and which should allow you to troubleshoot Zadig crashes for instance.
+This is a visual guide on how to compile and debug the latest libwdi/Zadig using the __freely available__ Visual Studio 2019 Community Edition. If you follow this guide through, you should end up with a setup that is extremely close to the one that I, the developer, have been using for all my libwdi and Zadig development, and which should allow you to troubleshoot Zadig crashes for instance.
 
 This visual guide does not assume any familiarity with any of the development tools mentioned below. Even if you don't know anything about development, if you follow these steps through, you should be in a position to compile, run and debug the application as if you were a well-seasoned developer.
 
-Finally, it should be noted that, because libwdi and Zadig and OSI-licensed Open Source projects (LGPL v2.1 and GPL v3 respectively), you are __fully entitled__ to download and install Visual Studio 2017 Community Edition to build and troubleshoot the project, no matter whether you are an individual doing it at home or an enterprise user doing it within your company.
+Finally, it should be noted that, because libwdi and Zadig and OSI-licensed Open Source projects (LGPL v2.1 and GPL v3 respectively), you are __fully entitled__ to download and install Visual Studio 2019 Community Edition to build and troubleshoot the project, no matter whether you are an individual doing it at home or an enterprise user doing it within your company.
 
 ## Before Installing
 
@@ -16,7 +16,7 @@ Also, this whole installation process will not work on Windows XP, as this versi
 
 ## Installing Visual Studio and the WDK
 
-### Visual Studio 2017 Community Edition
+### Visual Studio 2019 Community Edition
 
 * Go to https://www.visualstudio.com/vs/community/ and click the _Download_ button.
 * Save the `vs_community_###.exe` file in the location of your choice and run it.
@@ -62,7 +62,7 @@ Sadly, the WinUSB redistributable files, which libwdi needs to compile the libra
 
 ### First Visual Studio Startup
 
-* Launch Visual Studio 2017.
+* Launch Visual Studio 2019.
 * On the sign in screen:  
 [![](https://github.com/pbatard/libwdi/wiki/images/ws_startup_01.png)](https://github.com/pbatard/libwdi/wiki/images/ws_startup_01.png)
     * For the _Development Settings:_ dropdown, select `Visual C++`.
@@ -76,7 +76,7 @@ Sadly, the WinUSB redistributable files, which libwdi needs to compile the libra
 
 ### Cloning the latest libwdi source
 
-Since git is integrated in Visual Studio 2017, there's no need to install a third party client to download the latest sources from github.
+Since git is integrated in Visual Studio 2019, there's no need to install a third party client to download the latest sources from github.
 
 * In the main Visual Studio window, on the left handside:  
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_git_01.png)](https://github.com/pbatard/libwdi/wiki/images/vs_git_01.png)  
