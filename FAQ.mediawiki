@@ -67,7 +67,7 @@ We do take security matters very seriously (which is the reason why we implement
 For more information, see our [[Certification Practice Statement]] page
 
 == How can I use libwdi to install a specific USB device with an installer? ==
-When run from within an installer script, the wdi-simple sample from examples should be able to achieve just that. Examples of [http://www.jrsoftware.org/isinfo.php Inno Setup] and [https://nsis.sourceforge.io/Main_Page NSIS] installer scripts are provided in the libwdi samples. See the [https://github.com/pbatard/libwdi/blob/master/examples/wdi-simple.iss `wdi-simple.iss`] or [https://github.com/pbatard/libwdi/blob/master/examples/wdi-simple.nsi `wdi-simple.nsi`].
+When run from within an installer script, the wdi-simple sample from examples should be able to achieve just that. Examples of [http://www.jrsoftware.org/isinfo.php Inno Setup] and [https://nsis.sourceforge.io/Main_Page NSIS] installer scripts are provided in the libwdi samples. See the [https://github.com/pbatard/libwdi/blob/master/examples/wdi-simple.iss wdi-simple.iss] or [https://github.com/pbatard/libwdi/blob/master/examples/wdi-simple.nsi wdi-simple.nsi].
 
 == Does libwdi support internationalization? ==
 Absolutely. The inf file created by libwdi is written in Unicode (UTF-16) format, to preserve any international characters, and the libwdi API calls and string parameters fully support UTF-8, meaning that you can name your devices with non English characters, or use directories in a different locale than English, and libwdi will happily process that data.
