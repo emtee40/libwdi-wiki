@@ -37,26 +37,13 @@ On this screen:
 [![](https://github.com/pbatard/libwdi/wiki/images/vs_install_04.png)](https://github.com/pbatard/libwdi/wiki/images/vs_install_04.png)
     * __DO NOT__ select _LAUNCH_, but instead __close the dialog__, as we need to install the WDK before we can proceed.
 
-### Windows Driver Kit (WDK) 10
+### WDK 8 Redistributables
 
-Sadly, the WinUSB redistributable files, which libwdi needs to compile the library, are no longer provided as a standalone download by Microsoft, so we need to download and install the latest Windows Driver Kit, which is about 500 MB in size, to have them available.
+For its installation on Windows 8 or earlier (this is not needed on Windows 10 or later), WinUSB requires the provision of some redistributable files, that are part of the WDK for Windows 8.
 
-* Go to https://developer.microsoft.com/en-us/windows/hardware/windows-driver-kit and click `Install Windows Driver Kit (WDK) 10`.
-* Save the `wdksetup.exe` file in the location of your choice and run it.
-* Specify the download location of your choice (or keep the default) and click _Next_.
-* On the following screen:  
-[![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_01.png)](https://github.com/pbatard/libwdi/wiki/images/wdk_install_01.png)  
-    * Because the installer detects that Visual Studio has been installed, it should automatically select the proper location, so just click _Next_.
-* If asked to join the Customer Experience Improvement Program, select No:  
-[![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_02.png)](https://github.com/pbatard/libwdi/wiki/images/wdk_install_02.png)
-* On the License Agreement screen:  
-[![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_03.png)](https://github.com/pbatard/libwdi/wiki/images/wdk_install_03.png)
-    * Click _Accept_.
-    * If a prompt asks you for elevated privileges, accept it.
-* Let the download and installation process complete:  
-[![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_04.png)](https://github.com/pbatard/libwdi/wiki/images/wdk_install_04.png)
-* Close the final screen:
-[![](https://github.com/pbatard/libwdi/wiki/images/wdk_install_05.png)](https://github.com/pbatard/libwdi/wiki/images/wdk_install_05.png)
+Thankfully, Microsoft now provides those as a standalone MSI packaage, which you can download [here](https://go.microsoft.com/fwlink/p/?LinkID=253170).
+
+You should therefore download the package above and install it to its default location `C:\Program Files (x86)\Windows Kits\8.0\`.
 
 ## Launching Visual Studio and fetching the latest libwdi source
 
