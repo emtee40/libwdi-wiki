@@ -75,17 +75,17 @@ For power users, Zadig offers the following list of features:
 
 == Preventing the replacement of a Zadig libusbK USB Device Driver ==
 
-====The Problem====
+=== The Problem ===
 After replacing an existing USB device driver with libusbK, using Zadig, one may find that Windows silently rolls back the device driver to the previous driver. This usually happens after reboot, but may also occur after unplugging the device. Similar behaviour can also occur as a result of Windows Update; either a rollback or possibly replacement with a newer driver (rollahead).
 
-====The Cause====
+=== The Cause ===
 Windows continually, albeit episodically, quests to assure that for each device, the ‘best’ driver is installed. One is probably already aware of such a notion when one attempts to ‘upgrade’ a device driver (via Device Manager) and it comes back saying ''the best driver is already installed''. The metric of ‘best’, termed driver ‘rank’, is some combination of driver date, version, and other factors described [https://docs.microsoft.com/en-us/windows-hardware/drivers/install/overview-of-the-driver-selection-process here].
 
 However, multiple candidate drivers may share the same rank in which case the most recent date trumps. This quest for ‘best’ is also episodic, so as not to disrupt ongoing programmatic control of a device. Upon power-up or reboot, the Windows PnP Manager scans (‘enumerates’) all attached devices, also doing so upon event of a device attachment (e.g. plug-in of USB device). Upon enumeration, the best driver is determined and assigned.
 
 As explained above, this will typically be the driver with the newer date. For instance, Zadig's date stamp for libusbK might be <code>11/30/2014</code> for version <code>3.0.7.0</code> resulting in rank <code>00FF0001</code>. If the user has ever installed other drivers for this device, e.g. drivers from manufacturer, or the device manufacturer’s drivers are hooked by Windows Update (some are, some aren't), then there is risk of unwanted rollback. As mentioned, this risk generally holds for driver dates greater than libusbK’s.
 
-====The workaround====
+=== The workaround ===
 Remove competing (typically newer-dated) device drivers, via <code>pnputil</code>.
 
 See [https://docs.microsoft.com/en-us/windows-hardware/drivers/install/how-devices-and-driver-packages-are-uninstalled Microsoft's How Devices and Driver Packages are Uninstalled] under section ''Deleting a Driver Package from the Driver Store'' which boils down to issuing the command:
@@ -102,10 +102,10 @@ But what if one alternately needs to switch between libusbK and the (newer) manu
 
 Also note that you can’t simply edit the date in the <code>.inf</code> file, since it is bound via digital signature in the accompanying <code>.cat</code> file (see [https://docs.microsoft.com/en-us/windows-hardware/drivers/install/catalog-files here] or [https://github.com/pbatard/libwdi/wiki/Signed-Driver-Walkthrough#Creating_a_signed_cat_file here]), although perhaps deliberately deleting the <code>.cat</code> file to force the prompt for ''‘install anyway’'' might be a workaround.
 
-====Possible Prevention====
+=== Possible Prevention ===
 Block (Windows Update) driver installation for particular device, per [https://www.ghacks.net/2017/06/03/stop-windows-from-installing-drivers-for-specific-devices this arcticle] (Caution: We have not tried this!). Necessary only if device manufacturer’s drivers are hooked by Windows Update.
 
-====Process and Diagnostic Details====
+=== Process and Diagnostic Details ===
 * One can check for device entry in the Windows Registry using <code>RegEdit</code>: <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB\</code>
 ** Look up entry under <code>VID_PID_</code>  Entry (VID: Vendor ID; PID: Product ID)
 ** Does ''service'' indicate WinUSB or libusbK?
