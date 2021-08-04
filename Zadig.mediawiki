@@ -107,7 +107,8 @@ Block (Windows Update) driver installation for particular device, per [https://w
 ** Does ''service'' indicate WinUSB or libusbK?
 ** The <code>mfg</code> (Manufacturer) entry should show the synthesized <code>oem###.inf</code>, corresponding to (same date) <code>oem###.inf</code> under <code>C:\Windows\INF\</code>
 * One can check in Driver Store <code>C:\Windows\System32\DriverStore\FileRepository\<code> for a folder, with naming indicating the manufacturer and device, corresponding to prior installation of manufacturer’s driver. 
-* Comprehensive Windows driver installation log at: <code>C:\Windows\INF\setupapi.dev.log<code>. Example excerpt showing involuntary rollback: 
+* Comprehensive Windows driver installation log at: <code>C:\Windows\INF\setupapi.dev.log</code>. Example excerpt showing involuntary rollback:
+ 
 <pre>
 >>>  [Device Install (Hardware initiated) - USB\VID_2457&PID_104B\7&13b69c22&0&3]
 >>>  Section start 2020/10/02 14:13:19.318
