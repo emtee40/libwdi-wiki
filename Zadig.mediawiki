@@ -73,20 +73,41 @@ For power users, Zadig offers the following list of features:
 # GUID = "{11111111-2222-3333-4444-555555555555}"
 </pre>
 
-== (Preventing) Involuntary Rollback/Rollahead of Zadig libusbK USB Device Driver ==
-* '''The Problem:'''  After replacing an existing USB device driver with libusbK using Zadig, a user may later find that Microsoft Windows 10 (hereinafter ‘Windows’) has silently rolled back the device driver to the previous one.  This usually would happen after reboot, but might (?) also occur after unplugging (detaching) the device.  Similar behavior could also occur as a result of Windows Update; either a rollback or possibly replacement with a newer driver (rollahead).  
-* '''The Cause(s):'''  Windows continually albeit episodically quests to assure that for each device, the ‘best’ driver is installed.  One is probably already aware of such a notion when one attempts to ‘upgrade’ a device driver (via Device Manager) and it comes back saying ‘the best driver is already installed’. The metric of ‘best’, termed driver ‘rank’, is some combination of driver date, version, and other factors, as described here: https://docs.microsoft.com/en-us/windows-hardware/drivers/install/overview-of-the-driver-selection-process. However, multiple candidate drivers may share the same rank; then the most recent date trumps.  This quest for best is episodic so as not to disrupt ongoing programmatic control of a device.  Upon power-up or reboot, the Windows PnP Manager scans (‘enumerates’) all attached devices, also doing so upon event of a device attachment (e.g. plug-in of USB device).  Upon enumeration, the best driver is determined and assigned.  As explained, typically this will be the driver with the newer date.  The Zadig 2.5 date stamp of libusbK is ''11/30/2014'', version ''3.0.7.0'', rank (on my PC) ''00FF0001''.  If the user has ever installed other drivers for this device, e.g. drivers from manufacturer, or the device manufacturer’s drivers are hooked by Windows Update (some are, some arent’), then there is risk of involuntary rollback.  As mentioned, this risk generally holds for driver dates greater than libusbK’s. 
-*'''The Cure(s):''' Remove competing (typically newer-dated) device drivers, via the ''pnputil'', see:  https://docs.microsoft.com/en-us/windows-hardware/drivers/install/how-devices-and-driver-packages-are-uninstalled under section ‘Deleting a Driver Package from the Driver Store’: <code>pnputil /delete-driver <example.inf> /uninstall</code> . But one needs to know which .inf to cite in the <code><example.inf></code> placeholder; not the manufacturer’s .inf, rather the installation-synthesized oemNNN.inf. One can use ''DeviceManager>[device]>Properties>Events'' to examine driver events, to identify which oemNNN.inf is the manufacturer-tied one. Or if the driver to delete is the one presently installed: ''DeviceManager>[device]>Properties>Details>Property:Inf name''.  Upon deleting via ''pnputil'', both the .inf file in ''C:\Windows\INF'', and the driver folder in ''C:\Windows\System32\DriverStore\FileRepository\'' are deleted. 
-** What if one alternately needs to switch between libusbK and the (newer) manufacturer’s drivers, e.g. per usage of the manufacturer’s application software?  Then one is evidently stuck with manually monitoring for rollback and managing installation/uninstallation of device drivers.  
-** Note: Can’t simply edit the date in the .inf file, since it is bound via digital signature in the accompanying .cat file (see:  https://docs.microsoft.com/en-us/windows-hardware/drivers/install/catalog-files and also a non-M$-throttled approach here: https://github.com/pbatard/libwdi/wiki/Signed-Driver-Walkthrough#Creating_a_signed_cat_file), although perhaps deliberately deleting the .cat file to force the prompt for ‘install anyway’ might be a workaround. 
-* '''Prevention(s):''' Block (Windows Update) driver installation for particular device:, see https://www.ghacks.net/2017/06/03/stop-windows-from-installing-drivers-for-specific-devices/ (caution!  I have not tried this myself).   Necessary only if device manufacturer’s drivers are hooked by Windows Update.  
-* '''Process and Diagnostic Details'''
-** One can check for device entry in the Windows Registry using RegEdit: ''HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB\''
-*** Look up entry under VID_PID_  Entry (VID: Vendor ID; PID: Product ID)
-*** Does ''service'' indicate WinUSB or libusbK?
-*** The ''mfg'' (Manufacturer) entry should show the synthesized oemNNN.inf, corresponding to (same date) oemNNN.inf under ''C:\Windows\INF''
-** One can check in Driver Store ''C:\Windows\System32\DriverStore\FileRepository\'' for a folder, with naming indicating the manufacturer and device, corresponding to prior installation of manufacturer’s driver. 
-** Comprehensive Windows driver installation log at: ''C:\Windows\INF\setupapi.dev.log''. Example excerpt showing involuntary rollback: 
+== Preventing replacement of Zadig libusbK USB Device Driver ==
+
+====The Problem====
+After replacing an existing USB device driver with libusbK using Zadig, a user may find that Windows silently rolls back the device driver to the previous one.  This usually would happen after reboot, but may also occur after unplugging the device.  Similar behaviour can also occur as a result of Windows Update; either a rollback or possibly replacement with a newer driver (rollahead).
+
+====The Cause(s)====
+Windows continually, albeit episodically, quests to assure that for each device, the ‘best’ driver is installed. One is probably already aware of such a notion when one attempts to ‘upgrade’ a device driver (via Device Manager) and it comes back saying ‘the best driver is already installed’. The metric of ‘best’, termed driver ‘rank’, is some combination of driver date, version, and other factors described [https://docs.microsoft.com/en-us/windows-hardware/drivers/install/overview-of-the-driver-selection-process here].
+
+However, multiple candidate drivers may share the same rank in which case the most recent date trumps. This quest for best is episodic so as not to disrupt ongoing programmatic control of a device. Upon power-up or reboot, the Windows PnP Manager scans (‘enumerates’) all attached devices, also doing so upon event of a device attachment (e.g. plug-in of USB device). Upon enumeration, the best driver is determined and assigned. As explained, typically this will be the driver with the newer date. For instance, Zadig's date stamp for libusbK might be <code>11/30/2014</code> for version <code>3.0.7.0</code> resulting in rank <code>00FF0001</code>. If the user has ever installed other drivers for this device, e.g. drivers from manufacturer, or the device manufacturer’s drivers are hooked by Windows Update (some are, some arent’), then there is risk of involuntary rollback. As mentioned, this risk generally holds for driver dates greater than libusbK’s.
+
+====The Cure(s)====
+Remove competing (typically newer-dated) device drivers, via <code>pnputil</code>. See [https://docs.microsoft.com/en-us/windows-hardware/drivers/install/how-devices-and-driver-packages-are-uninstalled Microsoft's How Devices and Driver Packages are Uninstalled] under section ''Deleting a Driver Package from the Driver Store'' which boils down to issuing the command:
+
+<code>pnputil /delete-driver <example.inf> /uninstall</code>
+
+However, one needs to know which <code>.inf</code> to cite in the <code><example.inf></code> placeholder as this won't be a manufacturer’s <code>.inf</code> but rather an installation-synthesized <code>oem####.inf</code>.
+
+To identify that <code>.inf</code>, one can use ''DeviceManager &rarr; [device] &rarr; Properties &rarr; Events'' to examine driver events and identify which <code>oem####.inf</code> is the manufacturer-tied one. Or if the driver to delete is the one presently installed: ''DeviceManager &rarr; [device] &rarr; Properties &rarr; Details &rarr; Property:Inf name''.
+
+Upon deleting via <code>pnputil</code>, both the <code>.inf</code> file in <code>C:\Windows\INF</code>, and the driver folder in <code>C:\Windows\System32\DriverStore\FileRepository\</code> are deleted.
+
+But what if one alternately needs to switch between libusbK and the (newer) manufacturer’s drivers, e.g. per usage of the manufacturer’s application software? Then one is evidently stuck with manually monitoring for rollback and managing installation/uninstallation of device drivers, which is less than ideal...
+  
+Also note that you can’t simply edit the date in the <code>.inf</code> file, since it is bound via digital signature in the accompanying <code>.cat</code> file (see [https://docs.microsoft.com/en-us/windows-hardware/drivers/install/catalog-files here] or [https://github.com/pbatard/libwdi/wiki/Signed-Driver-Walkthrough#Creating_a_signed_cat_file here]), although perhaps deliberately deleting the <code>.cat</code> file to force the prompt for ''‘install anyway’'' might be a workaround.
+
+====Possible Prevention====
+Block (Windows Update) driver installation for particular device, per [https://www.ghacks.net/2017/06/03/stop-windows-from-installing-drivers-for-specific-devices this arcticle] (caution: I have not tried this myself). Necessary only if device manufacturer’s drivers are hooked by Windows Update.
+
+====Process and Diagnostic Details====
+* One can check for device entry in the Windows Registry using <code>RegEdit</code>: <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB\</code>
+** Look up entry under <code>VID_PID_</code>  Entry (VID: Vendor ID; PID: Product ID)
+** Does ''service'' indicate WinUSB or libusbK?
+** The <code>mfg</code> (Manufacturer) entry should show the synthesized <code>oem###.inf</code>, corresponding to (same date) <code>oem###.inf</code> under <code>C:\Windows\INF\</code>
+* One can check in Driver Store <code>C:\Windows\System32\DriverStore\FileRepository\<code> for a folder, with naming indicating the manufacturer and device, corresponding to prior installation of manufacturer’s driver. 
+* Comprehensive Windows driver installation log at: <code>C:\Windows\INF\setupapi.dev.log<code>. Example excerpt showing involuntary rollback: 
 <pre>
 >>>  [Device Install (Hardware initiated) - USB\VID_2457&PID_104B\7&13b69c22&0&3]
 >>>  Section start 2020/10/02 14:13:19.318
