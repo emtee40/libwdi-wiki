@@ -80,7 +80,7 @@ If you don't want to use git from the commandline, you can use [https://tortoise
 
 Also note that, for MinGW you need to run <code>./autogen.sh</code> (after editing it according to your paths) or run the autotools creation utilities, in order to have configure and Makefile created for you.
 
-To create projects relying on libwdi, please refer to how the sample executables zadic, wdi-simple (console) or zadig (GUI) are compiled.
+To create projects relying on libwdi, please refer to how the sample executables wdi-simple (console) or zadig (GUI) are compiled.
 
 == Development Considerations ==
 
