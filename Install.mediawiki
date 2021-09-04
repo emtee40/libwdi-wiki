@@ -22,7 +22,7 @@ Depending on the driver files you are planning to enable in libwdi, you may also
 
 MinGW compilation also requires the following packages to be installed:
 * autotools (automake, autoconf, libtool), if running the <code>autogen.sh</code> from git
-* getopt, to compile the zadic sample
+* getopt, to compile the wdi-simple sample
 
 == Configuration & Compilation ==
 
