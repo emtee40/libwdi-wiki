@@ -234,7 +234,7 @@ If you use WinUSB on Windows to validate your descriptors, our advice then is to
 |-
 |<code>0x28, 0x00</code> || WORD (LE) || Property name<br/>length (40 bytes)
 |-
-|<code>0x44, 0x00, 0x65, 0x00,</code><br/><code>(...)</code><br/><code>0x74, 0x00, 0x00, 0x00</code> || NUL-terminated<br/>Unicode String (LE) || Property name<br/><code>"DeviceInterfaceGUID"</code>
+|<code>0x44, 0x00, 0x65, 0x00,</code><br/><code>(...)</code><br/><code>0x44, 0x00, 0x00, 0x00</code> || NUL-terminated<br/>Unicode String (LE) || Property name<br/><code>"DeviceInterfaceGUID"</code>
 |-
 |<code>0x4e, 0x00, 0x00, 0x00</code> || DWORD (LE) || Property data<br/>length (78 bytes)
 |-
