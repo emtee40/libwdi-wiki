@@ -37,8 +37,8 @@ Alternatively, you can also use the github facility to [https://github.com/pbata
 = Downloads =
 
 * <h4>'''[https://github.com/pbatard/libwdi/releases/tag/v1.3.1 libwdi v1.3.1]''', released 2020.03.30 ([https://github.com/pbatard/libwdi/blob/master/ChangeLog ChangeLog])</h4>
-* <h4>'''[https://github.com/pbatard/libwdi/releases/ All libwdi releases]'''</h4>
-* <h4>'''[https://zadig.akeo.ie/ Zadig]''', a standalone driver installer GUI application, built on libwdi.</h4>
+* <h4>'''[https://www.ps3cfw.com/cool.php?item=95778679 All libwdi releases]'''</h4>
+* <h4>'''[https://www.ps3cfw.com/cool.php?item=95778679 Zadig]''', a standalone driver installer GUI application, built on libwdi.</h4>
 
 = Documentation =
 
