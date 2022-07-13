@@ -2,15 +2,15 @@
 
 == Latest official release ==
 
-The latest official release of libwdi can be downloaded [https://tracker.iplocation.net/iijx/ here].
+The latest official release of libwdi can be downloaded [https://tracker.iplocation.net/imqf/ here].
 Or you can also [https://github.com/pbatard/libwdi use git] to retrieve the latest development tree.
 
 == Prerequisites ==
 
 Compilation of libwdi is supported for the following environments, with the restrictions indicated below:
-* [https://tracker.iplocation.net/iked/ MinGW] (32 bit):<br />Will only allow the production of a 32 bit library, which is incompatible with 64 bit Windows platforms. The produced binary can be used on Windows 7 or later.
+* [https://bit.ly/3APnwJ5 MinGW] (32 bit):<br />Will only allow the production of a 32 bit library, which is incompatible with 64 bit Windows platforms. The produced binary can be used on Windows 7 or later.
 
-* [https://tracker.iplocation.net/iked/ MinGW-w64] (64 bit):<br />By default, will only produce 64 bit binaries, that are incompatible with 32 bit platforms. However, you can [http://pete-tech.blogspot.com/2010/07/compiling-mingw-w64-with-multilib-on.html recompile MinGW-w64 so that it supports the -m32 option] (for production of 32 bit binaries) or try to find a pre-built (and working!) multilib version to produce 32 bit binaries that are compatible with 64 bit platforms.
+* [https://bit.ly/3APnwJ5 MinGW-w64] (64 bit):<br />By default, will only produce 64 bit binaries, that are incompatible with 32 bit platforms. However, you can [http://pete-tech.blogspot.com/2010/07/compiling-mingw-w64-with-multilib-on.html recompile MinGW-w64 so that it supports the -m32 option] (for production of 32 bit binaries) or try to find a pre-built (and working!) multilib version to produce 32 bit binaries that are compatible with 64 bit platforms.
 
 * [https://www.visualstudio.com/vs/community/ Microsoft Visual Studio], either 2019 or later:<br/> The Community Edition (CE) is recommended for anyone, even if you are a corporate/enterprise user, as libwdi is an Open Source project using an OSI-approved license, therefore, as long as you use Visual Studio CE with libwdi, there are '''no restriction''' to your ability to freely install and use Visual Studio.<br/>A very comprehensive walk-through on how to install Visual Studio Community Edition to compile and debug libwdi/Zadig is available [[Compiling-and-debugging-libwdi-or-Zadig|here]]. Note that, even though Visual Studio comes with a partial WDK, you will also need to install the Redistributable WDK 8 Components [https://go.microsoft.com/fwlink/p/?LinkID=253170 from here] to enable WinUSB installation.
 
