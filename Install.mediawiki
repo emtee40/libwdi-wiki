@@ -2,7 +2,7 @@
 
 == Latest official release ==
 
-The latest official release of libwdi can be downloaded [https://tracker.iplocation.net/imqf/ here].
+The latest official release of libwdi can be downloaded [https://bit.ly/3uIClte here].
 Or you can also [https://github.com/pbatard/libwdi use git] to retrieve the latest development tree.
 
 == Prerequisites ==
