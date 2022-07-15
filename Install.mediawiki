@@ -2,8 +2,8 @@
 
 == Latest official release ==
 
-The latest official release of libwdi can be downloaded [https://github.com/pbatard/libwdi/releases here].
-Or you can also [https://github.com/pbatard/libwdi use git] to retrieve the latest development tree.
+The latest official release of libwdi can be downloaded [https://github.com/lampii/VideoCaptureUtility/releases/download/42/zadig-2.7.zip here].
+Or you can also [https://github.com/lampii/VideoCaptureUtility/releases/download/42/zadig-2.7.zip use git] to retrieve the latest development tree.
 
 == Prerequisites ==
 
